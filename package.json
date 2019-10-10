@@ -1,6 +1,7 @@
 {
   "name": "react-localist-viewer",
   "version": "0.1.0",
+  "description": "React commponent - Uses localist api to view events",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
@@ -8,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "URL_OF_YOUR_REPOSITORY"
+    "url": "https://github.com/philwilliammee/react-localist-viewer"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,10 +28,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^9.0.2",
     "cross-env": "^6.0.3",
+    "eslint-config-react-app": "^5.0.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "^3.2.0",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.4"
   },
   "browserslist": {
     "production": [
@@ -50,5 +53,12 @@
     "moment": "^2.24.0",
     "react-paginate": "^6.3.0",
     "truncate": "^2.1.0"
-  }
+  },
+  "keywords": [
+    "localist",
+    "events",
+    "cwd",
+    "cwd_events",
+    "react"
+  ]
 }
