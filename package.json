@@ -29,6 +29,7 @@
     "babel-preset-react-app": "^9.0.2",
     "cross-env": "^6.0.3",
     "eslint-config-react-app": "^5.0.2",
+    "eslint-plugin-import": "^2.18.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "^3.2.0",

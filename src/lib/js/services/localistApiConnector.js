@@ -3,11 +3,11 @@ import moment from 'moment';
 
 /**
  * Sets params and returns axios Promise.
+ * options: https://developer.localist.com/doc/api#event-list
  */
 export default (
     depts,
     entries,
-    format,
     group,
     keyword,
     days,
@@ -17,17 +17,10 @@ export default (
 ) => {
     const params = {
         apikey,
-        days,
         distinct: true,
         pp: entries,
         page,
-        start:
-            format === 'archive'
-                ? moment().format('YYYY-MM-DD')
-                : moment()
-                    .subtract(days, 'D')
-                    .format('YYYY-MM-DD'),
-        direction: format !== 'archive' ? 'asc' : 'desc'
+        direction: days.startsWith("-") ? 'desc' : 'asc',
     };
     // Supports multiple departments with CSV string.
     if (depts && depts !== '0') {
@@ -39,8 +32,19 @@ export default (
     if (group && group !== '0') {
         params.group_id = group;
     }
+    // @tod add support for multiple keywords
     if (keyword && keyword !== '') {
         params.keyword = keyword;
     }
+
+    if (days.startsWith("-")){
+        params.start = moment()
+            .add(parseInt(days), 'days')
+            .format('YYYY-MM-DD')
+        params.end = moment().format('YYYY-MM-DD')
+    } else {
+        params.days = days;
+    }
+    console.log(params)
     return axios.get(calendarurl, { params });
 };

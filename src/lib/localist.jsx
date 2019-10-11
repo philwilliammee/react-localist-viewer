@@ -180,7 +180,6 @@ class Localist extends Component {
         const {
             depts,
             entries,
-            format,
             group,
             keyword,
             daysahead,
@@ -192,7 +191,6 @@ class Localist extends Component {
         localistApiConnector(
             depts,
             entries,
-            format,
             group,
             keyword,
             daysahead,
