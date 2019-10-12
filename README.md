@@ -1,1 +1,75 @@
 # react-localist-viewer
+
+A react component to pull [localist](https://developer.localist.com/doc/api#event-list) calandar events and render.
+
+## [example usage](https://cu-communityapps.github.io/CD_cwd_events/src/app/index.html)
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+This was made with react creat app Development requires Node and NPM.
+
+### Installing
+
+with composer
+
+```bash
+composer require cubear/cwd_events
+```
+
+or download directly from [Github Repo](https://github.com/philwilliammee/react-localist-viewer).
+
+```bash
+git clone https://github.com/philwilliammee/react-localist-viewer
+```
+
+Development to compile sass and javascript.
+
+```bash
+cd ./react-localist-viewer
+npm install
+npm run start
+```
+
+## Running the tests
+
+```bash
+npm run test
+```
+
+check for test coverage:
+
+```bash
+npm run coverage
+```
+
+### Break down into end to end tests
+
+### And coding style tests
+
+This module follows react create app coding standards.
+
+- see the `.eslintrc.json` file for linting details.
+
+## Deployment
+
+`npm run build` to compile for npm package. The process for converting to npm package can be found [here](https://www.npmjs.com/package/create-component-lib)
+
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/philwilliammee/react-localist-viewer/tags) and [tags on this npm](https://www.npmjs.com/package/react-localist-viewer).
+
+## Authors
+
+- **Phil Williammee** - [philwilliammee](https://github.com/philwilliammee)
+
+See also the list of [contributors](https://github.com/CU-CommunityApps/react-localist-viewer/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/philwilliammee/react-localist-viewer/blob/master/LICENSE) file for details
+
+## Acknowledgments
