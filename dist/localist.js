@@ -198,14 +198,13 @@ function (_Component) {
       var _this$state2 = this.state,
           depts = _this$state2.depts,
           entries = _this$state2.entries,
-          format = _this$state2.format,
           group = _this$state2.group,
           keyword = _this$state2.keyword,
           daysahead = _this$state2.daysahead;
       var _this$props2 = this.props,
           apikey = _this$props2.apikey,
           calendarurl = _this$props2.calendarurl;
-      localistApiConnector(depts, entries, format, group, keyword, daysahead, apikey, calendarurl, page).then(function (response) {
+      localistApiConnector(depts, entries, group, keyword, daysahead, apikey, calendarurl, page).then(function (response) {
         if (typeof response.data.events !== 'undefined') {
           _this2.setState({
             events: response.data.events,
