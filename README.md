@@ -2,22 +2,24 @@
 
 A react component to pull [localist](https://developer.localist.com/doc/api#event-list) calandar events and render.
 
-## [example usage](https://cu-communityapps.github.io/CD_cwd_events/src/app/index.html)
+## [Drupal Block example](https://cu-communityapps.github.io/CD_cwd_events/src/app/index.html)  |  [ES6 demo](https://philwilliammee.github.io/localist-viewer/docs/)
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+The rendered view does not come with any styling. A starter stlyle sheet can be found [here](https://philwilliammee.github.io/localist-viewer/docs/style.css)
+
 ### Prerequisites
 
-This was made with react creat app Development requires Node and NPM.
+This was made with react creat app Development requires Node and NPM. See create react app for more info.
 
 ### Installing
 
-with composer
+with NPM
 
 ```bash
-composer require cubear/cwd_events
+npm install --save react-localist-viewer
 ```
 
 or download directly from [Github Repo](https://github.com/philwilliammee/react-localist-viewer).
@@ -52,7 +54,7 @@ npm run coverage
 
 This module follows react create app coding standards.
 
-- see the `.eslintrc.json` file for linting details.
+see the `.eslintrc.json` file for linting details.
 
 ## Deployment
 
@@ -64,7 +66,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## Authors
 
-- **Phil Williammee** - [philwilliammee](https://github.com/philwilliammee)
+**Phil Williammee** - [philwilliammee](https://github.com/philwilliammee)
 
 See also the list of [contributors](https://github.com/CU-CommunityApps/react-localist-viewer/graphs/contributors) who participated in this project.
 
