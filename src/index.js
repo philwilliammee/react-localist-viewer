@@ -13,7 +13,7 @@ const App = () => (
       keyword= ''
       heading= 'Localist-Viewer'
       filterby= 'dept'
-      calendarurl= '//events.cornell.edu/api/2.1/events'
+      calendarurl= '/3eventTestData.json'
       apikey= ''
       hideaddcal= ''
       hidedescription= ''
@@ -24,7 +24,7 @@ const App = () => (
       listclass= "cards"
       itemclass= "card"
       readmore= 'Read More »'
-      url= 'https://philwilliammee.github.io/localist-viewer/'
+      url= 'https://philwilliammee.github.io/react-localist-viewer/'
   />
 );
 

@@ -36,10 +36,13 @@ npm install
 npm run start
 ```
 
+After you start
+`/src/index.js` will Initialize the app, and load example data/configuration. The app is highly configurable see `src/lib/localist.jsx` Proptype deifintions for all configuration options.
+
 ## Running the tests
 
 ```bash
-npm run test
+npm run jest
 ```
 
 check for test coverage:
@@ -49,6 +52,12 @@ npm run coverage
 ```
 
 ### Break down into end to end tests
+
+- React-localist-viewer should initialise with test props.
+
+- LocalistConnector should fetch JSON.data
+
+- The data should be rendered with selected props.
 
 ### And coding style tests
 
