@@ -7,10 +7,10 @@ const App = () => (
       target= 'root'
       depts= ''
       entries= '3'
-      daysahead= '-300'
+      daysahead= '-30'
       format= 'modern_compact'
       group= ''
-      keyword= 'diversity'
+      keyword= ''
       heading= 'Localist-Viewer'
       filterby= 'dept'
       calendarurl= '//events.cornell.edu/api/2.1/events'
@@ -23,7 +23,7 @@ const App = () => (
       wrapperclass= "cwd-card-grid three-card"
       listclass= "cards"
       itemclass= "card"
-      readmore= 'Read more'
+      readmore= 'Read More »'
       url= 'https://philwilliammee.github.io/localist-viewer/'
   />
 );
