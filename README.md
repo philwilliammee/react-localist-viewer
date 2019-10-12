@@ -1,6 +1,6 @@
 # react-localist-viewer
 
-A react component to pull [localist](https://developer.localist.com/doc/api#event-list) calandar events and render.
+A react component to pull [localist](https://developer.localist.com/doc/api#event-list) calendar events and render.
 
 ## [Drupal Block example](https://cu-communityapps.github.io/CD_cwd_events/src/app/index.html)  |  [ES6 demo](https://philwilliammee.github.io/localist-viewer/docs/)
 
