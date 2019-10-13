@@ -77,7 +77,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 **Phil Williammee** - [philwilliammee](https://github.com/philwilliammee)
 
-See also the list of [contributors](https://github.com/CU-CommunityApps/react-localist-viewer/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/philwilliammee/react-localist-viewer/graphs/contributors) who participated in this project.
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "react-localist-viewer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React commponent - Uses localist api to view events",
   "license": "GPL-3.0-or-later",
   "main": "dist/index.js",
