@@ -22,6 +22,7 @@ export default (
         page,
         direction: days.startsWith("-") ? 'desc' : 'asc',
     };
+
     // Supports multiple departments with CSV string.
     if (depts && depts !== '0') {
         params.type = [];
@@ -29,10 +30,12 @@ export default (
             params.type.push(item.trim());
         });
     }
+
     if (group && group !== '0') {
         params.group_id = group;
     }
-    // @tod add support for multiple keywords
+
+    // @todo add support for multiple keywords
     if (keyword && keyword !== '') {
         params.keyword = keyword;
     }
@@ -45,5 +48,6 @@ export default (
     } else {
         params.days = days;
     }
+
     return axios.get(calendarurl, { params });
 };

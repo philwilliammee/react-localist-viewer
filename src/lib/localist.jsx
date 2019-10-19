@@ -200,14 +200,14 @@ class Localist extends Component {
             calendarurl,
             page,
         );
-        
+
         this.setState({
             events: res.data.events,
             llPage: res.data.page,
             loading: false,
             page,
         });
-        
+
         this.curPage = res.data.page.current;
     }
 
