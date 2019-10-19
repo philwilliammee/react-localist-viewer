@@ -172,7 +172,7 @@ class Localist extends Component {
 
     }
 
-    getEvents(page){
+    async getEvents(page){
         setTimeout(()=>{
             if (this.curPage !== page){ this.setState({loading: true}) }
         }, 400)
@@ -183,12 +183,14 @@ class Localist extends Component {
             group,
             keyword,
             daysahead,
-        } = this.state
+        } = this.state;
+
         const {
             apikey,
             calendarurl,
-        }= this.props
-        localistApiConnector(
+        }= this.props;
+
+        let res = await localistApiConnector(
             depts,
             entries,
             group,
@@ -197,23 +199,16 @@ class Localist extends Component {
             apikey,
             calendarurl,
             page,
-        )
-            .then(response => {
-                if (typeof response.data.events !== 'undefined') {
-                    this.setState({
-                        events: response.data.events,
-                        llPage: response.data.page,
-                        loading: false,
-                        page,
-                    });
-                    this.curPage = response.data.page.current
-                } else {
-                    console.warn('localist returned invalid data');
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        );
+        
+        this.setState({
+            events: res.data.events,
+            llPage: res.data.page,
+            loading: false,
+            page,
+        });
+        
+        this.curPage = res.data.page.current;
     }
 
     handlePageClick(data){

@@ -28,7 +28,40 @@ or download directly from [Github Repo](https://github.com/philwilliammee/react-
 git clone https://github.com/philwilliammee/react-localist-viewer
 ```
 
+### Using
+
+```js
+import {LocalistComponent} from 'react-localist-viewer';
+<LocalistComponent
+    target= {target}
+    depts= {depts}
+    entries= {entries}
+    daysahead= {daysahead}
+    format= {format}
+    group= {group}
+    keyword= {keyword}
+    heading= {heading}
+    filterby= {filterby}
+    calendarurl= {calendarurl}
+    apikey= {apikey}
+    hideaddcal= {hideaddcal}
+    hidedescription= {hidedescription}
+    truncatedescription= {truncatedescription}
+    hideimages= {hideimages}
+    hidepagination = {hidepagination}
+    wrapperclass= {wrapperclass}
+    listclass= {listclass}
+    itemclass= {itemclass}
+    readmore= {readmore}
+    url= {url}
+/>
+```
+
+### Developing
+
 Development to compile sass and javascript.
+
+copy the files in `example_localist_settings.json` and renam it to `local_settings.json` and configure with your settings for testing.
 
 ```bash
 cd ./react-localist-viewer

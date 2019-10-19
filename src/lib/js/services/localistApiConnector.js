@@ -45,6 +45,5 @@ export default (
     } else {
         params.days = days;
     }
-    console.log(params)
     return axios.get(calendarurl, { params });
 };
