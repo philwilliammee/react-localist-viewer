@@ -1,10 +1,10 @@
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 import React, { useState } from 'react';
-import { getTruncDesc, getEventDateCompact } from '../helpers/displayEvent';
-import EventFilters from './filter';
-import AddCal from './addCal';
-import buildEventWrapperFilters from '../helpers/buildEventWrapperFilters';
-import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from './partials';
+import { getTruncDesc, getEventDateCompact } from '../../helpers/displayEvent';
+import EventFilters from '../filter';
+import AddCal from '../addCal';
+import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
+import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from '../partials';
 
 var CompactInner = function CompactInner(props) {
   var event = props.event,

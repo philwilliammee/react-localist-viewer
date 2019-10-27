@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAbbrMonth, getDay, getEventTime, getEventEndTime } from '../helpers/displayEvent';
+import { getAbbrMonth, getDay, getEventTime, getEventEndTime } from '../../helpers/displayEvent';
 
 var InlineCompactInner = function InlineCompactInner(props) {
   var event = props.event,

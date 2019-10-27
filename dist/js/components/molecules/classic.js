@@ -1,5 +1,5 @@
 import React from 'react';
-import { getEventDate, getEventTime } from '../helpers/displayEvent';
+import { getEventDate, getEventTime } from '../../helpers/displayEvent';
 
 var ClassicInner = function ClassicInner(props) {
   var event = props.event,

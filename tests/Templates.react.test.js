@@ -1,11 +1,11 @@
 // Link.react.test.js
 import React from 'react';
-import Classic from '../src/lib/js/components/classic';
-import Standard from '../src/lib/js/components/standard';
-import Compact from '../src/lib/js/components/compact';
-import ModernCompact from '../src/lib/js/components/modern_compact';
-import ModernStandard from '../src/lib/js/components/modern_standard';
-import InlineCompact from '../src/lib/js/components/inline_compact';
+import Classic from '../src/lib/js/components/molecules/classic';
+import Standard from '../src/lib/js/components/molecules/standard';
+import Compact from '../src/lib/js/components/molecules/compact';
+import ModernCompact from '../src/lib/js/components/molecules/modern_compact';
+import ModernStandard from '../src/lib/js/components/molecules/modern_standard';
+import InlineCompact from '../src/lib/js/components/molecules/inline_compact';
 import renderer from 'react-test-renderer';
 import {componentData} from './testData';
 

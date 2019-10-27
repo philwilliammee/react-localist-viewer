@@ -23,7 +23,7 @@ export default (function (depts, entries, group, keyword, days, apikey, calendar
 
   if (group && group !== '0') {
     params.group_id = group;
-  } // @tod add support for multiple keywords
+  } // @todo add support for multiple keywords
 
 
   if (keyword && keyword !== '') {
@@ -37,7 +37,6 @@ export default (function (depts, entries, group, keyword, days, apikey, calendar
     params.days = days;
   }
 
-  console.log(params);
   return axios.get(calendarurl, {
     params: params
   });
