@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactPaginate from 'react-paginate';
-
-import Standard from './js/components/standard';
-import Compact from './js/components/compact';
-import ModernStandard from './js/components/modern_standard';
-import ModernCompact from './js/components/modern_compact';
-import Classic from './js/components/classic';
-import InlineCompact from './js/components/inline_compact';
 import localistApiConnector from './js/services/localistApiConnector'
+import Heading from './js/components/organisms/heading'
+import Paginate from './js/components/organisms/paginate'
+import LocalistView from './js/components/organisms/localist_view'
 
 
 /**
@@ -19,7 +14,7 @@ class Localist extends Component {
         super(props);
         this.state = {
             events: [],
-            llPage: {},
+            llPage: {current: 1, size: 1, total: 1},
             depts: props.depts,
             entries: props.entries,
             format: props.format,
@@ -44,132 +39,6 @@ class Localist extends Component {
     componentDidMount(){
         const {page} = this.props
         this.getEvents(page);
-    }
-
-    getComponentFromFormat(){
-        let component;
-        const {events, page, loading} = this.state;
-        const {
-            format,
-            heading,
-            filterby,
-            wrapperclass,
-            listclass,
-            itemclass,
-            hidedescription,
-            truncatedescription,
-            hideimages,
-            hideaddcal,
-        } = this.props;
-        if (loading){
-            return (
-                <div className="loader p-4">
-                    <span className="fa fa-spin fa-cog"/>
-                </div>
-            )
-        }
-        switch (format) {
-            case 'standard':
-                component = <Standard
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            case 'compact':
-                component = <Compact
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            case 'modern_standard':
-                component = <ModernStandard
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            case 'modern_compact':
-                component = <ModernCompact
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            case 'inline_compact':
-                component = <InlineCompact
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            case 'classic':
-                component = <Classic
-                    key = {page}
-                    heading= {heading}
-                    events= {events}
-                    filterby= {filterby}
-                    wrapperclass = {wrapperclass}
-                    listclass = {listclass}
-                    itemclass = {itemclass}
-                    hidedescription = {hidedescription}
-                    truncatedescription = {truncatedescription}
-                    hideimages = {hideimages}
-                    hideaddcal = {hideaddcal}
-                />
-                break;
-
-            default:
-                break;
-        }
-        return component;
-
     }
 
     async getEvents(page){
@@ -216,57 +85,35 @@ class Localist extends Component {
         this.getEvents(newPage);
     }
 
-    renderPagination(){
-        const {hidepagination} = this.props
-        const {llPage} = this.state
-        const {total} = llPage
-        if (!total || hidepagination === 'true'){
-            return '';
-        }
-
-        return (
-            <nav className="pager">
-                <ReactPaginate
-                    previousLabel="previous"
-                    nextLabel="next"
-                    breakLabel="..."
-                    breakClassName="break-me"
-                    pageCount={total}
-                    marginPagesDisplayed={1}
-                    pageRangeDisplayed={3}
-                    onPageChange={this.handlePageClick}
-                    containerClassName="pager_items"
-                    subContainerClassName="pager__item"
-                    activeClassName="is-active"
-                />
-            </nav>
-        )
-    }
-
-    renderHeading(){
-        const {heading} = this.props;
-        const renderHeading = heading ? <h2>{heading}</h2> : ''
-        return renderHeading;
-    }
-
-    renderReadMore(){
-        const {readmore, url} = this.props;
-        if (!readmore || !url){
-            return '';
-        }
-        return(
-            <a className='cwd_events_readmore' href={url}>{readmore}</a>
-        )
-    }
-
 
     render() {
         return (
             <div>
-                { this.renderHeading() }
-                { this.renderReadMore() }
-                { this.getComponentFromFormat() }
-                { this.renderPagination() }
+                <Heading
+                    heading={this.props.heading}
+                    readmore={this.props.readmore}
+                    url={this.props.url}
+                />
+                <LocalistView
+                    events= {this.state.events}
+                    page=  {this.state.page}
+                    loading= {this.state.loading}
+                    format= {this.props.format}
+                    filterby= {this.props.filterby}
+                    wrapperclass= {this.props.wrapperclass}
+                    listclass= {this.props.listclass}
+                    itemclass= {this.props.itemclass}
+                    hidedescription= {this.props.hidedescription}
+                    truncatedescription= {this.props.truncatedescription}
+                    hideimages= {this.props.hideimages}
+                    hideaddcal= {this.props.hideaddcal}
+
+                />
+                <Paginate
+                    hidepagination = {this.props.hidepagination}
+                    total = {this.state.llPage.total}
+                    handlePageClick = {this.handlePageClick}
+                />
             </div>
         );
     }

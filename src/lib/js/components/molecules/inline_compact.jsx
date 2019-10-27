@@ -5,7 +5,7 @@ import {
     getDay,
     getEventTime,
     getEventEndTime
-} from '../helpers/displayEvent';
+} from '../../helpers/displayEvent';
 
 const InlineCompactInner = props => {
     const {event, itemclass} = props;

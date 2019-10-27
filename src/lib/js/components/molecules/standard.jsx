@@ -6,10 +6,10 @@ import {
     getEventType,
     getMonthHeader,
     getDisplayDate,
-} from '../helpers/displayEvent';
-import EventFilters from './filter';
-import AddCal from './addCal'
-import buildEventWrapperFilters from '../helpers/buildEventWrapperFilters';
+} from '../../helpers/displayEvent';
+import EventFilters from '../filter';
+import AddCal from '../addCal'
+import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {
     EventTitle,
     EventDate,
@@ -17,7 +17,7 @@ import {
     EventThumbnail,
     EventDescription,
     EventTypes,
-} from './partials';
+} from '../partials';
 
 const StandardInner = props => {
     const {

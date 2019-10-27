@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
     getEventDate,
     getEventTime,
-} from '../helpers/displayEvent';
+} from '../../helpers/displayEvent';
 
 const ClassicInner = props => {
     const {event, itemclass} = props;

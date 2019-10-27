@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import {
     getTruncDesc,
     getEventDateCompact,
-} from '../helpers/displayEvent';
-import EventFilters from './filter';
-import AddCal from './addCal'
-import buildEventWrapperFilters from '../helpers/buildEventWrapperFilters';
+} from '../../helpers/displayEvent';
+import EventFilters from '../filter';
+import AddCal from '../addCal'
+import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {
     EventTitle,
     EventDate,
     EventLocation,
     EventThumbnail,
     EventDescription,
-} from './partials';
+} from '../partials';
 
 const CompactInner = props => {
     const {

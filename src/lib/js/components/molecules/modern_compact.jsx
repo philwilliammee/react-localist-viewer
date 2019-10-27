@@ -6,47 +6,35 @@ import {
     getDay,
     getEventDate,
     getEventTime,
-} from '../helpers/displayEvent';
-import EventFilters from './filter';
-import AddCal from './addCal'
-import buildEventWrapperFilters from '../helpers/buildEventWrapperFilters';
-import {EventImg} from './partials';
+} from '../../helpers/displayEvent';
+import EventFilters from '../filter';
+import AddCal from '../addCal'
+import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
+import {EventThumbnail} from '../partials';
 
-const ModernStandardInner = props => {
+const ModernCompactInner = props => {
     const {
         event,
         hideaddcal,
         hideimages,
         truncatedescription,
         itemclass,
-        hidedescription,
-    }
-         = props;
-
-    /**
-     *
-     * @param {obj} eventTypes An array of events.
-     * @return {string} Html string
-     */
-    const tagStr = eventTypes => {
-        let spanStr;
-        if (eventTypes) {
-            spanStr = eventTypes.map(element => {
-                return <span key={element.id} className="inline-events-type">{element.name}</span>
-            });
-        }
-        return spanStr;
-    };
-
+        hidedescription} = props;
     const eventTime = getEventTime(event);
 
     return (
-        <div className={`card event-node ${itemclass}`}>
+        <div className={`event-node ${itemclass}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
                     className="group-link-wrapper field-group-link"
                 >
+                    <EventThumbnail
+                        photoUrl={event.photo_url}
+                        title={event.title}
+                        hideimages={hideimages}
+                        photoCrop='big'
+                    />
                     <time
                         title={getEventDate(event)}
                         dateTime={eventTime}
@@ -60,19 +48,12 @@ const ModernStandardInner = props => {
                     <div className="field meta">
                         <p>
                             {eventTime}{ event.location_name ? `, ${event.location_name}` : '' }
-                            {tagStr(event.filters.event_types)}
                         </p>
                     </div>
                     <div className="field field-name-summary summary">
                         <p>
-                            <EventImg
-                                photoUrl={event.photo_url}
-                                title={event.title}
-                                hideimages = {hideimages}
-                                photoCrop='big'
-                            />
                             { hidedescription !== 'true'
-                                ? `${getTruncDesc(event, truncatedescription)} read more`
+                                ? getTruncDesc(event, truncatedescription)
                                 : ''}
                         </p>
                     </div>
@@ -88,19 +69,16 @@ const ModernStandardInner = props => {
     )
 }
 
-ModernStandardInner.propTypes = {
+ModernCompactInner.propTypes = {
     event: PropTypes.object.isRequired,
-    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
-        .isRequired,
+    hideaddcal: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string.isRequired,
-    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
-        .isRequired,
-    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
-        .isRequired,
+    hideimages: PropTypes.string.isRequired,
     itemclass: PropTypes.string.isRequired,
+    hidedescription: PropTypes.string.isRequired,
 };
 
-const ModernStandard= props =>{
+const ModernCompact= props =>{
     const {
         events,
         filterby,
@@ -109,16 +87,15 @@ const ModernStandard= props =>{
         hideimages,
         itemclass,
         listclass,
-        wrapperclass,
         hidedescription,
-    } = props;
+        wrapperclass} = props;
     const [filterEvents, handleEventFilter] = useState(events);
     const filterObjs = buildEventWrapperFilters(events, filterby);
     const thumbNailClass = (hideimages === 'true') ? 'no-thumbnails' : '';
     return (
-        <section className='events-modern-standard modern' title="Events List">
+        <section className='events-modern-compact modern' title="Events List">
             <div className="main-body">
-                <div className={`cwd-component cwd-card-grid three-card singles events-listing ${thumbNailClass} ${wrapperclass}`}>
+                <div className={`cwd-component compact events-listing ${thumbNailClass} ${wrapperclass}`}>
                     <EventFilters
                         filterObjs={filterObjs}
                         events={events}
@@ -129,7 +106,7 @@ const ModernStandard= props =>{
                         {filterEvents.length > 0
                             ? filterEvents.map( event => {
                                 return (
-                                    <ModernStandardInner
+                                    <ModernCompactInner
                                         key={event.event.id}
                                         event={event.event}
                                         filterby={filterby}
@@ -137,9 +114,9 @@ const ModernStandard= props =>{
                                         truncatedescription={
                                             truncatedescription
                                         }
-                                        hidedescription = {hidedescription}
                                         hideimages={hideimages}
                                         itemclass={itemclass}
+                                        hidedescription = {hidedescription}
                                     />
                                 )
                             })
@@ -152,27 +129,27 @@ const ModernStandard= props =>{
 
 }
 
-ModernStandard.propTypes = {
+ModernCompact.propTypes = {
     events: PropTypes.array,
     filterby: PropTypes.string.isRequired,
-    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+    hideaddcal: PropTypes.string,
     truncatedescription: PropTypes.string,
-    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+    hideimages: PropTypes.string,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
     itemclass: PropTypes.string,
+    hidedescription: PropTypes.string,
 };
 
-ModernStandard.defaultProps = {
+ModernCompact.defaultProps = {
     events: [],
     hideaddcal: 'false',
-    truncatedescription: '250',
-    hideimages: 'false',
+    truncatedescription: '150',
+    hideimages: 'true',
     wrapperclass: '',
     listclass: '',
     itemclass: '',
-    hidedescription: 'false',
+    hidedescription: '',
 
 };
-export default ModernStandard;
+export default ModernCompact;
