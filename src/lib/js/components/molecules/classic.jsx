@@ -10,7 +10,7 @@ const ClassicInner = props => {
     const eventTime = getEventTime(event);
     const date = getEventDate(event);
     return (
-        <div className={`views-row ${itemclass}`}>
+        <div className={`views-row ${itemclass} ${event.display}`}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 event-title-and-location">

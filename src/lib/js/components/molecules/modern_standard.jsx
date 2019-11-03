@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     getTruncDesc,
@@ -7,9 +7,7 @@ import {
     getEventDate,
     getEventTime,
 } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal'
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {EventImg} from '../partials';
 
 const ModernStandardInner = props => {
@@ -37,11 +35,9 @@ const ModernStandardInner = props => {
         }
         return spanStr;
     };
-
     const eventTime = getEventTime(event);
-
     return (
-        <div className={`card event-node ${itemclass}`}>
+        <div className={`card event-node ${itemclass} ${event.display}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -112,22 +108,14 @@ const ModernStandard= props =>{
         wrapperclass,
         hidedescription,
     } = props;
-    const [filterEvents, handleEventFilter] = useState(events);
-    const filterObjs = buildEventWrapperFilters(events, filterby);
     const thumbNailClass = (hideimages === 'true') ? 'no-thumbnails' : '';
     return (
         <section className='events-modern-standard modern' title="Events List">
             <div className="main-body">
                 <div className={`cwd-component cwd-card-grid three-card singles events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <EventFilters
-                        filterObjs={filterObjs}
-                        events={events}
-                        handleEventFilter={handleEventFilter}
-                        filterby={filterby}
-                    />
                     <div className={`events-list view-content ${listclass}`}>
-                        {filterEvents.length > 0
-                            ? filterEvents.map( event => {
+                        {events.length > 0
+                            ? events.map( event => {
                                 return (
                                     <ModernStandardInner
                                         key={event.event.id}

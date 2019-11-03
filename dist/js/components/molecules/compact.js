@@ -1,9 +1,6 @@
-import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
-import React, { useState } from 'react';
+import React from 'react';
 import { getTruncDesc, getEventDateCompact } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal';
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from '../partials';
 
 var CompactInner = function CompactInner(props) {
@@ -15,7 +12,7 @@ var CompactInner = function CompactInner(props) {
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
   return React.createElement("div", {
-    className: "views-row ".concat(itemclass)
+    className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, hideimages === 'true' ? '' : React.createElement(EventThumbnail, {
     photoUrl: event.photo_url,
     title: event.title,
@@ -53,13 +50,6 @@ var Compact = function Compact(props) {
       wrapperclass = props.wrapperclass,
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
-
-  var _useState = useState(events),
-      _useState2 = _slicedToArray(_useState, 2),
-      filterEvents = _useState2[0],
-      handleEventFilter = _useState2[1];
-
-  var filterObjs = buildEventWrapperFilters(events, filterby);
   var thumbNailClass = thumbnail === 'false' ? 'no-thumbnails' : '';
   return React.createElement("section", {
     className: "standard compact",
@@ -68,14 +58,9 @@ var Compact = function Compact(props) {
     className: "main-body"
   }, React.createElement("div", {
     className: "events-listing ".concat(thumbNailClass, " compact ").concat(wrapperclass)
-  }, React.createElement(EventFilters, {
-    filterObjs: filterObjs,
-    events: events,
-    handleEventFilter: handleEventFilter,
-    filterby: filterby
-  }), React.createElement("div", {
+  }, React.createElement("div", {
     className: "events-list view-content ".concat(listclass)
-  }, filterEvents.length > 0 ? filterEvents.map(function (event) {
+  }, events.length > 0 ? events.map(function (event) {
     return React.createElement(CompactInner, {
       key: event.event.id,
       event: event.event,

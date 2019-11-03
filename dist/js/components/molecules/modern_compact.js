@@ -1,9 +1,6 @@
-import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
-import React, { useState } from 'react';
+import React from 'react';
 import { getTruncDesc, getAbbrMonth, getDay, getEventDate, getEventTime } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal';
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import { EventThumbnail } from '../partials';
 
 var ModernCompactInner = function ModernCompactInner(props) {
@@ -15,7 +12,7 @@ var ModernCompactInner = function ModernCompactInner(props) {
       hidedescription = props.hidedescription;
   var eventTime = getEventTime(event);
   return React.createElement("div", {
-    className: "event-node ".concat(itemclass)
+    className: "event-node ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {
     className: "events"
   }, React.createElement("a", {
@@ -54,13 +51,6 @@ var ModernCompact = function ModernCompact(props) {
       listclass = props.listclass,
       hidedescription = props.hidedescription,
       wrapperclass = props.wrapperclass;
-
-  var _useState = useState(events),
-      _useState2 = _slicedToArray(_useState, 2),
-      filterEvents = _useState2[0],
-      handleEventFilter = _useState2[1];
-
-  var filterObjs = buildEventWrapperFilters(events, filterby);
   var thumbNailClass = hideimages === 'true' ? 'no-thumbnails' : '';
   return React.createElement("section", {
     className: "events-modern-compact modern",
@@ -69,17 +59,13 @@ var ModernCompact = function ModernCompact(props) {
     className: "main-body"
   }, React.createElement("div", {
     className: "cwd-component compact events-listing ".concat(thumbNailClass, " ").concat(wrapperclass)
-  }, React.createElement(EventFilters, {
-    filterObjs: filterObjs,
-    events: events,
-    handleEventFilter: handleEventFilter,
-    filterby: filterby
-  }), React.createElement("div", {
+  }, React.createElement("div", {
     className: "events-list view-content ".concat(listclass)
-  }, filterEvents.length > 0 ? filterEvents.map(function (event) {
+  }, events.length > 0 ? events.map(function (event) {
     return React.createElement(ModernCompactInner, {
       key: event.event.id,
       event: event.event,
+      display: event.display,
       filterby: filterby,
       hideaddcal: hideaddcal,
       truncatedescription: truncatedescription,

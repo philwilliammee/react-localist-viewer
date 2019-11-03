@@ -1,9 +1,6 @@
-import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
-import React, { useState } from 'react';
+import React from 'react';
 import { getTruncDesc, getEventTime, getEventType, getMonthHeader, getDisplayDate } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal';
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription, EventTypes } from '../partials';
 
 var StandardInner = function StandardInner(props) {
@@ -18,7 +15,7 @@ var StandardInner = function StandardInner(props) {
   return React.createElement("div", {
     className: "views-row"
   }, React.createElement("div", {
-    className: "event-node node ".concat(itemclass)
+    className: "event-node node ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {
     className: "events"
   }, React.createElement("div", {
@@ -58,14 +55,6 @@ var Standard = function Standard(props) {
       itemclass = props.itemclass,
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
-
-  var _useState = useState(events),
-      _useState2 = _slicedToArray(_useState, 2),
-      filterEvents = _useState2[0],
-      handleEventFilter = _useState2[1]; // An object of filters id, name, filterby objects.
-
-
-  var filterObjs = buildEventWrapperFilters(events, filterby);
   var thumbNailClass = thumbnail === 'false' ? 'no-thumbnails' : '';
   var lastMonth = '';
   var lastDay = '';
@@ -105,14 +94,9 @@ var Standard = function Standard(props) {
     className: "main-body"
   }, React.createElement("div", {
     className: "events-listing ".concat(thumbNailClass, " ").concat(wrapperclass)
-  }, React.createElement(EventFilters, {
-    filterObjs: filterObjs,
-    events: events,
-    handleEventFilter: handleEventFilter,
-    filterby: filterby
-  }), React.createElement("div", {
+  }, React.createElement("div", {
     className: "events-list ".concat(listclass)
-  }, filterEvents.length > 0 ? filterEvents.map(function (event) {
+  }, events.length > 0 ? events.map(function (event) {
     return React.createElement("div", {
       key: event.event.id
     }, getMonth(event.event), getDay(event.event, filterby), React.createElement(StandardInner, {

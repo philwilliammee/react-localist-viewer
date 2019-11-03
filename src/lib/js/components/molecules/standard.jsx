@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     getTruncDesc,
@@ -7,9 +7,7 @@ import {
     getMonthHeader,
     getDisplayDate,
 } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal'
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {
     EventTitle,
     EventDate,
@@ -33,7 +31,7 @@ const StandardInner = props => {
 
     return (
         <div className="views-row">
-            <div className={`event-node node ${itemclass}`}>
+            <div className={`event-node node ${itemclass} ${event.display}`}>
                 <div className = 'events'>
                     <div className="field title">
                         <EventTitle
@@ -96,9 +94,6 @@ const Standard = (props) => {
         hidedescription,
         hideimages,
     } = props;
-    const [filterEvents, handleEventFilter] = useState(events);
-    // An object of filters id, name, filterby objects.
-    const filterObjs = buildEventWrapperFilters(events, filterby);
     const thumbNailClass = (thumbnail === 'false') ? 'no-thumbnails' : '';
     let lastMonth = '';
     let lastDay = '';
@@ -132,15 +127,9 @@ const Standard = (props) => {
         <section className="standard" title="Events List">
             <div className="main-body">
                 <div className={`events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <EventFilters
-                        filterObjs={filterObjs}
-                        events={events}
-                        handleEventFilter={handleEventFilter}
-                        filterby={filterby}
-                    />
                     <div className={`events-list ${listclass}`}>
-                        { filterEvents.length > 0
-                            ? filterEvents.map( event => {
+                        { events.length > 0
+                            ? events.map( event => {
                                 return (
                                     <div key={event.event.id}>
                                         {getMonth(event.event)}

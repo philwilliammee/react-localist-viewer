@@ -7,7 +7,7 @@ var ClassicInner = function ClassicInner(props) {
   var eventTime = getEventTime(event);
   var date = getEventDate(event);
   return React.createElement("div", {
-    className: "views-row ".concat(itemclass)
+    className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {
     className: "container-fluid"
   }, React.createElement("div", {

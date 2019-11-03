@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     getTruncDesc,
     getEventDateCompact,
 } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal'
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {
     EventTitle,
     EventDate,
@@ -26,7 +24,7 @@ const CompactInner = props => {
         hideimages,
     } = props;
     return (
-        <div className={`views-row ${itemclass}`}>
+        <div className={`views-row ${itemclass} ${event.display}`}>
             { hideimages === 'true'
                 ? ''
                 : <EventThumbnail
@@ -83,23 +81,14 @@ const Compact = (props) => {
         hidedescription,
         hideimages,
     } = props;
-    const [filterEvents, handleEventFilter] = useState(events);
-    const filterObjs = buildEventWrapperFilters(events, filterby);
     const thumbNailClass = (thumbnail === 'false') ? 'no-thumbnails' : '';
-
     return (
         <section className='standard compact' title="Events List">
             <div className="main-body">
                 <div className={`events-listing ${thumbNailClass} compact ${wrapperclass}`}>
-                    <EventFilters
-                        filterObjs={filterObjs}
-                        events={events}
-                        handleEventFilter={handleEventFilter}
-                        filterby={filterby}
-                    />
                     <div className={`events-list view-content ${listclass}`}>
-                        {filterEvents.length > 0
-                            ? filterEvents.map( event => {
+                        {events.length > 0
+                            ? events.map( event => {
                                 return (
                                     <CompactInner
                                         key={event.event.id}

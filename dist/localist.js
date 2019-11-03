@@ -11,6 +11,7 @@ import localistApiConnector from './js/services/localistApiConnector';
 import Heading from './js/components/organisms/heading';
 import Paginate from './js/components/organisms/paginate';
 import LocalistView from './js/components/organisms/localist_view';
+import EventFilters from './js/components/organisms/event_filterby';
 /**
  * Localist Component
  */
@@ -29,7 +30,7 @@ function (_Component) {
     _this.state = {
       events: [],
       llPage: {
-        current: 1,
+        current: props.page,
         size: 1,
         total: 1
       },
@@ -39,12 +40,12 @@ function (_Component) {
       group: props.group,
       keyword: props.keyword,
       daysahead: props.daysahead,
+      // can page be replaced with llPage.current?
       page: props.page,
       loading: true
     };
-    _this.formatOptions = ['standard', 'compact', 'modern_compact', 'modern_standard', 'inline_compact', 'classic'];
-    _this.curPage = 1;
     _this.handlePageClick = _this.handlePageClick.bind(_assertThisInitialized(_this));
+    _this.handleEventFilter = _this.handleEventFilter.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -69,7 +70,7 @@ function (_Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 setTimeout(function () {
-                  if (_this2.curPage !== page) {
+                  if (_this2.state.llPage.current !== page) {
                     _this2.setState({
                       loading: true
                     });
@@ -82,13 +83,16 @@ function (_Component) {
 
               case 5:
                 res = _context.sent;
+                // @todo change this to class list?
+                res.data.events.forEach(function (event) {
+                  event.event.display = 'fadeIn';
+                });
                 this.setState({
                   events: res.data.events,
                   llPage: res.data.page,
                   loading: false,
                   page: page
                 });
-                this.curPage = res.data.page.current;
 
               case 8:
               case "end":
@@ -111,26 +115,37 @@ function (_Component) {
       this.getEvents(newPage);
     }
   }, {
+    key: "handleEventFilter",
+    value: function handleEventFilter(events) {
+      this.setState({
+        events: events
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", null, React.createElement(Heading, {
         heading: this.props.heading,
         readmore: this.props.readmore,
         url: this.props.url
-      }), React.createElement(LocalistView, {
+      }), React.createElement(EventFilters, {
+        events: this.state.events,
+        handleEventFilter: this.handleEventFilter,
+        filterby: this.props.filterby
+      }), React.createElement(LocalistView, Object.assign({
         events: this.state.events,
         page: this.state.page,
-        loading: this.state.loading,
-        format: this.props.format,
-        filterby: this.props.filterby,
-        wrapperclass: this.props.wrapperclass,
-        listclass: this.props.listclass,
-        itemclass: this.props.itemclass,
-        hidedescription: this.props.hidedescription,
-        truncatedescription: this.props.truncatedescription,
-        hideimages: this.props.hideimages,
-        hideaddcal: this.props.hideaddcal
-      }), React.createElement(Paginate, {
+        loading: this.state.loading // format= {this.props.format}
+        // filterby= {this.props.filterby}
+        // wrapperclass= {this.props.wrapperclass}
+        // listclass= {this.props.listclass}
+        // itemclass= {this.props.itemclass}
+        // hidedescription= {this.props.hidedescription}
+        // truncatedescription= {this.props.truncatedescription}
+        // hideimages= {this.props.hideimages}
+        // hideaddcal= {this.props.hideaddcal}
+
+      }, this.props)), React.createElement(Paginate, {
         hidepagination: this.props.hidepagination,
         total: this.state.llPage.total,
         handlePageClick: this.handlePageClick

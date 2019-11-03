@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     getTruncDesc,
@@ -7,9 +7,7 @@ import {
     getEventDate,
     getEventTime,
 } from '../../helpers/displayEvent';
-import EventFilters from '../filter';
 import AddCal from '../addCal'
-import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {EventThumbnail} from '../partials';
 
 const ModernCompactInner = props => {
@@ -21,9 +19,8 @@ const ModernCompactInner = props => {
         itemclass,
         hidedescription} = props;
     const eventTime = getEventTime(event);
-
     return (
-        <div className={`event-node ${itemclass}`}>
+        <div className={`event-node ${itemclass} ${event.display}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -64,7 +61,6 @@ const ModernCompactInner = props => {
                         : ''
                 }
             </div>
-
         </div>
     )
 }
@@ -78,6 +74,7 @@ ModernCompactInner.propTypes = {
     hidedescription: PropTypes.string.isRequired,
 };
 
+
 const ModernCompact= props =>{
     const {
         events,
@@ -89,26 +86,19 @@ const ModernCompact= props =>{
         listclass,
         hidedescription,
         wrapperclass} = props;
-    const [filterEvents, handleEventFilter] = useState(events);
-    const filterObjs = buildEventWrapperFilters(events, filterby);
     const thumbNailClass = (hideimages === 'true') ? 'no-thumbnails' : '';
     return (
         <section className='events-modern-compact modern' title="Events List">
             <div className="main-body">
                 <div className={`cwd-component compact events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <EventFilters
-                        filterObjs={filterObjs}
-                        events={events}
-                        handleEventFilter={handleEventFilter}
-                        filterby={filterby}
-                    />
                     <div className={`events-list view-content ${listclass}`}>
-                        {filterEvents.length > 0
-                            ? filterEvents.map( event => {
+                        {events.length > 0
+                            ? events.map( event => {
                                 return (
                                     <ModernCompactInner
                                         key={event.event.id}
                                         event={event.event}
+                                        display={event.display}
                                         filterby={filterby}
                                         hideaddcal={hideaddcal}
                                         truncatedescription={

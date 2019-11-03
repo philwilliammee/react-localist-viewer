@@ -20,7 +20,7 @@ var InlineCompactInner = function InlineCompactInner(props) {
   };
 
   return React.createElement("div", {
-    className: "views-row ".concat(itemclass)
+    className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {
     className: "container-fluid"
   }, React.createElement("div", {

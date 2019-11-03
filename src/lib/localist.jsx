@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import localistApiConnector from './js/services/localistApiConnector'
-import Heading from './js/components/organisms/heading'
-import Paginate from './js/components/organisms/paginate'
-import LocalistView from './js/components/organisms/localist_view'
-
+import localistApiConnector from './js/services/localistApiConnector';
+import Heading from './js/components/organisms/heading';
+import Paginate from './js/components/organisms/paginate';
+import LocalistView from './js/components/organisms/localist_view';
+import EventFilters from './js/components/organisms/event_filterby';
 
 /**
  * Localist Component
@@ -14,26 +14,19 @@ class Localist extends Component {
         super(props);
         this.state = {
             events: [],
-            llPage: {current: 1, size: 1, total: 1},
+            llPage: {current: props.page, size: 1, total: 1},
             depts: props.depts,
             entries: props.entries,
             format: props.format,
             group: props.group,
             keyword: props.keyword,
             daysahead: props.daysahead,
+            // can page be replaced with llPage.current?
             page: props.page,
             loading: true,
         };
-        this.formatOptions = [
-            'standard',
-            'compact',
-            'modern_compact',
-            'modern_standard',
-            'inline_compact',
-            'classic'
-        ];
-        this.curPage = 1;
         this.handlePageClick = this.handlePageClick.bind(this)
+        this.handleEventFilter = this.handleEventFilter.bind(this)
     }
 
     componentDidMount(){
@@ -43,9 +36,8 @@ class Localist extends Component {
 
     async getEvents(page){
         setTimeout(()=>{
-            if (this.curPage !== page){ this.setState({loading: true}) }
+            if (this.state.llPage.current !== page){ this.setState({loading: true}) }
         }, 400)
-
         const {
             depts,
             entries,
@@ -53,12 +45,7 @@ class Localist extends Component {
             keyword,
             daysahead,
         } = this.state;
-
-        const {
-            apikey,
-            calendarurl,
-        }= this.props;
-
+        const { apikey, calendarurl }= this.props;
         let res = await localistApiConnector(
             depts,
             entries,
@@ -69,15 +56,16 @@ class Localist extends Component {
             calendarurl,
             page,
         );
-
+        // @todo change this to class list?
+        res.data.events.forEach(event => {
+            event.event.display = 'fadeIn';
+        })
         this.setState({
             events: res.data.events,
             llPage: res.data.page,
             loading: false,
             page,
         });
-
-        this.curPage = res.data.page.current;
     }
 
     handlePageClick(data){
@@ -85,6 +73,9 @@ class Localist extends Component {
         this.getEvents(newPage);
     }
 
+    handleEventFilter(events){
+        this.setState({ events })
+    }
 
     render() {
         return (
@@ -94,20 +85,25 @@ class Localist extends Component {
                     readmore={this.props.readmore}
                     url={this.props.url}
                 />
+                <EventFilters
+                    events={this.state.events}
+                    handleEventFilter={this.handleEventFilter}
+                    filterby={this.props.filterby}
+                />
                 <LocalistView
                     events= {this.state.events}
                     page=  {this.state.page}
                     loading= {this.state.loading}
-                    format= {this.props.format}
-                    filterby= {this.props.filterby}
-                    wrapperclass= {this.props.wrapperclass}
-                    listclass= {this.props.listclass}
-                    itemclass= {this.props.itemclass}
-                    hidedescription= {this.props.hidedescription}
-                    truncatedescription= {this.props.truncatedescription}
-                    hideimages= {this.props.hideimages}
-                    hideaddcal= {this.props.hideaddcal}
-
+                    // format= {this.props.format}
+                    // filterby= {this.props.filterby}
+                    // wrapperclass= {this.props.wrapperclass}
+                    // listclass= {this.props.listclass}
+                    // itemclass= {this.props.itemclass}
+                    // hidedescription= {this.props.hidedescription}
+                    // truncatedescription= {this.props.truncatedescription}
+                    // hideimages= {this.props.hideimages}
+                    // hideaddcal= {this.props.hideaddcal}
+                    { ...this.props }
                 />
                 <Paginate
                     hidepagination = {this.props.hidepagination}
@@ -141,7 +137,12 @@ Localist.propTypes = {
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hidepagination: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    filterby: PropTypes.string,
+    filterby: PropTypes.oneOf([
+        'group',
+        'dept',
+        'type',
+        'none',
+    ]),
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
     itemclass: PropTypes.string,

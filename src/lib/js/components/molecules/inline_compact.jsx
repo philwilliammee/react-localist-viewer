@@ -25,7 +25,7 @@ const InlineCompactInner = props => {
     }
 
     return (
-        <div className={`views-row ${itemclass}`}>
+        <div className={`views-row ${itemclass} ${event.display}`}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-2 event-month-and-day">
