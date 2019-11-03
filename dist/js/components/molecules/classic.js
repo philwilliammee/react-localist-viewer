@@ -6,6 +6,12 @@ var ClassicInner = function ClassicInner(props) {
       itemclass = props.itemclass;
   var eventTime = getEventTime(event);
   var date = getEventDate(event);
+
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {

@@ -19,6 +19,7 @@ const ModernCompactInner = props => {
         itemclass,
         hidedescription} = props;
     const eventTime = getEventTime(event);
+    if (!event.display) { event.display = ''};
     return (
         <div className={`event-node ${itemclass} ${event.display}`}>
             <div className="events">

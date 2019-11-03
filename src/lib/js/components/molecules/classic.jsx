@@ -9,6 +9,7 @@ const ClassicInner = props => {
     const {event, itemclass} = props;
     const eventTime = getEventTime(event);
     const date = getEventDate(event);
+    if (!event.display) { event.display = ''};
     return (
         <div className={`views-row ${itemclass} ${event.display}`}>
             <div className="container-fluid">

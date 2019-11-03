@@ -28,7 +28,7 @@ const StandardInner = props => {
         hidedescription,
         hideimages,
     } = props;
-
+    if (!event.display) { event.display = ''};
     return (
         <div className="views-row">
             <div className={`event-node node ${itemclass} ${event.display}`}>

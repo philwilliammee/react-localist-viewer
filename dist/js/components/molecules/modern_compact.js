@@ -11,6 +11,12 @@ var ModernCompactInner = function ModernCompactInner(props) {
       itemclass = props.itemclass,
       hidedescription = props.hidedescription;
   var eventTime = getEventTime(event);
+
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "event-node ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {

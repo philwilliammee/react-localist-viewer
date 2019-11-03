@@ -11,6 +11,12 @@ var CompactInner = function CompactInner(props) {
       itemclass = props.itemclass,
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
+
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, hideimages === 'true' ? '' : React.createElement(EventThumbnail, {

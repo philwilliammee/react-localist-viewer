@@ -36,6 +36,7 @@ const ModernStandardInner = props => {
         return spanStr;
     };
     const eventTime = getEventTime(event);
+    if (!event.display) { event.display = ''};
     return (
         <div className={`card event-node ${itemclass} ${event.display}`}>
             <div className="events">

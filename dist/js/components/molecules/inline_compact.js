@@ -19,6 +19,11 @@ var InlineCompactInner = function InlineCompactInner(props) {
     }), locationName);
   };
 
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "views-row ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {

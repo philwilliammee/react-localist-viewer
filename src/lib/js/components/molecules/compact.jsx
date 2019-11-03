@@ -23,6 +23,7 @@ const CompactInner = props => {
         hidedescription,
         hideimages,
     } = props;
+    if (!event.display) { event.display = ''};
     return (
         <div className={`views-row ${itemclass} ${event.display}`}>
             { hideimages === 'true'

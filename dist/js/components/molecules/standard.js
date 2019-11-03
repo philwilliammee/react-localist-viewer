@@ -12,6 +12,12 @@ var StandardInner = function StandardInner(props) {
       itemclass = props.itemclass,
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
+
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "views-row"
   }, React.createElement("div", {

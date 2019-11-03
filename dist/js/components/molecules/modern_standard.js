@@ -32,6 +32,12 @@ var ModernStandardInner = function ModernStandardInner(props) {
   };
 
   var eventTime = getEventTime(event);
+
+  if (!event.display) {
+    event.display = '';
+  }
+
+  ;
   return React.createElement("div", {
     className: "card event-node ".concat(itemclass, " ").concat(event.display)
   }, React.createElement("div", {
