@@ -16,12 +16,11 @@ const ModernCompactInner = props => {
         hideaddcal,
         hideimages,
         truncatedescription,
-        itemclass,
         hidedescription} = props;
     const eventTime = getEventTime(event);
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`event-node ${itemclass} ${event.display}`}>
+        <div className={`event-node ${classList}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -71,7 +70,6 @@ ModernCompactInner.propTypes = {
     hideaddcal: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string.isRequired,
     hideimages: PropTypes.string.isRequired,
-    itemclass: PropTypes.string.isRequired,
     hidedescription: PropTypes.string.isRequired,
 };
 
@@ -83,7 +81,6 @@ const ModernCompact= props =>{
         hideaddcal,
         truncatedescription,
         hideimages,
-        itemclass,
         listclass,
         hidedescription,
         wrapperclass} = props;
@@ -106,7 +103,6 @@ const ModernCompact= props =>{
                                             truncatedescription
                                         }
                                         hideimages={hideimages}
-                                        itemclass={itemclass}
                                         hidedescription = {hidedescription}
                                     />
                                 )
@@ -128,7 +124,6 @@ ModernCompact.propTypes = {
     hideimages: PropTypes.string,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
     hidedescription: PropTypes.string,
 };
 
@@ -139,7 +134,6 @@ ModernCompact.defaultProps = {
     hideimages: 'true',
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
     hidedescription: '',
 
 };

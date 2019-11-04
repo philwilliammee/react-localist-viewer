@@ -6,12 +6,12 @@ import {
 } from '../../helpers/displayEvent';
 
 const ClassicInner = props => {
-    const {event, itemclass} = props;
+    const {event} = props;
     const eventTime = getEventTime(event);
     const date = getEventDate(event);
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`views-row ${itemclass} ${event.display}`}>
+        <div className={`views-row ${classList}`}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 event-title-and-location">
@@ -36,13 +36,11 @@ const ClassicInner = props => {
 
 ClassicInner.propTypes = {
     event: PropTypes.object.isRequired,
-    itemclass: PropTypes.string.isRequired,
 };
 
 const Classic= props =>{
     const {
         events,
-        itemclass,
         listclass,
         wrapperclass} = props;
 
@@ -55,7 +53,6 @@ const Classic= props =>{
                             <ClassicInner
                                 key={event.event.id}
                                 event={event.event}
-                                itemclass={itemclass}
                             />
                         )
                     })
@@ -70,14 +67,11 @@ Classic.propTypes = {
     events: PropTypes.array,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
 };
 
 Classic.defaultProps = {
     events: [],
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
-
 };
 export default Classic;

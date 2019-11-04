@@ -1,6 +1,7 @@
 import React, { useState }  from 'react';
 import PropTypes from 'prop-types';
 import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
+import {removeElement, addUniqueElement} from '../../helpers/common';
 
 import {
     getTypeIds,
@@ -22,25 +23,41 @@ const EventFilters = props => {
     if (filterby === 'none'){
         return '';
     }
+
     const applyFilter = obj => {
         events.forEach(event => {
             const ids = getTypeIds(event.event);
             const departmentIds = getDepartmentIds(event.event);
             const groupId = getGroupId(event.event);
             if (obj.name === 'filterAll'){
-                event.event.display = 'fadeIn';
+                event.event.itemClassArray = removeElement(
+                    event.event.itemClassArray,
+                    'fadeOut'
+                    );
             }
             else if (filterby === 'type' && ids.includes(obj.id)){
-                event.event.display = 'fadeIn';
+                event.event.itemClassArray = removeElement(
+                    event.event.itemClassArray,
+                    'fadeOut'
+                );
             }
             else if (filterby === 'dept' && departmentIds.includes(obj.id)){
-                event.event.display = 'fadeIn';
+                event.event.itemClassArray = removeElement(
+                    event.event.itemClassArray,
+                    'fadeOut'
+                );
             }
             else if (filterby === 'group' && groupId === (obj.id)){
-                event.event.display = 'fadeIn';
+                event.event.itemClassArray = removeElement(
+                    event.event.itemClassArray,
+                    'fadeOut'
+                );
             }
             else{
-                event.event.display = 'fadeOut';
+                addUniqueElement(
+                    event.event.itemClassArray,
+                    'fadeOut'
+                );
             }
         })
         handleEventFilter(events);
@@ -55,7 +72,7 @@ const EventFilters = props => {
                         filterId= "filterAll"
                         active= {active}
                         name= "All Events"
-                        clickHandler= {()=>{
+                        clickHandler= {() => {
                             const obj = {id:'filterAll', name:'filterAll'};
                             applyFilter(obj);
                             setActive('filterAll')

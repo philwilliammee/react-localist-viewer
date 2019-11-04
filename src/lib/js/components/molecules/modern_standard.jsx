@@ -16,7 +16,6 @@ const ModernStandardInner = props => {
         hideaddcal,
         hideimages,
         truncatedescription,
-        itemclass,
         hidedescription,
     }
          = props;
@@ -36,9 +35,9 @@ const ModernStandardInner = props => {
         return spanStr;
     };
     const eventTime = getEventTime(event);
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`card event-node ${itemclass} ${event.display}`}>
+        <div className={`card event-node ${classList}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -94,7 +93,6 @@ ModernStandardInner.propTypes = {
         .isRequired,
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
         .isRequired,
-    itemclass: PropTypes.string.isRequired,
 };
 
 const ModernStandard= props =>{
@@ -104,7 +102,6 @@ const ModernStandard= props =>{
         hideaddcal,
         truncatedescription,
         hideimages,
-        itemclass,
         listclass,
         wrapperclass,
         hidedescription,
@@ -128,7 +125,6 @@ const ModernStandard= props =>{
                                         }
                                         hidedescription = {hidedescription}
                                         hideimages={hideimages}
-                                        itemclass={itemclass}
                                     />
                                 )
                             })
@@ -150,7 +146,6 @@ ModernStandard.propTypes = {
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
 };
 
 ModernStandard.defaultProps = {
@@ -160,7 +155,6 @@ ModernStandard.defaultProps = {
     hideimages: 'false',
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
     hidedescription: 'false',
 
 };

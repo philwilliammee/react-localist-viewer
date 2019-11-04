@@ -24,14 +24,13 @@ const StandardInner = props => {
         hideaddcal,
         truncatedescription,
         thumbnail,
-        itemclass,
         hidedescription,
         hideimages,
     } = props;
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
         <div className="views-row">
-            <div className={`event-node node ${itemclass} ${event.display}`}>
+            <div className={`event-node node ${classList}`}>
                 <div className = 'events'>
                     <div className="field title">
                         <EventTitle
@@ -72,7 +71,6 @@ StandardInner.propTypes = {
     filterby: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
-    itemclass: PropTypes.string.isRequired,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
         .isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
@@ -90,7 +88,6 @@ const Standard = (props) => {
         thumbnail,
         wrapperclass,
         listclass,
-        itemclass,
         hidedescription,
         hideimages,
     } = props;
@@ -141,7 +138,6 @@ const Standard = (props) => {
                                             truncatedescription={
                                                 truncatedescription
                                             }
-                                            itemclass = {itemclass}
                                             thumbnail={thumbnail}
                                             hidedescription={hidedescription}
                                             hideimages={hideimages}
@@ -163,7 +159,6 @@ Standard.propTypes = {
     thumbnail: PropTypes.string,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
@@ -176,7 +171,6 @@ Standard.defaultProps = {
     thumbnail: 'true',
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
     hidedescription: 'false',
     hideimages: 'false',
 };

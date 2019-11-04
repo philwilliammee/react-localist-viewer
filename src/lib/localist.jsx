@@ -25,6 +25,9 @@ class Localist extends Component {
             page: props.page,
             loading: true,
         };
+        this.wrapperClassArray = this.props.wrapperclass.split(' ');
+        this.listClassArray = this.props.listclass.split(' ');
+        this.itemClassArray = this.props.itemclass.split(' ');
         this.handlePageClick = this.handlePageClick.bind(this)
         this.handleEventFilter = this.handleEventFilter.bind(this)
     }
@@ -56,10 +59,11 @@ class Localist extends Component {
             calendarurl,
             page,
         );
-        // @todo change this to class list?
+
         res.data.events.forEach(event => {
-            event.event.display = 'fadeIn';
+            event.event.itemClassArray = [ ...this.itemClassArray];
         })
+
         this.setState({
             events: res.data.events,
             llPage: res.data.page,

@@ -8,7 +8,7 @@ import {
 } from '../../helpers/displayEvent';
 
 const InlineCompactInner = props => {
-    const {event, itemclass} = props;
+    const {event} = props;
     const eventTime = getEventTime(event);
     const endTime = getEventEndTime(event);
 
@@ -23,9 +23,9 @@ const InlineCompactInner = props => {
             </div>
         )
     }
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`views-row ${itemclass} ${event.display}`}>
+        <div className={`views-row ${classList}`}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-2 event-month-and-day">
@@ -55,13 +55,11 @@ const InlineCompactInner = props => {
 
 InlineCompactInner.propTypes = {
     event: PropTypes.object.isRequired,
-    itemclass: PropTypes.string.isRequired,
 };
 
 const InlineCompact= props =>{
     const {
         events,
-        itemclass,
         listclass,
         wrapperclass} = props;
 
@@ -76,7 +74,6 @@ const InlineCompact= props =>{
                                     <InlineCompactInner
                                         key={event.event.id}
                                         event={event.event}
-                                        itemclass={itemclass}
                                     />
                                 )
                             })
@@ -93,14 +90,12 @@ InlineCompact.propTypes = {
     events: PropTypes.array,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
 };
 
 InlineCompact.defaultProps = {
     events: [],
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
 
 };
 export default InlineCompact;

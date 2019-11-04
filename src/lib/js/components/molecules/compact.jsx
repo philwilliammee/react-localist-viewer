@@ -19,13 +19,12 @@ const CompactInner = props => {
         hideaddcal,
         thumbnail,
         truncatedescription,
-        itemclass,
         hidedescription,
         hideimages,
     } = props;
-    if (!event.display) { event.display = ''};
+    const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`views-row ${itemclass} ${event.display}`}>
+        <div className={`views-row ${classList}`}>
             { hideimages === 'true'
                 ? ''
                 : <EventThumbnail
@@ -60,7 +59,6 @@ CompactInner.propTypes = {
     event: PropTypes.object.isRequired,
     truncatedescription: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
-    itemclass: PropTypes.string.isRequired,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
         .isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
@@ -76,7 +74,6 @@ const Compact = (props) => {
         hideaddcal,
         truncatedescription,
         thumbnail,
-        itemclass,
         listclass,
         wrapperclass,
         hidedescription,
@@ -100,7 +97,6 @@ const Compact = (props) => {
                                             truncatedescription
                                         }
                                         thumbnail={thumbnail}
-                                        itemclass={itemclass}
                                         hidedescription={hidedescription}
                                         hideimages={hideimages}
                                     />
@@ -121,7 +117,6 @@ Compact.propTypes = {
     thumbnail: PropTypes.string,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    itemclass: PropTypes.string,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
@@ -134,7 +129,6 @@ Compact.defaultProps = {
     thumbnail: 'true',
     wrapperclass: '',
     listclass: '',
-    itemclass: '',
     hidedescription: 'false',
     hideimages: 'false',
 
