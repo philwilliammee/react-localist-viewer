@@ -13,14 +13,13 @@ import {EventThumbnail} from '../partials';
 const ModernCompactInner = props => {
     const {
         event,
-        hideaddcal,
         hideimages,
         truncatedescription,
         hidedescription} = props;
     const eventTime = getEventTime(event);
     const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`event-node ${classList}`}>
+        <div className={classList}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -55,11 +54,7 @@ const ModernCompactInner = props => {
                         </p>
                     </div>
                 </a>
-                {
-                    hideaddcal !== 'true'
-                        ? <AddCal event={event} />
-                        : ''
-                }
+                <AddCal {...props} />
             </div>
         </div>
     )
@@ -75,21 +70,14 @@ ModernCompactInner.propTypes = {
 
 
 const ModernCompact= props =>{
-    const {
-        events,
-        filterby,
-        hideaddcal,
-        truncatedescription,
-        hideimages,
-        listclass,
-        hidedescription,
-        wrapperclass} = props;
-    const thumbNailClass = (hideimages === 'true') ? 'no-thumbnails' : '';
+    const {events, listClassArray, wrapperClassArray} = props;
+    const wrapperClassList = wrapperClassArray.join(' ');
+    const listClassList = listClassArray.join(' ');
     return (
         <section className='events-modern-compact modern' title="Events List">
             <div className="main-body">
-                <div className={`cwd-component compact events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <div className={`events-list view-content ${listclass}`}>
+                <div className={wrapperClassList}>
+                    <div className={listClassList}>
                         {events.length > 0
                             ? events.map( event => {
                                 return (
@@ -97,13 +85,7 @@ const ModernCompact= props =>{
                                         key={event.event.id}
                                         event={event.event}
                                         display={event.display}
-                                        filterby={filterby}
-                                        hideaddcal={hideaddcal}
-                                        truncatedescription={
-                                            truncatedescription
-                                        }
-                                        hideimages={hideimages}
-                                        hidedescription = {hidedescription}
+                                        {...props}
                                     />
                                 )
                             })
@@ -125,6 +107,8 @@ ModernCompact.propTypes = {
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
     hidedescription: PropTypes.string,
+    wrapperClassArray: PropTypes.array,
+    listClassArray: PropTypes.array,
 };
 
 ModernCompact.defaultProps = {
@@ -135,6 +119,8 @@ ModernCompact.defaultProps = {
     wrapperclass: '',
     listclass: '',
     hidedescription: '',
+    wrapperClassArray: [],
+    listClassArray: [],
 
 };
 export default ModernCompact;

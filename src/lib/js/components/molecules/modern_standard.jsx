@@ -13,12 +13,10 @@ import {EventImg} from '../partials';
 const ModernStandardInner = props => {
     const {
         event,
-        hideaddcal,
         hideimages,
         truncatedescription,
         hidedescription,
-    }
-         = props;
+    } = props;
 
     /**
      *
@@ -34,10 +32,11 @@ const ModernStandardInner = props => {
         }
         return spanStr;
     };
+
     const eventTime = getEventTime(event);
     const classList = event.itemClassArray.join(' ');
     return (
-        <div className={`card event-node ${classList}`}>
+        <div className={classList}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -73,11 +72,7 @@ const ModernStandardInner = props => {
                         </p>
                     </div>
                 </a>
-                {
-                    hideaddcal !== 'true'
-                        ? <AddCal event={event} />
-                        : ''
-                }
+                <AddCal {...props} />
             </div>
 
         </div>
@@ -98,33 +93,23 @@ ModernStandardInner.propTypes = {
 const ModernStandard= props =>{
     const {
         events,
-        filterby,
-        hideaddcal,
-        truncatedescription,
-        hideimages,
-        listclass,
-        wrapperclass,
-        hidedescription,
+        listClassArray,
+        wrapperClassArray,
     } = props;
-    const thumbNailClass = (hideimages === 'true') ? 'no-thumbnails' : '';
+    const wrapperClassList = wrapperClassArray.join(' ');
+    const listClassList = listClassArray.join(' ');
     return (
         <section className='events-modern-standard modern' title="Events List">
-            <div className="main-body">
-                <div className={`cwd-component cwd-card-grid three-card singles events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <div className={`events-list view-content ${listclass}`}>
+            <div>
+                <div className={wrapperClassList}>
+                    <div className={listClassList}>
                         {events.length > 0
                             ? events.map( event => {
                                 return (
                                     <ModernStandardInner
                                         key={event.event.id}
                                         event={event.event}
-                                        filterby={filterby}
-                                        hideaddcal={hideaddcal}
-                                        truncatedescription={
-                                            truncatedescription
-                                        }
-                                        hidedescription = {hidedescription}
-                                        hideimages={hideimages}
+                                        {...props}
                                     />
                                 )
                             })
@@ -140,12 +125,12 @@ const ModernStandard= props =>{
 ModernStandard.propTypes = {
     events: PropTypes.array,
     filterby: PropTypes.string.isRequired,
-    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+    hideaddcal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     truncatedescription: PropTypes.string,
-    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    wrapperclass: PropTypes.string,
-    listclass: PropTypes.string,
+    hideimages: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    wrapperClassArray: PropTypes.array,
+    listClassArray: PropTypes.array,
 };
 
 ModernStandard.defaultProps = {
@@ -153,8 +138,8 @@ ModernStandard.defaultProps = {
     hideaddcal: 'false',
     truncatedescription: '250',
     hideimages: 'false',
-    wrapperclass: '',
-    listclass: '',
+    wrapperClassArray: [],
+    listClassArray: [],
     hidedescription: 'false',
 
 };

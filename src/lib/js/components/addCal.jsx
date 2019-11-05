@@ -66,7 +66,12 @@ const buildOutlookCal = myObj => {
  * @return {jsx} The rendered template.
  */
 const AddCal = props => {
-    const {event} = props;
+    const {event, hideaddcal} = props;
+
+    if (hideaddcal === 'true'){
+        return;
+    }
+
     return (
         <span className="event-subscribe"
         >add to calendar {buidGoogleStr(event)} {buildiCal(event)}
@@ -77,6 +82,7 @@ const AddCal = props => {
 
 AddCal.propTypes={
     event: PropTypes.object.isRequired,
+    hideaddcal: PropTypes.string.isRequired,
 }
 
 export default AddCal;

@@ -8,6 +8,8 @@ import EventFilters from './js/components/organisms/event_filterby';
 
 /**
  * Localist Component
+ * @todo reset filters on pagination load.
+ * @todo implimet class lists for all components.
  */
 class Localist extends Component {
     constructor(props) {
@@ -26,8 +28,16 @@ class Localist extends Component {
             loading: true,
         };
         this.wrapperClassArray = this.props.wrapperclass.split(' ');
+        if (this.props.hideimages === 'true'){
+            this.wrapperClassArray.push('no-thumbnails')
+        }
+        const classes = ['cwd-component', 'cwd-card-grid', 'events-listing'];
+        this.wrapperClassArray = this.wrapperClassArray.concat(classes);
+
         this.listClassArray = this.props.listclass.split(' ');
+        this.listClassArray.push('events-list');
         this.itemClassArray = this.props.itemclass.split(' ');
+        this.itemClassArray = this.itemClassArray.concat(['card','event-node']);
         this.handlePageClick = this.handlePageClick.bind(this)
         this.handleEventFilter = this.handleEventFilter.bind(this)
     }
@@ -41,6 +51,7 @@ class Localist extends Component {
         setTimeout(()=>{
             if (this.state.llPage.current !== page){ this.setState({loading: true}) }
         }, 400)
+
         const {
             depts,
             entries,
@@ -48,7 +59,9 @@ class Localist extends Component {
             keyword,
             daysahead,
         } = this.state;
+
         const { apikey, calendarurl }= this.props;
+
         let res = await localistApiConnector(
             depts,
             entries,
@@ -98,6 +111,8 @@ class Localist extends Component {
                     events= {this.state.events}
                     page=  {this.state.page}
                     loading= {this.state.loading}
+                    wrapperClassArray= {this.wrapperClassArray}
+                    listClassArray= {this.listClassArray}
                     // format= {this.props.format}
                     // filterby= {this.props.filterby}
                     // wrapperclass= {this.props.wrapperclass}

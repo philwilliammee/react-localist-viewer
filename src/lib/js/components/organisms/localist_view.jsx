@@ -9,18 +9,7 @@ import InlineCompact from '../molecules/inline_compact';
 
 const LocalistView = (props) => {
     let component;
-    const {events, page, loading} = props;
-    const {
-        format,
-        filterby,
-        wrapperclass,
-        listclass,
-        itemclass,
-        hidedescription,
-        truncatedescription,
-        hideimages,
-        hideaddcal,
-    } = props;
+    const {format, page, loading} = props;
 
     if (loading){
         return (
@@ -34,90 +23,44 @@ const LocalistView = (props) => {
         case 'standard':
             component = <Standard
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
         case 'compact':
             component = <Compact
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
         case 'modern_standard':
+            props.wrapperClassArray.push('singles');
             component = <ModernStandard
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
         case 'modern_compact':
+            props.wrapperClassArray.push('compact');
             component = <ModernCompact
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
         case 'inline_compact':
             component = <InlineCompact
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
         case 'classic':
             component = <Classic
                 key = {page}
-                events= {events}
-                filterby= {filterby}
-                wrapperclass = {wrapperclass}
-                listclass = {listclass}
-                itemclass = {itemclass}
-                hidedescription = {hidedescription}
-                truncatedescription = {truncatedescription}
-                hideimages = {hideimages}
-                hideaddcal = {hideaddcal}
+                {...props}
             />
             break;
 
@@ -147,7 +90,9 @@ LocalistView.propTypes = {
     listclass: PropTypes.string.isRequired,
     itemclass: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    wrapperClassArray: PropTypes.array.isRequired,
+    listClassArray: PropTypes.array.isRequired,
 };
 
 export default LocalistView;

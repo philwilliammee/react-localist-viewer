@@ -20,6 +20,7 @@ const EventFilters = props => {
     const filterObjs = buildEventWrapperFilters(events, filterby);
     const filterKeys = Object.keys(filterObjs);
     const [active, setActive] = useState('filterAll');
+
     if (filterby === 'none'){
         return '';
     }
