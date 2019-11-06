@@ -103,6 +103,7 @@ class Localist extends Component {
                     url={this.props.url}
                 />
                 <EventFilters
+                    key={this.state.page}
                     events={this.state.events}
                     handleEventFilter={this.handleEventFilter}
                     filterby={this.props.filterby}
