@@ -9,6 +9,7 @@ import {
 } from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventThumbnail} from '../partials';
+import {isHidden} from '../../helpers/common'
 
 const ModernCompactInner = props => {
     const {
@@ -48,9 +49,9 @@ const ModernCompactInner = props => {
                     </div>
                     <div className="field field-name-summary summary">
                         <p>
-                            { hidedescription !== 'true'
-                                ? getTruncDesc(event, truncatedescription)
-                                : ''}
+                            { isHidden(hidedescription)
+                                ? ''
+                                : getTruncDesc(event, truncatedescription)}
                         </p>
                     </div>
                 </a>
@@ -62,10 +63,10 @@ const ModernCompactInner = props => {
 
 ModernCompactInner.propTypes = {
     event: PropTypes.object.isRequired,
-    hideaddcal: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string.isRequired,
-    hideimages: PropTypes.string.isRequired,
-    hidedescription: PropTypes.string.isRequired,
+    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
 };
 
 
@@ -101,24 +102,21 @@ const ModernCompact= props =>{
 ModernCompact.propTypes = {
     events: PropTypes.array,
     filterby: PropTypes.string.isRequired,
-    hideaddcal: PropTypes.string,
     truncatedescription: PropTypes.string,
-    hideimages: PropTypes.string,
     wrapperclass: PropTypes.string,
     listclass: PropTypes.string,
-    hidedescription: PropTypes.string,
+    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
     wrapperClassArray: PropTypes.array,
     listClassArray: PropTypes.array,
 };
 
 ModernCompact.defaultProps = {
     events: [],
-    hideaddcal: 'false',
     truncatedescription: '150',
-    hideimages: 'true',
     wrapperclass: '',
     listclass: '',
-    hidedescription: '',
     wrapperClassArray: [],
     listClassArray: [],
 

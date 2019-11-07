@@ -50,4 +50,11 @@ export const unique = (a) => {
     return [...new Set(a)]
 }
 
-
+/**
+ * Test to see if element should be displayed
+ * @param {mixed} v string or integer.
+ * @return {boolean}
+ */
+export const isHidden = (v) => {
+    return ( v === 'true' || v === 1)
+}

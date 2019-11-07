@@ -9,6 +9,7 @@ import {
 } from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventImg} from '../partials';
+import { isHidden } from '../../helpers/common';
 
 const ModernStandardInner = props => {
     const {
@@ -66,9 +67,10 @@ const ModernStandardInner = props => {
                                 hideimages = {hideimages}
                                 photoCrop='big'
                             />
-                            { hidedescription !== 'true'
-                                ? `${getTruncDesc(event, truncatedescription)} read more`
-                                : ''}
+                            { isHidden(hidedescription)
+                                ? ''
+                                : `${getTruncDesc(event, truncatedescription)} read more`
+                            }
                         </p>
                     </div>
                 </a>

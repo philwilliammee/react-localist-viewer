@@ -5,6 +5,7 @@ import Heading from './js/components/organisms/heading';
 import Paginate from './js/components/organisms/paginate';
 import LocalistView from './js/components/organisms/localist_view';
 import EventFilters from './js/components/organisms/event_filterby';
+import {isHidden} from './js/helpers/common';
 
 /**
  * Localist Component
@@ -27,10 +28,12 @@ class Localist extends Component {
             page: props.page,
             loading: true,
         };
+
         this.wrapperClassArray = this.props.wrapperclass.split(' ');
-        if (this.props.hideimages === 'true'){
+        if ( isHidden(this.props.hideimages) ){
             this.wrapperClassArray.push('no-thumbnails')
         }
+
         const classes = ['cwd-component', 'cwd-card-grid', 'events-listing'];
         this.wrapperClassArray = this.wrapperClassArray.concat(classes);
 

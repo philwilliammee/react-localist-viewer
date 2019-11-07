@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import buildUrl from 'build-url';
 import { getCalStartDate, getCalEndDate } from '../helpers/displayEvent';
+import { isHidden } from '../helpers/common';
 
 const buidGoogleStr = (myObj) => {
     const gDateStart = getCalStartDate(myObj);
@@ -68,8 +69,8 @@ const buildOutlookCal = myObj => {
 const AddCal = props => {
     const {event, hideaddcal} = props;
 
-    if (hideaddcal === 'true'){
-        return;
+    if ( isHidden(hideaddcal)){
+        return '';
     }
 
     return (
@@ -82,7 +83,7 @@ const AddCal = props => {
 
 AddCal.propTypes={
     event: PropTypes.object.isRequired,
-    hideaddcal: PropTypes.string.isRequired,
+    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
 }
 
 export default AddCal;

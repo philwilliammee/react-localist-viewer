@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isHidden } from '../helpers/common';
 
 const EventTitle = props => {
     const {title, url} = props;
@@ -54,7 +55,7 @@ EventLocation.defaultProps = {
 const EventImg = props => {
     const {hideimages, photoUrl, title, photoCrop} = props;
     const photo = photoUrl.replace('/huge/', `/${photoCrop}/`);
-    if (hideimages === 'true') {
+    if ( isHidden(hideimages)) {
         return '';
     }
     return (
@@ -81,7 +82,7 @@ EventImg.defaultProps = {
 
 const EventThumbnail = props => {
     const {hideimages, photoUrl, title, photoCrop} = props;
-    if (hideimages === 'true') {
+    if ( isHidden(hideimages)) {
         return '';
     }
     return (
@@ -125,12 +126,12 @@ const EventDescription = props =>{
         <div className = 'summary'>
             <p className='description'>
                 {
-                    hidedescription === 'true'
+                    isHidden(hidedescription)
                         ? ''
                         : description
                 }
                 {
-                    hidedescription === 'true'
+                    isHidden(hidedescription)
                         ? ''
                         : descriptionLink
                 }
