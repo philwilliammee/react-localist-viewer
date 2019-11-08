@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {
     getTruncDesc,
     getEventTime,
-    getEventType,
     getMonthHeader,
     getDisplayDate,
+    getClassItem,
 } from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {
@@ -14,20 +14,16 @@ import {
     EventLocation,
     EventThumbnail,
     EventDescription,
-    EventTypes,
 } from '../partials';
 
 const StandardInner = props => {
     const {
         event,
-        filterby,
-        hideaddcal,
         truncatedescription,
-        thumbnail,
         hidedescription,
         hideimages,
     } = props;
-    const classList = event.itemClassArray.join(' ');
+    const classList = getClassItem(event);
     return (
         <div className="views-row">
             <div className={`event-node node ${classList}`}>
@@ -40,26 +36,22 @@ const StandardInner = props => {
                     <EventLocation locationName={event.location_name} />
                     <div>
                         <EventDate date={getEventTime(event)} />
-                        <EventTypes
-                            eventTypes={getEventType(event, filterby)} />
+                        {/* <EventTypes
+                            eventTypes={getEventType(event, filterby)} /> */}
                     </div>
-                    { hideimages === 'true'
-                        ? ''
-                        : <EventThumbnail
-                            photoUrl={event.photo_url}
-                            title={event.title}
-                            thumbnail={thumbnail}
-                            photoCrop='big'
-                        />}
+                    <EventThumbnail
+                        photoUrl={event.photo_url}
+                        title={event.title}
+                        hideimages={hideimages}
+                        photoCrop='big'
+                    />
                     <EventDescription
                         description={getTruncDesc(event, truncatedescription)}
                         title = {event.title}
                         url = {event.localist_url}
                         hidedescription = {hidedescription}
                     />
-                    { hideaddcal === 'true'
-                        ? ''
-                        : <AddCal event={event} />}
+                    <AddCal {...props} />
                 </div>
             </div>
         </div>
@@ -70,7 +62,6 @@ StandardInner.propTypes = {
     event: PropTypes.object.isRequired,
     filterby: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
         .isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
@@ -86,12 +77,12 @@ const Standard = (props) => {
         hideaddcal,
         truncatedescription,
         thumbnail,
-        wrapperclass,
-        listclass,
         hidedescription,
         hideimages,
+        listClassArray,
+        wrapperClassArray,
     } = props;
-    const thumbNailClass = (thumbnail === 'false') ? 'no-thumbnails' : '';
+
     let lastMonth = '';
     let lastDay = '';
 
@@ -119,12 +110,13 @@ const Standard = (props) => {
         }
         return '';
     }
-
+    const wrapperClassList = wrapperClassArray.join(' ');
+    const listClassList = listClassArray.join(' ');
     return (
         <section className="standard" title="Events List">
             <div className="main-body">
-                <div className={`events-listing ${thumbNailClass} ${wrapperclass}`}>
-                    <div className={`events-list ${listclass}`}>
+                <div className={`events-listing ${wrapperClassList}`}>
+                    <div className={`events-list ${listClassList}`}>
                         { events.length > 0
                             ? events.map( event => {
                                 return (
@@ -157,8 +149,8 @@ Standard.propTypes = {
     filterby: PropTypes.string.isRequired,
     truncatedescription: PropTypes.string,
     thumbnail: PropTypes.string,
-    wrapperclass: PropTypes.string,
-    listclass: PropTypes.string,
+    wrapperClassArray: PropTypes.array.isRequired,
+    listClassArray: PropTypes.array.isRequired,
     hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),

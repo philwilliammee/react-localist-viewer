@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    getAbbrMonth,
-    getDay,
-    getEventDate,
-    getEventTime,
-} from '../../helpers/displayEvent';
+import {getEventTime, getClassItem} from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventThumbnail} from '../partials';
 import Truncate from '../atoms/truncate';
+import Time from '../atoms/time';
 
 const ModernCompactInner = props => {
-    const {
-        event,
-        hideimages } = props;
+    const { event, hideimages } = props;
     const eventTime = getEventTime(event);
-    const classList = event.itemClassArray.join(' ');
+    const classList = getClassItem(event);
     return (
-        <div className={classList}>
+        <div className= {`card ${classList}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
@@ -29,13 +23,7 @@ const ModernCompactInner = props => {
                         hideimages={hideimages}
                         photoCrop='big'
                     />
-                    <time
-                        title={getEventDate(event)}
-                        dateTime={eventTime}
-                    >
-                        <span className="month">{getAbbrMonth(event)}</span>
-                        <span className="day">{getDay(event)}</span>
-                    </time>
+                    <Time event={event} />
                     <div className="field title">
                         <h3>{event.title}</h3>
                     </div>
@@ -64,7 +52,6 @@ ModernCompactInner.propTypes = {
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
 };
 
-
 const ModernCompact= props =>{
     const {events, listClassArray, wrapperClassArray} = props;
     const wrapperClassList = wrapperClassArray.join(' ');
@@ -72,7 +59,7 @@ const ModernCompact= props =>{
     return (
         <section className='events-modern-compact modern' title="Events List">
             <div className="main-body">
-                <div className={wrapperClassList}>
+                <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
                     <div className={listClassList}>
                         {events.length > 0
                             ? events.map( event => {

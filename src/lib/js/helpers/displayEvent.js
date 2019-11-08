@@ -317,5 +317,16 @@ export const getAbbrMonth = event => {
     return abbrMonth;
 };
 
+/**
+ * @param {event} event The event.
+ * @return {string}
+ */
+export const getClassItem = event => {
+    if ('itemClassArray' in event){
+        return event.itemClassArray.join(' ');
+    }
+    return '';
+};
+
 
 

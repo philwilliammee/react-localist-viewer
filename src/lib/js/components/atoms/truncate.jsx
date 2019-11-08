@@ -9,7 +9,6 @@ const Truncate = (props) => {
     if (isHidden(hidedescription)){
         return '';
     }
-
     return (
         <>
             {getTruncDesc(event, truncatedescription)} {readMore}

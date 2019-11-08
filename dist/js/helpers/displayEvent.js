@@ -338,3 +338,15 @@ export var getAbbrMonth = function getAbbrMonth(event) {
   var abbrMonth = moment(startDateTime).format('MMM');
   return abbrMonth;
 };
+/**
+ * @param {event} event The event.
+ * @return {string}
+ */
+
+export var getClassItem = function getClassItem(event) {
+  if ('itemClassArray' in event) {
+    return event.itemClassArray.join(' ');
+  }
+
+  return '';
+};

@@ -33,14 +33,12 @@ class Localist extends Component {
         if ( isHidden(this.props.hideimages) ){
             this.wrapperClassArray.push('no-thumbnails')
         }
-
-        const classes = ['cwd-component', 'cwd-card-grid', 'events-listing'];
+        const classes = ['events-listing'];
         this.wrapperClassArray = this.wrapperClassArray.concat(classes);
-
         this.listClassArray = this.props.listclass.split(' ');
         this.listClassArray.push('events-list');
         this.itemClassArray = this.props.itemclass.split(' ');
-        this.itemClassArray = this.itemClassArray.concat(['card','event-node']);
+        this.itemClassArray = this.itemClassArray.concat(['event-node']);
         this.handlePageClick = this.handlePageClick.bind(this)
         this.handleEventFilter = this.handleEventFilter.bind(this)
     }
@@ -117,15 +115,6 @@ class Localist extends Component {
                     loading= {this.state.loading}
                     wrapperClassArray= {this.wrapperClassArray}
                     listClassArray= {this.listClassArray}
-                    // format= {this.props.format}
-                    // filterby= {this.props.filterby}
-                    // wrapperclass= {this.props.wrapperclass}
-                    // listclass= {this.props.listclass}
-                    // itemclass= {this.props.itemclass}
-                    // hidedescription= {this.props.hidedescription}
-                    // truncatedescription= {this.props.truncatedescription}
-                    // hideimages= {this.props.hideimages}
-                    // hideaddcal= {this.props.hideaddcal}
                     { ...this.props }
                 />
                 <Paginate
@@ -150,8 +139,7 @@ Localist.propTypes = {
         'compact',
         'modern_compact',
         'modern_standard',
-        'inline_compact',
-        'classic'
+        'inline_compact'
     ]),
     apikey: PropTypes.string,
     truncatedescription: PropTypes.string.isRequired,

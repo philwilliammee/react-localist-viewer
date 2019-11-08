@@ -1,4 +1,5 @@
 import React from 'react';
+import { isHidden } from '../helpers/common';
 
 var EventTitle = function EventTitle(props) {
   var title = props.title,
@@ -42,7 +43,7 @@ var EventImg = function EventImg(props) {
       photoCrop = props.photoCrop;
   var photo = photoUrl.replace('/huge/', "/".concat(photoCrop, "/"));
 
-  if (hideimages === 'true') {
+  if (isHidden(hideimages)) {
     return '';
   }
 
@@ -65,7 +66,7 @@ var EventThumbnail = function EventThumbnail(props) {
       title = props.title,
       photoCrop = props.photoCrop;
 
-  if (hideimages === 'true') {
+  if (isHidden(hideimages)) {
     return '';
   }
 
@@ -101,7 +102,7 @@ var EventDescription = function EventDescription(props) {
     className: "summary"
   }, React.createElement("p", {
     className: "description"
-  }, hidedescription === 'true' ? '' : description, hidedescription === 'true' ? '' : descriptionLink));
+  }, isHidden(hidedescription) ? '' : description, isHidden(hidedescription) ? '' : descriptionLink));
 };
 
 EventDescription.defaultProps = {

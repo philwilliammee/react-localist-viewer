@@ -1,148 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Classic Enabled 1`] = `
-<div
-  className="view view-events view-id-events cuenergy-events test wrapper"
->
-  <div
-    className="events-list view-content test lists"
-  >
-    <div
-      className="views-row test item "
-    >
-      <div
-        className="container-fluid"
-      >
-        <div
-          className="row"
-        >
-          <div
-            className="col-sm-12 event-title-and-location"
-          >
-            <div>
-              <a
-                href="http://events.cornell.edu/event/artists_scientists_pollinator_health"
-              >
-                PolliNation: Artists & Scientists Crossing Borders to Explore the Value of Pollinator Health
-              </a>
-            </div>
-            <div>
-              <span
-                className="event-date"
-              >
-                August 21
-              </span>
-              -
-              8:00 am
-               | Mann Library
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="views-row test item "
-    >
-      <div
-        className="container-fluid"
-      >
-        <div
-          className="row"
-        >
-          <div
-            className="col-sm-12 event-title-and-location"
-          >
-            <div>
-              <a
-                href="http://events.cornell.edu/event/work_party_at_dilmun_hill_student_farm"
-              >
-                Work Party at Dilmun Hill Student Farm
-              </a>
-            </div>
-            <div>
-              <span
-                className="event-date"
-              >
-                August 21
-              </span>
-              -
-              4:00 pm
-               | Dilmun Hill Student Farm (Cornell AES)
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="views-row test item "
-    >
-      <div
-        className="container-fluid"
-      >
-        <div
-          className="row"
-        >
-          <div
-            className="col-sm-12 event-title-and-location"
-          >
-            <div>
-              <a
-                href="http://events.cornell.edu/event/saturday_garden_tours_6546"
-              >
-                Saturday Garden Tours
-              </a>
-            </div>
-            <div>
-              <span
-                className="event-date"
-              >
-                August 24
-              </span>
-              -
-              11:00 am
-               | Brian C. Nevin Welcome Center
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="views-row test item "
-    >
-      <div
-        className="container-fluid"
-      >
-        <div
-          className="row"
-        >
-          <div
-            className="col-sm-12 event-title-and-location"
-          >
-            <div>
-              <a
-                href="http://events.cornell.edu/event/honeyland"
-              >
-                Honeyland
-              </a>
-            </div>
-            <div>
-              <span
-                className="event-date"
-              >
-                September 5
-              </span>
-              -
-              7:00 pm
-               | Willard Straight Theatre
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`InlineCompact Enabled 1`] = `
 <section
   className="modern"
@@ -153,13 +10,13 @@ exports[`InlineCompact Enabled 1`] = `
     className="main-body"
   >
     <div
-      className="cwd-component compact events-listing test wrapper"
+      className="cwd-component compact events-listing "
     >
       <div
-        className="events-list view-content test lists"
+        className="events-list view-content "
       >
         <div
-          className="views-row test item "
+          className="views-row "
         >
           <div
             className="container-fluid"
@@ -218,7 +75,7 @@ exports[`InlineCompact Enabled 1`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           <div
             className="container-fluid"
@@ -277,7 +134,7 @@ exports[`InlineCompact Enabled 1`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           <div
             className="container-fluid"
@@ -336,7 +193,7 @@ exports[`InlineCompact Enabled 1`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           <div
             className="container-fluid"
@@ -409,13 +266,13 @@ exports[`ModernCompact Enabled 1`] = `
     className="main-body"
   >
     <div
-      className="cwd-component compact events-listing  "
+      className="cwd-component cwd-card-grid "
     >
       <div
-        className="events-list view-content "
+        className=""
       >
         <div
-          className="event-node  "
+          className="card "
         >
           <div
             className="events"
@@ -469,6 +326,8 @@ exports[`ModernCompact Enabled 1`] = `
               >
                 <p>
                   Threats to pollinator health are intense and varied, from habitat loss and climate change to diseases and pesticides. A summer exhibit in the  Mann Ga…
+                   
+                  
                 </p>
               </div>
             </a>
@@ -526,7 +385,7 @@ exports[`ModernCompact Enabled 1`] = `
           </div>
         </div>
         <div
-          className="event-node  "
+          className="card "
         >
           <div
             className="events"
@@ -584,6 +443,8 @@ Sundays, 2-5 pm
 at Dilmun Hill Student Farm
 
 Depending on the season, we will be installing beds, sowing, planting, weeding or harv…
+                   
+                  
                 </p>
               </div>
             </a>
@@ -641,7 +502,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="event-node  "
+          className="card "
         >
           <div
             className="events"
@@ -695,6 +556,8 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
               >
                 <p>
                   Take a relaxing stroll with a Garden Guide through the gardens around the Nevin Welcome Center and discover the beauty and diversity of our cultivated…
+                   
+                  
                 </p>
               </div>
             </a>
@@ -752,7 +615,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="event-node  "
+          className="card "
         >
           <div
             className="events"
@@ -806,6 +669,8 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
               >
                 <p>
                   Hatidze lives with her ailing mother in the mountains of Macedonia, making a living cultivating honey using ancient beekeeping traditions. When an unr…
+                   
+                  
                 </p>
               </div>
             </a>
@@ -877,10 +742,10 @@ exports[`Standard Enabled 1`] = `
     className="main-body"
   >
     <div
-      className="events-listing  test wrapper"
+      className="events-listing "
     >
       <div
-        className="events-list test lists"
+        className="events-list "
       >
         <div>
           <h3
@@ -900,7 +765,7 @@ exports[`Standard Enabled 1`] = `
             className="views-row"
           >
             <div
-              className="event-node node test item "
+              className="event-node node "
             >
               <div
                 className="events"
@@ -932,14 +797,6 @@ exports[`Standard Enabled 1`] = `
                     >
                       8:00 am
                     </span>
-                  </h4>
-                  <h4
-                    className="meta type"
-                  >
-                    <span
-                      className="fa"
-                    />
-                    Exhibition
                   </h4>
                 </div>
                 <div
@@ -1037,7 +894,7 @@ exports[`Standard Enabled 1`] = `
             className="views-row"
           >
             <div
-              className="event-node node test item "
+              className="event-node node "
             >
               <div
                 className="events"
@@ -1069,14 +926,6 @@ exports[`Standard Enabled 1`] = `
                     >
                       4:00 pm
                     </span>
-                  </h4>
-                  <h4
-                    className="meta type"
-                  >
-                    <span
-                      className="fa"
-                    />
-                    Special Event
                   </h4>
                 </div>
                 <div
@@ -1185,7 +1034,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
             className="views-row"
           >
             <div
-              className="event-node node test item "
+              className="event-node node "
             >
               <div
                 className="events"
@@ -1217,14 +1066,6 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                     >
                       11:00 am
                     </span>
-                  </h4>
-                  <h4
-                    className="meta type"
-                  >
-                    <span
-                      className="fa"
-                    />
-                    Tour
                   </h4>
                 </div>
                 <div
@@ -1333,7 +1174,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
             className="views-row"
           >
             <div
-              className="event-node node test item "
+              className="event-node node "
             >
               <div
                 className="events"
@@ -1365,14 +1206,6 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                     >
                       7:00 pm
                     </span>
-                  </h4>
-                  <h4
-                    className="meta type"
-                  >
-                    <span
-                      className="fa"
-                    />
-                    
                   </h4>
                 </div>
                 <div
@@ -1478,13 +1311,13 @@ exports[`Standard Enabled 2`] = `
     className="main-body"
   >
     <div
-      className="events-listing  compact test wrapper"
+      className="events-listing compact "
     >
       <div
-        className="events-list view-content test lists"
+        className="events-list view-content "
       >
         <div
-          className="views-row test item "
+          className="views-row "
         >
           
           <div
@@ -1531,7 +1364,7 @@ exports[`Standard Enabled 2`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           
           <div
@@ -1578,7 +1411,7 @@ exports[`Standard Enabled 2`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           
           <div
@@ -1625,7 +1458,7 @@ exports[`Standard Enabled 2`] = `
           </div>
         </div>
         <div
-          className="views-row test item "
+          className="views-row "
         >
           
           <div
@@ -1682,17 +1515,15 @@ exports[`odernStandard Enabled 1`] = `
   className="events-modern-standard modern"
   title="Events List"
 >
-  <div
-    className="main-body"
-  >
+  <div>
     <div
-      className="cwd-component cwd-card-grid three-card singles events-listing  test wrapper"
+      className="cwd-component cwd-card-grid "
     >
       <div
-        className="events-list view-content test lists"
+        className=""
       >
         <div
-          className="card event-node test item "
+          className="card "
         >
           <div
             className="events"
@@ -1746,7 +1577,9 @@ exports[`odernStandard Enabled 1`] = `
                     loading="lazy"
                     src="https://images.unsplash.com/photo-1559744775-7a6bfcc4b824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=450&h=340&q=80"
                   />
-                  Threats to pollinator health are intense and varied, from habitat loss and climate change to diseases and pesticides. A summer exhibit in the  Mann Gallery, PolliNation: Artists Crossing Borders with Scientists to Explore the Value of Pollinator Heal… read more
+                  Threats to pollinator health are intense and varied, from habitat loss and climate change to diseases and pesticides. A summer exhibit in the  Mann Gallery, PolliNation: Artists Crossing Borders with Scientists to Explore the Value of Pollinator Heal…
+                   
+                  read more
                 </p>
               </div>
             </a>
@@ -1804,7 +1637,7 @@ exports[`odernStandard Enabled 1`] = `
           </div>
         </div>
         <div
-          className="card event-node test item "
+          className="card "
         >
           <div
             className="events"
@@ -1862,7 +1695,9 @@ exports[`odernStandard Enabled 1`] = `
 Sundays, 2-5 pm
 at Dilmun Hill Student Farm
 
-Depending on the season, we will be installing beds, sowing, planting, weeding or harvesting. Experience the latest in sustainable agriculture, join the Dilmun community and go home with… read more
+Depending on the season, we will be installing beds, sowing, planting, weeding or harvesting. Experience the latest in sustainable agriculture, join the Dilmun community and go home with…
+                   
+                  read more
                 </p>
               </div>
             </a>
@@ -1920,7 +1755,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card event-node test item "
+          className="card "
         >
           <div
             className="events"
@@ -1974,7 +1809,9 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                     loading="lazy"
                     src="https://images.unsplash.com/photo-1568214697537-ace27ffd6cf3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=450&h=340&q=80"
                   />
-                  Take a relaxing stroll with a Garden Guide through the gardens around the Nevin Welcome Center and discover the beauty and diversity of our cultivated plant collections. Visit the Robison Herb Garden, Young Flower Garden, Bowers Rhododendron Collecti… read more
+                  Take a relaxing stroll with a Garden Guide through the gardens around the Nevin Welcome Center and discover the beauty and diversity of our cultivated plant collections. Visit the Robison Herb Garden, Young Flower Garden, Bowers Rhododendron Collecti…
+                   
+                  read more
                 </p>
               </div>
             </a>
@@ -2032,7 +1869,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card event-node test item "
+          className="card "
         >
           <div
             className="events"
@@ -2086,7 +1923,9 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                     loading="lazy"
                     src="https://images.unsplash.com/photo-1554230513-961cc6696a80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=450&h=340&q=80"
                   />
-                  Hatidze lives with her ailing mother in the mountains of Macedonia, making a living cultivating honey using ancient beekeeping traditions. When an unruly family moves in next door, what at first seems like a balm for her solitude becomes a source of … read more
+                  Hatidze lives with her ailing mother in the mountains of Macedonia, making a living cultivating honey using ancient beekeeping traditions. When an unruly family moves in next door, what at first seems like a balm for her solitude becomes a source of …
+                   
+                  read more
                 </p>
               </div>
             </a>

@@ -6,7 +6,7 @@ import {singleEvent} from './testData';
 
 test('AddCal returns calendar links', () => {
   const component = renderer.create(
-    <AddCal event={singleEvent} />
+    <AddCal event={singleEvent} hideaddcal="false" />
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();

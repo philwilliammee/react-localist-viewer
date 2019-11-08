@@ -4,7 +4,6 @@ import Standard from '../molecules/standard';
 import Compact from '../molecules/compact';
 import ModernStandard from '../molecules/modern_standard';
 import ModernCompact from '../molecules/modern_compact';
-import Classic from '../molecules/classic';
 import InlineCompact from '../molecules/inline_compact';
 
 const LocalistView = (props) => {
@@ -57,13 +56,6 @@ const LocalistView = (props) => {
             />
             break;
 
-        case 'classic':
-            component = <Classic
-                key = {page}
-                {...props}
-            />
-            break;
-
         default:
             break;
     }
@@ -78,8 +70,7 @@ LocalistView.propTypes = {
         'compact',
         'modern_compact',
         'modern_standard',
-        'inline_compact',
-        'classic'
+        'inline_compact'
     ]).isRequired,
     truncatedescription: PropTypes.string.isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,

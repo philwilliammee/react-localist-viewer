@@ -1,9 +1,8 @@
 import React from 'react';
-import { getAbbrMonth, getDay, getEventTime, getEventEndTime } from '../../helpers/displayEvent';
+import { getAbbrMonth, getDay, getEventTime, getEventEndTime, getClassItem } from '../../helpers/displayEvent';
 
 var InlineCompactInner = function InlineCompactInner(props) {
-  var event = props.event,
-      itemclass = props.itemclass;
+  var event = props.event;
   var eventTime = getEventTime(event);
   var endTime = getEventEndTime(event);
 
@@ -19,13 +18,9 @@ var InlineCompactInner = function InlineCompactInner(props) {
     }), locationName);
   };
 
-  if (!event.display) {
-    event.display = '';
-  }
-
-  ;
+  var classList = getClassItem(event);
   return React.createElement("div", {
-    className: "views-row ".concat(itemclass, " ").concat(event.display)
+    className: "views-row ".concat(classList)
   }, React.createElement("div", {
     className: "container-fluid"
   }, React.createElement("div", {
@@ -52,7 +47,6 @@ var InlineCompactInner = function InlineCompactInner(props) {
 
 var InlineCompact = function InlineCompact(props) {
   var events = props.events,
-      itemclass = props.itemclass,
       listclass = props.listclass,
       wrapperclass = props.wrapperclass;
   return React.createElement("section", {
@@ -68,8 +62,7 @@ var InlineCompact = function InlineCompact(props) {
   }, events.length > 0 ? events.map(function (event) {
     return React.createElement(InlineCompactInner, {
       key: event.event.id,
-      event: event.event,
-      itemclass: itemclass
+      event: event.event
     });
   }) : React.createElement("p", null, "There are no upcomming events.")))));
 };
@@ -77,7 +70,6 @@ var InlineCompact = function InlineCompact(props) {
 InlineCompact.defaultProps = {
   events: [],
   wrapperclass: '',
-  listclass: '',
-  itemclass: ''
+  listclass: ''
 };
 export default InlineCompact;

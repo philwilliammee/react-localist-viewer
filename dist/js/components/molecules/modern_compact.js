@@ -1,24 +1,17 @@
 import React from 'react';
-import { getTruncDesc, getAbbrMonth, getDay, getEventDate, getEventTime } from '../../helpers/displayEvent';
+import { getEventTime, getClassItem } from '../../helpers/displayEvent';
 import AddCal from '../addCal';
 import { EventThumbnail } from '../partials';
+import Truncate from '../atoms/truncate';
+import Time from '../atoms/time';
 
 var ModernCompactInner = function ModernCompactInner(props) {
   var event = props.event,
-      hideaddcal = props.hideaddcal,
-      hideimages = props.hideimages,
-      truncatedescription = props.truncatedescription,
-      itemclass = props.itemclass,
-      hidedescription = props.hidedescription;
+      hideimages = props.hideimages;
   var eventTime = getEventTime(event);
-
-  if (!event.display) {
-    event.display = '';
-  }
-
-  ;
+  var classList = getClassItem(event);
   return React.createElement("div", {
-    className: "event-node ".concat(itemclass, " ").concat(event.display)
+    className: "card ".concat(classList)
   }, React.createElement("div", {
     className: "events"
   }, React.createElement("a", {
@@ -29,67 +22,47 @@ var ModernCompactInner = function ModernCompactInner(props) {
     title: event.title,
     hideimages: hideimages,
     photoCrop: "big"
-  }), React.createElement("time", {
-    title: getEventDate(event),
-    dateTime: eventTime
-  }, React.createElement("span", {
-    className: "month"
-  }, getAbbrMonth(event)), React.createElement("span", {
-    className: "day"
-  }, getDay(event))), React.createElement("div", {
+  }), React.createElement(Time, {
+    event: event
+  }), React.createElement("div", {
     className: "field title"
   }, React.createElement("h3", null, event.title)), React.createElement("div", {
     className: "field meta"
   }, React.createElement("p", null, eventTime, event.location_name ? ", ".concat(event.location_name) : '')), React.createElement("div", {
     className: "field field-name-summary summary"
-  }, React.createElement("p", null, hidedescription !== 'true' ? getTruncDesc(event, truncatedescription) : ''))), hideaddcal !== 'true' ? React.createElement(AddCal, {
-    event: event
-  }) : ''));
+  }, React.createElement("p", null, React.createElement(Truncate, props)))), React.createElement(AddCal, props)));
 };
 
 var ModernCompact = function ModernCompact(props) {
   var events = props.events,
-      filterby = props.filterby,
-      hideaddcal = props.hideaddcal,
-      truncatedescription = props.truncatedescription,
-      hideimages = props.hideimages,
-      itemclass = props.itemclass,
-      listclass = props.listclass,
-      hidedescription = props.hidedescription,
-      wrapperclass = props.wrapperclass;
-  var thumbNailClass = hideimages === 'true' ? 'no-thumbnails' : '';
+      listClassArray = props.listClassArray,
+      wrapperClassArray = props.wrapperClassArray;
+  var wrapperClassList = wrapperClassArray.join(' ');
+  var listClassList = listClassArray.join(' ');
   return React.createElement("section", {
     className: "events-modern-compact modern",
     title: "Events List"
   }, React.createElement("div", {
     className: "main-body"
   }, React.createElement("div", {
-    className: "cwd-component compact events-listing ".concat(thumbNailClass, " ").concat(wrapperclass)
+    className: "cwd-component cwd-card-grid ".concat(wrapperClassList)
   }, React.createElement("div", {
-    className: "events-list view-content ".concat(listclass)
+    className: listClassList
   }, events.length > 0 ? events.map(function (event) {
-    return React.createElement(ModernCompactInner, {
+    return React.createElement(ModernCompactInner, Object.assign({
       key: event.event.id,
       event: event.event,
-      display: event.display,
-      filterby: filterby,
-      hideaddcal: hideaddcal,
-      truncatedescription: truncatedescription,
-      hideimages: hideimages,
-      itemclass: itemclass,
-      hidedescription: hidedescription
-    });
+      display: event.display
+    }, props));
   }) : React.createElement("p", null, "There are no upcomming events.")))));
 };
 
 ModernCompact.defaultProps = {
   events: [],
-  hideaddcal: 'false',
   truncatedescription: '150',
-  hideimages: 'true',
   wrapperclass: '',
   listclass: '',
-  itemclass: '',
-  hidedescription: ''
+  wrapperClassArray: [],
+  listClassArray: []
 };
 export default ModernCompact;

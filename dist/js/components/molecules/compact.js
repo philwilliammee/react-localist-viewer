@@ -1,28 +1,21 @@
 import React from 'react';
-import { getTruncDesc, getEventDateCompact } from '../../helpers/displayEvent';
+import { getTruncDesc, getEventDateCompact, getClassItem } from '../../helpers/displayEvent';
 import AddCal from '../addCal';
 import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from '../partials';
 
 var CompactInner = function CompactInner(props) {
   var event = props.event,
       hideaddcal = props.hideaddcal,
-      thumbnail = props.thumbnail,
       truncatedescription = props.truncatedescription,
-      itemclass = props.itemclass,
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
-
-  if (!event.display) {
-    event.display = '';
-  }
-
-  ;
+  var classList = getClassItem(event);
   return React.createElement("div", {
-    className: "views-row ".concat(itemclass, " ").concat(event.display)
-  }, hideimages === 'true' ? '' : React.createElement(EventThumbnail, {
+    className: "views-row ".concat(classList)
+  }, React.createElement(EventThumbnail, {
     photoUrl: event.photo_url,
     title: event.title,
-    thumbnail: thumbnail,
+    hideimages: hideimages,
     photoCrop: "big"
   }), React.createElement("div", {
     className: "event-node node"
@@ -40,7 +33,8 @@ var CompactInner = function CompactInner(props) {
     title: event.title,
     url: event.localist_url,
     hidedescription: hidedescription
-  }), hideaddcal === 'true' ? '' : React.createElement(AddCal, {
+  }), React.createElement(AddCal, {
+    hideaddcal: hideaddcal,
     event: event
   }))));
 };
@@ -48,36 +42,25 @@ var CompactInner = function CompactInner(props) {
 var Compact = function Compact(props) {
   var events = props.events,
       filterby = props.filterby,
-      hideaddcal = props.hideaddcal,
-      truncatedescription = props.truncatedescription,
-      thumbnail = props.thumbnail,
-      itemclass = props.itemclass,
-      listclass = props.listclass,
-      wrapperclass = props.wrapperclass,
-      hidedescription = props.hidedescription,
-      hideimages = props.hideimages;
-  var thumbNailClass = thumbnail === 'false' ? 'no-thumbnails' : '';
+      listClassArray = props.listClassArray,
+      wrapperClassArray = props.wrapperClassArray;
+  var wrapperClassList = wrapperClassArray.join(' ');
+  var listClassList = listClassArray.join(' ');
   return React.createElement("section", {
     className: "standard compact",
     title: "Events List"
   }, React.createElement("div", {
     className: "main-body"
   }, React.createElement("div", {
-    className: "events-listing ".concat(thumbNailClass, " compact ").concat(wrapperclass)
+    className: "events-listing compact ".concat(wrapperClassList)
   }, React.createElement("div", {
-    className: "events-list view-content ".concat(listclass)
+    className: "events-list view-content ".concat(listClassList)
   }, events.length > 0 ? events.map(function (event) {
-    return React.createElement(CompactInner, {
+    return React.createElement(CompactInner, Object.assign({
       key: event.event.id,
       event: event.event,
-      filterby: filterby,
-      hideaddcal: hideaddcal,
-      truncatedescription: truncatedescription,
-      thumbnail: thumbnail,
-      itemclass: itemclass,
-      hidedescription: hidedescription,
-      hideimages: hideimages
-    });
+      filterby: filterby
+    }, props));
   }) : React.createElement("p", null, "There are no upcomming events.")))));
 };
 
@@ -85,10 +68,6 @@ Compact.defaultProps = {
   events: [],
   hideaddcal: 'false',
   truncatedescription: '150',
-  thumbnail: 'true',
-  wrapperclass: '',
-  listclass: '',
-  itemclass: '',
   hidedescription: 'false',
   hideimages: 'false'
 };

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
+import { isHidden } from '../../helpers/common';
 
 var Paginate = function Paginate(props) {
   var hidepagination = props.hidepagination,
       handlePageClick = props.handlePageClick,
       total = props.total;
 
-  if (total < 2 || hidepagination === 'true') {
+  if (total < 2 || isHidden(hidepagination)) {
     return '';
   }
 

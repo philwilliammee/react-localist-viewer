@@ -4,7 +4,8 @@ import {
     getAbbrMonth,
     getDay,
     getEventTime,
-    getEventEndTime
+    getEventEndTime,
+    getClassItem,
 } from '../../helpers/displayEvent';
 
 const InlineCompactInner = props => {
@@ -23,7 +24,7 @@ const InlineCompactInner = props => {
             </div>
         )
     }
-    const classList = event.itemClassArray.join(' ');
+    const classList = getClassItem(event);
     return (
         <div className={`views-row ${classList}`}>
             <div className="container-fluid">

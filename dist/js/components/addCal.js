@@ -1,6 +1,7 @@
 import React from 'react';
 import buildUrl from 'build-url';
 import { getCalStartDate, getCalEndDate } from '../helpers/displayEvent';
+import { isHidden } from '../helpers/common';
 
 var buidGoogleStr = function buidGoogleStr(myObj) {
   var gDateStart = getCalStartDate(myObj);
@@ -56,7 +57,13 @@ var buildOutlookCal = function buildOutlookCal(myObj) {
 
 
 var AddCal = function AddCal(props) {
-  var event = props.event;
+  var event = props.event,
+      hideaddcal = props.hideaddcal;
+
+  if (isHidden(hideaddcal)) {
+    return '';
+  }
+
   return React.createElement("span", {
     className: "event-subscribe"
   }, "add to calendar ", buidGoogleStr(event), " ", buildiCal(event), buildOutlookCal(event));

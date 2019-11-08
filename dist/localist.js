@@ -1,4 +1,5 @@
 import _regeneratorRuntime from "@babel/runtime/regenerator";
+import _toConsumableArray from "@babel/runtime/helpers/esm/toConsumableArray";
 import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
@@ -12,8 +13,11 @@ import Heading from './js/components/organisms/heading';
 import Paginate from './js/components/organisms/paginate';
 import LocalistView from './js/components/organisms/localist_view';
 import EventFilters from './js/components/organisms/event_filterby';
+import { isHidden } from './js/helpers/common';
 /**
  * Localist Component
+ * @todo reset filters on pagination load.
+ * @todo implimet class lists for all components.
  */
 
 var Localist =
@@ -44,6 +48,20 @@ function (_Component) {
       page: props.page,
       loading: true
     };
+    _this.wrapperClassArray = _this.props.wrapperclass.split(' ');
+
+    if (isHidden(_this.props.hideimages)) {
+      _this.wrapperClassArray.push('no-thumbnails');
+    }
+
+    var classes = ['events-listing'];
+    _this.wrapperClassArray = _this.wrapperClassArray.concat(classes);
+    _this.listClassArray = _this.props.listclass.split(' ');
+
+    _this.listClassArray.push('events-list');
+
+    _this.itemClassArray = _this.props.itemclass.split(' ');
+    _this.itemClassArray = _this.itemClassArray.concat(['event-node']);
     _this.handlePageClick = _this.handlePageClick.bind(_assertThisInitialized(_this));
     _this.handleEventFilter = _this.handleEventFilter.bind(_assertThisInitialized(_this));
     return _this;
@@ -83,9 +101,8 @@ function (_Component) {
 
               case 5:
                 res = _context.sent;
-                // @todo change this to class list?
                 res.data.events.forEach(function (event) {
-                  event.event.display = 'fadeIn';
+                  event.event.itemClassArray = _toConsumableArray(_this2.itemClassArray);
                 });
                 this.setState({
                   events: res.data.events,
@@ -129,22 +146,16 @@ function (_Component) {
         readmore: this.props.readmore,
         url: this.props.url
       }), React.createElement(EventFilters, {
+        key: this.state.page,
         events: this.state.events,
         handleEventFilter: this.handleEventFilter,
         filterby: this.props.filterby
       }), React.createElement(LocalistView, Object.assign({
         events: this.state.events,
         page: this.state.page,
-        loading: this.state.loading // format= {this.props.format}
-        // filterby= {this.props.filterby}
-        // wrapperclass= {this.props.wrapperclass}
-        // listclass= {this.props.listclass}
-        // itemclass= {this.props.itemclass}
-        // hidedescription= {this.props.hidedescription}
-        // truncatedescription= {this.props.truncatedescription}
-        // hideimages= {this.props.hideimages}
-        // hideaddcal= {this.props.hideaddcal}
-
+        loading: this.state.loading,
+        wrapperClassArray: this.wrapperClassArray,
+        listClassArray: this.listClassArray
       }, this.props)), React.createElement(Paginate, {
         hidepagination: this.props.hidepagination,
         total: this.state.llPage.total,

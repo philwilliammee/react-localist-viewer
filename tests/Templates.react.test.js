@@ -1,6 +1,5 @@
 // Link.react.test.js
 import React from 'react';
-import Classic from '../src/lib/js/components/molecules/classic';
 import Standard from '../src/lib/js/components/molecules/standard';
 import Compact from '../src/lib/js/components/molecules/compact';
 import ModernCompact from '../src/lib/js/components/molecules/modern_compact';
@@ -9,24 +8,24 @@ import InlineCompact from '../src/lib/js/components/molecules/inline_compact';
 import renderer from 'react-test-renderer';
 import {componentData} from './testData';
 
-test('Classic Enabled', () => {
-  const component = renderer.create(
-    <Classic
-      heading= "Test"
-      events= {componentData.events}
-      filterby= "type"
-      wrapperclass = "test wrapper"
-      listclass = "test lists"
-      itemclass = "test item"
-      hidedescription = 'false'
-      truncatedescription = '150'
-      hideimages = 'false'
-      hideaddcal = 'false'
-    />
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
+// test('Classic Enabled', () => {
+//   const component = renderer.create(
+//     <Classic
+//       heading= "Test"
+//       events= {componentData.events}
+//       filterby= "type"
+//       wrapperclass = "test wrapper"
+//       listclass = "test lists"
+//       itemclass = "test item"
+//       hidedescription = 'false'
+//       truncatedescription = '150'
+//       hideimages = 'false'
+//       hideaddcal = 'false'
+//     />
+//   );
+//   let tree = component.toJSON();
+//   expect(tree).toMatchSnapshot();
+// });
 
 test('Standard Enabled', () => {
   const component = renderer.create(
@@ -34,13 +33,12 @@ test('Standard Enabled', () => {
       heading= "Test"
       events= {componentData.events}
       filterby= "group"
-      wrapperclass = "test wrapper"
-      listclass = "test lists"
-      itemclass = "test item"
       hidedescription = 'false'
       truncatedescription = '250'
       hideimages = 'false'
       hideaddcal = 'false'
+      wrapperClassArray = {[]}
+      listClassArray = {[]}
     />
   );
   let tree = component.toJSON();
@@ -53,9 +51,8 @@ test('Standard Enabled', () => {
       heading= "Test"
       events= {componentData.events}
       filterby= "none"
-      wrapperclass = "test wrapper"
-      listclass = "test lists"
-      itemclass = "test item"
+      wrapperClassArray = {[]}
+      listClassArray = {[]}
       hidedescription = 'true'
       truncatedescription = '150'
       hideimages = 'true'
@@ -72,9 +69,8 @@ test('odernStandard Enabled', () => {
       heading= "Test"
       events= {componentData.events}
       filterby= "type"
-      wrapperclass = "test wrapper"
-      listclass = "test lists"
-      itemclass = "test item"
+      wrapperClassArray = {[]}
+      listClassArray = {[]}
       hidedescription = 'false'
       truncatedescription = '250'
       hideimages = 'false'
@@ -91,9 +87,8 @@ test('ModernCompact Enabled', () => {
       heading= "Test"
       events= {componentData.events}
       filterby= "dept"
-      wrapperclass = ""
-      listclass = ""
-      itemclass = ""
+      wrapperClassArray = {[]}
+      listClassArray = {[]}
       hidedescription = 'false'
       truncatedescription = '150'
       hideimages = 'false'
@@ -110,9 +105,8 @@ test('InlineCompact Enabled', () => {
       heading= "Test"
       events= {componentData.events}
       filterby= "none"
-      wrapperclass = "test wrapper"
-      listclass = "test lists"
-      itemclass = "test item"
+      wrapperClassArray = {[]}
+      listClassArray = {[]}
       hidedescription = 'false'
       truncatedescription = '150'
       hideimages = 'false'

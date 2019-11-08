@@ -1,6 +1,7 @@
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 import React, { useState } from 'react';
 import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
+import { removeElement, addUniqueElement } from '../../helpers/common';
 import { getTypeIds, getGroupId, getDepartmentIds } from '../../helpers/displayEvent';
 import { FilterButton } from '../partials';
 /**
@@ -31,15 +32,15 @@ var EventFilters = function EventFilters(props) {
       var groupId = getGroupId(event.event);
 
       if (obj.name === 'filterAll') {
-        event.event.display = 'fadeIn';
+        event.event.itemClassArray = removeElement(event.event.itemClassArray, 'fadeOut');
       } else if (filterby === 'type' && ids.includes(obj.id)) {
-        event.event.display = 'fadeIn';
+        event.event.itemClassArray = removeElement(event.event.itemClassArray, 'fadeOut');
       } else if (filterby === 'dept' && departmentIds.includes(obj.id)) {
-        event.event.display = 'fadeIn';
+        event.event.itemClassArray = removeElement(event.event.itemClassArray, 'fadeOut');
       } else if (filterby === 'group' && groupId === obj.id) {
-        event.event.display = 'fadeIn';
+        event.event.itemClassArray = removeElement(event.event.itemClassArray, 'fadeOut');
       } else {
-        event.event.display = 'fadeOut';
+        addUniqueElement(event.event.itemClassArray, 'fadeOut');
       }
     });
     handleEventFilter(events);

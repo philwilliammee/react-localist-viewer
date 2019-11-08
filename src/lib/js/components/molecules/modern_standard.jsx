@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    getAbbrMonth,
-    getDay,
-    getEventDate,
-    getEventTime,
-} from '../../helpers/displayEvent';
+import {getEventTime, getClassItem} from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventImg} from '../partials';
 import Truncate from '../atoms/truncate';
+import Time from '../atoms/time';
 
 const ModernStandardInner = props => {
     const {
@@ -32,21 +28,15 @@ const ModernStandardInner = props => {
     };
 
     const eventTime = getEventTime(event);
-    const classList = event.itemClassArray.join(' ');
+    const classList = getClassItem(event);
     return (
-        <div className={classList}>
+        <div className={`card ${classList}`}>
             <div className="events">
                 <a
                     href={event.localist_url}
                     className="group-link-wrapper field-group-link"
                 >
-                    <time
-                        title={getEventDate(event)}
-                        dateTime={eventTime}
-                    >
-                        <span className="month">{getAbbrMonth(event)}</span>
-                        <span className="day">{getDay(event)}</span>
-                    </time>
+                    <Time event={event} />
                     <div className="field title">
                         <h3>{event.title}</h3>
                     </div>
@@ -97,7 +87,7 @@ const ModernStandard= props =>{
     return (
         <section className='events-modern-standard modern' title="Events List">
             <div>
-                <div className={wrapperClassList}>
+                <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
                     <div className={listClassList}>
                         {events.length > 0
                             ? events.map( event => {

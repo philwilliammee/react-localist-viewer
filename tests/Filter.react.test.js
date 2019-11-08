@@ -1,7 +1,7 @@
 // Event Filter test
 import React from 'react';
 // import { shallow } from 'enzyme';
-import EventFilters from '../src/lib/js/components/filter';
+import EventFilters from '../src/lib/js/components/organisms/event_filterby';
 import { FilterButton } from '../src/lib/js/components/partials';
 import renderer from 'react-test-renderer';
 import {filterData} from './testData';
