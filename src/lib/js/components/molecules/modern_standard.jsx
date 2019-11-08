@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    getTruncDesc,
     getAbbrMonth,
     getDay,
     getEventDate,
@@ -9,14 +8,12 @@ import {
 } from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventImg} from '../partials';
-import { isHidden } from '../../helpers/common';
+import Truncate from '../atoms/truncate';
 
 const ModernStandardInner = props => {
     const {
         event,
         hideimages,
-        truncatedescription,
-        hidedescription,
     } = props;
 
     /**
@@ -67,10 +64,7 @@ const ModernStandardInner = props => {
                                 hideimages = {hideimages}
                                 photoCrop='big'
                             />
-                            { isHidden(hidedescription)
-                                ? ''
-                                : `${getTruncDesc(event, truncatedescription)} read more`
-                            }
+                            <Truncate {...props} readMore="read more" />
                         </p>
                     </div>
                 </a>

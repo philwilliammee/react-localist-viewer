@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    getTruncDesc,
     getAbbrMonth,
     getDay,
     getEventDate,
@@ -9,14 +8,12 @@ import {
 } from '../../helpers/displayEvent';
 import AddCal from '../addCal'
 import {EventThumbnail} from '../partials';
-import {isHidden} from '../../helpers/common'
+import Truncate from '../atoms/truncate';
 
 const ModernCompactInner = props => {
     const {
         event,
-        hideimages,
-        truncatedescription,
-        hidedescription} = props;
+        hideimages } = props;
     const eventTime = getEventTime(event);
     const classList = event.itemClassArray.join(' ');
     return (
@@ -49,9 +46,7 @@ const ModernCompactInner = props => {
                     </div>
                     <div className="field field-name-summary summary">
                         <p>
-                            { isHidden(hidedescription)
-                                ? ''
-                                : getTruncDesc(event, truncatedescription)}
+                            <Truncate {...props} />
                         </p>
                     </div>
                 </a>
