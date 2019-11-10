@@ -21,6 +21,21 @@ export const addUniqueElement = (a, e) => {
 }
 
 /**
+ * Adds a unique object to an array.
+ * @param {Array} a
+ * @param {object} o
+ */
+export const addUniqueObj = (a, o) => {
+    if(!('id' in o)){
+        console.warn("element id required");
+        return;
+    }
+    if (!a.find(object => object.id === o.id)) {
+        a.push(o);
+    }
+}
+
+/**
  * Test to see if element should be displayed
  * @param {mixed} v string or integer.
  * @return {boolean}

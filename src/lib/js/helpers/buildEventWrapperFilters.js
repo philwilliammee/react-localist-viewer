@@ -3,51 +3,39 @@ import {
     getGroupId,
 } from './displayEvent';
 
+import {addUniqueObj} from './common'
+
 /**
  * Gets the filter types and creates an object of filters to be used as buttons.
  * @param {obj} event The localist event.
  */
 const buildEventWrapperFilters = (events, filterby) => {
-    const filters = {};
+    if (filterby === 'none'){
+        return '';
+    }
+    const filters = [];
     events.forEach( eventObj => {
         const {event} = eventObj
         const groupName = getGroupName(event);
         const groupId = getGroupId(event);
-        if (
-            filterby === 'type' &&
-            event.filters.event_types
-        ) {
+        if (filterby === 'type' && event.filters.event_types ) {
             const types = event.filters.event_types
             types.forEach( type =>{
-                filters[type.name] = {
-                    id: type.id,
-                    name: type.name,
-                };
+                const {id, name} = type;
+                addUniqueObj(filters, {id, name});
             })
 
-        } else if (
-            filterby === 'dept' &&
-            event.filters.departments
-        ) {
+        } else if (filterby === 'dept' && event.filters.departments) {
             const {departments} = event.filters
             departments.forEach( department => {
-                filters[department.name] = {
-                    id: department.id,
-                    name: department.name,
-                };
+                const {id, name} = department;
+                addUniqueObj(filters, {id, name});
             })
-        } else if (
-            filterby === 'group' &&
-            groupName !== ''
-        ) {
-            filters[groupName] = {
-                id: groupId,
-                name: groupName,
-            };
+        } else if (filterby === 'group' && groupName !== '') {
+            addUniqueObj(filters, { id: groupId, name: groupName });
         }
     })
-    return filters
-
+    return filters;
 };
 
 export default buildEventWrapperFilters

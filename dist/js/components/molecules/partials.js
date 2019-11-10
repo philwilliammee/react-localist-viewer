@@ -1,5 +1,5 @@
 import React from 'react';
-import { isHidden } from '../helpers/common';
+import { isHidden } from '../../helpers/common';
 
 var EventTitle = function EventTitle(props) {
   var title = props.title,

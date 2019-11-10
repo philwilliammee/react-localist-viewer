@@ -1,5 +1,6 @@
 import _regeneratorRuntime from "@babel/runtime/regenerator";
 import _toConsumableArray from "@babel/runtime/helpers/esm/toConsumableArray";
+import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
 import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
@@ -7,6 +8,11 @@ import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConst
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/esm/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 import React, { Component } from 'react';
 import localistApiConnector from './js/services/localistApiConnector';
 import Heading from './js/components/organisms/heading';
@@ -81,8 +87,7 @@ function (_Component) {
       _regeneratorRuntime.mark(function _callee(page) {
         var _this2 = this;
 
-        var _this$state, depts, entries, group, keyword, daysahead, _this$props, apikey, calendarurl, res;
-
+        var res;
         return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -94,12 +99,12 @@ function (_Component) {
                     });
                   }
                 }, 400);
-                _this$state = this.state, depts = _this$state.depts, entries = _this$state.entries, group = _this$state.group, keyword = _this$state.keyword, daysahead = _this$state.daysahead;
-                _this$props = this.props, apikey = _this$props.apikey, calendarurl = _this$props.calendarurl;
-                _context.next = 5;
-                return localistApiConnector(depts, entries, group, keyword, daysahead, apikey, calendarurl, page);
+                _context.next = 3;
+                return localistApiConnector(_objectSpread({}, this.state, {}, this.props, {
+                  page: page
+                }));
 
-              case 5:
+              case 3:
                 res = _context.sent;
                 res.data.events.forEach(function (event) {
                   event.event.itemClassArray = _toConsumableArray(_this2.itemClassArray);
@@ -111,7 +116,7 @@ function (_Component) {
                   page: page
                 });
 
-              case 8:
+              case 6:
               case "end":
                 return _context.stop();
             }

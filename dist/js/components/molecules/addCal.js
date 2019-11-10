@@ -1,7 +1,7 @@
 import React from 'react';
 import buildUrl from 'build-url';
-import { getCalStartDate, getCalEndDate } from '../helpers/displayEvent';
-import { isHidden } from '../helpers/common';
+import { getCalStartDate, getCalEndDate } from '../../helpers/displayEvent';
+import { isHidden } from '../../helpers/common';
 
 var buidGoogleStr = function buidGoogleStr(myObj) {
   var gDateStart = getCalStartDate(myObj);

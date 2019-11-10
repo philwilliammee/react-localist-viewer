@@ -9,16 +9,14 @@ import {
     getDepartmentIds,
 } from '../../helpers/displayEvent'
 
-import { FilterButton } from '../molecules/partials';
+import {FilterButton} from '../molecules/partials';
 
 /**
- * @todo ad target id to data filter string.
  * @param {obj} props The props.
  */
 const EventFilters = props => {
     const {handleEventFilter, filterby, events} = props;
-    const filterObjs = buildEventWrapperFilters(events, filterby);
-    const filterKeys = Object.keys(filterObjs);
+    const filterButtons = buildEventWrapperFilters(events, filterby);
     const [active, setActive] = useState('filterAll');
 
     if (filterby === 'none'){
@@ -80,8 +78,7 @@ const EventFilters = props => {
                         }}
                     />
                 </li>
-                {filterKeys.map(key => {
-                    const obj = filterObjs[key];
+                {filterButtons.map(obj => {
                     const {id, name} = obj;
                     const filterId = `filter${id}`
                     return (
@@ -104,7 +101,7 @@ const EventFilters = props => {
 }
 
 EventFilters.propTypes = {
-    // Filterby will have shape of uniquefiltername:{id:integer, name:string, filterby:string}.
+    // Filterby shape [{id:integer, name:string}...]
     handleEventFilter: PropTypes.func.isRequired,
     filterby: PropTypes.string.isRequired,
     events: PropTypes.array.isRequired,

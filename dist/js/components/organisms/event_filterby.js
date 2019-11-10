@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import { removeElement, addUniqueElement } from '../../helpers/common';
 import { getTypeIds, getGroupId, getDepartmentIds } from '../../helpers/displayEvent';
-import { FilterButton } from '../partials';
+import { FilterButton } from '../molecules/partials';
 /**
- * @todo ad target id to data filter string.
  * @param {obj} props The props.
  */
 
@@ -13,8 +12,7 @@ var EventFilters = function EventFilters(props) {
   var handleEventFilter = props.handleEventFilter,
       filterby = props.filterby,
       events = props.events;
-  var filterObjs = buildEventWrapperFilters(events, filterby);
-  var filterKeys = Object.keys(filterObjs);
+  var filterButtons = buildEventWrapperFilters(events, filterby);
 
   var _useState = useState('filterAll'),
       _useState2 = _slicedToArray(_useState, 2),
@@ -66,8 +64,7 @@ var EventFilters = function EventFilters(props) {
       applyFilter(obj);
       setActive('filterAll');
     }
-  })), filterKeys.map(function (key) {
-    var obj = filterObjs[key];
+  })), filterButtons.map(function (obj) {
     var id = obj.id,
         name = obj.name;
     var filterId = "filter".concat(id);

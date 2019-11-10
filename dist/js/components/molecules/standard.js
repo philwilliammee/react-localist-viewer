@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTruncDesc, getEventTime, getMonthHeader, getDisplayDate, getClassItem } from '../../helpers/displayEvent';
 import AddCal from './addCal';
-import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from '../partials';
+import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from './partials';
 
 var StandardInner = function StandardInner(props) {
   var event = props.event,

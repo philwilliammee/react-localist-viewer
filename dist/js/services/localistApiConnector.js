@@ -5,13 +5,21 @@ import moment from 'moment';
  * options: https://developer.localist.com/doc/api#event-list
  */
 
-export default (function (depts, entries, group, keyword, days, apikey, calendarurl, page) {
+export default (function (props) {
+  var depts = props.depts,
+      entries = props.entries,
+      group = props.group,
+      keyword = props.keyword,
+      daysahead = props.daysahead,
+      apikey = props.apikey,
+      calendarurl = props.calendarurl,
+      page = props.page;
   var params = {
     apikey: apikey,
     distinct: true,
     pp: entries,
     page: page,
-    direction: days.startsWith("-") ? 'desc' : 'asc'
+    direction: daysahead.startsWith("-") ? 'desc' : 'asc'
   }; // Supports multiple departments with CSV string.
 
   if (depts && depts !== '0') {
@@ -30,11 +38,11 @@ export default (function (depts, entries, group, keyword, days, apikey, calendar
     params.keyword = keyword;
   }
 
-  if (days.startsWith("-")) {
-    params.start = moment().add(parseInt(days), 'days').format('YYYY-MM-DD');
+  if (daysahead.startsWith("-")) {
+    params.start = moment().add(parseInt(daysahead), 'days').format('YYYY-MM-DD');
     params.end = moment().format('YYYY-MM-DD');
   } else {
-    params.days = days;
+    params.days = daysahead;
   }
 
   return axios.get(calendarurl, {
