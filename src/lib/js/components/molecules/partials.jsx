@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isHidden } from '../helpers/common';
+import { isHidden } from '../../helpers/common';
 
 const EventTitle = props => {
     const {title, url} = props;

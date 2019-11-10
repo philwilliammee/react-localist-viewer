@@ -5,22 +5,24 @@ import moment from 'moment';
  * Sets params and returns axios Promise.
  * options: https://developer.localist.com/doc/api#event-list
  */
-export default (
-    depts,
-    entries,
-    group,
-    keyword,
-    days,
-    apikey,
-    calendarurl,
-    page,
-) => {
+export default (props) => {
+    const {
+        depts,
+        entries,
+        group,
+        keyword,
+        daysahead,
+        apikey,
+        calendarurl,
+        page,
+    } = props
+
     const params = {
         apikey,
         distinct: true,
         pp: entries,
         page,
-        direction: days.startsWith("-") ? 'desc' : 'asc',
+        direction: daysahead.startsWith("-") ? 'desc' : 'asc',
     };
 
     // Supports multiple departments with CSV string.
@@ -40,13 +42,13 @@ export default (
         params.keyword = keyword;
     }
 
-    if (days.startsWith("-")){
+    if (daysahead.startsWith("-")){
         params.start = moment()
-            .add(parseInt(days), 'days')
+            .add(parseInt(daysahead), 'days')
             .format('YYYY-MM-DD')
         params.end = moment().format('YYYY-MM-DD')
     } else {
-        params.days = days;
+        params.days = daysahead;
     }
 
     return axios.get(calendarurl, { params });

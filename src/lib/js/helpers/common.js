@@ -1,12 +1,3 @@
-//@todo needs clean up Consider using undersore js.
-
-// addClass
-
-// removeClass
-
-// contains
-
-// toggle
 
 /**
  * Removes an element from an array.
@@ -16,10 +7,6 @@
  */
 export const removeElement = (a, e) => {
     return a.filter( v => v !== e );
-}
-
-export const addElement = (a, e) => {
-    return a.push(e);
 }
 
 /**
@@ -33,23 +20,6 @@ export const addUniqueElement = (a, e) => {
     }
 }
 
-export const replaceElement = (a, e, n) => {
-    if (a.includes(e)) {
-        a[a.indexOf(e)] = n;
-    } else{
-        a.push(n);
-    }
-}
-
-/**
- * Returns a array of unique values.
- * @param {Array} a
- * @return {Array} Set of unique values
- */
-export const unique = (a) => {
-    return [...new Set(a)]
-}
-
 /**
  * Test to see if element should be displayed
  * @param {mixed} v string or integer.
@@ -58,3 +28,24 @@ export const unique = (a) => {
 export const isHidden = (v) => {
     return ( v === 'true' || v === 1)
 }
+
+// export const addElement = (a, e) => {
+//     return a.push(e);
+// }
+
+// export const replaceElement = (a, e, n) => {
+//     if (a.includes(e)) {
+//         a[a.indexOf(e)] = n;
+//     } else{
+//         a.push(n);
+//     }
+// }
+
+// /**
+//  * Returns a array of unique values.
+//  * @param {Array} a
+//  * @return {Array} Set of unique values
+//  */
+// export const unique = (a) => {
+//     return [...new Set(a)]
+// }

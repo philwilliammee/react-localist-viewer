@@ -1,6 +1,6 @@
 // Link.react.test.js
 import React from 'react';
-import AddCal from '../src/lib/js/components/addCal';
+import AddCal from '../src/lib/js/components/molecules/addCal';
 import renderer from 'react-test-renderer';
 import {singleEvent} from './testData';
 

@@ -2,6 +2,10 @@ import moment from 'moment';
 import truncate from 'truncate';
 
 /**
+ * @file A collection of functions for working with event objects.
+ */
+
+/**
  * Gets time from dateTime.
  *
  * @param {dateTime} dateTime A valid datetime.
@@ -318,6 +322,7 @@ export const getAbbrMonth = event => {
 };
 
 /**
+ * If event has a class array return it as a string.
  * @param {event} event The event.
  * @return {string}
  */

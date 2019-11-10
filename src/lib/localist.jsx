@@ -37,8 +37,10 @@ class Localist extends Component {
         this.wrapperClassArray = this.wrapperClassArray.concat(classes);
         this.listClassArray = this.props.listclass.split(' ');
         this.listClassArray.push('events-list');
+
         this.itemClassArray = this.props.itemclass.split(' ');
         this.itemClassArray = this.itemClassArray.concat(['event-node']);
+        
         this.handlePageClick = this.handlePageClick.bind(this)
         this.handleEventFilter = this.handleEventFilter.bind(this)
     }
@@ -53,25 +55,8 @@ class Localist extends Component {
             if (this.state.llPage.current !== page){ this.setState({loading: true}) }
         }, 400)
 
-        const {
-            depts,
-            entries,
-            group,
-            keyword,
-            daysahead,
-        } = this.state;
-
-        const { apikey, calendarurl }= this.props;
-
         let res = await localistApiConnector(
-            depts,
-            entries,
-            group,
-            keyword,
-            daysahead,
-            apikey,
-            calendarurl,
-            page,
+            {...this.state, ...this.props, page}
         );
 
         res.data.events.forEach(event => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getTruncDesc, getEventDateCompact, getClassItem } from '../../helpers/displayEvent';
-import AddCal from '../addCal';
+import AddCal from './addCal';
 import { EventTitle, EventDate, EventLocation, EventThumbnail, EventDescription } from '../partials';
 
 var CompactInner = function CompactInner(props) {

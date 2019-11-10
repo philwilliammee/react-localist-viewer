@@ -4,12 +4,12 @@ import {
 } from './displayEvent';
 
 /**
+ * Gets the filter types and creates an object of filters to be used as buttons.
  * @param {obj} event The localist event.
  */
 const buildEventWrapperFilters = (events, filterby) => {
-    const filters = {}
-    // change this to foreach?
-    events.map( eventObj => {
+    const filters = {};
+    events.forEach( eventObj => {
         const {event} = eventObj
         const groupName = getGroupName(event);
         const groupId = getGroupId(event);
@@ -22,7 +22,6 @@ const buildEventWrapperFilters = (events, filterby) => {
                 filters[type.name] = {
                     id: type.id,
                     name: type.name,
-                    filterby
                 };
             })
 
@@ -35,7 +34,6 @@ const buildEventWrapperFilters = (events, filterby) => {
                 filters[department.name] = {
                     id: department.id,
                     name: department.name,
-                    filterby
                 };
             })
         } else if (
@@ -45,7 +43,6 @@ const buildEventWrapperFilters = (events, filterby) => {
             filters[groupName] = {
                 id: groupId,
                 name: groupName,
-                filterby
             };
         }
     })

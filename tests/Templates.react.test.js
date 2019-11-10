@@ -8,25 +8,6 @@ import InlineCompact from '../src/lib/js/components/molecules/inline_compact';
 import renderer from 'react-test-renderer';
 import {componentData} from './testData';
 
-// test('Classic Enabled', () => {
-//   const component = renderer.create(
-//     <Classic
-//       heading= "Test"
-//       events= {componentData.events}
-//       filterby= "type"
-//       wrapperclass = "test wrapper"
-//       listclass = "test lists"
-//       itemclass = "test item"
-//       hidedescription = 'false'
-//       truncatedescription = '150'
-//       hideimages = 'false'
-//       hideaddcal = 'false'
-//     />
-//   );
-//   let tree = component.toJSON();
-//   expect(tree).toMatchSnapshot();
-// });
-
 test('Standard Enabled', () => {
   const component = renderer.create(
     <Standard

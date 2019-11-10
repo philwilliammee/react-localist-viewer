@@ -9,7 +9,7 @@ import {
     getDepartmentIds,
 } from '../../helpers/displayEvent'
 
-import { FilterButton } from '../partials';
+import { FilterButton } from '../molecules/partials';
 
 /**
  * @todo ad target id to data filter string.

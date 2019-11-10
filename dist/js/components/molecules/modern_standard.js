@@ -1,6 +1,6 @@
 import React from 'react';
 import { getEventTime, getClassItem } from '../../helpers/displayEvent';
-import AddCal from '../addCal';
+import AddCal from './addCal';
 import { EventImg } from '../partials';
 import Truncate from '../atoms/truncate';
 import Time from '../atoms/time';
