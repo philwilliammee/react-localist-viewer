@@ -30,7 +30,7 @@ const ModernStandardInner = props => {
     const eventTime = getEventTime(event);
     const classList = getClassItem(event);
     return (
-        <div className={`card ${classList}`}>
+        <div className={classList}>
             <div className="events">
                 <a
                     href={event.localist_url}

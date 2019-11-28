@@ -6,7 +6,8 @@ import {
 import {addUniqueObj} from './common'
 
 /**
- * Gets the filter types and creates an object of filters to be used as buttons.
+ * Gets the filter types from events.
+ *  Creates an array of objects used to build buttons.
  * @param {obj} event The localist event.
  */
 const buildEventWrapperFilters = (events, filterby) => {
