@@ -11,7 +11,7 @@ var ModernCompactInner = function ModernCompactInner(props) {
   var eventTime = getEventTime(event);
   var classList = getClassItem(event);
   return React.createElement("div", {
-    className: "card ".concat(classList)
+    className: classList
   }, React.createElement("div", {
     className: "events"
   }, React.createElement("a", {
