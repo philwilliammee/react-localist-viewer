@@ -43,7 +43,7 @@ var ModernCompact = function ModernCompact(props) {
     className: "events-modern-compact modern",
     title: "Events List"
   }, React.createElement("div", {
-    className: "main-body"
+    className: "events-main-body"
   }, React.createElement("div", {
     className: "cwd-component cwd-card-grid ".concat(wrapperClassList)
   }, React.createElement("div", {

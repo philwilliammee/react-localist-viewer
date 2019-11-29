@@ -50,7 +50,7 @@ var Compact = function Compact(props) {
     className: "standard compact",
     title: "Events List"
   }, React.createElement("div", {
-    className: "main-body"
+    className: "events-main-body"
   }, React.createElement("div", {
     className: "events-listing compact ".concat(wrapperClassList)
   }, React.createElement("div", {

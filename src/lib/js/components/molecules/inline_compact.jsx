@@ -66,7 +66,7 @@ const InlineCompact= props =>{
 
     return (
         <section className='modern' id="eventsInlineCompact" title="Events List">
-            <div className="main-body">
+            <div className="events-main-body">
                 <div className={`cwd-component compact events-listing ${wrapperclass}`}>
                     <div className={`events-list view-content ${listclass}`}>
                         {events.length > 0

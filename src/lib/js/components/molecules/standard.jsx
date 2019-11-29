@@ -114,7 +114,7 @@ const Standard = (props) => {
     const listClassList = listClassArray.join(' ');
     return (
         <section className="standard" title="Events List">
-            <div className="main-body">
+            <div className="events-main-body">
                 <div className={`events-listing ${wrapperClassList}`}>
                     <div className={`events-list ${listClassList}`}>
                         { events.length > 0

@@ -54,7 +54,7 @@ var InlineCompact = function InlineCompact(props) {
     id: "eventsInlineCompact",
     title: "Events List"
   }, React.createElement("div", {
-    className: "main-body"
+    className: "events-main-body"
   }, React.createElement("div", {
     className: "cwd-component compact events-listing ".concat(wrapperclass)
   }, React.createElement("div", {

@@ -58,7 +58,7 @@ const ModernCompact= props =>{
     const listClassList = listClassArray.join(' ');
     return (
         <section className='events-modern-compact modern' title="Events List">
-            <div className="main-body">
+            <div className="events-main-body">
                 <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
                     <div className={listClassList}>
                         {events.length > 0

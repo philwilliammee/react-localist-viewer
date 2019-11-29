@@ -84,7 +84,7 @@ var Standard = function Standard(props) {
     className: "standard",
     title: "Events List"
   }, React.createElement("div", {
-    className: "main-body"
+    className: "events-main-body"
   }, React.createElement("div", {
     className: "events-listing ".concat(wrapperClassList)
   }, React.createElement("div", {

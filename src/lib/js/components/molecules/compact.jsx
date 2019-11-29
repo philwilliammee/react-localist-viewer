@@ -63,7 +63,7 @@ const Compact = (props) => {
     const listClassList = listClassArray.join(' ');
     return (
         <section className='standard compact' title="Events List">
-            <div className="main-body">
+            <div className="events-main-body">
                 <div className={`events-listing compact ${wrapperClassList}`}>
                     <div className={`events-list view-content ${listClassList}`}>
                         {events.length > 0
