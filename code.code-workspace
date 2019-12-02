@@ -29,5 +29,6 @@
 		"eslint.options": {
 			"ignorePath": ".eslintignore"
 		},
+		"terminal.integrated.fontFamily": "dejavu sans mono for powerline",
 	}
 }
