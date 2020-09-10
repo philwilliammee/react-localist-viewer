@@ -100,7 +100,8 @@ Localist.propTypes = {
         'compact',
         'modern_compact',
         'modern_standard',
-        'inline_compact'
+        'inline_compact',
+        'calendar'
     ]),
     apikey: PropTypes.string,
     truncatedescription: PropTypes.string.isRequired,
