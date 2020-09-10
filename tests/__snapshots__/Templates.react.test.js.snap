@@ -7,7 +7,7 @@ exports[`InlineCompact Enabled 1`] = `
   title="Events List"
 >
   <div
-    className="main-body"
+    className="events-main-body"
   >
     <div
       className="cwd-component compact events-listing "
@@ -263,7 +263,7 @@ exports[`ModernCompact Enabled 1`] = `
   title="Events List"
 >
   <div
-    className="main-body"
+    className="events-main-body"
   >
     <div
       className="cwd-component cwd-card-grid "
@@ -272,7 +272,7 @@ exports[`ModernCompact Enabled 1`] = `
         className=""
       >
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -385,7 +385,7 @@ exports[`ModernCompact Enabled 1`] = `
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -502,7 +502,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -615,7 +615,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -739,7 +739,7 @@ exports[`Standard Enabled 1`] = `
   title="Events List"
 >
   <div
-    className="main-body"
+    className="events-main-body"
   >
     <div
       className="events-listing "
@@ -1308,7 +1308,7 @@ exports[`Standard Enabled 2`] = `
   title="Events List"
 >
   <div
-    className="main-body"
+    className="events-main-body"
   >
     <div
       className="events-listing compact "
@@ -1523,7 +1523,7 @@ exports[`odernStandard Enabled 1`] = `
         className=""
       >
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -1637,7 +1637,7 @@ exports[`odernStandard Enabled 1`] = `
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -1755,7 +1755,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
@@ -1869,7 +1869,7 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
           </div>
         </div>
         <div
-          className="card "
+          className=""
         >
           <div
             className="events"
