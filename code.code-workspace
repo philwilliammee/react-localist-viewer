@@ -30,5 +30,21 @@
 			"ignorePath": ".eslintignore"
 		},
 		"terminal.integrated.fontFamily": "dejavu sans mono for powerline",
+		"cSpell.words": [
+			"apikey",
+			"calendarurl",
+			"daysahead",
+			"depts",
+			"filterby",
+			"hideaddcal",
+			"hidedescription",
+			"hideimages",
+			"hidepagination",
+			"itemclass",
+			"listclass",
+			"readmore",
+			"truncatedescription",
+			"wrapperclass"
+		],
 	}
 }

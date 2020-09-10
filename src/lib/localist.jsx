@@ -1,115 +1,87 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import localistApiConnector from './js/services/localistApiConnector';
 import Heading from './js/components/organisms/heading';
 import Paginate from './js/components/organisms/paginate';
 import LocalistView from './js/components/organisms/localist_view';
 import EventFilters from './js/components/organisms/event_filterby';
-import {isHidden} from './js/helpers/common';
+import { isHidden } from './js/helpers/common';
 
 /**
  * Localist Component
  * @todo reset filters on pagination load.
- * @todo implimet class lists for all components.
+ * @todo implement class lists for all components.
  */
-class Localist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            events: [],
-            llPage: {current: props.page, size: 1, total: 1},
-            depts: props.depts,
-            entries: props.entries,
-            format: props.format,
-            group: props.group,
-            keyword: props.keyword,
-            daysahead: props.daysahead,
-            // can page be replaced with llPage.current?
-            page: props.page,
-            loading: true,
-        };
+const Localist = props => {
+    const [events, setEvents] = useState([])
+    const [llPage, setLlPage] = useState({ current: props.page, size: 1, total: 1 })
+    const [page, setPage] = useState(props.page)
+    const [loading, setLoading] = useState(true)
 
-        this.wrapperClassArray = this.props.wrapperclass.split(' ');
-        if ( isHidden(this.props.hideimages) ){
-            this.wrapperClassArray.push('no-thumbnails')
-        }
-        const classes = ['events-listing'];
-        this.wrapperClassArray = this.wrapperClassArray.concat(classes);
-        this.listClassArray = this.props.listclass.split(' ');
-        this.listClassArray.push('events-list');
-
-        this.itemClassArray = this.props.itemclass.split(' ');
-        this.itemClassArray = this.itemClassArray.concat(['event-node']);
-        
-        this.handlePageClick = this.handlePageClick.bind(this)
-        this.handleEventFilter = this.handleEventFilter.bind(this)
+    let wrapperClassArray = props.wrapperclass.split(' ');
+    if (isHidden(props.hideimages)) {
+        wrapperClassArray.push('no-thumbnails')
     }
+    const classes = ['events-listing'];
+    wrapperClassArray = wrapperClassArray.concat(classes);
+    const listClassArray = props.listclass.split(' ');
+    listClassArray.push('events-list');
 
-    componentDidMount(){
-        const {page} = this.props
-        this.getEvents(page);
-    }
-
-    async getEvents(page){
-        setTimeout(()=>{
-            if (this.state.llPage.current !== page){ this.setState({loading: true}) }
+    const getEvents = useCallback(async () => {
+        setTimeout(() => {
+            if (llPage.current !== page) { setLoading(true) }
         }, 400)
-
-        let res = await localistApiConnector(
-            {...this.state, ...this.props, page}
-        );
-
+        const itemClassArray = props.itemclass.split(' ').concat(['event-node']);
+        let res = await localistApiConnector({ page, ...props });
         res.data.events.forEach(event => {
-            event.event.itemClassArray = [ ...this.itemClassArray];
+            event.event.itemClassArray = [...itemClassArray];
         })
+        setEvents(res.data.events)
+        setLlPage(res.data.page)
+        setLoading(false)
+    }, [page, props, llPage])
 
-        this.setState({
-            events: res.data.events,
-            llPage: res.data.page,
-            loading: false,
-            page,
-        });
-    }
 
-    handlePageClick(data){
+    useEffect(() => { getEvents() }, [page])
+
+    function handlePageClick(data) {
         const newPage = data.selected + 1;
-        this.getEvents(newPage);
+        setPage(newPage)
     }
 
-    handleEventFilter(events){
-        this.setState({ events })
+    function handleEventFilter(events) {
+        setEvents(events)
     }
 
-    render() {
-        return (
-            <div>
-                <Heading
-                    heading={this.props.heading}
-                    readmore={this.props.readmore}
-                    url={this.props.url}
-                />
-                <EventFilters
-                    key={this.state.page}
-                    events={this.state.events}
-                    handleEventFilter={this.handleEventFilter}
-                    filterby={this.props.filterby}
-                />
-                <LocalistView
-                    events= {this.state.events}
-                    page=  {this.state.page}
-                    loading= {this.state.loading}
-                    wrapperClassArray= {this.wrapperClassArray}
-                    listClassArray= {this.listClassArray}
-                    { ...this.props }
-                />
-                <Paginate
-                    hidepagination = {this.props.hidepagination}
-                    total = {this.state.llPage.total}
-                    handlePageClick = {this.handlePageClick}
-                />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Heading
+                heading={props.heading}
+                readmore={props.readmore}
+                url={props.url}
+            />
+            <EventFilters
+                key={page}
+                events={events}
+                handleEventFilter={handleEventFilter}
+                filterby={props.filterby}
+            />
+            <LocalistView
+                events={events}
+                page={page}
+                loading={loading}
+                wrapperClassArray={wrapperClassArray}
+                listClassArray={listClassArray}
+                {...props}
+            />
+            <Paginate
+                hidepagination={props.hidepagination}
+                total={llPage.total}
+                handlePageClick={handlePageClick}
+            />
+        </div>
+    );
+
 }
 
 Localist.propTypes = {
@@ -129,10 +101,10 @@ Localist.propTypes = {
     apikey: PropTypes.string,
     truncatedescription: PropTypes.string.isRequired,
     heading: PropTypes.string,
-    hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    hidepagination: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+    hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideimages: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideaddcal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hidepagination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     filterby: PropTypes.oneOf([
         'group',
         'dept',
@@ -155,7 +127,7 @@ Localist.defaultProps = {
     entries: '3',
     format: 'standard',
     apikey: '',
-    daysahead : '365',
+    daysahead: '365',
     heading: '',
     filterby: 'group',
     hidedescription: 'false',
@@ -165,7 +137,7 @@ Localist.defaultProps = {
     wrapperclass: '',
     listclass: '',
     itemclass: '',
-    page : 1,
+    page: 1,
     readmore: '',
     url: '',
 };
