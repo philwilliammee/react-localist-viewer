@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
 import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import {removeElement, addUniqueElement} from '../../helpers/common';
@@ -15,9 +15,8 @@ import {FilterButton} from '../molecules/partials';
  * @param {obj} props The props.
  */
 const EventFilters = props => {
-    const {handleEventFilter, filterby, events} = props;
+    const {handleEventFilter, filterby, events, active, setActive} = props;
     const filterButtons = buildEventWrapperFilters(events, filterby);
-    const [active, setActive] = useState('filterAll');
 
     if (filterby === 'none'){
         return '';
@@ -59,7 +58,7 @@ const EventFilters = props => {
                 );
             }
         })
-        handleEventFilter(events);
+        handleEventFilter(events, obj.name );
     }
 
     return (
@@ -105,6 +104,8 @@ EventFilters.propTypes = {
     handleEventFilter: PropTypes.func.isRequired,
     filterby: PropTypes.string.isRequired,
     events: PropTypes.array.isRequired,
+    active: PropTypes.string.isRequired,
+    setActive: PropTypes.func.isRequired
 }
 
 export default EventFilters
