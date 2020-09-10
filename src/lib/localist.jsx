@@ -15,7 +15,8 @@ import { isHidden } from './js/helpers/common';
 const Localist = props => {
     const [events, setEvents] = useState([])
     const [llPage, setLlPage] = useState({ current: props.page, size: 1, total: 1 })
-    const [page, setPage] = useState(props.page)
+    const [currentPage, setCurrentPage] = useState(props.page)
+    const [filter, setFilter] = useState('filterAll')
     const [loading, setLoading] = useState(true)
 
     let wrapperClassArray = props.wrapperclass.split(' ');
@@ -28,28 +29,27 @@ const Localist = props => {
     listClassArray.push('events-list');
 
     const getEvents = useCallback(async () => {
-        setTimeout(() => {
-            if (llPage.current !== page) { setLoading(true) }
-        }, 400)
+        setLoading(true)
         const itemClassArray = props.itemclass.split(' ').concat(['event-node']);
-        let res = await localistApiConnector({ page, ...props });
+        let res = await localistApiConnector({ ...props, page:currentPage});
         res.data.events.forEach(event => {
             event.event.itemClassArray = [...itemClassArray];
         })
         setEvents(res.data.events)
         setLlPage(res.data.page)
         setLoading(false)
-    }, [page, props, llPage])
+    }, [currentPage, props])
 
 
-    useEffect(() => { getEvents() }, [page])
+    useEffect(() => { getEvents() }, [currentPage])
 
     function handlePageClick(data) {
         const newPage = data.selected + 1;
-        setPage(newPage)
+        setCurrentPage(newPage)
     }
 
-    function handleEventFilter(events) {
+    function handleEventFilter(events, filter) {
+        setFilter(filter)
         setEvents(events)
     }
 
@@ -61,18 +61,22 @@ const Localist = props => {
                 url={props.url}
             />
             <EventFilters
-                key={page}
+                key={currentPage}
                 events={events}
                 handleEventFilter={handleEventFilter}
+                active={filter}
+                setActive={setFilter}
                 filterby={props.filterby}
             />
             <LocalistView
+                key={filter}
+                {...props}
                 events={events}
-                page={page}
+                page={currentPage}
                 loading={loading}
                 wrapperClassArray={wrapperClassArray}
                 listClassArray={listClassArray}
-                {...props}
+
             />
             <Paginate
                 hidepagination={props.hidepagination}
