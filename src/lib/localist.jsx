@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import localistApiConnector from './js/services/localistApiConnector';
 import Heading from './js/components/organisms/heading';
@@ -6,6 +6,7 @@ import Paginate from './js/components/organisms/paginate';
 import LocalistView from './js/components/organisms/localist_view';
 import EventFilters from './js/components/organisms/event_filterby';
 import { isHidden } from './js/helpers/common';
+import EventsContext from './js/context/EventsContext'
 
 /**
  * Localist Component
@@ -13,11 +14,12 @@ import { isHidden } from './js/helpers/common';
  * @todo implement class lists for all components.
  */
 const Localist = props => {
-    const [events, setEvents] = useState([])
+    const {events, setEvents} = useContext(EventsContext)
     const [llPage, setLlPage] = useState({ current: props.page, size: 1, total: 1 })
     const [currentPage, setCurrentPage] = useState(props.page)
     const [filter, setFilter] = useState('filterAll')
     const [loading, setLoading] = useState(true)
+
 
     let wrapperClassArray = props.wrapperclass.split(' ');
     if (isHidden(props.hideimages)) {

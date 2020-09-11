@@ -6,7 +6,7 @@ import {EventThumbnail} from './partials';
 import Truncate from '../atoms/truncate';
 import Time from '../atoms/time';
 
-const ModernCompactInner = props => {
+export const ModernCompactInner = props => {
     const { event, hideimages } = props;
     const eventTime = getEventTime(event);
     const classList = getClassItem(event);
@@ -72,7 +72,7 @@ const ModernCompact= props =>{
                                     />
                                 )
                             })
-                            : <p>There are no upcomming events.</p>}
+                            : <p>There are no upcoming events.</p>}
                     </div>
                 </div>
             </div>

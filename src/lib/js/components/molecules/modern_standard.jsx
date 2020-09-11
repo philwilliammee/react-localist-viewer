@@ -6,10 +6,11 @@ import {EventImg} from './partials';
 import Truncate from '../atoms/truncate';
 import Time from '../atoms/time';
 
-const ModernStandardInner = props => {
+export const ModernStandardInner = props => {
     const {
         event,
         hideimages,
+        hidetime,
     } = props;
 
     /**
@@ -36,13 +37,13 @@ const ModernStandardInner = props => {
                     href={event.localist_url}
                     className="group-link-wrapper field-group-link"
                 >
-                    <Time event={event} />
+                    { hidetime ? '' : <Time event={event} /> }
                     <div className="field title">
                         <h3>{event.title}</h3>
                     </div>
                     <div className="field meta">
                         <p>
-                            {eventTime}{ event.location_name ? `, ${event.location_name}` : '' }
+                            { hidetime ? '' : eventTime}{ event.location_name ? `, ${event.location_name}` : '' }
                             {tagStr(event.filters.event_types)}
                         </p>
                     </div>
@@ -74,7 +75,12 @@ ModernStandardInner.propTypes = {
         .isRequired,
     hideimages: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
         .isRequired,
+    hidetime: PropTypes.bool
 };
+
+ModernStandardInner.defaultProps = {
+    hidetime: false
+}
 
 const ModernStandard= props =>{
     const {
@@ -99,7 +105,7 @@ const ModernStandard= props =>{
                                     />
                                 )
                             })
-                            : <p>There are no upcomming events.</p>}
+                            : <p>There are no upcoming events.</p>}
                     </div>
                 </div>
             </div>
