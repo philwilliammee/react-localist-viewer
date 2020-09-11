@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import EventsContext from '../../../context/EventsContext'
-import {ModernStandardInner} from '../modern_standard'
+import {ModernStandardInner} from '../ModernStandard'
 
 const AgendaInner = props => {
     const { event } = props;
@@ -9,16 +9,14 @@ const AgendaInner = props => {
     if (!fullEvent) {
         return ""
     }
-    console.log(fullEvent)
-
     return (
         <ModernStandardInner
             event={fullEvent}
             hideaddcal={'true'}
-            truncatedescription={'150'}
+            truncatedescription={'500'}
             hidedescription={'false'}
             hideimages={'false'}
-            hidetime={true}
+            hidetime={false}
         />
     )
 }

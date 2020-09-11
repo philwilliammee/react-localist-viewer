@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import localistApiConnector from './js/services/localistApiConnector';
@@ -7,6 +8,7 @@ import LocalistView from './js/components/organisms/localist_view';
 import EventFilters from './js/components/organisms/event_filterby';
 import { isHidden } from './js/helpers/common';
 import EventsContext from './js/context/EventsContext'
+import moment from 'moment'
 
 /**
  * Localist Component
@@ -19,8 +21,6 @@ const Localist = props => {
     const [currentPage, setCurrentPage] = useState(props.page)
     const [filter, setFilter] = useState('filterAll')
     const [loading, setLoading] = useState(true)
-
-
     let wrapperClassArray = props.wrapperclass.split(' ');
     if (isHidden(props.hideimages)) {
         wrapperClassArray.push('no-thumbnails')
@@ -31,9 +31,14 @@ const Localist = props => {
     listClassArray.push('events-list');
 
     const getEvents = useCallback(async () => {
+        let start, end;
+        if (props.format === 'calendar'){
+            start = moment().subtract(1, 'month').startOf('month').format('YYYY-MM-DD hh:mm');
+            end   = moment().add(1, 'month').endOf('month').format('YYYY-MM-DD hh:mm');
+        }
         setLoading(true)
         const itemClassArray = props.itemclass.split(' ').concat(['event-node']);
-        let res = await localistApiConnector({ ...props, page:currentPage});
+        let res = await localistApiConnector({ ...props, page:currentPage, start, end});
         res.data.events.forEach(event => {
             event.event.itemClassArray = [...itemClassArray];
         })

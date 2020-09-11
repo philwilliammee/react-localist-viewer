@@ -185,6 +185,24 @@ export const getEventTime = (event) => {
 };
 
 /**
+ * Checks if event is all day and returns appropriate start time.
+ * @param {obj} event The event obj.
+ * @return {string} the eventTime string.
+ */
+export const getEventFullTime = (event) => {
+  let eventTime = "";
+  if (isAllDay(event)) {
+    eventTime = "all day";
+  } else {
+    const startDate = getEventStart(event);
+    let stopTime = getEventEndTime(event);
+    stopTime = stopTime ? ` - ${stopTime}` : "";
+    eventTime = getTimefromDateTime(startDate) + stopTime;
+  }
+  return eventTime;
+};
+
+/**
  *
  * @param {obj} event The localist event
  * @return {string} The group name.
