@@ -1,20 +1,20 @@
 // Event Filter test
-import React from 'react';
+import React from "react";
 // import { shallow } from 'enzyme';
-import EventFilters from '../src/lib/js/components/organisms/event_filterby';
-import { FilterButton } from '../src/lib/js/components/molecules/partials';
-import renderer from 'react-test-renderer';
-import {filterData} from './testData';
+import EventFilters from "../src/lib/js/components/organisms/event_filterby";
+import { FilterButton } from "../src/lib/js/components/molecules/partials";
+import renderer from "react-test-renderer";
+import { filterData } from "./testData";
 
-test('Event filters Buttons', () => {
+test("Event filters Buttons", () => {
   let active = "";
   const mockCallBack = jest.fn();
   const component = renderer.create(
     <FilterButton
-      filterId= "thisid"
-      active= {active}
-      name= "test"
-      clickHandler= {mockCallBack}
+      filterId="thisid"
+      active={active}
+      name="test"
+      clickHandler={mockCallBack}
     />
   );
 
@@ -27,10 +27,9 @@ test('Event filters Buttons', () => {
   // re-rendering
   tree = component.toJSON();
   expect(tree).toMatchSnapshot();
-
 });
 
-test('Event filters', () => {
+test("Event filters", () => {
   const mockCallBack = jest.fn();
   const component = renderer.create(
     <EventFilters
@@ -38,6 +37,10 @@ test('Event filters', () => {
       events={filterData.events}
       handleEventFilter={mockCallBack}
       filterby={filterData.filterby}
+      active="filterAll"
+      setActive={() => {
+        return "filterAll";
+      }}
     />
   );
 
