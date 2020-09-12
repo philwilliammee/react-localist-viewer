@@ -21,7 +21,7 @@ const Time = (props) => {
     )
 }
 
-PropTypes.Truncate = {
+Time.propTypes = {
     event: PropTypes.object.isRequired,
 }
 

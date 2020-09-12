@@ -16,7 +16,7 @@ const Truncate = (props) => {
     )
 }
 
-PropTypes.Truncate = {
+Truncate.propTypes = {
     event: PropTypes.object.isRequired,
     truncatedescription: PropTypes.string.isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number])
