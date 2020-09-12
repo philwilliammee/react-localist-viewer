@@ -297,7 +297,7 @@ export const getFiltersDepartments = (event) => {
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
  * @param {obj} event The localist Event.
- * @param {string} prefCategory The preffered category filter.
+ * @param {string} prefCategory The preferred category filter.
  * @return {mixed} An array or a string if only one.
  */
 export const getEventType = (event, prefCategory) => {
@@ -314,6 +314,30 @@ export const getEventType = (event, prefCategory) => {
     eventTypes = [groupName];
   }
   return eventTypes;
+};
+
+/**
+ * Gets the appropriate event type.
+ * @todo add support for multiple filter types.
+ * @param {obj} event The localist Event.
+ * @return {mixed} A string of event types or null
+ */
+export const getEventTypeString = (event, prefCategory) => {
+  if (typeof event.filters.event_types !== "undefined") {
+    return event.filters.event_types.map((type) => type.name).join(", ");
+  }
+};
+
+/**
+ * Gets the appropriate event type.
+ * @todo add support for multiple filter types.
+ * @param {obj} event The localist Event.
+ * @return {mixed} A string of event types or null
+ */
+export const getEventDepartmentsString = (event, prefCategory) => {
+  if (typeof event.filters.departments !== "undefined") {
+    return event.filters.departments.map((type) => type.name).join(", ");
+  }
 };
 
 /**

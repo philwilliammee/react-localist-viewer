@@ -9,6 +9,7 @@ import { navigate } from "react-big-calendar/lib/utils/constants";
 import { inRange } from "react-big-calendar/lib/utils/eventLevels";
 import { isSelected } from "react-big-calendar/lib/utils/selection";
 
+// Override the default Agenda
 // import Agenda from "react-big-calendar/lib/Agenda"
 
 function AgendaList({

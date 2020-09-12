@@ -6,7 +6,7 @@ import "@reach/dialog/styles.css";
 let AnimatedDialogOverlay = animated(DialogOverlay);
 let AnimatedDialogContent = animated(DialogContent);
 
-function EventModal(props) {
+function ModalDialog(props) {
   // const [showDialog, setShowDialog] = useState(false);
   const transitions = useTransition(props.showDialog, null, {
     from: { opacity: 0, y: -10 },
@@ -15,7 +15,7 @@ function EventModal(props) {
     config: config.stiff,
   });
   return (
-    <div>
+    <div className="cwd-modal-dialog">
       {transitions.map(
         ({ item, props: styles }) =>
           item && (
@@ -36,11 +36,12 @@ function EventModal(props) {
                 }}
               >
                 <button
-                  style={{ float: "right" }}
+                  className="close"
+                  style={{ float: "right", padding: "2px 5px" }}
                   onClick={() => props.setShowDialog(false)}
                   aria-label="close dialog"
                 >
-                  X
+                  <span className="icon-close"> x </span>
                 </button>
                 {props.children}
               </AnimatedDialogContent>
@@ -51,4 +52,4 @@ function EventModal(props) {
   );
 }
 
-export default EventModal;
+export default ModalDialog;

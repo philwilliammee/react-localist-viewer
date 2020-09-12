@@ -15,18 +15,18 @@ const Grid = (props) => {
       </div>
     );
   }
-  return <div className={`flex-${props.width}`}>{props.children}</div>;
+  return <div className={`flex-${props.col}`}>{props.children}</div>;
 };
 
 Grid.propTypes = {
   container: PropTypes.bool,
   children: PropTypes.node,
   style: PropTypes.object,
-  width: PropTypes.number,
+  col: PropTypes.number,
 };
 
 Grid.defaultProps = {
-  width: 12,
+  col: 12,
 };
 
 export default Grid;

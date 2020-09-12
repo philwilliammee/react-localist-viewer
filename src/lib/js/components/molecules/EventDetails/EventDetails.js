@@ -2,20 +2,16 @@ import React, { useContext } from "react";
 import EventsContext from "../../../context/EventsContext";
 import PropTypes from "prop-types";
 import {
-  getEventTime,
-  getClassItem,
-  getMonthHeader,
-  getDisplayDate,
-  getMonth,
-  getDay,
+  getEventTypeString,
   getEventDate,
   getEventFullTime,
+  getEventDepartmentsString,
 } from "../../../helpers/displayEvent";
 import AddCal from "../addCal";
-import { EventImg, EventDate } from "../partials";
-import Truncate from "../../atoms/Truncate";
-import Time from "../../atoms/Time";
-import "./EventStyle.css";
+import { EventImg } from "../partials";
+import truncateUrl from "truncate-url";
+import Grid from "../../atoms/Grid";
+import "./EventStyle.scss";
 
 const AgendaInner = (props) => {
   let { event } = props;
@@ -38,6 +34,9 @@ const AgendaInner = (props) => {
           <span>
             {getEventDate(event)} @ {getEventFullTime(event)}
           </span>
+          <span className="inline-events-type">
+            {event.location_name ? event.location_name : event.experience}
+          </span>
           <div className="field field-name-summary summary">
             <div>
               <div style={{ float: "left", paddingRight: "15px" }}>
@@ -51,7 +50,68 @@ const AgendaInner = (props) => {
               <span dangerouslySetInnerHTML={{ __html: event.description }} />
             </div>
           </div>
-          <AddCal event={event} hideaddcal="false" />
+          <div className="cwd-more-info">
+            <Grid container>
+              <Grid col={12}>
+                <h4>Details</h4>
+              </Grid>
+              <Grid col={6}>
+                <h5>Event Type</h5>
+                <p>{getEventTypeString(event)}</p>
+                <h5>Departments</h5>
+                <p>{getEventDepartmentsString(event)}</p>
+                <h5>Tags</h5>
+                <p>{event.tags.join(", ")}</p>
+                <h5>Website</h5>
+                <p>
+                  <a href={event.url}>{truncateUrl(event.url, 60)}</a>
+                </p>
+              </Grid>
+              {/* <Grid col={4}>
+                <h4>Group</h4>
+                <p>{event.group_name}</p>
+                <h5>Website</h5>
+                <p>The website url</p>
+              </Grid> */}
+              <Grid col={6}>
+                <h5>Group</h5>
+                <p>{event.group_name}</p>
+                <h5>HashTag</h5>
+                <p>#{event.hashtag}</p>
+
+                <h5>Contact E-Mail</h5>
+                <p>
+                  <a href={`mailto:${event.custom_fields.contact_email}`}>
+                    {event.custom_fields.contact_email}
+                  </a>
+                </p>
+                <h5>Contact Name</h5>
+                <p>{event.custom_fields.contact_name}</p>
+                <h5>Dept. Web Site</h5>
+                <p>
+                  <a href={event.custom_fields.dept_web_site}>
+                    {truncateUrl(event.custom_fields.dept_web_site, 60)}
+                  </a>
+                </p>
+              </Grid>
+            </Grid>
+          </div>
+
+          {/* <div className="cwd-more-info secondary">
+            <Grid container>
+              <Grid col={4}>
+                <h4>Venue</h4>
+                <h5>The venue</h5>
+              </Grid>
+            </Grid>
+          </div> */}
+          <p>
+            {/* <a href="/#" className="link-button">
+              Register link
+            </a> */}
+
+            <AddCal event={event} hideaddcal="false" />
+          </p>
         </div>
       </div>
     </section>

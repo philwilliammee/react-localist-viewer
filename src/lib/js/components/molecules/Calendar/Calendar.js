@@ -13,7 +13,7 @@ import {
 } from "../../../helpers/displayEvent";
 import AgendaList from "./AgendaList";
 import EventsContext from "../../../context/EventsContext";
-import EventModal from "./EventModalDialog";
+import EventModal from "../../atoms/ModalDialog";
 import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
 import EventDetails from "../EventDetails";
 let localizer = momentLocalizer(moment);
@@ -92,7 +92,7 @@ let Basic = (props) => {
       <EventModal
         showDialog={showDialog}
         setShowDialog={setShowDialog}
-        aria-label="event"
+        aria-label="Selected Event"
       >
         {event ? <EventDetails event={event} /> : ""}
       </EventModal>
@@ -109,7 +109,7 @@ let Basic = (props) => {
         localizer={localizer}
         defaultDate={new Date(moment().startOf("month"))}
         defaultView="month"
-        style={{ height: "calc(100vh - 100px)" }}
+        style={{ height: "calc(100vh - 300px)", minHeight: "500px" }}
         onRangeChange={handleRangeChange}
         onSelectEvent={handleEventSelect}
         //tooltipAccessor={(event)=>{return event.title}}
