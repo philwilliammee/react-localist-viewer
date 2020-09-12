@@ -13,8 +13,8 @@ import {
 } from "../../../helpers/displayEvent";
 import AddCal from "../addCal";
 import { EventImg, EventDate } from "../partials";
-import Truncate from "../../atoms/truncate";
-import Time from "../../atoms/time";
+import Truncate from "../../atoms/Truncate";
+import Time from "../../atoms/Time";
 import "./EventStyle.css";
 
 const AgendaInner = (props) => {
@@ -28,23 +28,6 @@ const AgendaInner = (props) => {
 
   console.log(event);
 
-  //   const tagStr = (eventTypes) => {
-  //     let spanStr;
-  //     if (eventTypes) {
-  //       spanStr = eventTypes.map((element) => {
-  //         return (
-  //           <span key={element.id} className="inline-events-type">
-  //             {element.name}
-  //           </span>
-  //         );
-  //       });
-  //     }
-  //     return spanStr;
-  //   };
-
-  //   const eventTime = getEventTime(event);
-  //   const classList = getClassItem(event);
-
   return (
     <section className="event-details">
       <div className="cwd-component">
@@ -55,12 +38,6 @@ const AgendaInner = (props) => {
           <span>
             {getEventDate(event)} @ {getEventFullTime(event)}
           </span>
-          {/* <div className="field meta">
-          <p>
-            {event.location_name ? `, ${event.location_name}` : ""}
-            {tagStr(event.filters.event_types)}
-          </p>
-        </div> */}
           <div className="field field-name-summary summary">
             <div>
               <div style={{ float: "left", paddingRight: "15px" }}>

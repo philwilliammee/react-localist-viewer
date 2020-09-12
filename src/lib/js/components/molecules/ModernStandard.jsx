@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {getEventTime, getClassItem} from '../../helpers/displayEvent';
 import AddCal from './addCal'
 import {EventImg} from './partials';
-import Truncate from '../atoms/truncate';
-import Time from '../atoms/time';
+import Truncate from '../atoms/Truncate';
+import Time from '../atoms/Time';
 
 export const ModernStandardInner = props => {
     const {

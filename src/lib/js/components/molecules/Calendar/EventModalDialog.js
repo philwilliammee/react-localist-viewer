@@ -32,6 +32,7 @@ function EventModal(props) {
                   ),
                   border: "4px solid hsla(0, 0%, 0%, 0.5)",
                   borderRadius: 10,
+                  minHeight: 300,
                 }}
               >
                 <button
