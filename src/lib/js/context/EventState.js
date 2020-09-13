@@ -4,12 +4,15 @@ import EventsContext from "./EventsContext";
 
 const EventsState = ({ children }) => {
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   return (
     <EventsContext.Provider
       value={{
         events,
         setEvents,
+        filteredEvents,
+        setFilteredEvents,
       }}
     >
       {children}

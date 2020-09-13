@@ -38,7 +38,6 @@ function AgendaList({
 
   const renderDay = (day, events, dayKey) => {
     const { event: Event } = components;
-
     events = events.filter((e) =>
       inRange(e, dates.startOf(day, "day"), dates.endOf(day, "day"), accessors)
     );

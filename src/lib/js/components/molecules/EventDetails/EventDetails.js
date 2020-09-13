@@ -22,6 +22,12 @@ const AgendaInner = (props) => {
     return "";
   }
 
+  const deptWebsite = event.custom_fields.dept_web_site
+    ? event.custom_fields.dept_web_site
+    : "";
+
+  const eventType = getEventTypeString(event);
+
   return (
     <section className="event-details">
       <div className="cwd-component">
@@ -54,12 +60,25 @@ const AgendaInner = (props) => {
                 <h4>Details</h4>
               </Grid>
               <Grid col={6}>
-                <h5>Event Type</h5>
-                <p>{getEventTypeString(event)}</p>
+                {eventType ? (
+                  <>
+                    <h5>Event Type</h5>
+                    <p>{eventType}</p>
+                  </>
+                ) : (
+                  ""
+                )}
                 <h5>Departments</h5>
                 <p>{getEventDepartmentsString(event)}</p>
-                <h5>Tags</h5>
-                <p>{event.tags.join(", ")}</p>
+                {event.tags.length > 0 ? (
+                  <>
+                    <h5>Tags</h5>
+                    <p>{event.tags.join(", ")}</p>
+                  </>
+                ) : (
+                  ""
+                )}
+
                 <h5>Website</h5>
                 <p>
                   <a href={event.url}>{truncateUrl(event.url, 60)}</a>
@@ -74,8 +93,14 @@ const AgendaInner = (props) => {
               <Grid col={6}>
                 <h5>Group</h5>
                 <p>{event.group_name}</p>
-                <h5>HashTag</h5>
-                <p>#{event.hashtag}</p>
+                {event.hashtag ? (
+                  <>
+                    <h5>HashTag</h5>
+                    <p>#{event.hashtag}</p>
+                  </>
+                ) : (
+                  ""
+                )}
 
                 <h5>Contact E-Mail</h5>
                 <p>
@@ -85,12 +110,16 @@ const AgendaInner = (props) => {
                 </p>
                 <h5>Contact Name</h5>
                 <p>{event.custom_fields.contact_name}</p>
-                <h5>Dept. Web Site</h5>
-                <p>
-                  <a href={event.custom_fields.dept_web_site}>
-                    {truncateUrl(event.custom_fields.dept_web_site, 60)}
-                  </a>
-                </p>
+                {deptWebsite ? (
+                  <>
+                    <h5>Dept. Web Site</h5>
+                    <p>
+                      <a href={deptWebsite}>{truncateUrl(deptWebsite, 60)}</a>
+                    </p>
+                  </>
+                ) : (
+                  ""
+                )}
               </Grid>
             </Grid>
           </div>

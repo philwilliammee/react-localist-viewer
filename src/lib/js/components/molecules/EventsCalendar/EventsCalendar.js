@@ -16,31 +16,29 @@ import EventsContext from "../../../context/EventsContext";
 import EventModal from "../../atoms/ModalDialog";
 import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
 import EventDetails from "../EventDetails";
+import Filters from "./Filters";
+import Grid from "../../atoms/Grid";
+
 let localizer = momentLocalizer(moment);
 
-const ColoredDateCellWrapper = ({ children }) =>
-  React.cloneElement(React.Children.only(children), {
-    style: {
-      backgroundColor: "lightblue",
-    },
-  });
-
 let EventsCalendar = (props) => {
-  const { events, setEvents } = useContext(EventsContext);
+  const { events, setEvents, filteredEvents, setFilteredEvents } = useContext(
+    EventsContext
+  );
   // the selected event
   const [event, setEvent] = useState();
-  const [showDialog, setShowDialog] = React.useState(false);
+  const [key, setKey] = useState(0);
+  const [showDialog, setShowDialog] = useState(false);
 
   const components = {
     toolbar: CalendarToolbar,
-    timeSlotWrapper: ColoredDateCellWrapper,
     list: {
       event: AgendaInner,
     },
   };
 
   // Do events get iterated in main app? Don't reiterate!
-  const flatEvents = events.map((event) => {
+  const flatEvents = filteredEvents.map((event) => {
     return {
       id: event.event.id,
       title: event.event.title,
@@ -79,6 +77,8 @@ let EventsCalendar = (props) => {
       event.event.itemClassArray = [...itemClassArray];
     });
     setEvents(res.data.events);
+    setFilteredEvents(res.data.events);
+    setKey(key + 1);
   };
 
   const handleEventSelect = (event) => {
@@ -88,6 +88,7 @@ let EventsCalendar = (props) => {
 
   return (
     <>
+      {/* @todo only have modal on page once */}
       <EventModal
         showDialog={showDialog}
         setShowDialog={setShowDialog}
@@ -95,24 +96,31 @@ let EventsCalendar = (props) => {
       >
         {event ? <EventDetails event={event} /> : ""}
       </EventModal>
-      <Calendar
-        events={flatEvents}
-        views={{
-          month: true,
-          day: true,
-          list: AgendaList,
-        }}
-        step={240}
-        showMultiDayTimes
-        components={components}
-        localizer={localizer}
-        defaultDate={new Date(moment().startOf("month"))}
-        defaultView="month"
-        style={{ height: "calc(100vh - 300px)", minHeight: "500px" }}
-        onRangeChange={handleRangeChange}
-        onSelectEvent={handleEventSelect}
-        //tooltipAccessor={(event)=>{return event.title}}
-      />
+      <Grid container>
+        <Grid col={3}>
+          <Filters key={key} />
+        </Grid>
+        <Grid col={9}>
+          <Calendar
+            events={flatEvents}
+            views={{
+              month: true,
+              day: true,
+              list: AgendaList,
+            }}
+            step={240}
+            showMultiDayTimes
+            components={components}
+            localizer={localizer}
+            defaultDate={new Date(moment().startOf("month"))}
+            defaultView="month"
+            style={{ height: "calc(100vh - 300px)", minHeight: "500px" }}
+            onRangeChange={handleRangeChange}
+            onSelectEvent={handleEventSelect}
+            //tooltipAccessor={(event)=>{return event.title}}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 };

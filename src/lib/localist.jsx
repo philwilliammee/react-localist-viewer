@@ -16,7 +16,7 @@ import moment from 'moment'
  * @todo implement class lists for all components.
  */
 const Localist = props => {
-    const {events, setEvents} = useContext(EventsContext)
+    const {events, setEvents, setFilteredEvents} = useContext(EventsContext)
     const [llPage, setLlPage] = useState({ current: props.page, size: 1, total: 1 })
     const [currentPage, setCurrentPage] = useState(props.page)
     const [filter, setFilter] = useState('filterAll')
@@ -42,6 +42,8 @@ const Localist = props => {
         res.data.events.forEach(event => {
             event.event.itemClassArray = [...itemClassArray];
         })
+        // Used by calendar only.
+        setFilteredEvents(res.data.events)
         setEvents(res.data.events)
         setLlPage(res.data.page)
         setLoading(false)
