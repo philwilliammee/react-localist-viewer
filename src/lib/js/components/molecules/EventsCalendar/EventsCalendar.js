@@ -25,7 +25,7 @@ const ColoredDateCellWrapper = ({ children }) =>
     },
   });
 
-let Basic = (props) => {
+let EventsCalendar = (props) => {
   const { events, setEvents } = useContext(EventsContext);
   // the selected event
   const [event, setEvent] = useState();
@@ -118,4 +118,4 @@ let Basic = (props) => {
   );
 };
 
-export default Basic;
+export default EventsCalendar;

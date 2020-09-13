@@ -118,4 +118,8 @@ const AgendaInner = (props) => {
   );
 };
 
+AgendaInner.propTypes = {
+  event: PropTypes.object.isRequired,
+};
+
 export default AgendaInner;

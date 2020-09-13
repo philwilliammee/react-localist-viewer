@@ -5,7 +5,7 @@ import Compact from '../molecules/compact';
 import ModernStandard from '../molecules/ModernStandard';
 import ModernCompact from '../molecules/modern_compact';
 import InlineCompact from '../molecules/inline_compact';
-import Calendar from '../molecules/Calendar'
+import Calendar from '../molecules/EventsCalendar'
 
 const LocalistView = (props) => {
     let component;
