@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 // import events from './events'
 // import * as dates from '../../src/utils/dates'
-import AgendaInner from "./AgendaInner";
+import AgendaInner from "./AgendaList/AgendaInner";
 import CalendarToolbar from "./CalendarToolBar";
 import moment from "moment";
 import localistApiConnector from "../../../services/localistApiConnector";
@@ -11,7 +11,7 @@ import {
   getEventEnd,
   isAllDay,
 } from "../../../helpers/displayEvent";
-import AgendaList from "./AgendaList";
+import AgendaList from "./AgendaList/AgendaList";
 import EventsContext from "../../../context/EventsContext";
 import EventModal from "../../atoms/ModalDialog";
 import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
@@ -39,6 +39,7 @@ let EventsCalendar = (props) => {
     },
   };
 
+  // Do events get iterated in main app? Don't reiterate!
   const flatEvents = events.map((event) => {
     return {
       id: event.event.id,
@@ -50,7 +51,6 @@ let EventsCalendar = (props) => {
   });
 
   const handleRangeChange = async (event) => {
-    console.log(event);
     let start, end;
     if (event.start) {
       start = moment(event.start)
@@ -82,7 +82,6 @@ let EventsCalendar = (props) => {
   };
 
   const handleEventSelect = (event) => {
-    console.log(event);
     setEvent(event);
     setShowDialog(true);
   };

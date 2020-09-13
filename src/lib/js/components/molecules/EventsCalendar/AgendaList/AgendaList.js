@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import addClass from "dom-helpers/addClass";
 import removeClass from "dom-helpers/removeClass";
 import getWidth from "dom-helpers/width";
@@ -7,7 +7,9 @@ import scrollbarSize from "dom-helpers/scrollbarSize";
 import * as dates from "react-big-calendar/lib/utils/dates";
 import { navigate } from "react-big-calendar/lib/utils/constants";
 import { inRange } from "react-big-calendar/lib/utils/eventLevels";
-import { isSelected } from "react-big-calendar/lib/utils/selection";
+// import { isSelected } from "react-big-calendar/lib/utils/selection";
+import EventDetails from "../../EventDetails";
+import EventModal from "../../../atoms/ModalDialog";
 
 // Override the default Agenda
 // import Agenda from "react-big-calendar/lib/Agenda"
@@ -27,6 +29,8 @@ function AgendaList({
   const timeColRef = useRef(null);
   const contentRef = useRef(null);
   const tbodyRef = useRef(null);
+  const [showDialog, setShowDialog] = useState(false);
+  const [eventSelected, setEventSelected] = useState();
 
   useEffect(() => {
     _adjustHeader();
@@ -38,36 +42,53 @@ function AgendaList({
     events = events.filter((e) =>
       inRange(e, dates.startOf(day, "day"), dates.endOf(day, "day"), accessors)
     );
+
+    // Not implemented, should pass classes from settings.
     const wrapperClassList = "";
     const listClassList = "";
 
     return events.map((event, idx) => {
       let title = accessors.title(event);
-      let end = accessors.end(event);
-      let start = accessors.start(event);
-
-      const userProps = getters.eventProp(
-        event,
-        start,
-        end,
-        isSelected(event, selected)
-      );
 
       return (
-        <section
-          key={dayKey + "_" + idx}
-          className="events-modern-compact modern"
-          title="Events List"
-          style={userProps.style}
-        >
-          <div className="events-main-body">
-            <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
-              <div className={listClassList}>
-                {Event ? <Event event={event} title={title} /> : title}
+        <React.Fragment key={dayKey + "_" + idx}>
+          <EventModal
+            showDialog={showDialog}
+            setShowDialog={setShowDialog}
+            aria-label="Selected Event"
+          >
+            {eventSelected ? <EventDetails event={eventSelected} /> : ""}
+          </EventModal>
+          <section
+            className="events-modern-compact modern"
+            title="Events List"
+            // style={userProps.style}
+          >
+            <div className="events-main-body">
+              <div
+                className={`cwd-component cwd-card-grid ${wrapperClassList}`}
+              >
+                <div className={listClassList}>
+                  {Event ? (
+                    <Event
+                      calendarEvent={event}
+                      hideaddcal={"true"}
+                      truncatedescription={"500"}
+                      hidedescription={"false"}
+                      hideimages={"true"}
+                      hidetime={false}
+                      setShowDialog={setShowDialog}
+                      eventSelected={eventSelected}
+                      setEventSelected={setEventSelected}
+                    />
+                  ) : (
+                    title
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </React.Fragment>
       );
     }, []);
   };

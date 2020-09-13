@@ -134,6 +134,9 @@ export const getEventDate = (event) => {
  * @return {string} The truncated description string
  */
 export const getTruncDesc = (event, excerptLength) => {
+  if (!event) {
+    return "";
+  }
   let description = event.description_text;
   if (excerptLength) {
     description = truncate(event.description_text, excerptLength);

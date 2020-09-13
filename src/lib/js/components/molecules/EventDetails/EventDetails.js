@@ -22,8 +22,6 @@ const AgendaInner = (props) => {
     return "";
   }
 
-  console.log(event);
-
   return (
     <section className="event-details">
       <div className="cwd-component">
