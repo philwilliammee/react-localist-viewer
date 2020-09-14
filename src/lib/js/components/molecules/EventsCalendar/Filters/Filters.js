@@ -7,9 +7,9 @@ import moment from "moment";
 
 /**
  * @todo optimize this it has a lot of re-renders
- * @todo do filters in alphabetical order
  * onEach page key change filters reset.
  * departments may be a good one.
+ * Some oddities with date range.
  */
 const Filters = () => {
   const { events, setFilteredEvents, displayedDateRange } = useContext(
