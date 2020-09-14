@@ -77,7 +77,7 @@ const AgendaListView = (props) => {
               <Truncate
                 event={event}
                 hidedescription="false"
-                truncatedescription={"300"}
+                truncatedescription="300"
                 readMore="read more"
               />
             </p>

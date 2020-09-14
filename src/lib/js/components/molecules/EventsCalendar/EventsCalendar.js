@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-// import events from './events'
-// import * as dates from '../../src/utils/dates'
 import AgendaInner from "./AgendaList/AgendaInner";
 import CalendarToolbar from "./CalendarToolBar";
 import moment from "moment";
@@ -22,13 +20,17 @@ import Grid from "../../atoms/Grid";
 let localizer = momentLocalizer(moment);
 
 let EventsCalendar = (props) => {
-  const { events, setEvents, filteredEvents, setFilteredEvents } = useContext(
-    EventsContext
-  );
-  // the selected event
-  const [event, setEvent] = useState();
+  const {
+    setEvents,
+    filteredEvents,
+    setFilteredEvents,
+    showDialog,
+    setShowDialog,
+    eventSelected,
+    setEventSelected,
+    setDisplayedDateRange,
+  } = useContext(EventsContext);
   const [key, setKey] = useState(0);
-  const [showDialog, setShowDialog] = useState(false);
 
   const components = {
     toolbar: CalendarToolbar,
@@ -48,41 +50,33 @@ let EventsCalendar = (props) => {
     };
   });
 
-  const handleRangeChange = async (event) => {
-    let start, end;
-    if (event.start) {
-      start = moment(event.start)
-        .subtract(1, "month")
-        .startOf("month")
-        .format("YYYY-MM-DD hh:mm");
-      end = moment(event.end)
-        .add(1, "month")
-        .endOf("month")
-        .format("YYYY-MM-DD hh:mm");
-    } else if (event.length) {
-      // Day was selected
-      start = moment(event[0])
-        .subtract(1, "month")
-        .startOf("month")
-        .format("YYYY-MM-DD hh:mm");
-      end = moment(event[0])
-        .add(1, "month")
-        .endOf("month")
-        .format("YYYY-MM-DD hh:mm");
-    }
+  const handleRangeChange = async (dateRange) => {
+    const dateRangeStart = dateRange.start ? dateRange.start : dateRange[0];
+    const dateRangeEnd = dateRange.end ? dateRange.end : dateRange[0];
 
-    const itemClassArray = ["event-node"];
-    let res = await localistApiConnector({ ...props, start, end });
-    res.data.events.forEach((event) => {
-      event.event.itemClassArray = [...itemClassArray];
+    setDisplayedDateRange({
+      start: moment(dateRangeStart).startOf("month"),
+      end: moment(dateRangeEnd).startOf("month"),
     });
+
+    const start = moment(dateRangeStart)
+      .subtract(1, "month")
+      .startOf("month")
+      .format("YYYY-MM-DD hh:mm");
+    const end = moment(dateRangeEnd)
+      .add(1, "month")
+      .endOf("month")
+      .format("YYYY-MM-DD hh:mm");
+
+    let res = await localistApiConnector({ ...props, start, end });
+
     setEvents(res.data.events);
     setFilteredEvents(res.data.events);
     setKey(key + 1);
   };
 
   const handleEventSelect = (event) => {
-    setEvent(event);
+    setEventSelected(event);
     setShowDialog(true);
   };
 
@@ -94,7 +88,7 @@ let EventsCalendar = (props) => {
         setShowDialog={setShowDialog}
         aria-label="Selected Event"
       >
-        {event ? <EventDetails event={event} /> : ""}
+        {eventSelected ? <EventDetails event={eventSelected} /> : ""}
       </EventModal>
       <Grid container>
         <Grid col={3}>

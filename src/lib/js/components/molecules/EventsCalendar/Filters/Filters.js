@@ -3,15 +3,19 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
+import moment from "moment";
 
 /**
  * @todo optimize this
  * @todo filters should only apply to the selected month
- * @todo onEach page change filters should reset.
+ * @todo do filters in alphabetical order
+ * onEach page key change filters reset.
  * departments may be a good one.
  */
-const Filters = () => {
-  const { events, setFilteredEvents } = useContext(EventsContext);
+const Filters = (props) => {
+  const { events, setFilteredEvents, displayedDateRange } = useContext(
+    EventsContext
+  );
   const [checkedItems, setCheckedItems] = useState(new Map());
   const eventTypesFull = [];
   const eventKeywordsFull = [];
@@ -20,22 +24,29 @@ const Filters = () => {
     return "";
   }
   events.forEach((event) => {
-    // some events don't have types
-    if (isNested(event, "event", "filters", "event_types")) {
-      event.event.filters.event_types.forEach((type) => {
-        eventTypesFull.push(type.name);
-      });
-    }
+    if (
+      moment(event.event.first_date).isBetween(
+        displayedDateRange.start,
+        displayedDateRange.end
+      )
+    ) {
+      // some events don't have types
+      if (isNested(event, "event", "filters", "event_types")) {
+        event.event.filters.event_types.forEach((type) => {
+          eventTypesFull.push(type.name);
+        });
+      }
 
-    // if (isNested(event, "event", "keywords")) {
-    //   event.event.keywords.forEach((keyword) => {
-    //     eventKeywordsFull.push(keyword);
-    //   });
-    // }
-    eventKeywordsFull.push(event.event.experience);
+      // if (isNested(event, "event", "keywords")) {
+      //   event.event.keywords.forEach((keyword) => {
+      //     eventKeywordsFull.push(keyword);
+      //   });
+      // }
+      eventKeywordsFull.push(event.event.experience);
 
-    if (isNested(event, "event", "group_name")) {
-      eventGroupNamesFull.push(event.event.group_name);
+      if (isNested(event, "event", "group_name")) {
+        eventGroupNamesFull.push(event.event.group_name);
+      }
     }
   });
 

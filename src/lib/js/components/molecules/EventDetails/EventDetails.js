@@ -16,6 +16,7 @@ import "./EventStyle.scss";
 const AgendaInner = (props) => {
   let { event } = props;
   const { events } = useContext(EventsContext);
+  // Get the full event details
   event = events.find((e) => e.event.id === event.id).event;
 
   if (!event) {
