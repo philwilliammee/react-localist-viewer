@@ -43,7 +43,7 @@ function ModalDialog(props) {
                   onClick={() => props.setShowDialog(false)}
                   aria-label="close dialog"
                 >
-                  <span className="icon-close"> x </span>
+                  <span className="icon-close"></span>
                 </button>
                 {props.children}
               </AnimatedDialogContent>
