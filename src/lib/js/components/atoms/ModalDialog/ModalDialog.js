@@ -1,7 +1,9 @@
 import React from "react";
 import { useTransition, animated, config } from "react-spring/web.cjs";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
+import PropTypes from "prop-types";
 import "@reach/dialog/styles.css";
+import "./ModalDialog.scss";
 
 let AnimatedDialogOverlay = animated(DialogOverlay);
 let AnimatedDialogContent = animated(DialogContent);
@@ -15,7 +17,7 @@ function ModalDialog(props) {
     config: config.stiff,
   });
   return (
-    <div className="cwd-modal-dialog">
+    <div className="cwd-events-modal-dialog">
       {transitions.map(
         ({ item, props: styles }) =>
           item && (
@@ -51,5 +53,11 @@ function ModalDialog(props) {
     </div>
   );
 }
+
+ModalDialog.propTypes = {
+  showDialog: PropTypes.bool.isRequired,
+  setShowDialog: PropTypes.func.isRequired,
+  children: PropTypes.node,
+};
 
 export default ModalDialog;
