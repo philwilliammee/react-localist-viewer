@@ -65,6 +65,7 @@ const LocalistView = (props) => {
             break;
 
         default:
+            component = <>Invalid Component Selected</>
             break;
     }
     return component;

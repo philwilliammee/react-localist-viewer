@@ -1,7 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 import { LocalistComponent } from "./lib";
-import EventsState from "./lib/js/context/EventState";
 
 let data;
 try {
@@ -10,10 +9,6 @@ try {
   data = require("./example_local_settings.json");
 }
 
-const App = () => (
-  <EventsState>
-    <LocalistComponent {...data} />
-  </EventsState>
-);
+const App = () => <LocalistComponent {...data} />;
 
 render(<App />, document.getElementById("root"));

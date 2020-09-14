@@ -60,6 +60,7 @@ var LocalistView = function LocalistView(props) {
       break;
 
     default:
+      component = /*#__PURE__*/React.createElement(React.Fragment, null, "Invalid Component Selected");
       break;
   }
 
