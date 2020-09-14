@@ -1,50 +1,52 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"breadcrumbs.enabled": true,
-		"css.validate": true,
-		"diffEditor.ignoreTrimWhitespace": false,
-		"editor.tabSize": 4,
-		"editor.autoIndent": true,
-		"editor.insertSpaces": true,
-		"editor.formatOnPaste": false,
-		"editor.formatOnSave": false,
-		"editor.renderWhitespace": "boundary",
-		"editor.wordWrapColumn": 80,
-		"editor.wordWrap": "off",
-		"editor.detectIndentation": true,
-		"editor.rulers": [
-			80
-		],
-		"files.trimTrailingWhitespace": true,
-		"files.insertFinalNewline": true,
-		"html.format.enable": true,
-		"html.format.wrapLineLength": 80,
-		"telemetry.enableTelemetry": false,
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "breadcrumbs.enabled": true,
+    "css.validate": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.insertSpaces": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "off",
+    "editor.detectIndentation": true,
+    "editor.rulers": [
+      80
+    ],
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "html.format.enable": true,
+    "html.format.wrapLineLength": 80,
+    "telemetry.enableTelemetry": false,
 
-		"eslint.options": {
-			"ignorePath": ".eslintignore"
-		},
-		"terminal.integrated.fontFamily": "dejavu sans mono for powerline",
-		"cSpell.words": [
-			"apikey",
-			"calendarurl",
-			"daysahead",
-			"depts",
-			"filterby",
-			"hideaddcal",
-			"hidedescription",
-			"hideimages",
-			"hidepagination",
-			"itemclass",
-			"listclass",
-			"readmore",
-			"truncatedescription",
-			"wrapperclass"
-		],
-	}
+    "eslint.options": {
+      "ignorePath": ".eslintignore"
+    },
+    "terminal.integrated.fontFamily": "dejavu sans mono for powerline",
+    "cSpell.words": [
+      "apikey",
+      "buildi",
+      "calendarurl",
+      "daysahead",
+      "depts",
+      "filterby",
+      "hideaddcal",
+      "hidedescription",
+      "hideimages",
+      "hidepagination",
+      "hidetime",
+      "itemclass",
+      "listclass",
+      "readmore",
+      "truncatedescription",
+      "wrapperclass"
+    ],
+  }
 }

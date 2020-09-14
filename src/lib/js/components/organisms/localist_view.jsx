@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Standard from '../molecules/standard';
 import Compact from '../molecules/compact';
-import ModernStandard from '../molecules/modern_standard';
+import ModernStandard from '../molecules/ModernStandard';
 import ModernCompact from '../molecules/modern_compact';
 import InlineCompact from '../molecules/inline_compact';
+import Calendar from '../molecules/EventsCalendar'
 
 const LocalistView = (props) => {
     let component;
@@ -56,6 +57,13 @@ const LocalistView = (props) => {
             />
             break;
 
+        case 'calendar':
+            component = <Calendar
+                key = {page}
+                {...props}
+            />
+            break;
+
         default:
             break;
     }
@@ -70,7 +78,8 @@ LocalistView.propTypes = {
         'compact',
         'modern_compact',
         'modern_standard',
-        'inline_compact'
+        'inline_compact',
+        'calendar'
     ]).isRequired,
     truncatedescription: PropTypes.string.isRequired,
     hidedescription: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,

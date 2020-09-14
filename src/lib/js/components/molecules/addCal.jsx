@@ -4,21 +4,25 @@ import buildUrl from 'build-url';
 import { getCalStartDate, getCalEndDate } from '../../helpers/displayEvent';
 import { isHidden } from '../../helpers/common';
 
-const buidGoogleStr = (myObj) => {
+const buildGoogleLink = (myObj) => {
     const gDateStart = getCalStartDate(myObj);
     const gDateStop = getCalEndDate(myObj);
     const href = buildUrl(
-        'https://calendar.google.com/calendar/event',{
-            queryParams: {
-                action: 'TEMPLATE',
-                dates: `${gDateStart}/${gDateStop}`,
-                details: myObj.description_text.replace(/[\r\n]/g, `<br />`),
-                location: myObj.location,
-                sprop: 'website:events.cornell.edu',
-                text: myObj.title,
-            }
+        'https://calendar.google.com/calendar/event', {
+        queryParams: {
+            action: 'TEMPLATE',
+            dates: `${gDateStart}/${gDateStop}`,
+            details: myObj.description_text.replace(/[\r\n]/g, `<br />`),
+            location: myObj.location,
+            sprop: 'website:events.cornell.edu',
+            text: myObj.title,
         }
-    )
+    })
+    return href
+}
+
+const buildGoogleStr = (myObj) => {
+    const href = buildGoogleLink(myObj)
     return (
         <a
             className="fa fa-google google"
@@ -49,7 +53,7 @@ const buildiCal = myObj => {
 }
 
 const buildOutlookCal = myObj => {
-    return(
+    return (
         <a
             className="fa fa-clock-o microsoft"
             href={myObj.localist_ics_url}
@@ -67,23 +71,24 @@ const buildOutlookCal = myObj => {
  * @return {jsx} The rendered template.
  */
 const AddCal = props => {
-    const {event, hideaddcal} = props;
+    const { event, hideaddcal } = props;
 
-    if ( isHidden(hideaddcal)){
+    if (isHidden(hideaddcal)) {
         return '';
     }
 
     return (
         <span className="event-subscribe"
-        >add to calendar {buidGoogleStr(event)} {buildiCal(event)}
+        >add to calendar {buildGoogleStr(event)} {buildiCal(event)}
             {buildOutlookCal(event)}
         </span>
     )
 };
 
-AddCal.propTypes={
+AddCal.propTypes = {
     event: PropTypes.object.isRequired,
-    hideaddcal: PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+    hideaddcal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default AddCal;
+export {buildGoogleStr, buildiCal, buildOutlookCal, buildGoogleLink}

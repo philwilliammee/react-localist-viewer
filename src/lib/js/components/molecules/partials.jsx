@@ -43,7 +43,6 @@ const EventLocation = props => {
         return <h4 className='meta location'>{locationName}</h4>
     }
     return '';
-
 }
 EventLocation.propTypes = {
     locationName: PropTypes.string,

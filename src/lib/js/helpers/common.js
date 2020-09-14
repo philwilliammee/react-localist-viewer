@@ -1,4 +1,3 @@
-
 /**
  * Removes an element from an array.
  * @param {Array} a The haystack
@@ -6,8 +5,8 @@
  * @return {Array} a new array
  */
 export const removeElement = (a, e) => {
-    return a.filter( v => v !== e );
-}
+  return a.filter((v) => v !== e);
+};
 
 /**
  * Adds a unique element to an array.
@@ -15,10 +14,10 @@ export const removeElement = (a, e) => {
  * @param {string} e
  */
 export const addUniqueElement = (a, e) => {
-    if (!a.includes(e)) {
-        a.push(e);
-    }
-}
+  if (!a.includes(e)) {
+    a.push(e);
+  }
+};
 
 /**
  * Adds a unique object to an array.
@@ -26,14 +25,14 @@ export const addUniqueElement = (a, e) => {
  * @param {object} o
  */
 export const addUniqueObj = (a, o) => {
-    if(!('id' in o)){
-        console.warn("element id required");
-        return;
-    }
-    if (!a.find(object => object.id === o.id)) {
-        a.push(o);
-    }
-}
+  if (!("id" in o)) {
+    console.warn("element id required");
+    return;
+  }
+  if (!a.find((object) => object.id === o.id)) {
+    a.push(o);
+  }
+};
 
 /**
  * Test to see if element should be displayed
@@ -41,8 +40,12 @@ export const addUniqueObj = (a, o) => {
  * @return {boolean}
  */
 export const isHidden = (v) => {
-    return ( v === 'true' || v === 1)
-}
+  return v === "true" || v === 1;
+};
+
+export const isNested = (obj, ...args) => {
+  return args.reduce((obj, level) => obj && obj[level], obj);
+};
 
 // export const addElement = (a, e) => {
 //     return a.push(e);
