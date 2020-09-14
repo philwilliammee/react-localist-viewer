@@ -6,13 +6,12 @@ import { isNested } from "../../../../helpers/common";
 import moment from "moment";
 
 /**
- * @todo optimize this
- * @todo filters should only apply to the selected month
+ * @todo optimize this it has a lot of re-renders
  * @todo do filters in alphabetical order
  * onEach page key change filters reset.
  * departments may be a good one.
  */
-const Filters = (props) => {
+const Filters = () => {
   const { events, setFilteredEvents, displayedDateRange } = useContext(
     EventsContext
   );
@@ -23,12 +22,14 @@ const Filters = (props) => {
   if (!events && events.length > 0) {
     return "";
   }
+
   events.forEach((event) => {
     if (
       moment(event.event.first_date).isBetween(
         displayedDateRange.start,
         displayedDateRange.end
-      )
+      ) ||
+      moment(event.event.first_date).isSame(displayedDateRange.start)
     ) {
       // some events don't have types
       if (isNested(event, "event", "filters", "event_types")) {
@@ -37,12 +38,12 @@ const Filters = (props) => {
         });
       }
 
-      // if (isNested(event, "event", "keywords")) {
-      //   event.event.keywords.forEach((keyword) => {
-      //     eventKeywordsFull.push(keyword);
-      //   });
-      // }
-      eventKeywordsFull.push(event.event.experience);
+      if (isNested(event, "event", "keywords")) {
+        event.event.keywords.forEach((keyword) => {
+          eventKeywordsFull.push(keyword);
+        });
+      }
+      // eventKeywordsFull.push(event.event.experience);
 
       if (isNested(event, "event", "group_name")) {
         eventGroupNamesFull.push(event.event.group_name);
@@ -50,9 +51,9 @@ const Filters = (props) => {
     }
   });
 
-  const eventTypes = [...new Set(eventTypesFull)];
-  const eventKeywords = [...new Set(eventKeywordsFull)];
-  const eventGroupNames = [...new Set(eventGroupNamesFull)];
+  const eventTypes = [...new Set(eventTypesFull)].sort();
+  const eventKeywords = [...new Set(eventKeywordsFull)].sort();
+  const eventGroupNames = [...new Set(eventGroupNamesFull)].sort();
 
   const handleChange = (e) => {
     const item = e.target.name;
@@ -63,31 +64,28 @@ const Filters = (props) => {
 
   // Working but needs to set and get filtered events.
   const filterEvents = () => {
-    let isItemChecked = false;
     const filteredEvents = [...events].filter((event) => {
-      let foundItem = false;
-      checkedItems.forEach((value, key) => {
-        if (value) {
-          isItemChecked = true;
-          if (key === event.event.experience) {
-            // if (key in event.event.keywords) {
-            foundItem = true;
-          } else if (key === event.event.group_name) {
-            foundItem = true;
-          } else {
-            if (isNested(event, "event", "filters", "event_types")) {
-              event.event.filters.event_types.forEach((type) => {
-                if (key === type.name) {
-                  foundItem = true;
-                }
-              });
-            }
-          }
+      if (checkedItems.get(event.event.group_name)) {
+        return true;
+      }
+
+      if (isNested(event, "event", "filters", "event_types")) {
+        const foundEventTypesName = event.event.filters.event_types.find(
+          (type) => checkedItems.get(type.name)
+        );
+        if (foundEventTypesName) {
+          return true;
         }
-      });
-      return foundItem;
+      }
+
+      const foundKeyword = event.event.keywords.find((element) =>
+        checkedItems.get(element)
+      );
+
+      return false || foundKeyword;
     });
-    if (isItemChecked) {
+
+    if (filteredEvents.length) {
       setFilteredEvents(filteredEvents);
     } else {
       setFilteredEvents([...events]);
@@ -146,7 +144,7 @@ const Filters = (props) => {
           </ul>
         </div>
         <hr />
-        <h5>Experience</h5>
+        <h5>Keywords</h5>
         <div className="filter-group">
           <ul>
             {eventKeywords.map((type, id) => {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import addClass from "dom-helpers/addClass";
 import removeClass from "dom-helpers/removeClass";
 import getWidth from "dom-helpers/width";
@@ -7,9 +7,6 @@ import scrollbarSize from "dom-helpers/scrollbarSize";
 import * as dates from "react-big-calendar/lib/utils/dates";
 import { navigate } from "react-big-calendar/lib/utils/constants";
 import { inRange } from "react-big-calendar/lib/utils/eventLevels";
-// import { isSelected } from "react-big-calendar/lib/utils/selection";
-import EventDetails from "../../EventDetails";
-import EventModal from "../../../atoms/ModalDialog";
 import EventContext from "../../../../context/EventsContext";
 
 // Override the default Agenda

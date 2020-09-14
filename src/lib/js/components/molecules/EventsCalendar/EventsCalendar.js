@@ -53,10 +53,10 @@ let EventsCalendar = (props) => {
   const handleRangeChange = async (dateRange) => {
     const dateRangeStart = dateRange.start ? dateRange.start : dateRange[0];
     const dateRangeEnd = dateRange.end ? dateRange.end : dateRange[0];
-
+    console.log(dateRange);
     setDisplayedDateRange({
-      start: moment(dateRangeStart).startOf("month"),
-      end: moment(dateRangeEnd).startOf("month"),
+      start: moment(dateRangeStart),
+      end: moment(dateRangeEnd),
     });
 
     const start = moment(dateRangeStart)
