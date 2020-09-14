@@ -58,7 +58,7 @@ function ModalDialog(props) {
       "aria-label": "close dialog"
     }, /*#__PURE__*/React.createElement("span", {
       className: "icon-close"
-    }, " x ")), props.children));
+    })), props.children));
   }));
 }
 
