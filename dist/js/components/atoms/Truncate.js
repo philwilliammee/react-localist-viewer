@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getTruncDesc } from '../../helpers/displayEvent';
-import { isHidden } from '../../helpers/common';
+import React from "react";
+import PropTypes from "prop-types";
+import { getTruncDesc } from "../../helpers/displayEvent";
+import { isHidden } from "../../helpers/common";
 
 var Truncate = function Truncate(props) {
   var hidedescription = props.hidedescription,
@@ -10,19 +10,19 @@ var Truncate = function Truncate(props) {
       readMore = props.readMore;
 
   if (isHidden(hidedescription)) {
-    return '';
+    return "";
   }
 
-  return React.createElement(React.Fragment, null, getTruncDesc(event, truncatedescription), " ", readMore);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, getTruncDesc(event, truncatedescription), " ", readMore);
 };
 
-PropTypes.Truncate = {
+Truncate.propTypes = {
   event: PropTypes.object.isRequired,
   truncatedescription: PropTypes.string.isRequired,
   hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   readMore: PropTypes.string
 };
 Truncate.defaultProps = {
-  readMore: ''
+  readMore: ""
 };
 export default Truncate;

@@ -1,5 +1,4 @@
-import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
-import React, { useState } from 'react';
+import React from 'react';
 import buildEventWrapperFilters from '../../helpers/buildEventWrapperFilters';
 import { removeElement, addUniqueElement } from '../../helpers/common';
 import { getTypeIds, getGroupId, getDepartmentIds } from '../../helpers/displayEvent';
@@ -11,13 +10,10 @@ import { FilterButton } from '../molecules/partials';
 var EventFilters = function EventFilters(props) {
   var handleEventFilter = props.handleEventFilter,
       filterby = props.filterby,
-      events = props.events;
+      events = props.events,
+      active = props.active,
+      setActive = props.setActive;
   var filterButtons = buildEventWrapperFilters(events, filterby);
-
-  var _useState = useState('filterAll'),
-      _useState2 = _slicedToArray(_useState, 2),
-      active = _useState2[0],
-      setActive = _useState2[1];
 
   if (filterby === 'none') {
     return '';
@@ -41,18 +37,18 @@ var EventFilters = function EventFilters(props) {
         addUniqueElement(event.event.itemClassArray, 'fadeOut');
       }
     });
-    handleEventFilter(events);
+    handleEventFilter(events, obj.name);
   };
 
-  return React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "events-filters-wrap"
-  }, React.createElement("h3", {
+  }, /*#__PURE__*/React.createElement("h3", {
     className: "hidden"
-  }, "Show:"), React.createElement("ul", {
+  }, "Show:"), /*#__PURE__*/React.createElement("ul", {
     className: "events-filters"
-  }, React.createElement("li", {
+  }, /*#__PURE__*/React.createElement("li", {
     key: "filterAll"
-  }, React.createElement(FilterButton, {
+  }, /*#__PURE__*/React.createElement(FilterButton, {
     filterId: "filterAll",
     active: active,
     name: "All Events",
@@ -68,9 +64,9 @@ var EventFilters = function EventFilters(props) {
     var id = obj.id,
         name = obj.name;
     var filterId = "filter".concat(id);
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       key: id
-    }, React.createElement(FilterButton, {
+    }, /*#__PURE__*/React.createElement(FilterButton, {
       filterId: filterId,
       active: active,
       name: name,

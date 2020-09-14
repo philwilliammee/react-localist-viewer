@@ -3,7 +3,7 @@ import buildUrl from 'build-url';
 import { getCalStartDate, getCalEndDate } from '../../helpers/displayEvent';
 import { isHidden } from '../../helpers/common';
 
-var buidGoogleStr = function buidGoogleStr(myObj) {
+var buildGoogleLink = function buildGoogleLink(myObj) {
   var gDateStart = getCalStartDate(myObj);
   var gDateStop = getCalEndDate(myObj);
   var href = buildUrl('https://calendar.google.com/calendar/event', {
@@ -16,37 +16,42 @@ var buidGoogleStr = function buidGoogleStr(myObj) {
       text: myObj.title
     }
   });
-  return React.createElement("a", {
+  return href;
+};
+
+var buildGoogleStr = function buildGoogleStr(myObj) {
+  var href = buildGoogleLink(myObj);
+  return /*#__PURE__*/React.createElement("a", {
     className: "fa fa-google google",
     href: href,
     title: "Save to Google Calendar",
     rel: "noreferrer noopener",
     target: "_blank"
-  }, React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     className: "sr-only"
   }, "Add ", myObj.title, " to Google Calendar"));
 };
 
 var buildiCal = function buildiCal(myObj) {
-  return React.createElement("a", {
+  return /*#__PURE__*/React.createElement("a", {
     className: "fa fa-calendar apple",
     href: myObj.localist_ics_url,
     title: "Save to iCal",
     rel: "noreferrer noopener",
     target: "_blank"
-  }, React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     className: "sr-only"
   }, "Add ", myObj.title, " to iCal"));
 };
 
 var buildOutlookCal = function buildOutlookCal(myObj) {
-  return React.createElement("a", {
+  return /*#__PURE__*/React.createElement("a", {
     className: "fa fa-clock-o microsoft",
     href: myObj.localist_ics_url,
     title: "Save to Outlook",
     rel: "noreferrer noopener",
     target: "_blank"
-  }, React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     className: "sr-only"
   }, "Add ", myObj.title, " to Outlook"));
 };
@@ -64,9 +69,10 @@ var AddCal = function AddCal(props) {
     return '';
   }
 
-  return React.createElement("span", {
+  return /*#__PURE__*/React.createElement("span", {
     className: "event-subscribe"
-  }, "add to calendar ", buidGoogleStr(event), " ", buildiCal(event), buildOutlookCal(event));
+  }, "add to calendar ", buildGoogleStr(event), " ", buildiCal(event), buildOutlookCal(event));
 };
 
 export default AddCal;
+export { buildGoogleStr, buildiCal, buildOutlookCal, buildGoogleLink };

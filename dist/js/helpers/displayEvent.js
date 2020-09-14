@@ -1,9 +1,21 @@
-import moment from 'moment';
-import truncate from 'truncate';
+import moment from "moment";
+import truncate from "truncate";
 /**
  * @file A collection of functions for working with event objects.
  */
 
+export var getEventEnd = function getEventEnd(event) {
+  return event.event_instances[0].event_instance.end;
+};
+/**
+ * Get event start date.
+ * @param {obj} event A localist event obj
+ * @return {string} Date string.
+ */
+
+export var getEventStart = function getEventStart(event) {
+  return event.event_instances[0].event_instance.start;
+};
 /**
  * Gets time from dateTime.
  *
@@ -13,7 +25,7 @@ import truncate from 'truncate';
  */
 
 var getTimefromDateTime = function getTimefromDateTime(dateTime) {
-  var time = moment(dateTime).format('h:mm a');
+  var time = moment(dateTime).format("h:mm a");
   return time;
 };
 /**
@@ -26,7 +38,7 @@ var getTimefromDateTime = function getTimefromDateTime(dateTime) {
 
 
 var getMonthDayfromDateTime = function getMonthDayfromDateTime(dateTime) {
-  var monthDay = moment(dateTime).format('MMMM D');
+  var monthDay = moment(dateTime).format("MMMM D");
   return monthDay;
 };
 /**
@@ -39,19 +51,8 @@ var getMonthDayfromDateTime = function getMonthDayfromDateTime(dateTime) {
 
 
 var getDayfromDateTime = function getDayfromDateTime(dateTime) {
-  var day = moment(dateTime).format('D');
+  var day = moment(dateTime).format("D");
   return day;
-};
-/**
- * Get event start date.
- * @param {obj} event A localist event obj
- * @return {string} Date string.
- */
-
-
-var getEventStartDate = function getEventStartDate(event) {
-  var startDateTime = event.event_instances[0].event_instance.start;
-  return startDateTime;
 };
 /**
  * Get event last end date.
@@ -60,7 +61,7 @@ var getEventStartDate = function getEventStartDate(event) {
  */
 
 
-var getEventEndDate = function getEventEndDate(event) {
+export var getEventEndDate = function getEventEndDate(event) {
   var endDateTime = event.last_date;
   return endDateTime;
 };
@@ -70,9 +71,8 @@ var getEventEndDate = function getEventEndDate(event) {
  * @return {string} Date string.
  */
 
-
 var stripDate = function stripDate(date) {
-  var cd = moment(date).format('YYYYMMDD');
+  var cd = moment(date).format("YYYYMMDD");
   return cd;
 };
 /**
@@ -83,7 +83,7 @@ var stripDate = function stripDate(date) {
 
 
 export var getCalStartDate = function getCalStartDate(event) {
-  var sd = getEventStartDate(event);
+  var sd = getEventStart(event);
   var cd = stripDate(sd);
   return cd;
 };
@@ -108,8 +108,8 @@ export var getCalEndDate = function getCalEndDate(event) {
  */
 
 export var getDisplayDate = function getDisplayDate(event, format) {
-  var dateTime = getEventStartDate(event);
-  var eventDate = format === 'compact' ? moment(dateTime).format('MMM D') : moment(dateTime).format('M/DD/YYYY');
+  var dateTime = getEventStart(event);
+  var eventDate = format === "compact" ? moment(dateTime).format("MMM D") : moment(dateTime).format("M/DD/YYYY");
   return eventDate;
 };
 /**
@@ -119,7 +119,7 @@ export var getDisplayDate = function getDisplayDate(event, format) {
  */
 
 export var getEventDate = function getEventDate(event) {
-  var startDateTime = getEventStartDate(event);
+  var startDateTime = getEventStart(event);
   var eventSrtartDate = getMonthDayfromDateTime(startDateTime);
   return eventSrtartDate;
 };
@@ -134,6 +134,10 @@ export var getEventDate = function getEventDate(event) {
  */
 
 export var getTruncDesc = function getTruncDesc(event, excerptLength) {
+  if (!event) {
+    return "";
+  }
+
   var description = event.description_text;
 
   if (excerptLength) {
@@ -149,19 +153,26 @@ export var getTruncDesc = function getTruncDesc(event, excerptLength) {
  */
 
 export var getDay = function getDay(event) {
-  var startDateTime = getEventStartDate(event);
+  var startDateTime = getEventStart(event);
   var date = getDayfromDateTime(startDateTime);
   return date;
 };
 export var getEventEndTime = function getEventEndTime(event) {
-  var endTime = event.event_instances[0].event_instance.end;
-  var time = '';
+  var endTime = getEventEnd(event);
+  var time = "";
 
-  if (typeof endTime !== 'undefined' && endTime !== null) {
+  if (typeof endTime !== "undefined" && endTime !== null) {
     time = getTimefromDateTime(endTime);
   }
 
   return time;
+};
+export var isAllDay = function isAllDay(event) {
+  if (event.event_instances[0].event_instance.all_day) {
+    return true;
+  }
+
+  return false;
 };
 /**
  * Checks if event is all day and returns appropriate start time.
@@ -170,13 +181,33 @@ export var getEventEndTime = function getEventEndTime(event) {
  */
 
 export var getEventTime = function getEventTime(event) {
-  var eventTime = '';
+  var eventTime = "";
 
-  if (event.event_instances[0].event_instance.all_day) {
-    eventTime = 'all day';
+  if (isAllDay(event)) {
+    eventTime = "all day";
   } else {
-    var startDate = getEventStartDate(event);
+    var startDate = getEventStart(event);
     eventTime = getTimefromDateTime(startDate);
+  }
+
+  return eventTime;
+};
+/**
+ * Checks if event is all day and returns appropriate start time.
+ * @param {obj} event The event obj.
+ * @return {string} the eventTime string.
+ */
+
+export var getEventFullTime = function getEventFullTime(event) {
+  var eventTime = "";
+
+  if (isAllDay(event)) {
+    eventTime = "all day";
+  } else {
+    var startDate = getEventStart(event);
+    var stopTime = getEventEndTime(event);
+    stopTime = stopTime ? " - ".concat(stopTime) : "";
+    eventTime = getTimefromDateTime(startDate) + stopTime;
   }
 
   return eventTime;
@@ -188,9 +219,9 @@ export var getEventTime = function getEventTime(event) {
  */
 
 export var getGroupName = function getGroupName(event) {
-  var groupName = '';
+  var groupName = "";
 
-  if (typeof event.group_name !== 'undefined') {
+  if (typeof event.group_name !== "undefined") {
     groupName = event.group_name;
   }
 
@@ -205,7 +236,7 @@ export var getGroupName = function getGroupName(event) {
 export var getGroupId = function getGroupId(event) {
   var groupId = 0;
 
-  if (typeof event.group_name !== 'undefined') {
+  if (typeof event.group_name !== "undefined") {
     groupId = event.group_id;
   }
 
@@ -220,7 +251,7 @@ export var getGroupId = function getGroupId(event) {
 export var getTypeIds = function getTypeIds(event) {
   var types = [];
 
-  if (typeof event.filters.event_types !== 'undefined') {
+  if (typeof event.filters.event_types !== "undefined") {
     types = event.filters.event_types.map(function (type) {
       return type.id;
     });
@@ -238,7 +269,7 @@ export var getTypeIds = function getTypeIds(event) {
 export var getDepartmentIds = function getDepartmentIds(event) {
   var departments = [];
 
-  if (typeof event.filters.departments !== 'undefined') {
+  if (typeof event.filters.departments !== "undefined") {
     departments = event.filters.departments.map(function (dept) {
       return dept.id;
     });
@@ -254,9 +285,9 @@ export var getDepartmentIds = function getDepartmentIds(event) {
  */
 
 export var getDepartment = function getDepartment(event) {
-  var department = '';
+  var department = "";
 
-  if (typeof event.filters.departments !== 'undefined') {
+  if (typeof event.filters.departments !== "undefined") {
     department = event.filters.departments[0].id;
   }
 
@@ -286,7 +317,7 @@ export var getFiltersDepartments = function getFiltersDepartments(event) {
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
  * @param {obj} event The localist Event.
- * @param {string} prefCategory The preffered category filter.
+ * @param {string} prefCategory The preferred category filter.
  * @return {mixed} An array or a string if only one.
  */
 
@@ -295,19 +326,47 @@ export var getEventType = function getEventType(event, prefCategory) {
   var groupName = getGroupName(event);
   var eventTypes = [];
 
-  if (typeof event.filters.event_types !== 'undefined') {
+  if (typeof event.filters.event_types !== "undefined") {
     eventTypes = getFiltersType(event);
   }
 
-  if (prefCategory === 'dept' && department !== 0) {
+  if (prefCategory === "dept" && department !== 0) {
     eventTypes = getFiltersDepartments(event);
   }
 
-  if (prefCategory === 'group' && groupName !== '') {
+  if (prefCategory === "group" && groupName !== "") {
     eventTypes = [groupName];
   }
 
   return eventTypes;
+};
+/**
+ * Gets the appropriate event type.
+ * @todo add support for multiple filter types.
+ * @param {obj} event The localist Event.
+ * @return {mixed} A string of event types or null
+ */
+
+export var getEventTypeString = function getEventTypeString(event, prefCategory) {
+  if (typeof event.filters.event_types !== "undefined") {
+    return event.filters.event_types.map(function (type) {
+      return type.name;
+    }).join(", ");
+  }
+};
+/**
+ * Gets the appropriate event type.
+ * @todo add support for multiple filter types.
+ * @param {obj} event The localist Event.
+ * @return {mixed} A string of event types or null
+ */
+
+export var getEventDepartmentsString = function getEventDepartmentsString(event, prefCategory) {
+  if (typeof event.filters.departments !== "undefined") {
+    return event.filters.departments.map(function (type) {
+      return type.name;
+    }).join(", ");
+  }
 };
 /**
  * Gets start date in compact format.
@@ -316,8 +375,8 @@ export var getEventType = function getEventType(event, prefCategory) {
  */
 
 export var getEventDateCompact = function getEventDateCompact(event) {
-  var startDateTime = getEventStartDate(event);
-  var eventDateCompact = moment(startDateTime).format('MMM D');
+  var startDateTime = getEventStart(event);
+  var eventDateCompact = moment(startDateTime).format("MMM D");
   return eventDateCompact;
 };
 /**
@@ -327,8 +386,8 @@ export var getEventDateCompact = function getEventDateCompact(event) {
  */
 
 export var getMonthHeader = function getMonthHeader(event) {
-  var startDateTime = getEventStartDate(event);
-  var eventMonthHeader = moment(startDateTime).format('MMMM YYYY');
+  var startDateTime = getEventStart(event);
+  var eventMonthHeader = moment(startDateTime).format("MMMM YYYY");
   return eventMonthHeader;
 };
 /**
@@ -338,8 +397,8 @@ export var getMonthHeader = function getMonthHeader(event) {
  */
 
 export var getAbbrMonth = function getAbbrMonth(event) {
-  var startDateTime = getEventStartDate(event);
-  var abbrMonth = moment(startDateTime).format('MMM');
+  var startDateTime = getEventStart(event);
+  var abbrMonth = moment(startDateTime).format("MMM");
   return abbrMonth;
 };
 /**
@@ -349,9 +408,9 @@ export var getAbbrMonth = function getAbbrMonth(event) {
  */
 
 export var getClassItem = function getClassItem(event) {
-  if ('itemClassArray' in event) {
-    return event.itemClassArray.join(' ');
+  if ("itemClassArray" in event) {
+    return event.itemClassArray.join(" ");
   }
 
-  return '';
+  return "";
 };

@@ -27,7 +27,7 @@ export var addUniqueElement = function addUniqueElement(a, e) {
  */
 
 export var addUniqueObj = function addUniqueObj(a, o) {
-  if (!('id' in o)) {
+  if (!("id" in o)) {
     console.warn("element id required");
     return;
   }
@@ -45,7 +45,16 @@ export var addUniqueObj = function addUniqueObj(a, o) {
  */
 
 export var isHidden = function isHidden(v) {
-  return v === 'true' || v === 1;
+  return v === "true" || v === 1;
+};
+export var isNested = function isNested(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return args.reduce(function (obj, level) {
+    return obj && obj[level];
+  }, obj);
 }; // export const addElement = (a, e) => {
 //     return a.push(e);
 // }

@@ -11,9 +11,9 @@ var Paginate = function Paginate(props) {
     return '';
   }
 
-  return React.createElement("nav", {
+  return /*#__PURE__*/React.createElement("nav", {
     className: "pager"
-  }, React.createElement(ReactPaginate, {
+  }, /*#__PURE__*/React.createElement(ReactPaginate, {
     previousLabel: "previous",
     nextLabel: "next",
     breakLabel: "...",

@@ -1,9 +1,10 @@
 import React from 'react';
 import Standard from '../molecules/standard';
 import Compact from '../molecules/compact';
-import ModernStandard from '../molecules/modern_standard';
+import ModernStandard from '../molecules/ModernStandard';
 import ModernCompact from '../molecules/modern_compact';
 import InlineCompact from '../molecules/inline_compact';
+import Calendar from '../molecules/EventsCalendar';
 
 var LocalistView = function LocalistView(props) {
   var component;
@@ -12,42 +13,48 @@ var LocalistView = function LocalistView(props) {
       loading = props.loading;
 
   if (loading) {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "loader p-4"
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "fa fa-spin fa-cog"
     }));
   }
 
   switch (format) {
     case 'standard':
-      component = React.createElement(Standard, Object.assign({
+      component = /*#__PURE__*/React.createElement(Standard, Object.assign({
         key: page
       }, props));
       break;
 
     case 'compact':
-      component = React.createElement(Compact, Object.assign({
+      component = /*#__PURE__*/React.createElement(Compact, Object.assign({
         key: page
       }, props));
       break;
 
     case 'modern_standard':
       props.wrapperClassArray.push('singles');
-      component = React.createElement(ModernStandard, Object.assign({
+      component = /*#__PURE__*/React.createElement(ModernStandard, Object.assign({
         key: page
       }, props));
       break;
 
     case 'modern_compact':
       props.wrapperClassArray.push('compact');
-      component = React.createElement(ModernCompact, Object.assign({
+      component = /*#__PURE__*/React.createElement(ModernCompact, Object.assign({
         key: page
       }, props));
       break;
 
     case 'inline_compact':
-      component = React.createElement(InlineCompact, Object.assign({
+      component = /*#__PURE__*/React.createElement(InlineCompact, Object.assign({
+        key: page
+      }, props));
+      break;
+
+    case 'calendar':
+      component = /*#__PURE__*/React.createElement(Calendar, Object.assign({
         key: page
       }, props));
       break;

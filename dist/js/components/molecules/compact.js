@@ -10,30 +10,30 @@ var CompactInner = function CompactInner(props) {
       hidedescription = props.hidedescription,
       hideimages = props.hideimages;
   var classList = getClassItem(event);
-  return React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "views-row ".concat(classList)
-  }, React.createElement(EventThumbnail, {
+  }, /*#__PURE__*/React.createElement(EventThumbnail, {
     photoUrl: event.photo_url,
     title: event.title,
     hideimages: hideimages,
     photoCrop: "big"
-  }), React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "event-node node"
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "events"
-  }, React.createElement(EventTitle, {
+  }, /*#__PURE__*/React.createElement(EventTitle, {
     title: event.title,
     url: event.localist_url
-  }), React.createElement(EventLocation, {
+  }), /*#__PURE__*/React.createElement(EventLocation, {
     locationName: event.location_name
-  }), React.createElement(EventDate, {
+  }), /*#__PURE__*/React.createElement(EventDate, {
     date: getEventDateCompact(event)
-  }), React.createElement(EventDescription, {
+  }), /*#__PURE__*/React.createElement(EventDescription, {
     description: getTruncDesc(event, truncatedescription),
     title: event.title,
     url: event.localist_url,
     hidedescription: hidedescription
-  }), React.createElement(AddCal, {
+  }), /*#__PURE__*/React.createElement(AddCal, {
     hideaddcal: hideaddcal,
     event: event
   }))));
@@ -46,22 +46,22 @@ var Compact = function Compact(props) {
       wrapperClassArray = props.wrapperClassArray;
   var wrapperClassList = wrapperClassArray.join(' ');
   var listClassList = listClassArray.join(' ');
-  return React.createElement("section", {
+  return /*#__PURE__*/React.createElement("section", {
     className: "standard compact",
     title: "Events List"
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "events-main-body"
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "events-listing compact ".concat(wrapperClassList)
-  }, React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "events-list view-content ".concat(listClassList)
   }, events.length > 0 ? events.map(function (event) {
-    return React.createElement(CompactInner, Object.assign({
+    return /*#__PURE__*/React.createElement(CompactInner, Object.assign({
       key: event.event.id,
       event: event.event,
       filterby: filterby
     }, props));
-  }) : React.createElement("p", null, "There are no upcomming events.")))));
+  }) : /*#__PURE__*/React.createElement("p", null, "There are no upcoming events.")))));
 };
 
 Compact.defaultProps = {
