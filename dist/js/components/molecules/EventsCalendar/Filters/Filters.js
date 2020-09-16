@@ -119,7 +119,7 @@ var Filters = function Filters() {
       name: type,
       checked: checkedItems.get(type),
       onChange: handleChange
-    }), " " + type));
+    }), " " + type.replace("CTI ", "")));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h5", null, "Types"), /*#__PURE__*/React.createElement("div", {
     className: "filter-group"
   }, /*#__PURE__*/React.createElement("ul", null, eventTypes.map(function (type, id) {

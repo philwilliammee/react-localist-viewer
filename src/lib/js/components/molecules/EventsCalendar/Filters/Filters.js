@@ -116,7 +116,8 @@ const Filters = () => {
                       checked={checkedItems.get(type)}
                       onChange={handleChange}
                     />
-                    {" " + type}
+                    {/* @todo remove this for production CTI only */}
+                    {" " + type.replace("CTI ", "")}
                   </label>
                 </li>
               );
