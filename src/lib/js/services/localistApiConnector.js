@@ -5,7 +5,7 @@ import moment from "moment";
  * Sets params and returns axios Promise.
  * options: https://developer.localist.com/doc/api#event-list
  */
-export default (props) => {
+const localistApiConnector = (props) => {
   const {
     depts,
     entries,
@@ -59,3 +59,5 @@ export default (props) => {
 
   return axios.get(calendarurl, { params });
 };
+
+export default localistApiConnector;
