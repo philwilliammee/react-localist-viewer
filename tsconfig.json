@@ -23,14 +23,18 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "downlevelIteration": true,
     "jsx": "react-jsx",
     "types": [
       "cypress",
       "@testing-library/cypress"
-    ]
+    ],
+    "baseUrl": "./src"
   },
   "include": [
-    "src", "node.d.ts",
+    "src",
+    "node.d.ts",
+    "src/lib/types/.d.ts"
   ],
   "exclude": [
     "node_modules",

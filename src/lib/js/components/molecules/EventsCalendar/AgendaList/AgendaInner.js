@@ -17,8 +17,8 @@ const AgendaListView = (props) => {
   const { events } = useContext(EventsContext);
   const event = events.find((e) => e.event.id === calendarEvent.id).event;
 
-  if (!event) {
-    return "";
+  if (!event || event.id === -1) {
+    return <></>;
   }
 
   /**

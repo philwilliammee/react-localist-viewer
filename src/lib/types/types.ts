@@ -42,6 +42,9 @@ export interface InnerProps {
   hidetime?: boolean;
 }
 
+interface Init {}
+export type InitialEventState = Init | EventElement;
+
 export type FilterBy = "group" | "dept" | "type" | "none";
 
 export type EventImageCropTypes = "huge" | "big" | "big_square";

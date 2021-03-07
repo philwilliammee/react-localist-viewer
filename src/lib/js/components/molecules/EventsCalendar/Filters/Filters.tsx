@@ -16,11 +16,11 @@ const Filters = () => {
     EventsContext
   );
   const [checkedItems, setCheckedItems] = useState(new Map());
-  const eventTypesFull = [];
-  const eventKeywordsFull = [];
-  const eventGroupNamesFull = [];
-  if (!events && events.length > 0) {
-    return "";
+  const eventTypesFull: string[] = [];
+  const eventKeywordsFull: string[] = [];
+  const eventGroupNamesFull: string[] = [];
+  if (!events) {
+    return <></>;
   }
 
   events.forEach((event) => {
@@ -55,7 +55,7 @@ const Filters = () => {
   const eventKeywords = [...new Set(eventKeywordsFull)].sort();
   const eventGroupNames = [...new Set(eventGroupNamesFull)].sort();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item = e.target.name;
     const isChecked = e.target.checked;
     setCheckedItems(new Map(checkedItems.set(item, isChecked)));

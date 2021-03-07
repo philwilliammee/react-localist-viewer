@@ -12,15 +12,21 @@ import { EventImg } from "../partials";
 import truncateUrl from "truncate-url";
 import Grid from "../../atoms/Grid";
 import "./EventStyle.scss";
+import { EventElement, EventEvent } from "../../../../types/types";
 
-const AgendaInner = (props) => {
+interface Props {
+  event?: EventEvent;
+}
+
+const AgendaInner = (props: Props) => {
   let { event } = props;
   const { events } = useContext(EventsContext);
-  // Get the full event details
-  event = events.find((e) => e.event.id === event.id).event;
 
-  if (!event) {
-    return "";
+  // Get the full event details
+  event = events.find((e: EventElement) => e.event.id === event?.id)?.event;
+
+  if (!event || event.id === -1) {
+    return <></>;
   }
 
   const deptWebsite = event.custom_fields.dept_web_site
