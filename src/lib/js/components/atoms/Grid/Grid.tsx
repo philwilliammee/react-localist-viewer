@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+interface Props {
+  container?: boolean;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+  col?: number;
+}
+
 /**
  * Implements CWD FlexBox Grid
  * https://iws-preview.hosting.cornell.edu/ama39/cssf/style.html#section-59
- *
- * @param {any} props
  */
-const Grid = (props) => {
+const Grid = (props: Props) => {
   if (props.container) {
     return (
       <div className="flex-grid" style={props.style}>

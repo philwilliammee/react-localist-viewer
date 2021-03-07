@@ -2,11 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { getTruncDesc } from "../../helpers/displayEvent";
 import { isHidden } from "../../helpers/common";
+import { EventEvent } from "../../../types/types";
 
-const Truncate = (props) => {
+interface Props {
+  event: EventEvent;
+  truncatedescription: string;
+  hidedescription: string | number;
+  readMore?: string;
+}
+
+const Truncate = (props: Props) => {
   const { hidedescription, event, truncatedescription, readMore } = props;
   if (isHidden(hidedescription)) {
-    return "";
+    return <></>;
   }
   return (
     <>

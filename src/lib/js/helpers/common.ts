@@ -1,10 +1,15 @@
+import { Department } from "../../types/types";
+
 /**
  * Removes an element from an array.
  * @param {Array} a The haystack
  * @param {String} e The needle to remove
  * @return {Array} a new array
  */
-export const removeElement = (a, e) => {
+export const removeElement = (a: string[] | undefined, e: string) => {
+  if (!a) {
+    return;
+  }
   return a.filter((v) => v !== e);
 };
 
@@ -13,10 +18,14 @@ export const removeElement = (a, e) => {
  * @param {Array} a
  * @param {string} e
  */
-export const addUniqueElement = (a, e) => {
+export const addUniqueElement = (a: string[] | undefined, e: string) => {
+  if (!a) {
+    return [e];
+  }
   if (!a.includes(e)) {
     a.push(e);
   }
+  return a;
 };
 
 /**
@@ -24,7 +33,7 @@ export const addUniqueElement = (a, e) => {
  * @param {Array} a
  * @param {object} o
  */
-export const addUniqueObj = (a, o) => {
+export const addUniqueObj = (a: Department[], o: Department) => {
   if (!("id" in o)) {
     console.warn("element id required");
     return;
@@ -39,11 +48,11 @@ export const addUniqueObj = (a, o) => {
  * @param {mixed} v string or integer.
  * @return {boolean}
  */
-export const isHidden = (v) => {
+export const isHidden = (v: string | number | undefined) => {
   return v === "true" || v === 1;
 };
 
-export const isNested = (obj, ...args) => {
+export const isNested = (obj: any, ...args: string[]) => {
   return args.reduce((obj, level) => obj && obj[level], obj);
 };
 

@@ -12,7 +12,7 @@
     "editor.autoIndent": "advanced",
     "editor.insertSpaces": true,
     "editor.formatOnPaste": false,
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.renderWhitespace": "boundary",
     "editor.wordWrapColumn": 80,
     "editor.wordWrap": "off",
