@@ -2,6 +2,11 @@
     "extends": [
         "react-app",
         "eslint:recommended",
-        "plugin:react/recommended"
-    ]
+        "plugin:react/recommended",
+        "plugin:cypress/recommended"
+    ],
+    "plugins": ["cypress"],
+    "env": {
+        "cypress/globals": true
+    }
 }

@@ -53,7 +53,7 @@ test("Standard Enabled", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("odernStandard Enabled", () => {
+test("ModernStandard Enabled", () => {
   const component = renderer.create(
     <ModernStandard
       heading="Test"
