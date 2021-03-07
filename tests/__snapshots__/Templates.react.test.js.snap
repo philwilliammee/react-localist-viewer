@@ -822,7 +822,8 @@ exports[`Standard Enabled 1`] = `
                       rel="noreferrer noopener"
                       target="_blank"
                     >
-                       read more
+                       
+                      read more
                       <span
                         className="visually-hidden"
                       >
@@ -955,7 +956,8 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                       rel="noreferrer noopener"
                       target="_blank"
                     >
-                       read more
+                       
+                      read more
                       <span
                         className="visually-hidden"
                       >
@@ -1091,7 +1093,8 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                       rel="noreferrer noopener"
                       target="_blank"
                     >
-                       read more
+                       
+                      read more
                       <span
                         className="visually-hidden"
                       >
@@ -1231,7 +1234,8 @@ Depending on the season, we will be installing beds, sowing, planting, weeding o
                       rel="noreferrer noopener"
                       target="_blank"
                     >
-                       read more
+                       
+                      read more
                       <span
                         className="visually-hidden"
                       >
@@ -1319,7 +1323,6 @@ exports[`Standard Enabled 2`] = `
         <div
           className="views-row "
         >
-          
           <div
             className="event-node node"
           >
@@ -1359,14 +1362,12 @@ exports[`Standard Enabled 2`] = `
                   
                 </p>
               </div>
-              
             </div>
           </div>
         </div>
         <div
           className="views-row "
         >
-          
           <div
             className="event-node node"
           >
@@ -1406,14 +1407,12 @@ exports[`Standard Enabled 2`] = `
                   
                 </p>
               </div>
-              
             </div>
           </div>
         </div>
         <div
           className="views-row "
         >
-          
           <div
             className="event-node node"
           >
@@ -1453,14 +1452,12 @@ exports[`Standard Enabled 2`] = `
                   
                 </p>
               </div>
-              
             </div>
           </div>
         </div>
         <div
           className="views-row "
         >
-          
           <div
             className="event-node node"
           >
@@ -1500,7 +1497,6 @@ exports[`Standard Enabled 2`] = `
                   
                 </p>
               </div>
-              
             </div>
           </div>
         </div>

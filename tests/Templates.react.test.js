@@ -8,7 +8,7 @@ import Compact from "../src/lib/js/components/molecules/compact";
 import ModernCompact from "../src/lib/js/components/molecules/modern_compact";
 import ModernStandard from "../src/lib/js/components/molecules/ModernStandard";
 import InlineCompact from "../src/lib/js/components/molecules/inline_compact";
-import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
+// import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
 import renderer from "react-test-renderer";
 import { componentData } from "./testData";
 
