@@ -1,5 +1,10 @@
 {
   "name": "react-localist-viewer",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "cypress"
+    ]
+  },
   "version": "0.4.0",
   "description": "React component - Uses localist api to view events",
   "license": "GPL-3.0-or-later",
