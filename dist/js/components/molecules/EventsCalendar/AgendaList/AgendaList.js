@@ -1,55 +1,79 @@
-import React, { useRef, useEffect, useContext } from "react";
-import addClass from "dom-helpers/addClass";
-import removeClass from "dom-helpers/removeClass";
-import getWidth from "dom-helpers/width";
-import scrollbarSize from "dom-helpers/scrollbarSize";
-import * as dates from "react-big-calendar/lib/utils/dates";
-import { navigate } from "react-big-calendar/lib/utils/constants";
-import { inRange } from "react-big-calendar/lib/utils/eventLevels";
-import EventContext from "../../../../context/EventsContext"; // Override the default Agenda
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _addClass = _interopRequireDefault(require("dom-helpers/addClass"));
+
+var _removeClass = _interopRequireDefault(require("dom-helpers/removeClass"));
+
+var _width = _interopRequireDefault(require("dom-helpers/width"));
+
+var _scrollbarSize = _interopRequireDefault(require("dom-helpers/scrollbarSize"));
+
+var dates = _interopRequireWildcard(require("react-big-calendar/lib/utils/dates"));
+
+var _constants = require("react-big-calendar/lib/utils/constants");
+
+var _eventLevels = require("react-big-calendar/lib/utils/eventLevels");
+
+var _EventsContext = _interopRequireDefault(require("../../../../context/EventsContext"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Override the default Agenda
 // import Agenda from "react-big-calendar/lib/Agenda"
-
-function AgendaList(_ref) {
-  var selected = _ref.selected,
-      getters = _ref.getters,
-      accessors = _ref.accessors,
-      localizer = _ref.localizer,
-      components = _ref.components,
-      length = _ref.length,
-      date = _ref.date,
-      events = _ref.events;
-  var headerRef = useRef(null);
-  var dateColRef = useRef(null);
-  var timeColRef = useRef(null);
-  var contentRef = useRef(null);
-  var tbodyRef = useRef(null);
-
-  var _useContext = useContext(EventContext),
-      setShowDialog = _useContext.setShowDialog,
-      eventSelected = _useContext.eventSelected,
-      setEventSelected = _useContext.setEventSelected;
-
-  useEffect(function () {
+function AgendaList({
+  selected,
+  getters,
+  accessors,
+  localizer,
+  components,
+  length,
+  date,
+  events
+}) {
+  const headerRef = (0, _react.useRef)(null);
+  const dateColRef = (0, _react.useRef)(null);
+  const timeColRef = (0, _react.useRef)(null);
+  const contentRef = (0, _react.useRef)(null);
+  const tbodyRef = (0, _react.useRef)(null);
+  const {
+    setShowDialog,
+    eventSelected,
+    setEventSelected
+  } = (0, _react.useContext)(_EventsContext.default);
+  (0, _react.useEffect)(() => {
     _adjustHeader();
   });
 
-  var renderDay = function renderDay(day, events, dayKey) {
-    var Event = components.event;
-    events = events.filter(function (e) {
-      return inRange(e, dates.startOf(day, "day"), dates.endOf(day, "day"), accessors);
-    });
-    return events.map(function (event, idx) {
-      var title = accessors.title(event);
-      return /*#__PURE__*/React.createElement(React.Fragment, {
+  const renderDay = (day, events, dayKey) => {
+    const {
+      event: Event
+    } = components;
+    events = events.filter(e => (0, _eventLevels.inRange)(e, dates.startOf(day, "day"), dates.endOf(day, "day"), accessors));
+    return events.map((event, idx) => {
+      let title = accessors.title(event);
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
         key: dayKey + "_" + idx
-      }, /*#__PURE__*/React.createElement("section", {
+      }, /*#__PURE__*/_react.default.createElement("section", {
         className: "events-modern-compact modern",
         title: "Events List"
-      }, /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("div", {
         className: "events-main-body"
-      }, /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("div", {
         className: "cwd-component cwd-card-grid"
-      }, Event ? /*#__PURE__*/React.createElement(Event, {
+      }, Event ? /*#__PURE__*/_react.default.createElement(Event, {
         calendarEvent: event,
         hideaddcal: "true",
         truncatedescription: "500",
@@ -63,15 +87,15 @@ function AgendaList(_ref) {
     }, []);
   };
 
-  var _adjustHeader = function _adjustHeader() {
+  const _adjustHeader = () => {
     if (!tbodyRef.current) return;
-    var header = headerRef.current;
-    var firstRow = tbodyRef.current.firstChild;
+    let header = headerRef.current;
+    let firstRow = tbodyRef.current.firstChild;
     if (!firstRow) return;
-    var isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
-    var _widths = [];
-    var widths = _widths;
-    _widths = [getWidth(firstRow.children[0]), getWidth(firstRow.children[1])];
+    let isOverflowing = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+    let _widths = [];
+    let widths = _widths;
+    _widths = [(0, _width.default)(firstRow.children[0]), (0, _width.default)(firstRow.children[1])];
 
     if (widths[0] !== _widths[0] || widths[1] !== _widths[1]) {
       dateColRef.current.style.width = _widths[0] + "px";
@@ -79,54 +103,59 @@ function AgendaList(_ref) {
     }
 
     if (isOverflowing) {
-      addClass(header, "rbc-header-overflowing");
-      header.style.marginRight = scrollbarSize() + "px";
+      (0, _addClass.default)(header, "rbc-header-overflowing");
+      header.style.marginRight = (0, _scrollbarSize.default)() + "px";
     } else {
-      removeClass(header, "rbc-header-overflowing");
+      (0, _removeClass.default)(header, "rbc-header-overflowing");
     }
   };
 
-  var messages = localizer.messages;
-  var end = dates.add(date, length, "day");
-  var range = dates.range(date, end, "day");
-  events = events.filter(function (event) {
-    return inRange(event, date, end, accessors);
-  });
-  events.sort(function (a, b) {
-    return +accessors.start(a) - +accessors.start(b);
-  });
-  return /*#__PURE__*/React.createElement("div", {
+  let {
+    messages
+  } = localizer;
+  let end = dates.add(date, length, "day");
+  let range = dates.range(date, end, "day");
+  events = events.filter(event => (0, _eventLevels.inRange)(event, date, end, accessors));
+  events.sort((a, b) => +accessors.start(a) - +accessors.start(b));
+  return /*#__PURE__*/_react.default.createElement("div", {
     className: "rbc-agenda-view"
-  }, events.length !== 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, range.map(function (day, idx) {
-    return renderDay(day, events, idx);
-  })) : /*#__PURE__*/React.createElement("span", {
+  }, events.length !== 0 ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, range.map((day, idx) => renderDay(day, events, idx))) : /*#__PURE__*/_react.default.createElement("span", {
     className: "rbc-agenda-empty"
   }, messages.noEventsInRange));
 }
 
+AgendaList.propTypes = {
+  events: _propTypes.default.array,
+  date: _propTypes.default.instanceOf(Date),
+  length: _propTypes.default.number.isRequired,
+  selected: _propTypes.default.object,
+  accessors: _propTypes.default.object.isRequired,
+  components: _propTypes.default.object.isRequired,
+  getters: _propTypes.default.object.isRequired,
+  localizer: _propTypes.default.object.isRequired
+};
 AgendaList.defaultProps = {
   length: 30
 };
 
-AgendaList.range = function (start, _ref2) {
-  var _ref2$length = _ref2.length,
-      length = _ref2$length === void 0 ? AgendaList.defaultProps.length : _ref2$length;
-  var end = dates.add(start, length, "day");
+AgendaList.range = (start, {
+  length = AgendaList.defaultProps.length
+}) => {
+  let end = dates.add(start, length, "day");
   return {
-    start: start,
-    end: end
+    start,
+    end
   };
 };
 
-AgendaList.navigate = function (date, action, _ref3) {
-  var _ref3$length = _ref3.length,
-      length = _ref3$length === void 0 ? AgendaList.defaultProps.length : _ref3$length;
-
+AgendaList.navigate = (date, action, {
+  length = AgendaList.defaultProps.length
+}) => {
   switch (action) {
-    case navigate.PREVIOUS:
+    case _constants.navigate.PREVIOUS:
       return dates.add(date, -length, "day");
 
-    case navigate.NEXT:
+    case _constants.navigate.NEXT:
       return dates.add(date, length, "day");
 
     default:
@@ -134,15 +163,16 @@ AgendaList.navigate = function (date, action, _ref3) {
   }
 };
 
-AgendaList.title = function (start, _ref4) {
-  var _ref4$length = _ref4.length,
-      length = _ref4$length === void 0 ? AgendaList.defaultProps.length : _ref4$length,
-      localizer = _ref4.localizer;
-  var end = dates.add(start, length, "day");
+AgendaList.title = (start, {
+  length = AgendaList.defaultProps.length,
+  localizer
+}) => {
+  let end = dates.add(start, length, "day");
   return localizer.format({
-    start: start,
-    end: end
+    start,
+    end
   }, "agendaHeaderFormat");
 };
 
-export default AgendaList;
+var _default = AgendaList;
+exports.default = _default;

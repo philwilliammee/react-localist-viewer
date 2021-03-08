@@ -1,48 +1,38 @@
-import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
-import _createClass from "@babel/runtime/helpers/esm/createClass";
-import _inherits from "@babel/runtime/helpers/esm/inherits";
-import _createSuper from "@babel/runtime/helpers/esm/createSuper";
-import React from "react";
-import clsx from "clsx";
-import Toolbar from "react-big-calendar/lib/Toolbar";
+"use strict";
 
-var CustomToolbar = /*#__PURE__*/function (_Toolbar) {
-  _inherits(CustomToolbar, _Toolbar);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-  var _super = _createSuper(CustomToolbar);
+var _react = _interopRequireDefault(require("react"));
 
-  function CustomToolbar() {
-    _classCallCheck(this, CustomToolbar);
+var _clsx = _interopRequireDefault(require("clsx"));
 
-    return _super.apply(this, arguments);
+var _Toolbar = _interopRequireDefault(require("react-big-calendar/lib/Toolbar"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class CustomToolbar extends _Toolbar.default {
+  viewNamesGroup(messages) {
+    let viewNames = this.props.views;
+    const view = this.props.view; // CD Add our List
+
+    messages.list = "List";
+
+    if (viewNames.length > 1) {
+      return viewNames.map(name => /*#__PURE__*/_react.default.createElement("button", {
+        type: "button",
+        key: name,
+        className: (0, _clsx.default)({
+          "rbc-active": view === name
+        }),
+        onClick: this.view.bind(null, name)
+      }, messages[name]));
+    }
   }
 
-  _createClass(CustomToolbar, [{
-    key: "viewNamesGroup",
-    value: function viewNamesGroup(messages) {
-      var _this = this;
+}
 
-      var viewNames = this.props.views;
-      var view = this.props.view; // CD Add our List
-
-      messages.list = "List";
-
-      if (viewNames.length > 1) {
-        return viewNames.map(function (name) {
-          return /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            key: name,
-            className: clsx({
-              "rbc-active": view === name
-            }),
-            onClick: _this.view.bind(null, name)
-          }, messages[name]);
-        });
-      }
-    }
-  }]);
-
-  return CustomToolbar;
-}(Toolbar);
-
-export default CustomToolbar;
+var _default = CustomToolbar;
+exports.default = _default;
