@@ -80,6 +80,15 @@ let EventsCalendar = (props: any) => {
     setShowDialog(true);
   };
 
+  const handleEventPress = (
+    event: EventEvent,
+    e: React.KeyboardEvent<HTMLElement>
+  ) => {
+    if (e.key === " " || e.key === "Enter") {
+      handleEventSelect(event);
+    }
+  };
+
   return (
     <>
       {/* @todo only have modal on page once */}
@@ -114,6 +123,7 @@ let EventsCalendar = (props: any) => {
               style={{ height: "calc(100vh - 300px)", minHeight: "500px" }}
               onRangeChange={handleRangeChange}
               onSelectEvent={handleEventSelect}
+              onKeyPressEvent={handleEventPress}
               //tooltipAccessor={(event)=>{return event.title}}
             />
           }
