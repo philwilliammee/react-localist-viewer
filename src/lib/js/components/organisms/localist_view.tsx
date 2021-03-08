@@ -6,26 +6,9 @@ import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/modern_compact";
 import InlineCompact from "../molecules/inline_compact";
 import Calendar from "../molecules/EventsCalendar";
-import { EventElement, FilterBy, Format } from "../../../types/types";
+import { ViewProps } from "../../../types/types";
 
-interface Props {
-  events: EventElement[];
-  format: Format;
-  truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
-  hideaddcal: string | number;
-  filterby: FilterBy;
-  wrapperclass: string;
-  listclass: string;
-  itemclass: string;
-  page: number;
-  loading: boolean;
-  wrapperClassArray: string[];
-  listClassArray: string[];
-}
-
-const LocalistView = (props: Props) => {
+const LocalistView = (props: ViewProps) => {
   let component;
   const { format, page, loading } = props;
 

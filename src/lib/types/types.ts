@@ -22,6 +22,28 @@ export interface AppProps {
   url?: string;
 }
 
+export interface ViewProps {
+  events: EventElement[];
+  format: Format;
+  truncatedescription: string;
+  hidedescription: string | number;
+  hideimages: string | number;
+  hideaddcal: string | number;
+  filterby: FilterBy;
+  wrapperclass: string;
+  listclass: string;
+  itemclass: string;
+  page: number;
+  loading: boolean;
+  wrapperClassArray: string[];
+  listClassArray: string[];
+  calendarurl: string;
+}
+
+export interface ViewComponentProps extends ViewProps {
+  key: number;
+}
+
 export interface StandardProps {
   events: EventElement[];
   hideaddcal: string | number;

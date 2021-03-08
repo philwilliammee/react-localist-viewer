@@ -3,7 +3,7 @@ import { Calendar, Event, momentLocalizer } from "react-big-calendar";
 import AgendaInner from "./AgendaList/AgendaInner";
 import CalendarToolbar from "./CalendarToolBar";
 import moment from "moment";
-import localistApiConnector from "../../../services/localistApiConnector";
+// import localistApiConnector from "../../../services/localistApiConnector";
 import {
   getEventStart,
   getEventEnd,
@@ -16,15 +16,16 @@ import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
 import EventDetails from "../EventDetails";
 import Filters from "./Filters";
 import Grid from "../../atoms/Grid";
-import { EventEvent } from "lib/types/types";
+import { ViewComponentProps, EventEvent } from "lib/types/types";
+import { fetchEvents } from "lib/localist";
 
 let localizer = momentLocalizer(moment);
 
-let EventsCalendar = (props: any) => {
+let EventsCalendar = (props: ViewComponentProps) => {
   const {
-    setEvents,
+    // setEvents,
     filteredEvents,
-    setFilteredEvents,
+    // setFilteredEvents,
     showDialog,
     setShowDialog,
     eventSelected,
@@ -51,7 +52,7 @@ let EventsCalendar = (props: any) => {
     };
   });
 
-  const handleRangeChange = async (dateRange: any) => {
+  const handleRangeChange = (dateRange: any) => {
     const dateRangeStart = dateRange.start ? dateRange.start : dateRange[0];
     const dateRangeEnd = dateRange.end ? dateRange.end : dateRange[0];
     setDisplayedDateRange({
@@ -68,10 +69,7 @@ let EventsCalendar = (props: any) => {
       .endOf("month")
       .format("YYYY-MM-DD hh:mm");
 
-    let res = await localistApiConnector({ ...props, start, end });
-
-    setEvents(res.data.events);
-    setFilteredEvents(res.data.events);
+    fetchEvents(props, 1, start, end);
     setKey(key + 1);
   };
 
@@ -101,7 +99,7 @@ let EventsCalendar = (props: any) => {
       </EventModal>
       <Grid container>
         <Grid col={3}>
-          <Filters key={key} />
+          <Filters key={props.key} />
         </Grid>
         <Grid col={9}>
           {
