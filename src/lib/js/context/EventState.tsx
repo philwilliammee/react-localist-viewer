@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import EventsContext, { initialEvent } from "./EventsContext";
 import moment from "moment";
 import { EventElement, EventEvent } from "../../types/types";
+import {
+  lastWeekOfMonth,
+  weekOfMonth,
+} from "../components/molecules/EventsCalendar/utils";
 
 const EventsState = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<EventElement[]>([]);
@@ -10,8 +14,8 @@ const EventsState = ({ children }: { children: React.ReactNode }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [eventSelected, setEventSelected] = useState<EventEvent>(initialEvent);
   const [displayedDateRange, setDisplayedDateRange] = useState({
-    start: moment().startOf("month"),
-    end: moment().endOf("month"),
+    start: weekOfMonth(moment().startOf("month")),
+    end: lastWeekOfMonth(moment().endOf("month")),
   });
 
   // const initEvent: InitialEventState = eventSelected as InitialEventState;

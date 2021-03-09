@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export interface AppProps {
   calendarurl: string;
   entries?: string;
@@ -38,6 +40,8 @@ export interface ViewProps {
   wrapperClassArray: string[];
   listClassArray: string[];
   calendarurl: string;
+  setCurrentPage: (page: number) => void;
+  currentPage: number;
 }
 
 export interface ViewComponentProps extends ViewProps {
@@ -83,6 +87,11 @@ export interface Events {
   events: EventElement[];
   page: Page;
   date: DateClass;
+}
+
+export interface DisplayedDateRange {
+  start: moment.Moment;
+  end: moment.Moment;
 }
 
 export interface DateClass {

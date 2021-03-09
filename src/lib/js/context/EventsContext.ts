@@ -1,12 +1,11 @@
-import { EventEvent } from "lib/types/types";
+import { DisplayedDateRange, EventEvent } from "lib/types/types";
 import moment from "moment";
 import React from "react";
 import { EventElement } from "../../types/types";
-
-interface DisplayedDateRange {
-  start: moment.Moment;
-  end: moment.Moment;
-}
+import {
+  lastWeekOfMonth,
+  weekOfMonth,
+} from "../components/molecules/EventsCalendar/utils";
 
 const events: EventElement[] = [];
 const filteredEvents: EventElement[] = [];
@@ -117,8 +116,8 @@ const EventsContext = React.createContext({
   eventSelected: initialEvent,
   setEventSelected: (selectedEvent: EventEvent) => {},
   displayedDateRange: {
-    start: moment().startOf("month"),
-    end: moment().endOf("month"),
+    start: weekOfMonth(moment().startOf("month")),
+    end: lastWeekOfMonth(moment().endOf("month")),
   },
   setDisplayedDateRange: (displayedDateRange: DisplayedDateRange) => {},
 });
