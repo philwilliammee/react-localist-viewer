@@ -12,10 +12,15 @@ import {
 import { useQuery } from "react-query";
 import { fetchEvents } from "lib/localist";
 import { queryClient } from "lib/App";
-import { lastWeekOfMonth, weekOfMonth } from "./utils";
-import { getKeyFromDateRange, getLastMonth, getNextMonth } from "./dateHelper";
+import {
+  getKeyFromDateRange,
+  getLastMonth,
+  getNextMonth,
+  lastWeekOfMonth,
+  weekOfMonth,
+} from "./dateUtils";
 
-const queryName = "events";
+const queryId = "events";
 
 let EventsCalendar = (props: AppProps) => {
   const [dateRange, setDateRange] = useState({
@@ -24,9 +29,9 @@ let EventsCalendar = (props: AppProps) => {
   });
 
   const key = getKeyFromDateRange(dateRange);
-  // const [key, setKey] = useState(dateRange.start.format("YYYY-MM-DD"));
+  console.log(key);
   const { data } = useQuery(
-    [queryName, key],
+    [queryId, key],
     () => fetchEvents(props as ViewComponentProps, 0, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );
@@ -35,14 +40,14 @@ let EventsCalendar = (props: AppProps) => {
     (dr: DisplayedDateRange) => {
       let lastMonthDateRange = getLastMonth(dr);
       queryClient.prefetchQuery(
-        [queryName, getKeyFromDateRange(lastMonthDateRange)],
+        [queryId, getKeyFromDateRange(lastMonthDateRange)],
         () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
         { staleTime: Infinity }
       );
 
       let nextMonthDateRange = getNextMonth(dr);
       queryClient.prefetchQuery(
-        [queryName, getKeyFromDateRange(nextMonthDateRange)],
+        [queryId, getKeyFromDateRange(nextMonthDateRange)],
         () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
         { staleTime: Infinity }
       );

@@ -1,21 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Calendar, Event, momentLocalizer } from "react-big-calendar";
-import AgendaInner from "./AgendaList/AgendaInner";
-import CalendarToolbar from "./CalendarToolBar";
+import AgendaInner from "../src/lib/js/components/molecules/EventsCalendar/AgendaList/AgendaInner";
+import CalendarToolbar from "../src/lib/js/components/molecules/EventsCalendar/CalendarToolBar";
 import moment from "moment";
 // import localistApiConnector from "../../../services/localistApiConnector";
 import {
   getEventStart,
   getEventEnd,
   isAllDay,
-} from "../../../helpers/displayEvent";
-import AgendaList from "./AgendaList/AgendaList";
-import EventsContext from "../../../context/EventsContext";
-import EventModal from "../../atoms/ModalDialog";
+} from "../src/lib/js/helpers/displayEvent";
+import AgendaList from "../src/lib/js/components/molecules/EventsCalendar/AgendaList/AgendaList";
+import EventsContext from "../src/lib/js/context/EventsContext";
+import EventModal from "../src/lib/js/components/atoms/ModalDialog";
 import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
-import EventDetails from "../EventDetails";
-import Filters from "./Filters";
-import Grid from "../../atoms/Grid";
+import EventDetails from "../src/lib/js/components/molecules/EventDetails";
+import Filters from "../src/lib/js/components/molecules/EventsCalendar/Filters";
+import Grid from "../src/lib/js/components/atoms/Grid";
 import {
   ViewComponentProps,
   EventEvent,

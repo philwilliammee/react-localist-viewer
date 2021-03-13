@@ -5,7 +5,7 @@ import { EventElement } from "../../types/types";
 import {
   lastWeekOfMonth,
   weekOfMonth,
-} from "../components/molecules/EventsCalendar/utils";
+} from "../components/molecules/EventsCalendar/dateUtils";
 
 const events: EventElement[] = [];
 const filteredEvents: EventElement[] = [];

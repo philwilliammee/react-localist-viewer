@@ -24,8 +24,8 @@ export async function fetchEvents(
 ) {
   let start, end;
   if (props.format === "calendar") {
-    start = displayedDateRange.start.format("YYYY-MM-DD hh:mm");
-    end = displayedDateRange.end.format("YYYY-MM-DD hh:mm");
+    start = displayedDateRange.start.clone().format("YYYY-MM-DD hh:mm");
+    end = displayedDateRange.end.clone().format("YYYY-MM-DD hh:mm");
   }
 
   console.log(start, end);

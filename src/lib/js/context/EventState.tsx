@@ -6,7 +6,7 @@ import { EventElement, EventEvent } from "../../types/types";
 import {
   lastWeekOfMonth,
   weekOfMonth,
-} from "../components/molecules/EventsCalendar/utils";
+} from "../components/molecules/EventsCalendar/dateUtils";
 
 const EventsState = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<EventElement[]>([]);
