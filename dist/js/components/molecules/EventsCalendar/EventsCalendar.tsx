@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Calendar, Event, momentLocalizer } from "react-big-calendar";
 import AgendaInner from "./AgendaList/AgendaInner";
 import CalendarToolbar from "./CalendarToolBar";
 import moment from "moment";
-import localistApiConnector from "../../../services/localistApiConnector";
+import { fetchEvents } from "../../../services/localistApiConnector";
 import {
   getEventStart,
   getEventEnd,
@@ -16,8 +16,24 @@ import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
 import EventDetails from "../EventDetails";
 import Filters from "./Filters";
 import Grid from "../../atoms/Grid";
-import { EventEvent } from "lib/types/types";
+import {
+  DateRangeEvent,
+  DisplayedDateRange,
+  EventEvent,
+  ViewComponentProps,
+} from "lib/types/types";
+import { useQuery } from "react-query";
+import {
+  getKeyFromDateRange,
+  getLastMonth,
+  getNextMonth,
+  initDateRange,
+  lastWeekOfMonth,
+  weekOfMonth,
+} from "./dateUtils";
+import { queryClient } from "lib/App";
 
+const queryId = "events";
 let localizer = momentLocalizer(moment);
 
 let EventsCalendar = (props: any) => {
@@ -31,7 +47,52 @@ let EventsCalendar = (props: any) => {
     setEventSelected,
     setDisplayedDateRange,
   } = useContext(EventsContext);
-  const [key, setKey] = useState(0);
+
+  const [dateRange, setDateRange] = useState(initDateRange());
+  const key = getKeyFromDateRange(dateRange);
+
+  const { data } = useQuery(
+    [queryId, key],
+    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
+    { keepPreviousData: true, staleTime: Infinity }
+  );
+
+  const preFetchData = useCallback(
+    (dr: DisplayedDateRange) => {
+      let lastMonthDateRange = getLastMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(lastMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
+        { staleTime: Infinity }
+      );
+
+      let nextMonthDateRange = getNextMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(nextMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
+        { staleTime: Infinity }
+      );
+      if (data) {
+        setEvents(data.events);
+        setFilteredEvents(data.events);
+      }
+    },
+
+    [props, setEvents, setFilteredEvents, data]
+  );
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      preFetchData(dateRange);
+    }
+    return function cleanup() {
+      mounted = false;
+    };
+    // This is ok we only want to fetch new data when the date range changes,
+    // This allows us to apply filtering.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange]);
 
   const components = {
     toolbar: CalendarToolbar,
@@ -40,7 +101,7 @@ let EventsCalendar = (props: any) => {
     },
   };
 
-  // Do events get iterated in main app? Don't reiterate!
+  // Put events in Big Calendar Structure
   const flatEvents: Event[] = filteredEvents.map((event) => {
     return {
       id: event.event.id,
@@ -51,28 +112,31 @@ let EventsCalendar = (props: any) => {
     };
   });
 
-  const handleRangeChange = async (dateRange: any) => {
-    const dateRangeStart = dateRange.start ? dateRange.start : dateRange[0];
-    const dateRangeEnd = dateRange.end ? dateRange.end : dateRange[0];
-    setDisplayedDateRange({
-      start: moment(dateRangeStart),
-      end: moment(dateRangeEnd),
-    });
+  const handleRangeChange = (dateRange: DateRangeEvent | Date[]) => {
+    let dateRangeStart: moment.Moment;
+    let dateRangeEnd: moment.Moment;
 
-    const start = moment(dateRangeStart)
-      .subtract(1, "month")
-      .startOf("month")
-      .format("YYYY-MM-DD hh:mm");
-    const end = moment(dateRangeEnd)
-      .add(1, "month")
-      .endOf("month")
-      .format("YYYY-MM-DD hh:mm");
+    if ("start" in dateRange) {
+      dateRangeStart = moment(dateRange.start);
+      dateRangeEnd = moment(dateRange.end);
+    } else {
+      // Since day list filters events we just uses the whole month
+      dateRangeStart = weekOfMonth(moment(dateRange[0]).startOf("month"));
+      dateRangeEnd = lastWeekOfMonth(moment(dateRange[0]).endOf("month"));
+    }
 
-    let res = await localistApiConnector({ ...props, start, end });
+    if (dateRangeEnd.isSameOrBefore(dateRangeStart)) {
+      console.warn("Invalid Date Range");
+      return;
+    }
 
-    setEvents(res.data.events);
-    setFilteredEvents(res.data.events);
-    setKey(key + 1);
+    const newDateRange: DisplayedDateRange = {
+      start: dateRangeStart,
+      end: dateRangeEnd,
+    };
+
+    setDisplayedDateRange(newDateRange);
+    setDateRange(newDateRange);
   };
 
   const handleEventSelect = (event: EventEvent) => {

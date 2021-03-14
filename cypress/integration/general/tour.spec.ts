@@ -13,6 +13,8 @@
 const moment = require("moment");
 const initEvents = require("../../fixtures/testData.json");
 
+// --------------------------- SET UP ----------------------------------------/
+
 // functions from "../../../src/lib/js/components/molecules/EventsCalendar/dateUtils";
 export function weekOfMonth(m) {
   var first = m.clone().startOf("month").week(); // mutates original value
@@ -46,30 +48,33 @@ const events = { ...initEvents, events: eventsData };
 
 console.log(events);
 
-describe("Make sure site loads", () => {
-  var months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  var weekday = new Array(7);
-  weekday[0] = "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
+var months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+var weekday = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
+// --------------------------- END OF SET UP ----------------------------------/
+
+describe("Make sure site loads", () => {
   var d = new Date();
   var nextMonth = d.getMonth() + 1;
   var lastMonth = d.getMonth() - 1;
@@ -83,8 +88,7 @@ describe("Make sure site loads", () => {
       });
     });
 
-    cy.visit("http://localhost:3000");
-    // cy.login();
+    cy.visit(Cypress.env("APP_URL"));
   });
 
   it("Has Nav Links and date change", () => {
