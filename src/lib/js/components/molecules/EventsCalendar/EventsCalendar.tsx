@@ -29,8 +29,7 @@ let EventsCalendar = (props: AppProps) => {
   });
 
   const key = getKeyFromDateRange(dateRange);
-  console.log(key);
-  const { data } = useQuery(
+  const { isLoading, data } = useQuery(
     [queryId, key],
     () => fetchEvents(props as ViewComponentProps, 0, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
@@ -69,11 +68,17 @@ let EventsCalendar = (props: AppProps) => {
 
   return (
     <Grid>
-      <button onClick={() => setDate(getLastMonth(dateRange))}>
+      <button
+        disabled={isLoading}
+        onClick={() => setDate(getLastMonth(dateRange))}
+      >
         Fetch Last Month
       </button>
       {"   "}
-      <button onClick={() => setDate(getNextMonth(dateRange))}>
+      <button
+        disabled={isLoading}
+        onClick={() => setDate(getNextMonth(dateRange))}
+      >
         Fetch Next Month
       </button>
 
