@@ -59,13 +59,21 @@ let EventsCalendar = (props: AppProps) => {
     preFetchData(dateRange);
   }, [dateRange, preFetchData]);
 
+  const setDate = (newDateRange: DisplayedDateRange) => {
+    if (newDateRange.end.isSameOrBefore(newDateRange.start)) {
+      console.warn("Invalid Date Range");
+      return;
+    }
+    setDateRange(newDateRange);
+  };
+
   return (
     <Grid>
-      <button onClick={() => setDateRange(getLastMonth(dateRange))}>
+      <button onClick={() => setDate(getLastMonth(dateRange))}>
         Fetch Last Month
       </button>
       {"   "}
-      <button onClick={() => setDateRange(getNextMonth(dateRange))}>
+      <button onClick={() => setDate(getNextMonth(dateRange))}>
         Fetch Next Month
       </button>
 
