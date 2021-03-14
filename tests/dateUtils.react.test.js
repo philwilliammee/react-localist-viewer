@@ -5,6 +5,7 @@ import {
   getMonthFromThisDateRange,
 } from "../src/lib/js/components/molecules/EventsCalendar/dateUtils";
 
+// npm i -g jest-cli
 // run with jest dateUtils.react.test.js
 function dateRangeTest(value, dateRange, testDateRange) {
   dateRange = getMonthFromThisDateRange(testDateRange, value);
@@ -23,7 +24,7 @@ function dateRangeTest(value, dateRange, testDateRange) {
   expect(testEndDateToComeAfterStartDate).toBe(true);
 }
 
-test("Get Month From This Date Range test", () => {
+test("Get Month From Strict Month dates", () => {
   var i;
   var loops = 200;
   var dateRange = {
@@ -41,7 +42,7 @@ test("Get Month From This Date Range test", () => {
   }
 });
 
-test("Get Month From This Date Range test", () => {
+test("Get Last Month with calendar month dates", () => {
   var i;
   var loops = 200;
   var dateRange = {
@@ -50,11 +51,11 @@ test("Get Month From This Date Range test", () => {
   };
 
   for (var i = 0; i < loops; i++) {
-    const testDateRange = {
-      start: moment().startOf("month").subtract(i, "month"),
-      end: moment().endOf("month").subtract(i, "month"),
-    };
-    dateRange = getLastMonth(testDateRange);
+    // const testDateRange = {
+    //   start: moment().startOf("month").subtract(i, "month"),
+    //   end: moment().endOf("month").subtract(i, "month"),
+    // };
+    dateRange = getLastMonth(dateRange);
     const testEndDateToComeAfterStartDate = dateRange.start
       .clone()
       .isBefore(dateRange.end.clone());
@@ -69,7 +70,7 @@ test("Get Month From This Date Range test", () => {
   }
 });
 
-test("Get Next Month From This Date Range test", () => {
+test("Get Next Month with calendar month dates", () => {
   var i;
   var loops = 200;
   var dateRange = {
