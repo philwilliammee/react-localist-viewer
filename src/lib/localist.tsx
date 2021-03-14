@@ -49,8 +49,10 @@ const Localist = (props: AppProps) => {
   const listClassArray = props?.listclass?.split(" ");
   listClassArray?.push("events-list");
 
+  // @todo on pagination hover pre fetch data or show loading spinner.
   useEffect(() => {
-    if (data) {
+    let mounted = true;
+    if (data && mounted) {
       // There has got to be a better way to set these.
       const itemClassArray =
         props?.itemclass?.split(" ").concat(["event-node"]) || [];
@@ -62,6 +64,9 @@ const Localist = (props: AppProps) => {
       setEvents(data.events);
       setLlPage(data.page);
     }
+    return function cleanup() {
+      mounted = false;
+    };
   }, [key, data, loading]);
 
   function handlePageClick(data: { selected: number }) {

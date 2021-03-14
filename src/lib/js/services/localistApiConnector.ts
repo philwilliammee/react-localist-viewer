@@ -107,7 +107,6 @@ export async function fetchEvents(
     end = displayedDateRange.end.format("YYYY-MM-DD hh:mm");
   }
 
-  console.log(start, end);
   const { data }: { data: Events } = await localistApiConnector({
     ...props,
     page: currentPage,
