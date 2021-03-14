@@ -1,15 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import localistApiConnector from "./js/services/localistApiConnector";
+import { fetchEvents } from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/heading";
 import Paginate from "./js/components/organisms/paginate";
 import LocalistView from "./js/components/organisms/localist_view";
 import EventFilters from "./js/components/organisms/event_filterby";
 import { isHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
-import moment from "moment";
-import { AppProps, EventElement, Events } from "./types/types";
+import { AppProps, EventElement, ViewComponentProps } from "./types/types";
+import { useQuery } from "react-query";
+import {
+  getKeyFromDateRange,
+  initDateRange,
+} from "./js/components/molecules/EventsCalendar/dateUtils";
+
+const dateRange = initDateRange();
 
 /**
  * Localist Component
@@ -25,7 +31,14 @@ const Localist = (props: AppProps) => {
   });
   const [currentPage, setCurrentPage] = useState(props.page);
   const [filter, setFilter] = useState("filterAll");
-  const [loading, setLoading] = useState(true);
+
+  let key =
+    props.format === "calendar" ? getKeyFromDateRange(dateRange) : currentPage;
+  const { isLoading: loading, data } = useQuery(
+    ["events", key],
+    () => fetchEvents(props as ViewComponentProps, currentPage, dateRange),
+    { keepPreviousData: true, staleTime: Infinity }
+  );
 
   let wrapperClassArray = props?.wrapperclass?.split(" ");
   if (isHidden(props.hideimages) && wrapperClassArray) {
@@ -36,39 +49,20 @@ const Localist = (props: AppProps) => {
   const listClassArray = props?.listclass?.split(" ");
   listClassArray?.push("events-list");
 
-  const getEvents = useCallback(async () => {
-    let start, end;
-    if (props.format === "calendar") {
-      start = moment()
-        .subtract(1, "month")
-        .startOf("month")
-        .format("YYYY-MM-DD hh:mm");
-      end = moment().add(1, "month").endOf("month").format("YYYY-MM-DD hh:mm");
-    }
-    setLoading(true);
-    const itemClassArray =
-      props?.itemclass?.split(" ").concat(["event-node"]) || [];
-    let res = await localistApiConnector({
-      ...props,
-      page: currentPage,
-      start,
-      end,
-    });
-    const events: Events = res.data;
-
-    events.events.forEach((event: EventElement) => {
-      event.event.itemClassArray = [...itemClassArray];
-    });
-    // Used by calendar only.
-    setFilteredEvents(events.events);
-    setEvents(events.events);
-    setLlPage(events.page);
-    setLoading(false);
-  }, [currentPage, props]);
-
   useEffect(() => {
-    getEvents();
-  }, [currentPage]);
+    if (data) {
+      // There has got to be a better way to set these.
+      const itemClassArray =
+        props?.itemclass?.split(" ").concat(["event-node"]) || [];
+      data.events.forEach((event: EventElement) => {
+        event.event.itemClassArray = [...itemClassArray];
+      });
+      // Used by calendar only.
+      setFilteredEvents(data.events);
+      setEvents(data.events);
+      setLlPage(data.page);
+    }
+  }, [key, data, loading]);
 
   function handlePageClick(data: { selected: number }) {
     const newPage = data.selected + 1;
