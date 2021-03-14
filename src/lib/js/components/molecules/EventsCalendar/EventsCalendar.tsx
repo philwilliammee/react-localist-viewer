@@ -89,7 +89,10 @@ let EventsCalendar = (props: any) => {
     return function cleanup() {
       mounted = false;
     };
-  }, [dateRange, preFetchData, data]);
+    // This is ok we only want to fetch new data when the date range changes,
+    // This allows us to apply filtering.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange]);
 
   const components = {
     toolbar: CalendarToolbar,
