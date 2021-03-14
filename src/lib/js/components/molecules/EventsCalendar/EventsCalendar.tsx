@@ -1,135 +1,97 @@
-import React, { useContext, useState } from "react";
-import { Calendar, Event, momentLocalizer } from "react-big-calendar";
-import AgendaInner from "./AgendaList/AgendaInner";
-import CalendarToolbar from "./CalendarToolBar";
+import React, { useCallback, useEffect, useState } from "react";
+
 import moment from "moment";
-import localistApiConnector from "../../../services/localistApiConnector";
-import {
-  getEventStart,
-  getEventEnd,
-  isAllDay,
-} from "../../../helpers/displayEvent";
-import AgendaList from "./AgendaList/AgendaList";
-import EventsContext from "../../../context/EventsContext";
-import EventModal from "../../atoms/ModalDialog";
-import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
-import EventDetails from "../EventDetails";
-import Filters from "./Filters";
+
 import Grid from "../../atoms/Grid";
-import { EventEvent } from "lib/types/types";
+import {
+  ViewComponentProps,
+  DisplayedDateRange,
+  AppProps,
+  EventElement,
+} from "lib/types/types";
+import { useQuery } from "react-query";
+import { fetchEvents } from "lib/localist";
+import { queryClient } from "lib/App";
+import {
+  getKeyFromDateRange,
+  getLastMonth,
+  getNextMonth,
+  lastWeekOfMonth,
+  weekOfMonth,
+} from "./dateUtils";
 
-let localizer = momentLocalizer(moment);
+const queryId = "events";
 
-let EventsCalendar = (props: any) => {
-  const {
-    setEvents,
-    filteredEvents,
-    setFilteredEvents,
-    showDialog,
-    setShowDialog,
-    eventSelected,
-    setEventSelected,
-    setDisplayedDateRange,
-  } = useContext(EventsContext);
-  const [key, setKey] = useState(0);
-
-  const components = {
-    toolbar: CalendarToolbar,
-    list: {
-      event: AgendaInner,
-    },
-  };
-
-  // Do events get iterated in main app? Don't reiterate!
-  const flatEvents: Event[] = filteredEvents.map((event) => {
-    return {
-      id: event.event.id,
-      title: event.event.title,
-      start: new Date(getEventStart(event.event)),
-      end: new Date(getEventEnd(event.event)),
-      allDay: isAllDay(event.event),
-    };
+let EventsCalendar = (props: AppProps) => {
+  const [dateRange, setDateRange] = useState({
+    start: weekOfMonth(moment().startOf("month")),
+    end: lastWeekOfMonth(moment().endOf("month")),
   });
 
-  const handleRangeChange = async (dateRange: any) => {
-    const dateRangeStart = dateRange.start ? dateRange.start : dateRange[0];
-    const dateRangeEnd = dateRange.end ? dateRange.end : dateRange[0];
-    setDisplayedDateRange({
-      start: moment(dateRangeStart),
-      end: moment(dateRangeEnd),
-    });
+  const key = getKeyFromDateRange(dateRange);
+  const { isLoading, data } = useQuery(
+    [queryId, key],
+    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
+    { keepPreviousData: true, staleTime: Infinity }
+  );
 
-    const start = moment(dateRangeStart)
-      .subtract(1, "month")
-      .startOf("month")
-      .format("YYYY-MM-DD hh:mm");
-    const end = moment(dateRangeEnd)
-      .add(1, "month")
-      .endOf("month")
-      .format("YYYY-MM-DD hh:mm");
+  const preFetchData = useCallback(
+    (dr: DisplayedDateRange) => {
+      let lastMonthDateRange = getLastMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(lastMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
+        { staleTime: Infinity }
+      );
 
-    let res = await localistApiConnector({ ...props, start, end });
+      let nextMonthDateRange = getNextMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(nextMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
+        { staleTime: Infinity }
+      );
+    },
+    [props]
+  );
 
-    setEvents(res.data.events);
-    setFilteredEvents(res.data.events);
-    setKey(key + 1);
-  };
+  useEffect(() => {
+    preFetchData(dateRange);
+  }, [dateRange, preFetchData]);
 
-  const handleEventSelect = (event: EventEvent) => {
-    setEventSelected(event);
-    setShowDialog(true);
-  };
-
-  const handleEventPress = (
-    event: EventEvent,
-    e: React.KeyboardEvent<HTMLElement>
-  ) => {
-    if (e.key === " " || e.key === "Enter") {
-      handleEventSelect(event);
+  const setDate = (newDateRange: DisplayedDateRange) => {
+    if (newDateRange.end.isSameOrBefore(newDateRange.start)) {
+      console.warn("Invalid Date Range");
+      return;
     }
+    setDateRange(newDateRange);
   };
 
   return (
-    <>
-      {/* @todo only have modal on page once */}
-      <EventModal
-        showDialog={showDialog}
-        setShowDialog={setShowDialog}
-        aria-label="Selected Event"
+    <Grid>
+      <button
+        disabled={isLoading}
+        onClick={() => setDate(getLastMonth(dateRange))}
       >
-        {eventSelected ? <EventDetails event={eventSelected} /> : ""}
-      </EventModal>
-      <Grid container>
-        <Grid col={3}>
-          <Filters key={key} />
-        </Grid>
-        <Grid col={9}>
-          {
-            // @todo fix this
-            // @ts-ignore: next line
-            <Calendar
-              events={flatEvents}
-              views={{
-                month: true,
-                day: true,
-                list: AgendaList,
-              }}
-              step={240}
-              showMultiDayTimes
-              components={components}
-              localizer={localizer}
-              defaultDate={new Date(moment().startOf("month").toDate())}
-              defaultView="month"
-              style={{ height: "calc(100vh - 300px)", minHeight: "500px" }}
-              onRangeChange={handleRangeChange}
-              onSelectEvent={handleEventSelect}
-              onKeyPressEvent={handleEventPress}
-              //tooltipAccessor={(event)=>{return event.title}}
-            />
-          }
-        </Grid>
-      </Grid>
-    </>
+        Fetch Last Month
+      </button>
+      {"   "}
+      <button
+        disabled={isLoading}
+        onClick={() => setDate(getNextMonth(dateRange))}
+      >
+        Fetch Next Month
+      </button>
+
+      <div>
+        <h3>
+          Events for {dateRange.start.format("YYYY-MM-DD")} -{" "}
+          {dateRange.end.format("YYYY-MM-DD")}
+        </h3>
+        {data?.events.map((event: EventElement) => {
+          return <pre key={event.event.id}>{JSON.stringify(event.event)}</pre>;
+        })}
+      </div>
+    </Grid>
   );
 };
 

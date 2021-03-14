@@ -85,7 +85,7 @@ const localistApiConnector = (props: ApiConnectorProps) => {
   } else {
     params.days = daysahead;
   }
-
+  console.log("Fetching Data");
   return axios.get(calendarurl, { params });
 };
 

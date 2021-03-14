@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import localistApiConnector from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/heading";
@@ -8,8 +8,37 @@ import LocalistView from "./js/components/organisms/localist_view";
 import EventFilters from "./js/components/organisms/event_filterby";
 import { isHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
-import moment from "moment";
-import { AppProps, EventElement, Events } from "./types/types";
+import {
+  AppProps,
+  DisplayedDateRange,
+  EventElement,
+  Events,
+  ViewComponentProps,
+} from "./types/types";
+import { useQuery } from "react-query";
+
+export async function fetchEvents(
+  props: ViewComponentProps,
+  currentPage = 0,
+  displayedDateRange: DisplayedDateRange
+) {
+  let start, end;
+  if (props.format === "calendar") {
+    start = displayedDateRange.start.clone().format("YYYY-MM-DD hh:mm");
+    end = displayedDateRange.end.clone().format("YYYY-MM-DD hh:mm");
+  }
+
+  console.log(start, end);
+  const { data }: { data: Events } = await localistApiConnector({
+    ...props,
+    page: currentPage,
+    start,
+    end,
+  });
+  // console.log("use query");
+  // console.log(data);
+  return data;
+}
 
 /**
  * Localist Component
@@ -17,7 +46,12 @@ import { AppProps, EventElement, Events } from "./types/types";
  * @todo implement class lists for all components.
  */
 const Localist = (props: AppProps) => {
-  const { events, setEvents, setFilteredEvents } = useContext(EventsContext);
+  const {
+    events,
+    setEvents,
+    setFilteredEvents,
+    displayedDateRange,
+  } = useContext(EventsContext);
   const [llPage, setLlPage] = useState({
     current: props.page,
     size: 1,
@@ -25,9 +59,27 @@ const Localist = (props: AppProps) => {
   });
   const [currentPage, setCurrentPage] = useState(props.page);
   const [filter, setFilter] = useState("filterAll");
-  const [loading, setLoading] = useState(true);
+  const isLoading = false;
+  // const [loading, setLoading] = useState(true);
+  // https://react-query.tanstack.com/examples/pagination
+  // const { isLoading, error, data } = useQuery(
+  //   ["events", currentPage],
+  //   () => {
+  //     console.log("WHY ARE YOU HERE!!!");
+  //     console.log(currentPage);
+  //     return fetchEvents(
+  //       props as ViewComponentProps,
+  //       currentPage,
+  //       displayedDateRange
+  //     );
+  //   },
+  //   { keepPreviousData: true, staleTime: Infinity }
+  // );
+
+  // console.log(isLoading, error, data, isFetching);
 
   let wrapperClassArray = props?.wrapperclass?.split(" ");
+
   if (isHidden(props.hideimages) && wrapperClassArray) {
     wrapperClassArray.push("no-thumbnails");
   }
@@ -36,39 +88,27 @@ const Localist = (props: AppProps) => {
   const listClassArray = props?.listclass?.split(" ");
   listClassArray?.push("events-list");
 
-  const getEvents = useCallback(async () => {
-    let start, end;
-    if (props.format === "calendar") {
-      start = moment()
-        .subtract(1, "month")
-        .startOf("month")
-        .format("YYYY-MM-DD hh:mm");
-      end = moment().add(1, "month").endOf("month").format("YYYY-MM-DD hh:mm");
-    }
-    setLoading(true);
-    const itemClassArray =
-      props?.itemclass?.split(" ").concat(["event-node"]) || [];
-    let res = await localistApiConnector({
-      ...props,
-      page: currentPage,
-      start,
-      end,
-    });
-    const events: Events = res.data;
+  // useEffect(() => {
+  //   if (!error && data?.events) {
+  //     // this is dumb just pass it to the component.
+  //     const itemClassArray =
+  //       props?.itemclass?.split(" ").concat(["event-node"]) || [];
+  //     data.events.forEach((event: EventElement) => {
+  //       event.event.itemClassArray = [...itemClassArray];
+  //     });
 
-    events.events.forEach((event: EventElement) => {
-      event.event.itemClassArray = [...itemClassArray];
-    });
-    // Used by calendar only.
-    setFilteredEvents(events.events);
-    setEvents(events.events);
-    setLlPage(events.page);
-    setLoading(false);
-  }, [currentPage, props]);
+  //     // Used by calendar only.
+  //     // setFilteredEvents(data.events);
+  //     // setEvents(data.events);
+  //     // setLlPage(data.page);
 
-  useEffect(() => {
-    getEvents();
-  }, [currentPage]);
+  //     // pre-fetch next data
+  //   }
+  // }, [currentPage, data]);
+
+  // if (error) {
+  //   return <>Error fetching data</>;
+  // }
 
   function handlePageClick(data: { selected: number }) {
     const newPage = data.selected + 1;
@@ -100,7 +140,7 @@ const Localist = (props: AppProps) => {
         {...props}
         events={events}
         page={currentPage || 1}
-        loading={loading}
+        loading={isLoading}
         wrapperClassArray={wrapperClassArray || []}
         listClassArray={listClassArray || []}
         hidedescription={props.hidedescription || ""}
@@ -109,6 +149,8 @@ const Localist = (props: AppProps) => {
         wrapperclass={props.wrapperclass || ""}
         listclass={props.listclass || ""}
         itemclass={props.itemclass || ""}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage || 0}
       />
       <Paginate
         hidepagination={props.hidepagination || ""}
