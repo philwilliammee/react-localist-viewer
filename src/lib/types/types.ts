@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export interface AppProps {
   calendarurl: string;
   entries?: string;
@@ -20,6 +22,41 @@ export interface AppProps {
   page?: CurrentPage;
   readmore?: string;
   url?: string;
+}
+
+// @todo consolidate these props
+export interface ViewProps {
+  events: EventElement[];
+  format: Format;
+  truncatedescription: string;
+  hidedescription: string | number;
+  hideimages: string | number;
+  hideaddcal: string | number;
+  filterby: FilterBy;
+  wrapperclass: string;
+  listclass: string;
+  itemclass: string;
+  page: number;
+  loading: boolean;
+  wrapperClassArray: string[];
+  listClassArray: string[];
+  calendarurl: string;
+  setCurrentPage: (page: number) => void;
+  currentPage: number;
+}
+
+export interface ViewComponentProps extends ViewProps {
+  key: number;
+}
+
+export interface DateRangeEvent {
+  start: Date;
+  end: Date;
+}
+
+export interface DisplayedDateRange {
+  start: moment.Moment;
+  end: moment.Moment;
 }
 
 export interface StandardProps {

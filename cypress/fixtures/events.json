@@ -1,0 +1,1190 @@
+{
+  "events": [
+    {
+      "event": {
+        "id": 35925846269333,
+        "title": "GET SET Workshop: Developing Learning Outcomes",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-03-04T07:24:40-05:00",
+        "created_at": "2021-02-12T10:05:42-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-03",
+        "last_date": "2021-03-03",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_developing_learning_outcomes",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 1 of the Course Design Institute\n\nInterested in developing a course? Creating learning outcomes and aligning these with assignments and assessments is an effective place to start. This workshop introduces key steps for designing learning outcomes.\n\nLearn more and register",
+        "photo_id": 35926269582264,
+        "detail_views": 87,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926061087536,
+              "event_id": 35925846269333,
+              "start": "2021-03-03T14:00:00-05:00",
+              "end": "2021-03-03T15:15:00-05:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 1&nbsp;of the <b>Course Design Institute</b></p>\r\n\r\n<p>Interested in developing a course? Creating learning outcomes and aligning these with assignments and assessments is an effective place to start. This workshop introduces key steps for designing learning outcomes.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_developing_learning_outcomes",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_developing_learning_outcomes.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926269582264/huge/50dab19d14e590a9dd2d65671227cbb9911d4178.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35925795680043,
+        "title": "GET SET Workshop: Selecting Online Learning Tools",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI",
+        "updated_at": "2021-03-05T07:26:00-05:00",
+        "created_at": "2021-02-12T09:57:28-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-04",
+        "last_date": "2021-03-04",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_selecting_online_learning_tools",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 2 of the Online Learning Institute\n\nWith so many new tools available for online classes, it is hard to decide which ones to select. Participants will explore and experience a variety of tools currently available, in order to develop a strong learning community.\n\nLearn more and register",
+        "photo_id": 35919781670955,
+        "detail_views": 88,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35925805169555,
+              "event_id": 35925795680043,
+              "start": "2021-03-04T13:00:00-05:00",
+              "end": "2021-03-04T14:15:00-05:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 2&nbsp;of the <b>Online Learning Institute</b></p>\r\n\r\n<p>With so many new tools available for online classes, it is hard to decide which ones to select. Participants will explore and experience a variety of tools currently available, in order to develop a strong learning community.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_selecting_online_learning_tools",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_selecting_online_learning_tools.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35919781670955/huge/71487e7df2ca6df3436386ee0bd067c19eb91bc3.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35891678793120,
+        "title": "Cornell Online Learning Community (COLC) 7th Annual Event",
+        "url": "http://colc.onlinelearning.cornell.edu/annual-event/",
+        "updated_at": "2021-03-10T07:19:09-05:00",
+        "created_at": "2021-02-08T13:24:35-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-09",
+        "last_date": "2021-03-09",
+        "hashtag": "CornellOLC",
+        "urlname": "cornell_online_learning_community_colc_7th_annual_event",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": false,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": true,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "https://cvent.me/ebwBzD",
+        "ticket_cost": "free",
+        "keywords": [
+          "technology",
+          "Teaching with Technology"
+        ],
+        "tags": [
+          "IT@Cornell"
+        ],
+        "description_text": "The Cornell Online Learning Community (COLC) invites you to its 7th Annual Event where we will explore What Works and What's Next in Online and Hybrid Learning. Join us for an interactive, educational afternoon of sharing and connecting with Cornell colleagues.\n\n1:00 - 1:10   Welcome and Introduction 1:10  - 1:35  Keynote Speaker - Flower Darby1:35 - 1:45   Q&A1:50 - 2:15   Concurrent Session-I2:20 - 2:45   Concurrent Session-22:45 - 2:55   Closing RemarksFind more information and register here.",
+        "photo_id": 35891992533152,
+        "detail_views": 2187,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35891992389789,
+              "event_id": 35891678793120,
+              "start": "2021-03-09T13:00:00-05:00",
+              "end": "2021-03-09T15:00:00-05:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>The Cornell Online Learning Community (COLC) invites you to&nbsp;its 7th Annual Event where we will explore&nbsp;<i>What Works and What&#39;s Next in Online and Hybrid Learning</i>. Join us for an interactive, educational afternoon of sharing and connecting with Cornell colleagues.</p>\r\n\r\n<ul>\r\n\t<li>1:00 - 1:10&nbsp; &nbsp;Welcome and Introduction&nbsp;</li>\r\n\t<li>1:10&nbsp; - 1:35&nbsp; Keynote Speaker -&nbsp;<a href=\"https://flowerdarby.com/\" target=\"_blank\">Flower Darby</a></li>\r\n\t<li>1:35 - 1:45&nbsp; &nbsp;Q&amp;A</li>\r\n\t<li>1:50 - 2:15&nbsp; &nbsp;Concurrent Session-I</li>\r\n\t<li>2:20 - 2:45&nbsp; &nbsp;Concurrent Session-2</li>\r\n\t<li>2:45 - 2:55&nbsp; &nbsp;Closing Remarks</li>\r\n</ul>\r\n\r\n<p><a href=\"https://cvent.me/lzzlaa\">Find more information and register here</a>.</p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Special Event",
+              "id": 4270
+            },
+            {
+              "name": "Conference/Workshop",
+              "id": 4253
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "dms4@cornell.edu",
+          "contact_name": "Diane Sempler",
+          "dept_web_site": "http://colc.onlinelearning.cornell.edu",
+          "registration_status": "Open",
+          "open_to": "All"
+        },
+        "localist_url": "https://events.cornell.edu/event/cornell_online_learning_community_colc_7th_annual_event",
+        "localist_ics_url": "https://events.cornell.edu/event/cornell_online_learning_community_colc_7th_annual_event.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35891992533152/huge/385954ead81dc3f0a92ce7a60b0452a0f747dc8a.jpg",
+        "venue_url": null,
+        "group_id": 5708,
+        "group_name": "CTI All"
+      }
+    },
+    {
+      "event": {
+        "id": 35925807340225,
+        "title": "GET SET Workshop: Building an Inclusive Online Space",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI",
+        "updated_at": "2021-03-12T07:16:23-05:00",
+        "created_at": "2021-02-12T09:59:22-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-11",
+        "last_date": "2021-03-11",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_building_an_inclusive_online_space",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 3 of the Online Learning Institute\n\nFostering a sense of community, especially in an online class, is essential to achieving successful learning outcomes. Drawing on shared experiences, this session will allow participants to discuss strategies to create welcoming course experiences.\n\nLearn more and register",
+        "photo_id": 35919781670955,
+        "detail_views": 79,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35925816230279,
+              "event_id": 35925807340225,
+              "start": "2021-03-11T13:00:00-05:00",
+              "end": "2021-03-11T14:15:00-05:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 3&nbsp;of the <b>Online Learning Institute</b></p>\r\n\r\n<p>Fostering a sense of community, especially in an online class, is essential to achieving successful learning outcomes. Drawing on shared experiences, this session will allow participants to discuss strategies to create welcoming course experiences.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_building_an_inclusive_online_space",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_building_an_inclusive_online_space.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35919781670955/huge/71487e7df2ca6df3436386ee0bd067c19eb91bc3.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926533179061,
+        "title": "GET SET Workshop: Teaching Philosophy",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-03-14T08:20:10-04:00",
+        "created_at": "2021-02-12T11:57:30-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-16",
+        "last_date": "2021-03-16",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_teaching_philosophy",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 1 of the Teaching Portfolio Institute\n\nThis workshop will focus on core components of a teaching philosophy statement and provide an opportunity to draft an outline of your statement using a worksheet. If you already have a draft, this is an opportunity to get peer feedback.\n\nLearn more and register",
+        "photo_id": 35926540904935,
+        "detail_views": 76,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926540710372,
+              "event_id": 35926533179061,
+              "start": "2021-03-16T11:00:00-04:00",
+              "end": "2021-03-16T12:15:00-04:00",
+              "ranking": 0.24,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 1 of the <b>Teaching Portfolio Institute</b></p>\r\n\r\n<p>This workshop will focus on core components of a teaching philosophy statement and provide an opportunity to draft an outline of your statement using a worksheet. If you already have a draft, this is an opportunity to get peer feedback.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#TPI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_teaching_philosophy",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_teaching_philosophy.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926540904935/huge/f000375a8885023341f041707f3f1cb90da8bd09.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926062728319,
+        "title": "GET SET Workshop: Assessing Student Learning",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-03-14T08:20:09-04:00",
+        "created_at": "2021-02-12T10:40:56-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-17",
+        "last_date": "2021-03-17",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_developing_learning_outcomes_7189",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 2 of the Course Design Institute\n\nHow do we know how much our students are learning? Developing tests, assignments, and projects can be challenging. This workshop guides participants through the process of developing tools that measure and assess student learning.\n\nLearn more and register",
+        "photo_id": 35926264933298,
+        "detail_views": 77,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926264714159,
+              "event_id": 35926062728319,
+              "start": "2021-03-17T14:00:00-04:00",
+              "end": "2021-03-17T15:15:00-04:00",
+              "ranking": 0.23,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 2&nbsp;of the <b>Course Design Institute</b></p>\r\n\r\n<p>How do we know how much our students are learning? Developing tests, assignments, and projects can be challenging. This workshop guides participants through the process of developing tools that measure and assess student learning.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_developing_learning_outcomes_7189",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_developing_learning_outcomes_7189.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926264933298/huge/86c55efba3c8ac02a93dff5d37ede96b1d02315d.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35925818122652,
+        "title": "GET SET Workshop: Online Learning Institute Peer Review Session",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI",
+        "updated_at": "2021-03-14T08:20:05-04:00",
+        "created_at": "2021-02-12T10:01:07-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-18",
+        "last_date": "2021-03-18",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_online_learning_institute_peer_review_session",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 4 of the Online Learning Institute\n\nThis workshop is for those who have completed the earlier workshops and would like a letter to document their participation in the Institute. This capstone experience will focus on sharing best practices for online learning and going through the steps of designing an online class.\n\nLearn more and register",
+        "photo_id": 35919781670955,
+        "detail_views": 74,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35925826458372,
+              "event_id": 35925818122652,
+              "start": "2021-03-18T13:00:00-04:00",
+              "end": "2021-03-18T14:15:00-04:00",
+              "ranking": 0.23,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 4&nbsp;of the <b>Online Learning Institute</b></p>\r\n\r\n<p>This workshop is for those who have completed the earlier workshops and would like a letter to document their participation in the Institute. This capstone experience will focus on sharing best practices for online learning and going through the steps of designing an online class.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#OLI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_online_learning_institute_peer_review_session",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_online_learning_institute_peer_review_session.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35919781670955/huge/71487e7df2ca6df3436386ee0bd067c19eb91bc3.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926541728657,
+        "title": "GET SET Workshop: Diversity Statement",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-03-14T08:20:10-04:00",
+        "created_at": "2021-02-12T11:58:54-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-23",
+        "last_date": "2021-03-23",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_diversity_statement",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 2 of the Teaching Portfolio Institute\n\nWhat is a diversity statement? A growing number of institutions now require it as another component of the application package. This session provides participants an opportunity to explore what goes into a diversity statement and how to best showcase their past experiences or seek out experiences to strengthen their application materials.\n\nLearn more and register",
+        "photo_id": 35926540904935,
+        "detail_views": 73,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926548097738,
+              "event_id": 35926541728657,
+              "start": "2021-03-23T11:00:00-04:00",
+              "end": "2021-03-23T12:15:00-04:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 2 of the <b>Teaching Portfolio Institute</b></p>\r\n\r\n<p>What is a diversity statement? A growing number of institutions now require it as another component of the application package. This session provides participants an opportunity to explore what goes into a diversity statement and how to best showcase their past experiences or seek out experiences to strengthen their application materials.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#TPI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_diversity_statement",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_diversity_statement.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926540904935/huge/f000375a8885023341f041707f3f1cb90da8bd09.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926270749978,
+        "title": "GET SET Workshop: Designing Learning Activities",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-03-14T08:20:10-04:00",
+        "created_at": "2021-02-12T11:14:47-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-24",
+        "last_date": "2021-03-24",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_designing_learning_activities",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 3 of the Course Design Institute\n\nHow can you involve students more fully in classroom activities? This workshop addresses ways in which instructors can construct classroom activities that encourage active engagement with course content and promote in-class participation among students.\n\nLearn more and register",
+        "photo_id": 35926269582264,
+        "detail_views": 73,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926277883501,
+              "event_id": 35926270749978,
+              "start": "2021-03-24T14:00:00-04:00",
+              "end": "2021-03-24T15:15:00-04:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 3 of the <b>Course Design Institute</b></p>\r\n\r\n<p>How can you involve students more fully in classroom activities? This workshop addresses ways in which instructors can construct classroom activities that encourage active engagement with course content and promote in-class participation among students.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_designing_learning_activities",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_designing_learning_activities.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926269582264/huge/50dab19d14e590a9dd2d65671227cbb9911d4178.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926549278314,
+        "title": "GET SET Workshop: Structuring a Teaching Portfolio",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-02-12T12:54:53-05:00",
+        "created_at": "2021-02-12T12:00:07-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-30",
+        "last_date": "2021-03-30",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_structuring_a_teaching_portfolio",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 3 of the Teaching Portfolio Institute\n\nAre you interested in documenting your teaching experiences for the academic job market? The process of developing your teaching portfolio allows you to reflect on your teaching practices and how they represent your role as an instructor. This workshop will address the fundamentals of a teaching portfolio, share various formats used and an opportunity to discuss examples.\n\nLearn more and register",
+        "photo_id": 35926540904935,
+        "detail_views": 73,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926553552500,
+              "event_id": 35926549278314,
+              "start": "2021-03-30T11:00:00-04:00",
+              "end": "2021-03-30T12:15:00-04:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 3 of the <b>Teaching Portfolio Institute</b></p>\r\n\r\n<p>Are you interested in documenting your teaching experiences for the academic job market? The process of developing your teaching portfolio allows you to reflect on your teaching practices and how they represent your role as an instructor. This workshop will address the fundamentals of a teaching portfolio, share various formats used and an opportunity to discuss examples.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#TPI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_structuring_a_teaching_portfolio",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_structuring_a_teaching_portfolio.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926540904935/huge/f000375a8885023341f041707f3f1cb90da8bd09.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    },
+    {
+      "event": {
+        "id": 35926278876993,
+        "title": "GET SET Workshop: Course Design Institute Peer Review Session",
+        "url": "https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI",
+        "updated_at": "2021-02-12T12:54:50-05:00",
+        "created_at": "2021-02-12T11:16:07-05:00",
+        "facebook_id": null,
+        "first_date": "2021-03-31",
+        "last_date": "2021-03-31",
+        "hashtag": "#CornellGETSET",
+        "urlname": "get_set_workshop_course_design_institute_peer_review_session",
+        "user_id": 31891425464776,
+        "directions": null,
+        "allows_reviews": true,
+        "allows_attendance": true,
+        "location": "",
+        "room_number": null,
+        "location_name": "",
+        "status": "live",
+        "experience": "virtual",
+        "stream_url": "",
+        "stream_info": "",
+        "stream_embed_code": "",
+        "created_by": 31891425464776,
+        "updated_by": 31891425464776,
+        "city_id": null,
+        "neighborhood_id": null,
+        "school_id": 10,
+        "campus_id": null,
+        "recurring": false,
+        "free": false,
+        "private": false,
+        "verified": true,
+        "rejected": false,
+        "sponsored": false,
+        "venue_id": null,
+        "ticket_url": "",
+        "ticket_cost": "",
+        "keywords": [
+          "teaching",
+          "Graduate Students"
+        ],
+        "tags": [
+          "workshops",
+          "Graduate Students",
+          "Teaching Assistants",
+          "Post docs",
+          "GET SET"
+        ],
+        "description_text": "Part 4 of the Course Design Institute\n\nThis workshop is for those who have completed the earlier workshops and would like a letter to document their participation in the Institute. This capstone experience is an opportunity for you to draft a syllabus for a course in your field and get peer-feedback.\n\nLearn more and register",
+        "photo_id": 35926269582264,
+        "detail_views": 72,
+        "event_instances": [
+          {
+            "event_instance": {
+              "id": 35926284230373,
+              "event_id": 35926278876993,
+              "start": "2021-03-31T14:00:00-04:00",
+              "end": "2021-03-31T15:15:00-04:00",
+              "ranking": 0.17,
+              "all_day": false,
+              "num_attending": 0
+            }
+          }
+        ],
+        "address": "",
+        "description": "<p>Part 4 of the <b>Course Design Institute</b></p>\r\n\r\n<p>This workshop is for those who have completed the earlier workshops and would like a letter to document their participation in the Institute. This capstone experience is an opportunity for you to draft a syllabus for a course in your field and get peer-feedback.</p>\r\n\r\n<p><a href=\"https://teaching.cornell.edu/resource/get-set-workshop-schedule#CDI\">Learn more and register</a></p>\r\n",
+        "featured": false,
+        "geo": {
+          "latitude": null,
+          "longitude": null,
+          "street": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zip": null
+        },
+        "filters": {
+          "departments": [
+            {
+              "name": "Center for Teaching Innovation (CTI)",
+              "id": 14006
+            }
+          ],
+          "event_types": [
+            {
+              "name": "Class/ Workshop",
+              "id": 5915
+            }
+          ]
+        },
+        "custom_fields": {
+          "contact_email": "cornellcti@cornell.edu",
+          "contact_name": "Derina Samuel",
+          "dept_web_site": "https://teaching.cornell.edu",
+          "registration_status": "open",
+          "open_to": "All Cornell graduate students, post docs, and TAs"
+        },
+        "localist_url": "https://events.cornell.edu/event/get_set_workshop_course_design_institute_peer_review_session",
+        "localist_ics_url": "https://events.cornell.edu/event/get_set_workshop_course_design_institute_peer_review_session.ics",
+        "photo_url": "https://localist-images.azureedge.net/photos/35926269582264/huge/50dab19d14e590a9dd2d65671227cbb9911d4178.jpg",
+        "venue_url": null,
+        "group_id": 5471,
+        "group_name": "CTI Grad Students"
+      }
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 100,
+    "total": 1
+  },
+  "date": {
+    "first": "2021-02-28",
+    "last": "2021-04-03"
+  }
+}

@@ -22,11 +22,11 @@ export const getEventStart = (event: EventEvent) => {
 /**
  * Gets time from dateTime.
  *
- * @param {dateTime} dateTime A valid datetime.
+ * @param {dateTime} dateTime A valid date time.
  *
  * @return {string} The 12 hour string: "1:00 p.m".
  */
-const getTimefromDateTime = (dateTime: Date) => {
+const getTimeFromDateTime = (dateTime: Date) => {
   const time = moment(dateTime).format("h:mm a");
   return time;
 };
@@ -38,7 +38,7 @@ const getTimefromDateTime = (dateTime: Date) => {
  *
  * @return {string} The abbreviated month and day "Jan 1".
  */
-const getMonthDayfromDateTime = (dateTime: Date) => {
+const getMonthDayFromDateTime = (dateTime: Date) => {
   const monthDay = moment(dateTime).format("MMMM D");
   return monthDay;
 };
@@ -46,11 +46,11 @@ const getMonthDayfromDateTime = (dateTime: Date) => {
 /**
  * Gets day  from dateTime.
  *
- * @param {dateTime} dateTime A valid datetime.
+ * @param {dateTime} dateTime A valid date time.
  *
  * @return {string} The abbreviated day "1".
  */
-const getDayfromDateTime = (dateTime: Date) => {
+const getDayFromDateTime = (dateTime: Date) => {
   const day = moment(dateTime).format("D");
   return day;
 };
@@ -121,8 +121,8 @@ export const getDisplayDate = (event: EventEvent, format: Format) => {
  */
 export const getEventDate = (event: EventEvent) => {
   const startDateTime = getEventStart(event);
-  const eventSrtartDate = getMonthDayfromDateTime(startDateTime);
-  return eventSrtartDate;
+  const eventStartDate = getMonthDayFromDateTime(startDateTime);
+  return eventStartDate;
 };
 
 /**
@@ -159,7 +159,7 @@ export const getTruncDesc = (
  */
 export const getDay = (event: EventEvent) => {
   const startDateTime = getEventStart(event);
-  const date = getDayfromDateTime(startDateTime);
+  const date = getDayFromDateTime(startDateTime);
   return date;
 };
 
@@ -167,7 +167,7 @@ export const getEventEndTime = (event: EventEvent) => {
   const endTime = getEventEnd(event);
   let time = "";
   if (typeof endTime !== "undefined" && endTime !== null) {
-    time = getTimefromDateTime(endTime);
+    time = getTimeFromDateTime(endTime);
   }
   return time;
 };
@@ -190,7 +190,7 @@ export const getEventTime = (event: EventEvent) => {
     eventTime = "all day";
   } else {
     const startDate = getEventStart(event);
-    eventTime = getTimefromDateTime(startDate);
+    eventTime = getTimeFromDateTime(startDate);
   }
   return eventTime;
 };
@@ -208,7 +208,7 @@ export const getEventFullTime = (event: EventEvent) => {
     const startDate = getEventStart(event);
     let stopTime = getEventEndTime(event);
     stopTime = stopTime ? ` - ${stopTime}` : "";
-    eventTime = getTimefromDateTime(startDate) + stopTime;
+    eventTime = getTimeFromDateTime(startDate) + stopTime;
   }
   return eventTime;
 };
@@ -255,7 +255,7 @@ export const getTypeIds = (event: EventEvent) => {
 };
 
 /**
- * The events deartments id
+ * The events departments id
  * @param {EventEvent} event The event object.
  *
  * @return {array} The department id.
@@ -271,7 +271,7 @@ export const getDepartmentIds = (event: EventEvent) => {
 };
 
 /**
- * The events deartment id
+ * The events department id
  * @param {EventEvent} event The event object.
  *
  * @return {number|undefined} The department id.

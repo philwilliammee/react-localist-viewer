@@ -1,3 +1,8 @@
+import {
+  ViewComponentProps,
+  DisplayedDateRange,
+  Events,
+} from "./../../types/types";
 // import { ApiConnectorProps } from "./../../types/types";
 import axios from "axios";
 import moment from "moment";
@@ -90,3 +95,23 @@ const localistApiConnector = (props: ApiConnectorProps) => {
 };
 
 export default localistApiConnector;
+
+export async function fetchEvents(
+  props: ViewComponentProps,
+  currentPage = 0,
+  displayedDateRange: DisplayedDateRange
+) {
+  let start, end;
+  if (props.format === "calendar") {
+    start = displayedDateRange.start.format("YYYY-MM-DD hh:mm");
+    end = displayedDateRange.end.format("YYYY-MM-DD hh:mm");
+  }
+
+  const { data }: { data: Events } = await localistApiConnector({
+    ...props,
+    page: currentPage,
+    start,
+    end,
+  });
+  return data;
+}

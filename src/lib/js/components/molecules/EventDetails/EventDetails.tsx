@@ -85,11 +85,16 @@ const AgendaInner = (props: Props) => {
                 ) : (
                   ""
                 )}
-
-                <h5>Website</h5>
-                <p>
-                  <a href={event.url}>{truncateUrl(event.url, 60)}</a>
-                </p>
+                {event.url ? (
+                  <>
+                    <h5>Website</h5>
+                    <p>
+                      <a href={event.url}>{truncateUrl(event.url, 60)}</a>
+                    </p>
+                  </>
+                ) : (
+                  ""
+                )}
               </Grid>
               {/* <Grid col={4}>
                 <h4>Group</h4>

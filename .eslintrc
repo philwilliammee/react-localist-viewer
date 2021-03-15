@@ -8,5 +8,8 @@
     "plugins": ["cypress"],
     "env": {
         "cypress/globals": true
+    },
+    "rules": {
+        "no-unused-vars": "warn"
     }
 }
