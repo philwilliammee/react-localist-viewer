@@ -112,15 +112,15 @@ export interface EventElement {
 export interface EventEvent {
   id: number;
   title: string;
-  url: string;
+  url: string | null;
   updated_at: Date;
   created_at: Date;
   facebook_id: null;
   first_date: Date;
   last_date: Date;
-  hashtag: string;
+  hashtag: string | null;
   urlname: string;
-  user_id: number;
+  user_id: number | null;
   directions: null;
   allows_reviews: boolean;
   allows_attendance: boolean;
@@ -129,11 +129,11 @@ export interface EventEvent {
   location_name: string;
   status: string;
   experience: string;
-  stream_url: string;
-  stream_info: string;
-  stream_embed_code: string;
-  created_by: number;
-  updated_by: number;
+  stream_url: string | null;
+  stream_info: string | null;
+  stream_embed_code: string | null;
+  created_by: number | null;
+  updated_by: number | null;
   city_id: null;
   neighborhood_id: null;
   school_id: number;
@@ -145,8 +145,8 @@ export interface EventEvent {
   rejected: boolean;
   sponsored: boolean;
   venue_id: null;
-  ticket_url: string;
-  ticket_cost: string;
+  ticket_url: string | null;
+  ticket_cost: string | null;
   keywords: string[];
   tags: string[];
   description_text: string;
@@ -203,9 +203,9 @@ export interface Department {
 export interface Geo {
   latitude: null;
   longitude: null;
-  street: null;
-  city: null;
-  state: null;
+  street: string | null;
+  city: string | null;
+  state: string | null;
   country: null;
   zip: null;
 }
