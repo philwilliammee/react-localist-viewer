@@ -116,4 +116,9 @@ See also the list of [contributors](https://github.com/philwilliammee/react-loca
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/philwilliammee/react-localist-viewer/blob/master/LICENSE) file for details
 
+## storybook
+
+run the dev server `npm run storybook`
+run the prod server `npx http-server ./storybook/build/`
+
 ## Acknowledgments
