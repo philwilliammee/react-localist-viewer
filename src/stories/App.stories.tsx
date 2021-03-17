@@ -6,7 +6,7 @@ import { Story } from "@storybook/react";
 import App from "lib/App";
 
 const AppStories = {
-  title: "Example/Localist App",
+  title: "React-Localist-Viewer/Localist App",
   component: App,
 };
 

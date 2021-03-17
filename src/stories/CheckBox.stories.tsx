@@ -7,7 +7,7 @@ import Checkbox from "lib/js/components/atoms/forms/CheckBox";
 
 //👇 This default export determines where your story goes in the story list
 const CheckBoxStories = {
-  title: "Example/Checkbox ",
+  title: "React-Localist-Viewer/Checkbox ",
   component: Checkbox,
 };
 
