@@ -46,7 +46,7 @@ const Filters = () => {
       // eventKeywordsFull.push(event.event.experience);
 
       if (isNested(event, "event", "group_name")) {
-        eventGroupNamesFull.push(event.event.group_name);
+        eventGroupNamesFull.push(event.event?.group_name || "");
       }
     }
   });

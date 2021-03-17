@@ -29,7 +29,7 @@ const AgendaInner = (props: Props) => {
     return <></>;
   }
 
-  const deptWebsite = event.custom_fields.dept_web_site
+  const deptWebsite = event?.custom_fields?.dept_web_site
     ? event.custom_fields.dept_web_site
     : "";
 
@@ -116,12 +116,12 @@ const AgendaInner = (props: Props) => {
 
                 <h5>Contact E-Mail</h5>
                 <p>
-                  <a href={`mailto:${event.custom_fields.contact_email}`}>
-                    {event.custom_fields.contact_email}
+                  <a href={`mailto:${event?.custom_fields?.contact_email}`}>
+                    {event?.custom_fields?.contact_email}
                   </a>
                 </p>
                 <h5>Contact Name</h5>
-                <p>{event.custom_fields.contact_name}</p>
+                <p>{event?.custom_fields?.contact_name}</p>
                 {deptWebsite ? (
                   <>
                     <h5>Dept. Web Site</h5>

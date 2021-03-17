@@ -221,7 +221,7 @@ export const getEventFullTime = (event: EventEvent) => {
 export const getGroupName = (event: EventEvent) => {
   let groupName = "";
   if (typeof event.group_name !== "undefined") {
-    groupName = event.group_name;
+    groupName = event.group_name || "";
   }
   return groupName;
 };
@@ -234,7 +234,7 @@ export const getGroupName = (event: EventEvent) => {
 export const getGroupId = (event: EventEvent) => {
   let groupId = 0;
   if (typeof event.group_name !== "undefined") {
-    groupId = event.group_id;
+    groupId = event.group_id || -1;
   }
   return groupId;
 };
