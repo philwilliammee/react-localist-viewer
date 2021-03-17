@@ -15,13 +15,11 @@ const Template: Story<ComponentProps<typeof ModalDialog>> = (args) => {
   return <ModalDialog {...args} />;
 };
 
-const child = () => <div>Modal Dialog</div>;
-
 export const Default = Template.bind({});
 Default.args = {
   showDialog: true,
   setShowDialog: () => {},
-  children: child,
+  children: <div>Modal Dialog Content</div>,
 };
 
 export default ModalStories;
