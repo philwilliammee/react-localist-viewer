@@ -6,13 +6,11 @@ import { Story } from "@storybook/react";
 
 import ModalDialog from "lib/js/components/atoms/ModalDialog";
 
-//👇 This default export determines where your story goes in the story list
-const CheckBoxStories = {
-  title: "React-Localist-Viewer/ModalDialog ",
+const ModalStories = {
+  title: "Atoms/ModalDialog ",
   component: ModalDialog,
 };
 
-//👇 We create a “template” of how args map to rendering
 const Template: Story<ComponentProps<typeof ModalDialog>> = (args) => {
   return <ModalDialog {...args} />;
 };
@@ -26,4 +24,4 @@ Default.args = {
   children: child,
 };
 
-export default CheckBoxStories;
+export default ModalStories;

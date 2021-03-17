@@ -121,17 +121,17 @@ export interface EventEvent {
   hashtag: string | null;
   urlname: string;
   user_id: number | null;
-  directions: null;
+  directions: string | null;
   allows_reviews: boolean;
   allows_attendance: boolean;
   location: string;
-  room_number: null;
+  room_number: string | null;
   location_name: string;
-  status: string;
-  experience: string;
-  stream_url: string | null;
-  stream_info: string | null;
-  stream_embed_code: string | null;
+  status?: string;
+  experience?: string;
+  stream_url?: string | null;
+  stream_info?: string | null;
+  stream_embed_code?: string | null;
   created_by: number | null;
   updated_by: number | null;
   city_id: null;
@@ -144,7 +144,7 @@ export interface EventEvent {
   verified: boolean;
   rejected: boolean;
   sponsored: boolean;
-  venue_id: null;
+  venue_id: number | null;
   ticket_url: string | null;
   ticket_cost: string | null;
   keywords: string[];
@@ -158,20 +158,20 @@ export interface EventEvent {
   featured: boolean;
   geo: Geo;
   filters: Filters;
-  custom_fields: CustomFields;
+  custom_fields?: CustomFields;
   localist_url: string;
   localist_ics_url: string;
   photo_url: string;
-  venue_url: null;
-  group_id: number;
-  group_name: string;
+  venue_url?: string | null;
+  group_id?: number | null;
+  group_name?: string | null;
   itemClassArray?: string[]; // custom type
 }
 
 export interface CustomFields {
-  contact_email: string;
-  contact_name: string;
-  dept_web_site: string;
+  contact_email?: string | null;
+  contact_name?: string | null;
+  dept_web_site?: string | null;
   open_to?: string;
   registration_status?: string;
 }
@@ -201,13 +201,13 @@ export interface Department {
 }
 
 export interface Geo {
-  latitude: null;
-  longitude: null;
+  latitude: string | null;
+  longitude: string | null;
   street: string | null;
   city: string | null;
   state: string | null;
-  country: null;
-  zip: null;
+  country: string | null;
+  zip: string | null;
 }
 
 export interface Page {
