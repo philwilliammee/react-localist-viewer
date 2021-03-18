@@ -128,14 +128,9 @@ describe("Make sure site loads", () => {
     // Today
     cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(1)").click();
     cy.get(".rbc-toolbar-label").contains(weekday[d.getDay()]);
-    /* ==== End Cypress Studio ==== */
   });
 
   it("events month exist", () => {
-    /* ==== Generated with Cypress Studio ==== */
-    cy.get(
-      '[style="appearance: none; font-size: 0.9em; font-weight: bold; background: rgb(63, 78, 96); border: 0px; border-radius: 0.3em; color: white; padding: 0.5em; cursor: pointer; position: fixed; z-index: 99999; margin: 0.5rem; bottom: 0px; left: 0px;"]'
-    ).click();
     cy.get(":nth-child(1) > .rbc-event > .rbc-event-content").click();
     cy.get(".close").click();
     cy.get(":nth-child(2) > .rbc-event > .rbc-event-content").click();
@@ -144,7 +139,6 @@ describe("Make sure site loads", () => {
     cy.get(".close").click();
     cy.get(":nth-child(4) > .rbc-event > .rbc-event-content").click();
     cy.get(".close").click();
-    /* ==== Generated with Cypress Studio ==== */
     cy.get(":nth-child(2) > ul > li > label > input").check();
     cy.get(":nth-child(5) > ul > :nth-child(1) > label").click();
     cy.get(":nth-child(5) > ul > :nth-child(1) > label > input").check();
@@ -176,10 +170,6 @@ describe("Make sure site loads", () => {
   });
 
   it("events list exist", () => {
-    /* ==== Generated with Cypress Studio ==== */
-    cy.get(
-      '[style="appearance: none; font-size: 0.9em; font-weight: bold; background: rgb(63, 78, 96); border: 0px; border-radius: 0.3em; color: white; padding: 0.5em; cursor: pointer; position: fixed; z-index: 99999; margin: 0.5rem; bottom: 0px; left: 0px;"]'
-    ).click();
     cy.get(":nth-child(3) > :nth-child(3)").click();
     cy.get(
       ":nth-child(1) > .events-main-body > .cwd-component > .event-node > .events > .group-link-wrapper > .title > h3"
@@ -214,18 +204,12 @@ describe("Make sure site loads", () => {
     cy.get(":nth-child(14) > label > input").check();
     cy.get(":nth-child(13) > label > input").check();
     cy.get(".reset > button").click();
-    /* ==== End Cypress Studio ==== */
   });
 
   it("back month test", () => {
-    /* ==== Generated with Cypress Studio ==== */
-    cy.get(
-      '[style="appearance: none; font-size: 0.9em; font-weight: bold; background: rgb(63, 78, 96); border: 0px; border-radius: 0.3em; color: white; padding: 0.5em; cursor: pointer; position: fixed; z-index: 99999; margin: 0.5rem; bottom: 0px; left: 0px;"]'
-    ).click();
     cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(2)").click();
     cy.get(":nth-child(1) > .rbc-event > .rbc-event-content").click();
     cy.get(".close").click();
     cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(3)").click();
-    /* ==== End Cypress Studio ==== */
   });
 });
