@@ -2,6 +2,7 @@ import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
 import Grid from "lib/js/components/atoms/Grid";
+import { GridCol } from "lib/js/components/atoms/Grid/Grid";
 
 const GridStories = {
   title: "Atoms/Grid ",
@@ -15,8 +16,10 @@ const containerArgs = {
   style: { border: "solid 1px #eee" },
 };
 
+const initCol: GridCol = 6;
+
 const childArgs = {
-  col: 6,
+  col: initCol,
   style: {
     border: "solid 1px #eee",
     backgroundColor: `#777`,
@@ -33,7 +36,7 @@ const ItemsGrid: Story<ComponentProps<typeof Grid>> = (args) => (
       return (
         <Grid
           key={i}
-          col={col}
+          col={col as GridCol}
           style={{
             border: "solid 1px #eee",
             backgroundColor: `#${randomColor}`,
