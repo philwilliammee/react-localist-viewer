@@ -20,7 +20,11 @@ const Grid = (props: Props) => {
       </div>
     );
   }
-  return <div className={`flex-${props.col}`}>{props.children}</div>;
+  return (
+    <div style={props.style} className={`flex-${props.col}`}>
+      {props.children}
+    </div>
+  );
 };
 
 Grid.propTypes = {
