@@ -36,6 +36,10 @@ import { queryClient } from "lib/App";
 const queryId = "events";
 let localizer = momentLocalizer(moment);
 
+export interface FlatEvent extends Event {
+  id: number;
+}
+
 let EventsCalendar = (props: any) => {
   const {
     setEvents,
@@ -102,7 +106,7 @@ let EventsCalendar = (props: any) => {
   };
 
   // Put events in Big Calendar Structure
-  const flatEvents: Event[] = filteredEvents.map((event) => {
+  const flatEvents: FlatEvent[] = filteredEvents.map((event) => {
     return {
       id: event.event.id,
       title: event.event.title,

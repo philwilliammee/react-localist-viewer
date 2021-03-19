@@ -5,6 +5,9 @@ import React, { ComponentProps } from "react";
 import { Story } from "@storybook/react";
 
 import ModalDialog from "lib/js/components/atoms/ModalDialog";
+import { Default as EventInnerStoriesDefault } from "./EventDetails.stories";
+import { EventEvent } from "lib/types/types";
+import { singleEvent } from "./assets/testData";
 
 const ModalStories = {
   title: "Atoms/ModalDialog ",
@@ -20,6 +23,14 @@ Default.args = {
   showDialog: true,
   setShowDialog: () => {},
   children: <div>Modal Dialog Content</div>,
+};
+
+const eventData: EventEvent = { ...singleEvent.event };
+export const EventInner = Template.bind({});
+EventInner.args = {
+  showDialog: true,
+  setShowDialog: () => {},
+  children: <EventInnerStoriesDefault event={eventData} />,
 };
 
 export default ModalStories;
