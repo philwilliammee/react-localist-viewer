@@ -21,7 +21,9 @@ const Template: Story<ComponentProps<typeof ModalDialog>> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   showDialog: true,
-  setShowDialog: () => {},
+  setShowDialog: () => {
+    alert("toggle open/close");
+  },
   children: <div>Modal Dialog Content</div>,
 };
 
@@ -29,7 +31,9 @@ const eventData: EventEvent = { ...singleEvent.event };
 export const EventInner = Template.bind({});
 EventInner.args = {
   showDialog: true,
-  setShowDialog: () => {},
+  setShowDialog: () => {
+    alert("toggle open/close");
+  },
   children: <EventInnerStoriesDefault event={eventData} />,
 };
 
