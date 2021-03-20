@@ -32,7 +32,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook:github": "build-storybook -o ./docs/storybook",
     "storybook:prod-server": "npx http-server ./docs/storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "update:all": "npx npm-check -u"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.0",
