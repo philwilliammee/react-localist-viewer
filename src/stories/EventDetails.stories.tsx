@@ -7,7 +7,7 @@ import { EventEvent } from "lib/types/types";
 const EventInnerStories = {
   title: "Molecules/EventInner ",
   component: EventInner,
-} as Meta;
+};
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof EventInner>> = (args) => (
@@ -28,4 +28,4 @@ Default.args = {
   event: eventData,
 };
 
-export default EventInnerStories;
+export default EventInnerStories as Meta;

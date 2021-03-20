@@ -11,10 +11,12 @@ import InlineCompact from "../src/lib/js/components/molecules/inline_compact";
 // import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
 import renderer from "react-test-renderer";
 import { componentData } from "./testData";
+// import { QueryClient, QueryClientProvider } from "react-query";
 
 beforeAll(() => {
   window.VarA = "foo";
   window.VarB = "bar";
+  // window.queryClient = new QueryClient();
 });
 
 test("Standard Enabled", () => {
@@ -108,24 +110,26 @@ test("InlineCompact Enabled", () => {
 });
 
 /**
- * TypeError: Cannot use 'in' operator to search for 'window' in null
- * <MonthView> component: in MonthView (created by Calendar)
- * @todo at least add some unit testing
+ * The render can not be parsed out of react-query no clear path to use jest with react-render
+ * https://react-query.tanstack.com/guides/testing
+ * @todo test child components of calendar.
  */
 // test("Calendar Enabled", () => {
 //   const component = renderer.create(
-//     <Calendar
-//       heading="Calendar Test"
-//       events={componentData.events}
-//       filterby="none"
-//       wrapperClassArray={[]}
-//       listClassArray={[]}
-//       hidedescription="false"
-//       truncatedescription="250"
-//       hideimages="false"
-//       hideaddcal="true"
-//       hidepagination="true"
-//     />
+//       <QueryClientProvider client={queryClient}>
+//         <Calendar
+//           heading="Calendar Test"
+//           events={componentData.events}
+//           filterby="none"
+//           wrapperClassArray={[]}
+//           listClassArray={[]}
+//           hidedescription="false"
+//           truncatedescription="250"
+//           hideimages="false"
+//           hideaddcal="true"
+//           hidepagination="true"
+//         />
+//       </QueryClientProvider>
 //   );
 //   let tree = component.toJSON();
 //   expect(tree).toMatchSnapshot();

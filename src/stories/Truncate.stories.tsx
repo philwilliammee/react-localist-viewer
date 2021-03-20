@@ -8,7 +8,7 @@ import { EventEvent } from "lib/types/types";
 const TruncateStories = {
   title: "Atoms/Truncate ",
   component: Truncate,
-} as Meta;
+};
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof Truncate>> = (args) => (
@@ -33,4 +33,4 @@ Example.args = {
   readMore: "📖",
 };
 
-export default TruncateStories;
+export default TruncateStories as Meta;

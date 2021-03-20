@@ -2,7 +2,7 @@
 
 import React, { ComponentProps } from "react";
 
-import { Story } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import Checkbox from "lib/js/components/atoms/forms/CheckBox";
 
 //👇 This default export determines where your story goes in the story list
@@ -26,4 +26,4 @@ Default.args = {
   },
 };
 
-export default CheckBoxStories;
+export default CheckBoxStories as Meta;

@@ -7,7 +7,7 @@ import AgendaInnerContent from "lib/js/components/molecules/EventsCalendar/Agend
 const AgendaInnerContentStories = {
   title: "Molecules/AgendaInnerContent",
   component: AgendaInnerContent,
-} as Meta;
+};
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof AgendaInnerContent>> = (args) => (
@@ -28,4 +28,4 @@ Default.args = {
   event: eventData,
 };
 
-export default AgendaInnerContentStories;
+export default AgendaInnerContentStories as Meta;
