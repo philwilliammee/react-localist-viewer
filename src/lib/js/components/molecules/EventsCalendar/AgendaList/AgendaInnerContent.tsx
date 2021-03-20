@@ -4,7 +4,7 @@ import { getEventTime, getClassItem } from "../../../../helpers/displayEvent";
 import { EventImg } from "../../partials";
 import Truncate from "../../../atoms/Truncate";
 import Time from "../../../atoms/Time";
-import { EventEvent } from "lib/types/types";
+import { EventEvent } from "../../../../../types/types";
 
 interface Props {
   hideaddcal: string | number;

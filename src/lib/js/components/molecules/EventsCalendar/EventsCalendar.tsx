@@ -21,7 +21,7 @@ import {
   DisplayedDateRange,
   EventEvent,
   ViewComponentProps,
-} from "lib/types/types";
+} from "../../../../types/types";
 import { useQuery } from "react-query";
 import {
   getKeyFromDateRange,
@@ -31,7 +31,7 @@ import {
   lastWeekOfMonth,
   weekOfMonth,
 } from "./dateUtils";
-import { queryClient } from "lib/App";
+import { queryClient } from "../../../../App";
 
 const queryId = "events";
 let localizer = momentLocalizer(moment);

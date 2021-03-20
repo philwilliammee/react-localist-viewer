@@ -1,7 +1,6 @@
-import { EventEvent } from "lib/types/types";
 import moment from "moment";
 import React from "react";
-import { EventElement } from "../../types/types";
+import { EventEvent, EventElement } from "../../types/types";
 
 interface DisplayedDateRange {
   start: moment.Moment;
