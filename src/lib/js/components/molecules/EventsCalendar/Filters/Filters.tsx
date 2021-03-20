@@ -24,31 +24,37 @@ const Filters = () => {
   }
 
   events.forEach((event) => {
-    if (
-      moment(event.event.first_date).isBetween(
-        displayedDateRange.start,
-        displayedDateRange.end
-      ) ||
-      moment(event.event.first_date).isSame(displayedDateRange.start)
-    ) {
-      // some events don't have types
-      if (isNested(event, "event", "filters", "event_types")) {
-        event.event.filters.event_types.forEach((type) => {
-          eventTypesFull.push(type.name);
-        });
-      }
+    // date filter is no longer needed since events are just for the month.
+    // if (
+    //   moment(event.event.first_date).isBetween(
+    //     displayedDateRange.start,
+    //     displayedDateRange.end
+    //   ) ||
+    //   moment(event.event.first_date).isSame(displayedDateRange.start)
+    // ) {
+    // some events don't have types
 
-      if (isNested(event, "event", "keywords")) {
-        event.event.keywords.forEach((keyword) => {
-          eventKeywordsFull.push(keyword);
-        });
-      }
-      // eventKeywordsFull.push(event.event.experience);
+    // if (isNested(event, "event", "filters", "event_types")) {
+    event.event.filters.event_types.forEach((type) => {
+      eventTypesFull.push(type.name);
+    });
+    //}
 
-      if (isNested(event, "event", "group_name")) {
-        eventGroupNamesFull.push(event.event?.group_name || "");
-      }
+    // if (isNested(event, "event", "keywords")) {
+    event.event.keywords.forEach((keyword) => {
+      eventKeywordsFull.push(keyword);
+    });
+    //}
+    // eventKeywordsFull.push(event.event.experience);
+
+    // if (isNested(event, "event", "group_name")) {
+    if (event.event.group_name) {
+      eventGroupNamesFull.push(event.event.group_name);
     }
+    // event.event?.group_name.forEach()
+
+    //}
+    //}
   });
 
   const eventTypes = [...new Set(eventTypesFull)].sort();
@@ -116,8 +122,6 @@ const Filters = () => {
                       checked={checkedItems.get(type)}
                       onChange={handleChange}
                     />
-                    {/* @todo remove this for production CTI only */}
-                    {" " + type.replace("CTI ", "")}
                   </label>
                 </li>
               );

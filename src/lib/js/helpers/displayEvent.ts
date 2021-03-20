@@ -6,8 +6,17 @@ import truncate from "truncate";
  * @file A collection of functions for working with event objects.
  */
 
-export const getEventEnd = (event: EventEvent) => {
-  return event.event_instances[0].event_instance.end;
+/**
+ * Some events don't have end dates/times but the end date/time must come after the start date
+ * So we default to the start date.
+ * @param {EventEvent} event
+ * @returns {Date}
+ */
+export const getEventEnd = (event: EventEvent): Date => {
+  return (
+    event.event_instances[0].event_instance.end ||
+    event.event_instances[0].event_instance.start
+  );
 };
 
 /**
@@ -166,7 +175,9 @@ export const getDay = (event: EventEvent) => {
 export const getEventEndTime = (event: EventEvent) => {
   const endTime = getEventEnd(event);
   let time = "";
-  if (typeof endTime !== "undefined" && endTime !== null) {
+  // Some end times are null if so it will return start date.
+  // If its the start date don't return a end time.
+  if (endTime !== getEventStart(event)) {
     time = getTimeFromDateTime(endTime);
   }
   return time;
