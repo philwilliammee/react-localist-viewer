@@ -1,17 +1,23 @@
 // YourComponent.stories.tsx
 
 import React, { ComponentProps } from "react";
-
-import { Story } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { Meta, Story } from "@storybook/react";
 
 import ModalDialog from "lib/js/components/atoms/ModalDialog";
 import { Default as EventInnerStoriesDefault } from "./EventDetails.stories";
 import { EventEvent } from "lib/types/types";
 import { singleEvent } from "./assets/testData";
 
+export const actionsData = {
+  setShowDialog: action("pin-task"),
+  onArchiveTask: action("archive-task"),
+};
+
 const ModalStories = {
   title: "Atoms/ModalDialog ",
   component: ModalDialog,
+  actions: { argTypesRegex: "^on[A-Z].*" },
 };
 
 const Template: Story<ComponentProps<typeof ModalDialog>> = (args) => {
@@ -33,4 +39,4 @@ EventInner.args = {
   children: <EventInnerStoriesDefault event={eventData} />,
 };
 
-export default ModalStories;
+export default ModalStories as Meta;
