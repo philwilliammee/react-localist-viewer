@@ -4,10 +4,14 @@ import { Story, Meta } from "@storybook/react";
 import Truncate from "lib/js/components/atoms/Truncate";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "lib/types/types";
+import { HideSelect } from "./assets/utilities";
 
 const TruncateStories = {
   title: "Atoms/Truncate ",
   component: Truncate,
+  argTypes: {
+    hidedescription: HideSelect,
+  },
 };
 
 // @todo fix this omg this is ugly. Why pass the whole event?

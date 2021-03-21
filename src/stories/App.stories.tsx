@@ -4,10 +4,18 @@ import React, { ComponentProps } from "react";
 
 import { Meta, Story } from "@storybook/react";
 import App from "lib/App";
+import { HideSelect } from "./assets/utilities";
 
 const AppStories = {
   title: "React-Localist-Viewer/Localist App",
   component: App,
+
+  argTypes: {
+    hideaddcal: HideSelect,
+    hidedescription: HideSelect,
+    hideimages: HideSelect,
+    hidepagination: HideSelect,
+  },
 };
 
 // all templates should be wrapped in events-listing cwd-events-style
