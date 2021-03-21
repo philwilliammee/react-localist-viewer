@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Standard from "../molecules/standard";
-import Compact from "../molecules/compact";
+import Standard from "../molecules/Standard";
+import Compact from "../molecules/Compact";
 import ModernStandard from "../molecules/ModernStandard";
-import ModernCompact from "../molecules/modern_compact";
-import InlineCompact from "../molecules/inline_compact";
+import ModernCompact from "../molecules/ModernCompact";
+import InlineCompact from "../molecules/InlineCompact";
 import Calendar from "../molecules/EventsCalendar";
 import { EventElement, FilterBy, Format } from "../../../types/types";
 

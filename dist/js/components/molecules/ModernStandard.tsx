@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../helpers/displayEvent";
-import AddCal from "./addCal";
-import { EventImg } from "./partials";
+import AddCal from "./AddCal";
+import { EventImg } from "./Partials";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";
 import { Department, InnerProps, StandardProps } from "../../../types/types";
