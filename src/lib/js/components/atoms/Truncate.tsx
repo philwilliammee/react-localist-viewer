@@ -13,12 +13,14 @@ interface Props {
 
 const Truncate = (props: Props) => {
   const { hidedescription, event, truncatedescription, readMore } = props;
+  console.log(truncatedescription);
   if (isHidden(hidedescription)) {
     return <></>;
   }
   return (
     <>
-      {getTruncDesc(event, truncatedescription)} {readMore}
+      {getTruncDesc(event, truncatedescription)}{" "}
+      {truncatedescription ? readMore : ""}
     </>
   );
 };

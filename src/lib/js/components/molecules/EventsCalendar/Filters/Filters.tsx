@@ -146,16 +146,16 @@ const Filters = () => {
         <h5>Keywords</h5>
         <div className="filter-group">
           <ul>
-            {eventKeywords.map((type, id) => {
+            {eventKeywords.map((keyword, id) => {
               return (
-                <li key={type}>
+                <li key={keyword}>
                   <label>
                     <CheckBox
-                      name={type}
-                      checked={checkedItems.get(type)}
+                      name={keyword}
+                      checked={checkedItems.get(keyword)}
                       onChange={handleChange}
                     />
-                    {" " + type}
+                    {" " + keyword}
                   </label>
                 </li>
               );
