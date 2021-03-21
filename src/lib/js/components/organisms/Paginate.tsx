@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
 import { isHidden } from "../../helpers/common";
+import { HideType } from "lib/types/types";
 
 interface Props {
-  hidepagination: string | number;
+  hidepagination: HideType;
   total: number;
   handlePageClick: (data: { selected: number }) => void;
 }
@@ -28,6 +29,7 @@ const Paginate = (props: Props) => {
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}
         containerClassName="pager_items"
+        //onMouseEnter={()=>void}
         // subContainerClassName="pager__item"
 
         activeClassName="is-active"
@@ -37,8 +39,7 @@ const Paginate = (props: Props) => {
 };
 
 Paginate.propTypes = {
-  hidepagination: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  hidepagination: PropTypes.oneOf(["true", "false", 1, 0]).isRequired,
   total: PropTypes.number.isRequired,
   handlePageClick: PropTypes.func.isRequired,
 };

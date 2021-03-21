@@ -5,14 +5,14 @@ import {
   getEventDateCompact,
   getClassItem,
 } from "../../helpers/displayEvent";
-import AddCal from "./addCal";
+import AddCal from "./AddCal";
 import {
   EventTitle,
   EventDate,
   EventLocation,
   EventThumbnail,
   EventDescription,
-} from "./partials";
+} from "./Partials";
 import { InnerProps, StandardProps } from "../../../types/types";
 
 const CompactInner = (props: InnerProps) => {

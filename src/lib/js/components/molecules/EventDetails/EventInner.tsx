@@ -6,8 +6,8 @@ import {
   getEventFullTime,
   getEventDepartmentsString,
 } from "../../../helpers/displayEvent";
-import AddCal from "../addCal";
-import { EventImg } from "../partials";
+import AddCal from "../AddCal";
+import { EventImg } from "../Partials";
 import truncateUrl from "truncate-url";
 import Grid from "../../atoms/Grid";
 import "./EventStyle.scss";

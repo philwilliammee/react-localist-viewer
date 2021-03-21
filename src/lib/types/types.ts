@@ -11,10 +11,10 @@ export interface AppProps {
   apikey?: string;
   truncatedescription: string;
   heading?: string;
-  hidedescription?: number | string;
-  hideimages?: number | string;
-  hideaddcal?: number | string;
-  hidepagination?: number | string;
+  hidedescription?: HideType;
+  hideimages?: HideType;
+  hideaddcal?: HideType;
+  hidepagination?: HideType;
   filterby: FilterBy;
   wrapperclass?: string;
   listclass?: string;
@@ -29,9 +29,9 @@ export interface ViewProps {
   events: EventElement[];
   format: Format;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
-  hideaddcal: string | number;
+  hidedescription: HideType; //string | number;
+  hideimages: HideType; // string | number;
+  hideaddcal: HideType; // string | number;
   filterby: FilterBy;
   wrapperclass: string;
   listclass: string;
@@ -44,6 +44,8 @@ export interface ViewProps {
   setCurrentPage: (page: number) => void;
   currentPage: number;
 }
+
+export type HideType = 0 | "true" | 1 | "false" | "";
 
 export interface ViewComponentProps extends ViewProps {
   key: number;
@@ -61,10 +63,10 @@ export interface DisplayedDateRange {
 
 export interface StandardProps {
   events: EventElement[];
-  hideaddcal: string | number;
+  hideaddcal: HideType;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
   hidetime?: boolean;
   wrapperClassArray: string[];
   listClassArray: string[];
@@ -72,10 +74,10 @@ export interface StandardProps {
 
 export interface InnerProps {
   event: EventEvent;
-  hideaddcal: string | number;
+  hideaddcal: HideType;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
   hidetime?: boolean;
 }
 

@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../../../helpers/displayEvent";
-import { EventImg } from "../../partials";
+import { EventImg } from "../../Partials";
 import Truncate from "../../../atoms/Truncate";
 import Time from "../../../atoms/Time";
-import { EventEvent } from "../../../../../types/types";
+import { EventEvent, HideType } from "../../../../../types/types";
 
 interface Props {
-  hideaddcal: string | number;
+  hideaddcal: HideType;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
   hidetime: boolean;
   setShowDialog: (bool: boolean) => void;
   setEventSelected: (event: EventEvent) => void;

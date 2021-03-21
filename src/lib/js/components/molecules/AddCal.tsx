@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import buildUrl from "build-url";
 import { getCalStartDate, getCalEndDate } from "../../helpers/displayEvent";
 import { isHidden } from "../../helpers/common";
-import { EventEvent } from "../../../types/types";
+import { EventEvent, HideType } from "../../../types/types";
 
 const buildGoogleLink = (myObj: EventEvent) => {
   const gDateStart = getCalStartDate(myObj);
@@ -66,7 +66,7 @@ const buildOutlookCal = (myObj: EventEvent) => {
 
 interface AddCalProps {
   event: EventEvent;
-  hideaddcal?: string | number;
+  hideaddcal?: HideType;
 }
 /**
  * @param {obj} props.event The localist event object

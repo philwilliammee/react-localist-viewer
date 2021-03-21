@@ -2,10 +2,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { fetchEvents } from "./js/services/localistApiConnector";
-import Heading from "./js/components/organisms/heading";
-import Paginate from "./js/components/organisms/paginate";
-import LocalistView from "./js/components/organisms/localist_view";
-import EventFilters from "./js/components/organisms/event_filterby";
+import Heading from "./js/components/organisms/Heading";
+import Paginate from "./js/components/organisms/Paginate";
+import LocalistView from "./js/components/organisms/LocalistView";
+import EventFilters from "./js/components/organisms/EeventFilterby";
 import { isHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
 import { AppProps, EventElement, ViewComponentProps } from "./types/types";
