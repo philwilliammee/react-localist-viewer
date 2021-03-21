@@ -5,7 +5,7 @@ import { fetchEvents } from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
-import EventFilters from "./js/components/organisms/EventFilterby";
+import EventFilters from "./js/components/organisms/EventFilterBy";
 import { isHidden, isNotHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
 import { AppProps, EventElement, ViewComponentProps } from "./types/types";
@@ -50,7 +50,6 @@ const Localist = (props: AppProps) => {
   const listClassArray = props?.listclass?.split(" ");
   listClassArray?.push("events-list");
 
-  // @todo on pagination hover pre fetch data or show loading spinner.
   useEffect(() => {
     let mounted = true;
     if (mounted) {

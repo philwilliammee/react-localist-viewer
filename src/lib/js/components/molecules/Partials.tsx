@@ -7,6 +7,8 @@ import {
   HideType,
 } from "../../../types/types";
 
+// @todo shouldn't these go in atoms?
+
 interface EventTitleProps {
   title: string;
   url: string;
