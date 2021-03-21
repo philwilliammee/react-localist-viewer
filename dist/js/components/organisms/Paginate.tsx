@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
 import { isHidden } from "../../helpers/common";
-import { HideType } from "lib/types/types";
+import { HideType } from "../../../types/types";
 
 interface Props {
   hidepagination: HideType;

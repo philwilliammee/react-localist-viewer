@@ -1,4 +1,4 @@
-import { HideType } from "lib/types/types";
+import { HideType } from "../../lib/types/types";
 
 interface HideSelectInterface {
   type: "select";
