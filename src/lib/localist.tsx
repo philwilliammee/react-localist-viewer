@@ -5,7 +5,7 @@ import { fetchEvents } from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
-import EventFilters from "./js/components/organisms/EeventFilterby";
+import EventFilters from "./js/components/organisms/EventFilterby";
 import { isHidden, isNotHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
 import { AppProps, EventElement, ViewComponentProps } from "./types/types";
