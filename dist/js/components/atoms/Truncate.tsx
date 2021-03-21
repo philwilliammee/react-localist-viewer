@@ -28,7 +28,7 @@ Truncate.propTypes = {
   truncatedescription: PropTypes.string.isRequired,
   // hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   //   .isRequired,
-  hidedescription: PropTypes.oneOf(["true", "false", 1, 0]),
+  hidedescription: PropTypes.oneOf(["true", "false", 1, 0, ""]),
   readMore: PropTypes.string,
 };
 

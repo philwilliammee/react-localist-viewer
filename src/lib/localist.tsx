@@ -6,7 +6,7 @@ import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
 import EventFilters from "./js/components/organisms/EeventFilterby";
-import { isHidden } from "./js/helpers/common";
+import { isHidden, isNotHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
 import { AppProps, EventElement, ViewComponentProps } from "./types/types";
 import { useQuery } from "react-query";
@@ -14,6 +14,7 @@ import {
   getKeyFromDateRange,
   initDateRange,
 } from "./js/components/molecules/EventsCalendar/dateUtils";
+import { queryClient } from "./App";
 
 const dateRange = initDateRange();
 
@@ -52,22 +53,39 @@ const Localist = (props: AppProps) => {
   // @todo on pagination hover pre fetch data or show loading spinner.
   useEffect(() => {
     let mounted = true;
-    if (data && mounted) {
-      // There has got to be a better way to set these.
-      const itemClassArray =
-        props?.itemclass?.split(" ").concat(["event-node"]) || [];
-      data.events.forEach((event: EventElement) => {
-        event.event.itemClassArray = [...itemClassArray];
-      });
-      // Used by calendar only.
-      setFilteredEvents(data.events);
-      setEvents(data.events);
-      setLlPage(data.page);
+    if (mounted) {
+      if (data) {
+        // There has got to be a better way to set these.
+        const itemClassArray =
+          props?.itemclass?.split(" ").concat(["event-node"]) || [];
+        data.events.forEach((event: EventElement) => {
+          event.event.itemClassArray = [...itemClassArray];
+        });
+
+        // Used by calendar only.
+        setFilteredEvents(data.events);
+        setEvents(data.events);
+        setLlPage(data.page);
+      }
+
+      // prefetch pagination data next page
+      const isUsingPagination = isNotHidden(props.hidepagination);
+      if (props.format !== "calendar" && llPage.current && isUsingPagination) {
+        const morePages = llPage.current < llPage.total;
+        const nextPage = llPage.current + 1;
+        if (morePages) {
+          queryClient.prefetchQuery(
+            ["events", nextPage],
+            () => fetchEvents(props as ViewComponentProps, nextPage, dateRange),
+            { staleTime: Infinity }
+          );
+        }
+      }
     }
     return function cleanup() {
       mounted = false;
     };
-  }, [key, data, loading]);
+  }, [llPage, data, loading]); // this was key, data, loading changed to llPage
 
   function handlePageClick(data: { selected: number }) {
     const newPage = data.selected + 1;

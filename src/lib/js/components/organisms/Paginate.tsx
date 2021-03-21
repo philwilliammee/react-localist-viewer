@@ -39,7 +39,7 @@ const Paginate = (props: Props) => {
 };
 
 Paginate.propTypes = {
-  hidepagination: PropTypes.oneOf(["true", "false", 1, 0]).isRequired,
+  hidepagination: PropTypes.oneOf(["true", "false", 1, 0, ""]).isRequired,
   total: PropTypes.number.isRequired,
   handlePageClick: PropTypes.func.isRequired,
 };

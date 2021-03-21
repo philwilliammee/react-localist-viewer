@@ -52,6 +52,10 @@ export const isHidden = (v: string | number | undefined) => {
   return v === "true" || v === 1;
 };
 
+export const isNotHidden = (v: string | number | undefined) => {
+  return !isHidden(v);
+};
+
 export const isNested = (obj: any, ...args: string[]) => {
   return args.reduce((obj, level) => obj && obj[level], obj);
 };
