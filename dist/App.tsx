@@ -12,7 +12,7 @@ const App = (props: AppProps) => (
     <EventsState>
       <Localist {...props} />
     </EventsState>
-    <ReactQueryDevtools initialIsOpen={true} />
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 );
 

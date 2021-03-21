@@ -3,18 +3,17 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import moment from "moment";
+// import moment from "moment";
 
 /**
  * @todo optimize this it has a lot of re-renders
  * onEach page key change filters reset.
  * departments may be a good one.
  * Some oddities with date range.
+ * Is nested should be able to be removed.
  */
 const Filters = () => {
-  const { events, setFilteredEvents, displayedDateRange } = useContext(
-    EventsContext
-  );
+  const { events, setFilteredEvents } = useContext(EventsContext);
   const [checkedItems, setCheckedItems] = useState(new Map());
   const eventTypesFull: string[] = [];
   const eventKeywordsFull: string[] = [];
@@ -24,31 +23,31 @@ const Filters = () => {
   }
 
   events.forEach((event) => {
-    if (
-      moment(event.event.first_date).isBetween(
-        displayedDateRange.start,
-        displayedDateRange.end
-      ) ||
-      moment(event.event.first_date).isSame(displayedDateRange.start)
-    ) {
-      // some events don't have types
-      if (isNested(event, "event", "filters", "event_types")) {
-        event.event.filters.event_types.forEach((type) => {
-          eventTypesFull.push(type.name);
-        });
-      }
-
-      if (isNested(event, "event", "keywords")) {
-        event.event.keywords.forEach((keyword) => {
-          eventKeywordsFull.push(keyword);
-        });
-      }
-      // eventKeywordsFull.push(event.event.experience);
-
-      if (isNested(event, "event", "group_name")) {
-        eventGroupNamesFull.push(event.event.group_name);
-      }
+    // if (
+    //   moment(event.event.first_date).isBetween(
+    //     displayedDateRange.start,
+    //     displayedDateRange.end
+    //   ) ||
+    //   moment(event.event.first_date).isSame(displayedDateRange.start)
+    // ) {
+    // some events don't have types
+    if (isNested(event, "event", "filters", "event_types")) {
+      event.event.filters.event_types.forEach((type) => {
+        eventTypesFull.push(type.name);
+      });
     }
+
+    if (isNested(event, "event", "keywords")) {
+      event.event.keywords.forEach((keyword) => {
+        eventKeywordsFull.push(keyword);
+      });
+    }
+    // eventKeywordsFull.push(event.event.experience);
+
+    if (isNested(event, "event", "group_name")) {
+      eventGroupNamesFull.push(event.event?.group_name || "");
+    }
+    //}
   });
 
   const eventTypes = [...new Set(eventTypesFull)].sort();
@@ -107,17 +106,16 @@ const Filters = () => {
         <h5>Group Name</h5>
         <div className="filter-group">
           <ul>
-            {eventGroupNames.map((type, id) => {
+            {eventGroupNames.map((group, id) => {
               return (
-                <li key={type}>
+                <li key={group}>
                   <label>
                     <CheckBox
-                      name={type}
-                      checked={checkedItems.get(type)}
+                      name={group}
+                      checked={checkedItems.get(group)}
                       onChange={handleChange}
                     />
-                    {/* @todo remove this for production CTI only */}
-                    {" " + type.replace("CTI ", "")}
+                    {" " + group}
                   </label>
                 </li>
               );
@@ -148,16 +146,16 @@ const Filters = () => {
         <h5>Keywords</h5>
         <div className="filter-group">
           <ul>
-            {eventKeywords.map((type, id) => {
+            {eventKeywords.map((keyword, id) => {
               return (
-                <li key={type}>
+                <li key={keyword}>
                   <label>
                     <CheckBox
-                      name={type}
-                      checked={checkedItems.get(type)}
+                      name={keyword}
+                      checked={checkedItems.get(keyword)}
                       onChange={handleChange}
                     />
-                    {" " + type}
+                    {" " + keyword}
                   </label>
                 </li>
               );

@@ -11,10 +11,10 @@ export interface AppProps {
   apikey?: string;
   truncatedescription: string;
   heading?: string;
-  hidedescription?: number | string;
-  hideimages?: number | string;
-  hideaddcal?: number | string;
-  hidepagination?: number | string;
+  hidedescription?: HideType;
+  hideimages?: HideType;
+  hideaddcal?: HideType;
+  hidepagination?: HideType;
   filterby: FilterBy;
   wrapperclass?: string;
   listclass?: string;
@@ -29,9 +29,9 @@ export interface ViewProps {
   events: EventElement[];
   format: Format;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
-  hideaddcal: string | number;
+  hidedescription: HideType; //string | number;
+  hideimages: HideType; // string | number;
+  hideaddcal: HideType; // string | number;
   filterby: FilterBy;
   wrapperclass: string;
   listclass: string;
@@ -44,6 +44,8 @@ export interface ViewProps {
   setCurrentPage: (page: number) => void;
   currentPage: number;
 }
+
+export type HideType = 0 | "true" | 1 | "false" | "";
 
 export interface ViewComponentProps extends ViewProps {
   key: number;
@@ -61,10 +63,10 @@ export interface DisplayedDateRange {
 
 export interface StandardProps {
   events: EventElement[];
-  hideaddcal: string | number;
+  hideaddcal: HideType;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
   hidetime?: boolean;
   wrapperClassArray: string[];
   listClassArray: string[];
@@ -72,10 +74,10 @@ export interface StandardProps {
 
 export interface InnerProps {
   event: EventEvent;
-  hideaddcal: string | number;
+  hideaddcal: HideType;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
   hidetime?: boolean;
 }
 
@@ -112,28 +114,28 @@ export interface EventElement {
 export interface EventEvent {
   id: number;
   title: string;
-  url: string;
+  url: string | null;
   updated_at: Date;
   created_at: Date;
   facebook_id: null;
   first_date: Date;
   last_date: Date;
-  hashtag: string;
+  hashtag: string | null;
   urlname: string;
-  user_id: number;
-  directions: null;
+  user_id: number | null;
+  directions: string | null;
   allows_reviews: boolean;
   allows_attendance: boolean;
   location: string;
-  room_number: null;
+  room_number: string | null;
   location_name: string;
-  status: string;
-  experience: string;
-  stream_url: string;
-  stream_info: string;
-  stream_embed_code: string;
-  created_by: number;
-  updated_by: number;
+  status?: string;
+  experience?: string;
+  stream_url?: string | null;
+  stream_info?: string | null;
+  stream_embed_code?: string | null;
+  created_by: number | null;
+  updated_by: number | null;
   city_id: null;
   neighborhood_id: null;
   school_id: number;
@@ -144,9 +146,9 @@ export interface EventEvent {
   verified: boolean;
   rejected: boolean;
   sponsored: boolean;
-  venue_id: null;
-  ticket_url: string;
-  ticket_cost: string;
+  venue_id: number | null;
+  ticket_url: string | null;
+  ticket_cost: string | null;
   keywords: string[];
   tags: string[];
   description_text: string;
@@ -158,20 +160,20 @@ export interface EventEvent {
   featured: boolean;
   geo: Geo;
   filters: Filters;
-  custom_fields: CustomFields;
+  custom_fields?: CustomFields;
   localist_url: string;
   localist_ics_url: string;
   photo_url: string;
-  venue_url: null;
-  group_id: number;
-  group_name: string;
+  venue_url?: string | null;
+  group_id?: number | null;
+  group_name?: string | null;
   itemClassArray?: string[]; // custom type
 }
 
 export interface CustomFields {
-  contact_email: string;
-  contact_name: string;
-  dept_web_site: string;
+  contact_email?: string | null;
+  contact_name?: string | null;
+  dept_web_site?: string | null;
   open_to?: string;
   registration_status?: string;
 }
@@ -201,13 +203,13 @@ export interface Department {
 }
 
 export interface Geo {
-  latitude: null;
-  longitude: null;
-  street: null;
-  city: null;
-  state: null;
-  country: null;
-  zip: null;
+  latitude: string | null;
+  longitude: string | null;
+  street: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  zip: string | null;
 }
 
 export interface Page {

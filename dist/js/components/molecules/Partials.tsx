@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { isHidden } from "../../helpers/common";
-import { EventImageCropTypes, Department } from "../../../types/types";
+import {
+  EventImageCropTypes,
+  Department,
+  HideType,
+} from "../../../types/types";
+
+// @todo shouldn't these go in atoms?
 
 interface EventTitleProps {
   title: string;
@@ -57,7 +63,7 @@ EventLocation.propTypes = {
 interface EventImageProps {
   photoUrl: string;
   title: string;
-  hideimages?: string | number;
+  hideimages?: HideType;
   photoCrop?: EventImageCropTypes;
 }
 
@@ -84,7 +90,7 @@ EventImg.defaultProps = {
 interface EventThumbnailProps {
   photoUrl: string;
   title: string;
-  hideimages?: string | number;
+  hideimages?: HideType;
   photoCrop?: EventImageCropTypes;
 }
 
@@ -120,7 +126,7 @@ interface EventDescriptionProps {
   description: string;
   title: string;
   url: string;
-  hidedescription?: string | number;
+  hidedescription?: HideType;
 }
 const EventDescription = (props: EventDescriptionProps) => {
   const { description, title, url, hidedescription } = props;

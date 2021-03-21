@@ -6,15 +6,15 @@ import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/ModernCompact";
 import InlineCompact from "../molecules/InlineCompact";
 import Calendar from "../molecules/EventsCalendar";
-import { EventElement, FilterBy, Format } from "../../../types/types";
+import { EventElement, FilterBy, Format, HideType } from "../../../types/types";
 
 interface Props {
   events: EventElement[];
   format: Format;
   truncatedescription: string;
-  hidedescription: string | number;
-  hideimages: string | number;
-  hideaddcal: string | number;
+  hidedescription: HideType;
+  hideimages: HideType;
+  hideaddcal: HideType;
   filterby: FilterBy;
   wrapperclass: string;
   listclass: string;

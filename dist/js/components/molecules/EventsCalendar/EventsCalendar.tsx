@@ -21,7 +21,7 @@ import {
   DisplayedDateRange,
   EventEvent,
   ViewComponentProps,
-} from "lib/types/types";
+} from "../../../../types/types";
 import { useQuery } from "react-query";
 import {
   getKeyFromDateRange,
@@ -31,10 +31,14 @@ import {
   lastWeekOfMonth,
   weekOfMonth,
 } from "./dateUtils";
-import { queryClient } from "lib/App";
+import { queryClient } from "../../../../App";
 
 const queryId = "events";
 let localizer = momentLocalizer(moment);
+
+export interface FlatEvent extends Event {
+  id: number;
+}
 
 let EventsCalendar = (props: any) => {
   const {
@@ -102,7 +106,7 @@ let EventsCalendar = (props: any) => {
   };
 
   // Put events in Big Calendar Structure
-  const flatEvents: Event[] = filteredEvents.map((event) => {
+  const flatEvents: FlatEvent[] = filteredEvents.map((event) => {
     return {
       id: event.event.id,
       title: event.event.title,

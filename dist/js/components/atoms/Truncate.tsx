@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { getTruncDesc } from "../../helpers/displayEvent";
 import { isHidden } from "../../helpers/common";
-import { EventEvent } from "../../../types/types";
+import { EventEvent, HideType } from "../../../types/types";
 
 interface Props {
   event: EventEvent;
   truncatedescription: string;
-  hidedescription?: "true" | "false" | 1 | 0;
+  hidedescription: HideType;
   readMore?: string;
 }
 
@@ -18,7 +18,8 @@ const Truncate = (props: Props) => {
   }
   return (
     <>
-      {getTruncDesc(event, truncatedescription)} {readMore}
+      {getTruncDesc(event, truncatedescription)}{" "}
+      {truncatedescription ? readMore : ""}
     </>
   );
 };
@@ -26,9 +27,8 @@ const Truncate = (props: Props) => {
 Truncate.propTypes = {
   event: PropTypes.object.isRequired,
   truncatedescription: PropTypes.string.isRequired,
-  // hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  //   .isRequired,
-  hidedescription: PropTypes.oneOf(["true", "false", 1, 0, ""]),
+  hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   readMore: PropTypes.string,
 };
 

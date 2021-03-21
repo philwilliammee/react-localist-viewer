@@ -20,15 +20,16 @@ import {
   EventEvent,
   FilterBy,
   Format,
+  HideType,
 } from "../../../types/types";
 
 interface StandardInnerProps {
   event: EventEvent;
   filterby: FilterBy;
   truncatedescription?: string;
-  hideaddcal: string | number;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hideaddcal: HideType;
+  hidedescription: HideType;
+  hideimages: HideType;
 }
 
 const StandardInner = (props: StandardInnerProps) => {
@@ -86,9 +87,9 @@ interface StandardProps {
   thumbnail?: string;
   wrapperClassArray: string[];
   listClassArray: string[];
-  hideaddcal: string | number;
-  hidedescription: string | number;
-  hideimages: string | number;
+  hideaddcal: HideType;
+  hidedescription: HideType;
+  hideimages: HideType;
 }
 const Standard = (props: StandardProps) => {
   const {
