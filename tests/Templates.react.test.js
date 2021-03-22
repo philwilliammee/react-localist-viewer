@@ -3,11 +3,11 @@
  */
 // Link.react.test.js
 import React from "react";
-import Standard from "../src/lib/js/components/molecules/standard";
-import Compact from "../src/lib/js/components/molecules/compact";
-import ModernCompact from "../src/lib/js/components/molecules/modern_compact";
+import Standard from "../src/lib/js/components/molecules/Standard";
+import Compact from "../src/lib/js/components/molecules/Compact";
+import ModernCompact from "../src/lib/js/components/molecules/ModernCompact";
 import ModernStandard from "../src/lib/js/components/molecules/ModernStandard";
-import InlineCompact from "../src/lib/js/components/molecules/inline_compact";
+import InlineCompact from "../src/lib/js/components/molecules/InlineCompact";
 // import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
 import renderer from "react-test-renderer";
 import { componentData } from "./testData";
