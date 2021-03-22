@@ -31,7 +31,7 @@ import {
   lastWeekOfMonth,
   weekOfMonth,
 } from "./dateUtils";
-import { queryClient } from "../../../../App";
+import { queryClient } from "../../../../query";
 
 const queryId = "events";
 let localizer = momentLocalizer(moment);
