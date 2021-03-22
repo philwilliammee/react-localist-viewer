@@ -14,7 +14,7 @@ import {
   getKeyFromDateRange,
   initDateRange,
 } from "./js/components/molecules/EventsCalendar/dateUtils";
-import { queryClient } from "./App";
+import { queryClient } from "./query";
 
 const dateRange = initDateRange();
 
