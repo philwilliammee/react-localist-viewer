@@ -9,26 +9,26 @@ import {
 
 // @todo shouldn't these go in atoms?
 
-interface EventTitleProps {
-  title: string;
-  url: string;
-}
+// interface EventTitleProps {
+//   title: string;
+//   url: string;
+// }
 
-const EventTitle = (props: EventTitleProps) => {
-  const { title, url } = props;
-  return (
-    <h3>
-      <a rel="noreferrer noopener" target="_blank" href={url}>
-        {title}
-      </a>
-    </h3>
-  );
-};
+// const EventTitle = (props: EventTitleProps) => {
+//   const { title, url } = props;
+//   return (
+//     <h3>
+//       <a rel="noreferrer noopener" target="_blank" href={url}>
+//         {title}
+//       </a>
+//     </h3>
+//   );
+// };
 
-EventTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-};
+// EventTitle.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+// };
 
 interface EventDateProps {
   date: string;
@@ -223,7 +223,7 @@ FilterButton.defaultProps = {
 };
 
 export {
-  EventTitle,
+  // EventTitle,
   EventDate,
   EventLocation,
   EventThumbnail,

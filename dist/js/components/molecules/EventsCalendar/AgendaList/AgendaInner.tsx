@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import EventsContext from "../../../../context/EventsContext";
 import PropTypes from "prop-types";

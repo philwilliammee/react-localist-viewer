@@ -1,3 +1,4 @@
+// @ts-nocheck
 import PropTypes from "prop-types";
 import React, { useRef, useEffect, useContext } from "react";
 import addClass from "dom-helpers/addClass";

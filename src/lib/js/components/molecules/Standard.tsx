@@ -9,7 +9,6 @@ import {
 } from "../../helpers/displayEvent";
 import AddCal from "./AddCal";
 import {
-  EventTitle,
   EventDate,
   EventLocation,
   EventThumbnail,
@@ -22,6 +21,7 @@ import {
   Format,
   HideType,
 } from "../../../types/types";
+import EventTitle from "../atoms/EventTitle";
 
 interface StandardInnerProps {
   event: EventEvent;
