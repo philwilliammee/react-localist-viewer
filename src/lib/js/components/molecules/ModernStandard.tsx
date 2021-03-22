@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../helpers/displayEvent";
 import AddCal from "./AddCal";
-import { EventImg } from "./Partials";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";
 import { Department, InnerProps, StandardProps } from "../../../types/types";
+import EventImg from "../atoms/EventImage";
 
 export const ModernStandardInner = (props: InnerProps) => {
   const { event, hideimages, hidetime } = props;

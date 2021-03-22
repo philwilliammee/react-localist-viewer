@@ -7,7 +7,7 @@ import {
   getGroupId,
   getDepartmentIds,
 } from "../../helpers/displayEvent";
-import { FilterButton } from "../molecules/Partials";
+import FilterButton from "../atoms/FilterButton";
 import { Department, EventElement, FilterBy } from "../../../types/types";
 
 interface Props {

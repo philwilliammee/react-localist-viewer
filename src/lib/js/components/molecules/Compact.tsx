@@ -6,14 +6,12 @@ import {
   getClassItem,
 } from "../../helpers/displayEvent";
 import AddCal from "./AddCal";
-import {
-  EventDate,
-  EventLocation,
-  EventThumbnail,
-  EventDescription,
-} from "./Partials";
+import EventDescription from "../atoms/EventDescription";
 import EventTitle from "../atoms/EventTitle";
 import { InnerProps, StandardProps } from "../../../types/types";
+import EventDate from "../atoms/EventDate";
+import EventLocation from "../atoms/EventLocation";
+import EventThumbnail from "../atoms/EventThumbnail";
 
 const CompactInner = (props: InnerProps) => {
   const {
