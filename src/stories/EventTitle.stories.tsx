@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventTitle from "lib/js/components/atoms/EventTitle";
+import EventTitle from "../lib/js/components/atoms/EventTitle";
 
 const EventTitleStories = {
   title: "Atoms/EventTitle ",

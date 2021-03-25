@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import Paginate from "lib/js/components/organisms/Paginate";
+import Paginate from "../lib/js/components/organisms/Paginate";
 import { HideSelect } from "./assets/utilities";
 
 const PaginateStories = {

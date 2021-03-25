@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventThumbnail from "lib/js/components/atoms/EventThumbnail";
+import EventThumbnail from "../lib/js/components/atoms/EventThumbnail";
 import { EventImageCropSelect, HideSelect } from "./assets/utilities";
 
 const EventThumbnailStories = {

@@ -3,9 +3,9 @@
 import React, { ComponentProps } from "react";
 import { Meta, Story } from "@storybook/react";
 
-import ModalDialog from "lib/js/components/atoms/ModalDialog";
+import ModalDialog from "../lib/js/components/atoms/ModalDialog";
 import { Default as EventInnerStoriesDefault } from "./EventDetails.stories";
-import { EventEvent } from "lib/types/types";
+import { EventEvent } from "../lib/types/types";
 import { singleEvent } from "./assets/testData";
 
 const ModalStories = {

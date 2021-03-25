@@ -1,8 +1,8 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventFilterBy from "lib/js/components/organisms/EventFilterBy";
-import { EventElement } from "lib/types/types";
+import EventFilterBy from "../lib/js/components/organisms/EventFilterBy";
+import { EventElement } from "../lib/types/types";
 import { componentData } from "./assets/testData";
 
 const EventFilterByStories = {

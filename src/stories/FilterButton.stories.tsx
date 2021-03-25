@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import FilterButton from "lib/js/components/atoms/FilterButton";
+import FilterButton from "../lib/js/components/atoms/FilterButton";
 
 const FilterButtonStories = {
   title: "Atoms/FilterButton ",

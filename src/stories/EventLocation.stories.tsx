@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventLocation from "lib/js/components/atoms/EventLocation";
+import EventLocation from "../lib/js/components/atoms/EventLocation";
 
 const EventLocationStories = {
   title: "Atoms/EventLocation ",

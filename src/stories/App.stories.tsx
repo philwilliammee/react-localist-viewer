@@ -3,7 +3,7 @@
 import React, { ComponentProps } from "react";
 
 import { Meta, Story } from "@storybook/react";
-import App from "lib/App";
+import App from "../lib/App";
 import { HideSelect } from "./assets/utilities";
 
 const AppStories = {

@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import Heading from "lib/js/components/organisms/Heading";
+import Heading from "../lib/js/components/organisms/Heading";
 
 const HeadingStories = {
   title: "Organisms/Heading ",
