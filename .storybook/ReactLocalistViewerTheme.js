@@ -10,5 +10,5 @@ export default create({
   brandUrl:
     "https://philwilliammee.github.io/react-localist-viewer/?path=/story/react-localist-viewer-introduction--page",
   brandImage:
-    "https://lh5.googleusercontent.com/fFbi2xmn1y5CZlfHSAndPf_KkCOjcRtOsrLLK0u71s9rpeWHVHgOP71kJP8Tb6Om3fg2Frf7cwr4HtnHpNFZ=w1067-h955",
+    "https://user-images.githubusercontent.com/4685094/114267665-0ff41f80-99cb-11eb-8d96-6df7abaceb59.png",
 });
