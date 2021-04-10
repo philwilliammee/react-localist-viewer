@@ -1,4 +1,4 @@
-# react-localist-viewer
+# ![react-localist-viewer](https://user-images.githubusercontent.com/4685094/114267665-0ff41f80-99cb-11eb-8d96-6df7abaceb59.png) 
 
 A react component to pull [localist](https://developer.localist.com/doc/api#event-list) calendar events and render.
 
