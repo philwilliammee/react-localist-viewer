@@ -70,7 +70,7 @@ const ModernCompact = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <ModernCompactInner
-                    key={event.event.id}
+                    key={event.event.event_instances[0].event_instance.id}
                     event={event.event}
                     // display={event.display}
                     {...props}

@@ -55,7 +55,7 @@ const localistApiConnector = (props: ApiConnectorProps) => {
 
   const params: ApiParams = {
     apikey,
-    distinct: true,
+    distinct: false, // show repeating events
     pp: entries,
     page,
     direction: daysahead?.startsWith("-") ? "desc" : "asc",

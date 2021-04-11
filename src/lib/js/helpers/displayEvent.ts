@@ -147,7 +147,7 @@ export const getTruncDesc = (
   event: EventEvent,
   excerptLength?: number | string
 ) => {
-  if (!event || event.id === -1) {
+  if (!event) {
     return "";
   }
   let description = event.description_text;

@@ -2,7 +2,7 @@ import React, { ComponentProps } from "react";
 import { Story, Meta } from "@storybook/react";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "../lib/types/types";
-import AgendaInnerContent from "../lib/js/components/molecules/EventsCalendar/AgendaList/AgendaInnerContent";
+import AgendaInnerContent from "../lib/js/components/molecules/Calendar/AgendaList/AgendaInnerContent";
 
 const AgendaInnerContentStories = {
   title: "Molecules/AgendaInnerContent",

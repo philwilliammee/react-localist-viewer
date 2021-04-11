@@ -96,7 +96,7 @@ const ModernStandard = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <ModernStandardInner
-                    key={event.event.id}
+                    key={event.event.event_instances[0].event_instance.id}
                     event={event.event}
                     {...props}
                   />

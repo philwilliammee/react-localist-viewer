@@ -1,0 +1,158 @@
+.calendar-container {
+    .month-view {
+        table {
+            border: 1px solid #eee;
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        thead td {
+            border-spacing: 0;
+            border-bottom: 1px dashed skyblue;
+            padding-left: 5px;
+            width: 25%;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .day {
+            width: 24px;
+            height: 129px;
+            line-height: 24px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .current-day {
+            background-color: #eaf6ff;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 2%;
+        }
+
+        .selected-day {
+            background-color: #fcf3e1;
+            ;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 2%;
+            color: black;
+        }
+
+        .emptySlot {
+            background-color: rgb(230, 230, 230);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+
+            div {
+                height: 25px;
+            }
+
+            .event {
+                border: none;
+                box-sizing: border-box;
+                box-shadow: none;
+                margin: 0;
+                padding: 2px 5px;
+                background-color: #3174ad;
+                border-radius: 5px;
+                color: #fff;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                height: 24px
+            }
+
+            .button-text {
+                overflow: hidden;
+                white-space: nowrap;
+                display: block;
+                text-overflow: ellipsis;
+            }
+
+            button.day-btn {
+                border-radius: 50%;
+                border: none;
+                padding-bottom: 4px;
+                padding-top: 4px;
+
+                &:hover {
+                    background-color: #fcf3e1;
+                }
+            }
+
+        }
+    }
+
+    // Calendar Nav
+
+    .toolbar {
+        display: flex;
+        height: 50px;
+
+        .links {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .view {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        button.active {
+            background-image: none;
+            box-shadow: inset 0 3px 5px #ccc;
+            background-color: #e6e6e6;
+            border-color: #adadad;
+        }
+
+        button {
+            color: #373a3c;
+            display: inline-block;
+            margin: 0;
+            text-align: center;
+            vertical-align: middle;
+            background: none;
+            background-image: none;
+            border: 1px solid #ccc;
+            padding: .375rem 1rem;
+            border-radius: 4px;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        button:first-child:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button:last-child:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        button:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+    }
+}

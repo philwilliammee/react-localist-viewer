@@ -8,13 +8,7 @@ import {
   getClassItem,
 } from "../../helpers/displayEvent";
 import AddCal from "./AddCal";
-import {
-  EventTitle,
-  EventDate,
-  EventLocation,
-  EventThumbnail,
-  EventDescription,
-} from "./Partials";
+import EventDescription from "../atoms/EventDescription";
 import {
   EventElement,
   EventEvent,
@@ -22,6 +16,10 @@ import {
   Format,
   HideType,
 } from "../../../types/types";
+import EventTitle from "../atoms/EventTitle";
+import EventDate from "../atoms/EventDate";
+import EventLocation from "../atoms/EventLocation";
+import EventThumbnail from "../atoms/EventThumbnail";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -45,8 +43,6 @@ const StandardInner = (props: StandardInnerProps) => {
           <EventLocation locationName={event.location_name} />
           <div>
             <EventDate date={getEventTime(event)} />
-            {/* <EventTypes
-                            eventTypes={getEventType(event, filterby)} /> */}
           </div>
           <EventThumbnail
             photoUrl={event.photo_url}
@@ -139,7 +135,7 @@ const Standard = (props: StandardProps) => {
             {events.length > 0 ? (
               events.map((event) => {
                 return (
-                  <div key={event.event.id}>
+                  <div key={event.event.event_instances[0].event_instance.id}>
                     {getMonth(event.event)}
                     {getDay(event.event, props.format)}
                     <StandardInner

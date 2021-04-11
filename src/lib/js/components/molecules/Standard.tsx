@@ -135,7 +135,7 @@ const Standard = (props: StandardProps) => {
             {events.length > 0 ? (
               events.map((event) => {
                 return (
-                  <div key={event.event.id}>
+                  <div key={event.event.event_instances[0].event_instance.id}>
                     {getMonth(event.event)}
                     {getDay(event.event, props.format)}
                     <StandardInner

@@ -75,7 +75,7 @@ const InlineCompact = (props: InlineCompactProps) => {
               events.map((event) => {
                 return (
                   <InlineCompactInner
-                    key={event.event.id}
+                    key={event.event.event_instances[0].event_instance.id}
                     event={event.event}
                   />
                 );
