@@ -107,7 +107,6 @@ const Calendar = (props: any) => {
   };
 
   const handleEventSelect = (event: EventEvent) => {
-    console.log(event);
     setEventSelected(event);
     setShowDialog(true);
   };
