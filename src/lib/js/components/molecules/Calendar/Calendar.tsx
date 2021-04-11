@@ -1,156 +1,185 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React, {
+  Children,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import moment, { Moment } from "moment";
 import "./calendar.scss";
 import {
   currentDay,
   daysInMonth,
   firstDayOfMonth,
+  getKeyFromDateRange,
+  getLastMonth,
+  getNextMonth,
+  initDateRange,
   lastDayOfMonth,
 } from "../EventsCalendar/dateUtils";
+import EventsContext from "lib/js/context/EventsContext";
+import {
+  DisplayedDateRange,
+  EventEvent,
+  ViewComponentProps,
+} from "lib/types/types";
+import { queryClient } from "lib/query";
+import { useQuery } from "react-query";
+import { fetchEvents } from "lib/js/services/localistApiConnector";
+import MonthView from "./MonthView";
+import { getEventStart } from "../../../helpers/displayEvent";
+import EventDetails from "../EventDetails";
+import EventModal from "../../atoms/ModalDialog";
 
-const Calendar = () => {
+const queryId = "events";
+
+const Calendar = (props: any) => {
+  const {
+    setEvents,
+    filteredEvents,
+    setFilteredEvents,
+    showDialog,
+    setShowDialog,
+    eventSelected,
+    setEventSelected,
+    setDisplayedDateRange,
+  } = useContext(EventsContext);
   const [dateContext, setDateContext] = useState(moment());
+  const [dateRange, setDateRange] = useState(initDateRange());
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const key = getKeyFromDateRange(dateRange);
+
+  const { data } = useQuery(
+    [queryId, key],
+    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
+    { keepPreviousData: true, staleTime: Infinity }
+  );
+
+  const preFetchData = useCallback(
+    (dr: DisplayedDateRange) => {
+      let lastMonthDateRange = getLastMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(lastMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
+        { staleTime: Infinity }
+      );
+
+      let nextMonthDateRange = getNextMonth(dr);
+      queryClient.prefetchQuery(
+        [queryId, getKeyFromDateRange(nextMonthDateRange)],
+        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
+        { staleTime: Infinity }
+      );
+      if (data) {
+        setEvents(data.events);
+        setFilteredEvents(data.events);
+      }
+    },
+
+    [props, setEvents, setFilteredEvents, data]
+  );
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      preFetchData(dateRange);
+    }
+    return function cleanup() {
+      mounted = false;
+    };
+    // This is ok we only want to fetch new data when the date range changes,
+    // This allows us to apply filtering.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange]);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
+    const newDateRange = getNextMonth(dateRange);
     setDateContext(newDateContext);
+    setDateRange(newDateRange);
   };
 
   const prevMonth = () => {
     const newDateContext = moment(dateContext).clone().subtract(1, "month");
+    const newDateRange = getLastMonth(dateRange);
     setDateContext(newDateContext);
+    setDateRange(newDateRange);
   };
 
-  const onDayClick = (
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    day: number
-  ) => {
-    setSelectedDay(day);
+  const handleEventSelect = (event: EventEvent) => {
+    console.log(event);
+    setEventSelected(event);
+    setShowDialog(true);
   };
 
-  let blanks = [];
-  for (let i = 0; i < firstDayOfMonth(dateContext); i++) {
-    blanks.push(
-      <td key={`${i}-empty-slot`} className="emptySlot">
-        {""}
-      </td>
-    );
-  }
-
-  let daysInMonthArray: React.ReactNode[] = [];
-  for (let d = 1; d <= daysInMonth(dateContext); d++) {
-    let className = d === currentDay(dateContext) ? "day current-day" : "day";
-    let selectedClass = d === selectedDay ? " selected-day " : "";
-    daysInMonthArray.push(
-      <td key={d} className={className + selectedClass}>
-        <div className="content">
-          <div>
-            <button
-              className="align-right"
-              onClick={(e) => {
-                onDayClick(e, d);
-              }}
-            >
-              {d}
-            </button>
-          </div>
-          <div>
-            <button className="event">Its an event</button>
-          </div>
-        </div>
-      </td>
-    );
-  }
-
-  let endBlanks = [];
-  for (let i = lastDayOfMonth(dateContext); i < 6; i++) {
-    endBlanks.push(
-      <td key={`${i}-end-empty-slot`} className="emptySlot">
-        {""}
-      </td>
-    );
-  }
-
-  var totalSlots = [...blanks, ...daysInMonthArray, ...endBlanks];
-  let rows: React.ReactNode[] = [];
-  let cells: React.ReactNode[] = [];
-
-  totalSlots.forEach((row, i) => {
-    if (i % 7 !== 0) {
-      cells.push(row);
-    } else {
-      let insertRow = cells.slice();
-      rows.push(insertRow);
-      cells = [];
-      cells.push(row);
-    }
-    if (i === totalSlots.length - 1) {
-      let insertRow = cells.slice();
-      rows.push(insertRow);
-    }
-  });
-
-  let trElems = rows.map((d: React.ReactNode, i: number) => {
-    return <tr key={`${i}-days`}>{d}</tr>;
-  });
+  const title = (
+    <>
+      <span className="label-month">{dateContext.format("MMMM")}</span>{" "}
+      <span className="label-year">{dateContext.format("Y")}</span>
+    </>
+  );
 
   return (
-    <div className="calendar-container">
-      <div className="toolbar">
-        <div className="links">
-          <button
-            onClick={(e) => {
-              prevMonth();
-            }}
-          >
-            <i className="prev fa fa-fw fa-chevron-left"></i> Back
-          </button>
-          <button
-            onClick={(e) => {
-              nextMonth();
-            }}
-          >
-            Next <i className="prev fa fa-fw fa-chevron-right"></i>
-          </button>
-        </div>
-        <div className="header-title">
-          <h3>
-            <span className="label-month">{dateContext.format("MMMM")}</span>{" "}
-            <span className="label-year">{dateContext.format("Y")}</span>
-          </h3>
-        </div>
-        <div className="view">
-          <button>Month</button>
-          <button>Day</button>
-          <button>List</button>
-        </div>
+    <>
+      <EventModal
+        showDialog={showDialog}
+        setShowDialog={setShowDialog}
+        aria-label="Selected Event"
+      >
+        {eventSelected ? <EventDetails event={eventSelected} /> : ""}
+      </EventModal>
+      <div className="calendar-container">
+        <Toolbar nextMonth={nextMonth} prevMonth={prevMonth}>
+          {title}
+        </Toolbar>
+        <MonthView
+          events={data?.events || []}
+          dateContext={dateContext}
+          setSelectedDay={setSelectedDay}
+          selectedDay={selectedDay}
+          handleEventSelect={handleEventSelect}
+        />
       </div>
-      <table className="table compact calendar">
-        <thead>
-          <tr>
-            <Weekdays />
-          </tr>
-        </thead>
-        <tbody>{trElems}</tbody>
-      </table>
-    </div>
+    </>
   );
 };
 
-// The days of the week seems like this could be a constant
-const Weekdays = React.memo(function tableHeader() {
+interface ToolBarProps {
+  children: React.ReactChild;
+  prevMonth: Function;
+  nextMonth: Function;
+}
+
+const Toolbar = (props: ToolBarProps) => {
+  const { prevMonth, nextMonth, children } = props;
   return (
-    <>
-      <td className="week-day">Sun</td>
-      <td className="week-day">Mon</td>
-      <td className="week-day">Tue</td>
-      <td className="week-day">Wed</td>
-      <td className="week-day">Thur</td>
-      <td className="week-day">Fri</td>
-      <td className="week-day">Sat</td>
-    </>
+    <div className="toolbar">
+      <div className="links">
+        <button
+          onClick={(e) => {
+            prevMonth();
+          }}
+        >
+          <i className="prev fa fa-fw fa-chevron-left"></i> Back
+        </button>
+        <button
+          onClick={(e) => {
+            nextMonth();
+          }}
+        >
+          Next <i className="prev fa fa-fw fa-chevron-right"></i>
+        </button>
+      </div>
+      <div className="header-title">
+        <h3>{children}</h3>
+      </div>
+      <div className="view">
+        <button>Month</button>
+        <button>Day</button>
+        <button>List</button>
+      </div>
+    </div>
   );
-});
+};
 
 export default Calendar;

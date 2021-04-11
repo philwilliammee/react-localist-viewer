@@ -8,7 +8,11 @@ tr {
 }
 
 .calendar-container {
-    border: 2px solid #eee;
+    table {
+        border: 1px solid #eee;
+        table-layout: fixed;
+        width: 100%;
+    }
 
     button {
         cursor: pointer;
@@ -25,6 +29,7 @@ tr {
         border-spacing: 0;
         border-bottom: 1px dashed skyblue;
         padding-left: 5px;
+        width: 25%;
     }
 
     .day,
@@ -140,6 +145,13 @@ tr {
             width: 100%;
             text-align: left;
             height: 24px
+        }
+
+        .button-text {
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            text-overflow: ellipsis;
         }
 
     }

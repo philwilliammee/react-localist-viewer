@@ -77,7 +77,7 @@ export const daysInMonth = (dateContext: Moment) => {
 };
 
 export const currentDay = (dateContext: Moment) => {
-  return parseInt(dateContext.format("d"), 10);
+  return parseInt(dateContext.format("D"), 10);
 };
 
 export const firstDayOfMonth = (dateContext: Moment) => {
