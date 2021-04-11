@@ -95,57 +95,88 @@ describe("Make sure site loads", () => {
     // Assert heading exists
 
     // assert reset button is clickable
-    cy.get(".reset > button").click();
+
     cy.contains("Localist-Viewer");
-
-    // Click List View
-    cy.get(":nth-child(3) > :nth-child(3)").click();
-    // Assert List View Exists
-    cy.get(".rbc-agenda-view");
-
-    // Click Mon View
-    cy.get(".rbc-toolbar > :nth-child(3) > :nth-child(1)").click();
-    // Assert Calendar Month View Exists
-    cy.get(".rbc-calendar");
-    cy.get(".rbc-toolbar-label").contains(months[d.getMonth()]);
+    cy.get(".toolbar").contains(months[d.getMonth()]);
 
     // Assert Calendar Next Month
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(3)").click();
-    cy.get(".rbc-toolbar-label").contains(months[nextMonth]);
+    cy.get(".links > :nth-child(1)").click();
+    cy.get(".toolbar").contains(months[lastMonth]);
 
     // Assert Calendar This Month
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(2)").click();
-    cy.get(".rbc-toolbar-label").contains(months[d.getMonth()]);
+    cy.get(":nth-child(3) > .prev").click();
+    cy.get(".toolbar").contains(months[d.getMonth()]);
 
     // Assert Calendar Last Month
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(2)").click();
-    cy.get(".rbc-toolbar-label").contains(months[lastMonth]);
+    cy.get(":nth-child(3) > .prev").click();
+    cy.get(".toolbar").contains(months[nextMonth]);
 
-    // Day View
-    cy.get(".rbc-toolbar > :nth-child(3) > :nth-child(2)").click();
-    cy.get(".rbc-time-view");
+    cy.get(":nth-child(3) > .prev").click();
 
-    // Today
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(1)").click();
-    cy.get(".rbc-toolbar-label").contains(weekday[d.getDay()]);
+    // cy.get(".toolbar").contains(weekday[d.getDay()]);
+    /* ==== Generated with Cypress Studio ==== */
+
+    cy.get(":nth-child(3) > .prev").click();
+
+    cy.get(".links > :nth-child(2)").click();
+    /* ==== End Cypress Studio ==== */
   });
 
   it("events month exist", () => {
-    cy.get(":nth-child(1) > .rbc-event > .rbc-event-content").click();
-    cy.get(".close").click();
-    cy.get(":nth-child(2) > .rbc-event > .rbc-event-content").click();
-    cy.get(".close").click();
-    cy.get(":nth-child(3) > .rbc-event > .rbc-event-content").click();
-    cy.get(".close").click();
-    cy.get(":nth-child(4) > .rbc-event > .rbc-event-content").click();
-    cy.get(".close").click();
+    /* ==== Generated with Cypress Studio ==== */
+    cy.get(".active").click();
+    cy.get(".links > :nth-child(1)").click();
+    cy.get(
+      ":nth-child(1) > .content > :nth-child(2) > .event > .button-text"
+    ).click();
+    cy.get(".close > svg").click();
+    cy.get(
+      ":nth-child(2) > .content > :nth-child(2) > .event > .button-text"
+    ).click();
+    cy.get(".close > svg").click();
+    cy.get(":nth-child(3) > .content > :nth-child(2) > .event").click();
+    cy.get(".close > svg").click();
+    cy.get(":nth-child(4) > .content > :nth-child(2) > .event").click();
+    cy.get(".close > svg").click();
+    /* ==== End Cypress Studio ==== */
+  });
+
+  it("events list exist", () => {
+    /* ==== Generated with Cypress Studio ==== */
+    cy.get(".view > :nth-child(3)").click();
+    cy.get(".links > :nth-child(1)").click();
+    cy.get(
+      ":nth-child(1) > :nth-child(1) > .events > .group-link-wrapper > .title > h3"
+    ).click();
+    cy.get(".close > svg").click();
+    cy.get(
+      ":nth-child(2) > :nth-child(1) > .events > .group-link-wrapper > .meta > p"
+    ).click();
+    cy.get("svg > path").click();
+    cy.get(
+      ":nth-child(3) > :nth-child(1) > .events > .group-link-wrapper > .field-name-summary > p"
+    ).click();
+    cy.get("svg > path").click();
+    cy.get(
+      ":nth-child(4) > :nth-child(1) > .events > .group-link-wrapper > .field-name-summary > p"
+    ).click();
+    cy.get(".close > svg").click();
+    /* ==== End Cypress Studio ==== */
+  });
+
+  it("back month test", () => {
+    /* ==== Generated with Cypress Studio ==== */
+    cy.get(".links > :nth-child(1)").click();
     cy.get(":nth-child(2) > ul > li > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(1) > label").click();
+    cy.get(":nth-child(2) > ul > li > label > input").uncheck();
     cy.get(":nth-child(5) > ul > :nth-child(1) > label > input").check();
+    cy.get(":nth-child(5) > ul > :nth-child(1) > label > input").uncheck();
     cy.get(":nth-child(5) > ul > :nth-child(2) > label > input").check();
+    cy.get(":nth-child(5) > ul > :nth-child(2) > label > input").uncheck();
     cy.get(":nth-child(5) > ul > :nth-child(3) > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(4) > label").click();
+    cy.get(":nth-child(5) > ul > :nth-child(3) > label > input").uncheck();
     cy.get(":nth-child(5) > ul > :nth-child(4) > label > input").check();
+    cy.get(":nth-child(5) > ul > :nth-child(4) > label > input").uncheck();
     cy.get(":nth-child(8) > ul > :nth-child(1) > label > input").check();
     cy.get(":nth-child(8) > ul > :nth-child(2) > label > input").check();
     cy.get(":nth-child(8) > ul > :nth-child(3) > label > input").check();
@@ -167,49 +198,5 @@ describe("Make sure site loads", () => {
     cy.get(":nth-child(19) > label > input").check();
     cy.get(".reset > button").click();
     /* ==== End Cypress Studio ==== */
-  });
-
-  it("events list exist", () => {
-    cy.get(":nth-child(3) > :nth-child(3)").click();
-    cy.get(
-      ":nth-child(1) > .events-main-body > .cwd-component > .event-node > .events > .group-link-wrapper > .title > h3"
-    ).click();
-    cy.get(".close").click();
-    cy.get(
-      ":nth-child(2) > .events-main-body > .cwd-component > .event-node > .events > .group-link-wrapper > .field-name-summary > p"
-    ).click();
-    cy.get(".close").click();
-    cy.get(
-      ":nth-child(3) > .events-main-body > .cwd-component > .event-node > .events > .group-link-wrapper"
-    ).click();
-    cy.get(".close").click();
-    cy.get(":nth-child(2) > ul > li > label > input").check();
-    cy.get(":nth-child(2) > ul > li > label > input").uncheck();
-    cy.get(":nth-child(5) > ul > :nth-child(1) > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(1) > label > input").uncheck();
-    cy.get(":nth-child(5) > ul > :nth-child(2) > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(2) > label > input").uncheck();
-    cy.get(":nth-child(5) > ul > :nth-child(3) > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(3) > label > input").uncheck();
-    cy.get(":nth-child(5) > ul > :nth-child(4) > label > input").check();
-    cy.get(":nth-child(5) > ul > :nth-child(4) > label > input").uncheck();
-    cy.get(":nth-child(8) > ul > :nth-child(1) > label > input").check();
-    cy.get(":nth-child(8) > ul > :nth-child(1) > label > input").uncheck();
-    cy.get(":nth-child(19) > label").click();
-    cy.get(":nth-child(19) > label > input").check();
-    cy.get(":nth-child(18) > label > input").check();
-    cy.get(":nth-child(17) > label > input").check();
-    cy.get(":nth-child(16) > label > input").check();
-    cy.get(":nth-child(15) > label > input").check();
-    cy.get(":nth-child(14) > label > input").check();
-    cy.get(":nth-child(13) > label > input").check();
-    cy.get(".reset > button").click();
-  });
-
-  it("back month test", () => {
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(2)").click();
-    cy.get(":nth-child(1) > .rbc-event > .rbc-event-content").click();
-    cy.get(".close").click();
-    cy.get(".rbc-toolbar > :nth-child(1) > :nth-child(3)").click();
   });
 });
