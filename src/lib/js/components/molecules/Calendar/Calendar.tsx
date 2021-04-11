@@ -24,10 +24,12 @@ import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "lib/js/helpers/displayEvent";
+import { Props } from "../../../components/organisms/LocalistView";
+import Toolbar from "./ToolBar";
 
 const queryId = "events";
 
-const Calendar = (props: any) => {
+const Calendar = (props: Props) => {
   const {
     setEvents,
     filteredEvents,
@@ -103,6 +105,15 @@ const Calendar = (props: any) => {
     setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
   };
 
+  const today = () => {
+    const newDateContext = moment();
+    const newDateRange = initDateRange();
+    setSelectedDay(newDateContext.date());
+    setDateContext(newDateContext);
+    setDateRange(newDateRange);
+    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
+  };
+
   const handleEventSelect = (event: EventEvent) => {
     setEventSelected(event);
     setShowDialog(true);
@@ -141,6 +152,8 @@ const Calendar = (props: any) => {
               setView={setView}
               nextMonth={nextMonth}
               prevMonth={prevMonth}
+              view={view}
+              today={today}
             >
               {title}
             </Toolbar>
@@ -200,63 +213,6 @@ const Calendar = (props: any) => {
           </div>
         </Grid>
       </Grid>
-    </div>
-  );
-};
-
-interface ToolBarProps {
-  children: React.ReactChild;
-  prevMonth: Function;
-  nextMonth: Function;
-  setView: (view: "month" | "day" | "list") => void;
-}
-
-const Toolbar = (props: ToolBarProps) => {
-  const { prevMonth, nextMonth, children, setView } = props;
-  return (
-    <div className="toolbar">
-      <div className="links">
-        <button
-          onClick={(e) => {
-            prevMonth();
-          }}
-        >
-          <i className="prev fa fa-fw fa-chevron-left"></i> Back
-        </button>
-        <button
-          onClick={(e) => {
-            nextMonth();
-          }}
-        >
-          Next <i className="prev fa fa-fw fa-chevron-right"></i>
-        </button>
-      </div>
-      <div className="header-title">
-        <h3>{children}</h3>
-      </div>
-      <div className="view">
-        <button
-          onClick={() => {
-            setView("month");
-          }}
-        >
-          Month
-        </button>
-        <button
-          onClick={() => {
-            setView("day");
-          }}
-        >
-          Day
-        </button>
-        <button
-          onClick={() => {
-            setView("list");
-          }}
-        >
-          List
-        </button>
-      </div>
     </div>
   );
 };

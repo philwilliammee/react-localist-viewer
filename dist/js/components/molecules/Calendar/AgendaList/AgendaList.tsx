@@ -1,10 +1,8 @@
-import { EventElement, EventEvent, HideType } from "lib/types/types";
+import { EventElement, HideType } from "lib/types/types";
 import React, { useContext } from "react";
 import EventContext from "../../../../context/EventsContext";
 import AgendaListView from "./AgendaInner";
-import PropTypes from "prop-types";
-import { getEventDate, getEventStart } from "lib/js/helpers/displayEvent";
-import moment, { Moment } from "moment";
+import { Moment } from "moment";
 
 interface Props {
   events: EventElement[];
