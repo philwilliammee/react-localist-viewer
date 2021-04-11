@@ -108,7 +108,7 @@ let EventsCalendar = (props: any) => {
   // Put events in Big Calendar Structure
   const flatEvents: FlatEvent[] = filteredEvents.map((event) => {
     return {
-      id: event.event.id,
+      id: event.event.event_instances[0].event_instance.id,
       title: event.event.title,
       start: new Date(getEventStart(event.event)),
       end: new Date(getEventEnd(event.event)),

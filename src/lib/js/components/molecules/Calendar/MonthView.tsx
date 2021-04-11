@@ -55,7 +55,7 @@ const MonthView = (props: Props) => {
         <div className="content">
           <div>
             <button
-              className="align-right"
+              className="align-right day-btn"
               onClick={(e) => {
                 onDayClick(e, d);
               }}

@@ -1,79 +1,103 @@
 .calendar-container {
-    table {
-        border: 1px solid #eee;
-        table-layout: fixed;
-        width: 100%;
-    }
+    .month-view {
+        table {
+            border: 1px solid #eee;
+            table-layout: fixed;
+            width: 100%;
+        }
 
-    button {
-        cursor: pointer;
-    }
+        button {
+            cursor: pointer;
+        }
 
-    .calendar {
-        background-color: white;
-        border-spacing: 0;
-        border-collapse: collapse;
-        width: 100%;
-    }
+        .calendar {
+            background-color: white;
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-    thead td {
-        border-spacing: 0;
-        border-bottom: 1px dashed skyblue;
-        padding-left: 5px;
-        width: 25%;
-        font-weight: 900;
-        text-align: center;
-    }
+        thead td {
+            border-spacing: 0;
+            border-bottom: 1px dashed skyblue;
+            padding-left: 5px;
+            width: 25%;
+            font-weight: 900;
+            text-align: center;
+        }
 
-    .day {
-        width: 24px;
-        height: 129px;
-        line-height: 24px;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+        .day {
+            width: 24px;
+            height: 129px;
+            line-height: 24px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
 
-    .current-day {
-        background-color: #eaf6ff;
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        border-radius: 2%;
-    }
+        .current-day {
+            background-color: #eaf6ff;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 2%;
+        }
 
-    .selected-day {
-        background-color: yellow;
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        border-radius: 2%;
-        color: black;
-    }
+        .selected-day {
+            background-color: #fcf3e1;
+            ;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 2%;
+            color: black;
+        }
 
-    .month-popup {
-        position: absolute;
-        padding: 5px;
-        background: white;
-        border: 2px solid skyblue;
-    }
+        .emptySlot {
+            background-color: rgb(230, 230, 230);
+        }
 
-    .month-popup div {
-        padding: 0.3em;
-    }
+        .content {
+            display: flex;
+            flex-direction: column;
 
-    .nav-month {
-        position: absolute;
-        top: 0.6em;
-        font-size: 0.6em;
-        right: 3px;
-    }
+            div {
+                height: 25px;
+            }
 
-    .editor-year {
-        max-width: 3.6em;
-    }
+            .event {
+                border: none;
+                box-sizing: border-box;
+                box-shadow: none;
+                margin: 0;
+                padding: 2px 5px;
+                background-color: #3174ad;
+                border-radius: 5px;
+                color: #fff;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                height: 24px
+            }
 
-    .emptySlot {
-        background-color: rgb(230, 230, 230);
+            .button-text {
+                overflow: hidden;
+                white-space: nowrap;
+                display: block;
+                text-overflow: ellipsis;
+            }
+
+            button.day-btn {
+                border-radius: 50%;
+                border: none;
+                padding-bottom: 4px;
+                padding-top: 4px;
+
+                &:hover {
+                    background-color: #fcf3e1;
+                }
+            }
+
+        }
     }
 
     // Calendar Nav
@@ -101,37 +125,5 @@
             justify-content: flex-end;
             align-items: center;
         }
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-
-        div {
-            height: 25px;
-        }
-
-        .event {
-            border: none;
-            box-sizing: border-box;
-            box-shadow: none;
-            margin: 0;
-            padding: 2px 5px;
-            background-color: #3174ad;
-            border-radius: 5px;
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            height: 24px
-        }
-
-        .button-text {
-            overflow: hidden;
-            white-space: nowrap;
-            display: block;
-            text-overflow: ellipsis;
-        }
-
     }
 }
