@@ -1,13 +1,13 @@
 import { DisplayedDateRange } from "../../../../types/types";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
-export function weekOfMonth(m: moment.Moment) {
+export function weekOfMonth(m: Moment) {
   var first = m.clone().startOf("month").week(); // mutates original value
   const firstDay = moment(m).week(first).day(0);
   return firstDay;
 }
 
-export function lastWeekOfMonth(m: moment.Moment) {
+export function lastWeekOfMonth(m: Moment) {
   let last = m.clone().endOf("month").week(); // mutates original value
   // @todo fix this. is not getting
   if (last === 1) {
@@ -71,3 +71,19 @@ export function initDateRange(): DisplayedDateRange {
 
   return dateRange;
 }
+
+export const daysInMonth = (dateContext: Moment) => {
+  return dateContext.daysInMonth();
+};
+
+export const currentDay = (dateContext: Moment) => {
+  return parseInt(dateContext.format("D"), 10);
+};
+
+export const firstDayOfMonth = (dateContext: Moment) => {
+  return parseInt(moment(dateContext).startOf("month").format("d"), 10); // Day of week 0...1..5...6
+};
+
+export const lastDayOfMonth = (dateContext: Moment) => {
+  return parseInt(moment(dateContext).endOf("month").format("d"), 10); // Day of week 0...1..5...6
+};

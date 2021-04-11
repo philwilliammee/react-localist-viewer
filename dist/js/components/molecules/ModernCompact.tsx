@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../helpers/displayEvent";
 import AddCal from "./AddCal";
-import { EventThumbnail } from "./Partials";
+import EventThumbnail from "../atoms/EventThumbnail";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";
 import { InnerProps, StandardProps } from "../../../types/types";
@@ -70,7 +70,7 @@ const ModernCompact = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <ModernCompactInner
-                    key={event.event.id}
+                    key={event.event.event_instances[0].event_instance.id}
                     event={event.event}
                     // display={event.display}
                     {...props}
