@@ -72,7 +72,7 @@ const Compact = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <CompactInner
-                    key={event.event.id}
+                    key={event.event.event_instances[0].event_instance.id}
                     event={event.event}
                     // filterby={filterby}
                     {...props}

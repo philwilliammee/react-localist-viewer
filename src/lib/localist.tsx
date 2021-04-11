@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import {
   getKeyFromDateRange,
   initDateRange,
-} from "./js/components/molecules/EventsCalendar/dateUtils";
+} from "./js/components/molecules/Calendar/dateUtils";
 import { queryClient } from "./query";
 
 const dateRange = initDateRange();

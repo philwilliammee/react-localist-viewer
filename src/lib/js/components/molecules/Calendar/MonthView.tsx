@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import Proptypes from "prop-types";
 import { EventElement, EventEvent } from "lib/types/types";
 import {
@@ -6,7 +6,7 @@ import {
   daysInMonth,
   firstDayOfMonth,
   lastDayOfMonth,
-} from "../EventsCalendar/dateUtils";
+} from "./dateUtils";
 import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
 
@@ -65,7 +65,7 @@ const MonthView = (props: Props) => {
           </div>
           {todaysEvents?.map((event) => {
             return (
-              <div key={event.event.id}>
+              <div key={event.event.event_instances[0].event_instance.id}>
                 <button
                   className="event"
                   onClick={(e) => handleEventSelect(event.event)}

@@ -16,7 +16,7 @@ import {
   getNextMonth,
   initDateRange,
   lastDayOfMonth,
-} from "../EventsCalendar/dateUtils";
+} from "./dateUtils";
 import EventsContext from "lib/js/context/EventsContext";
 import {
   DisplayedDateRange,

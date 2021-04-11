@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Calendar, Event, momentLocalizer } from "react-big-calendar";
-import AgendaInner from "./AgendaList/AgendaInner";
+import AgendaInner from "../Calendar/AgendaList/AgendaInner";
 import CalendarToolbar from "./CalendarToolBar";
 import moment from "moment";
 import { fetchEvents } from "../../../services/localistApiConnector";
@@ -9,12 +9,12 @@ import {
   getEventEnd,
   isAllDay,
 } from "../../../helpers/displayEvent";
-import AgendaList from "./AgendaList/AgendaList";
+import AgendaList from "../Calendar/AgendaList/AgendaList";
 import EventsContext from "../../../context/EventsContext";
 import EventModal from "../../atoms/ModalDialog";
 import "./calendar.css"; // react-big-calendar/lib/css/react-big-calendar.css
 import EventDetails from "../EventDetails";
-import Filters from "./Filters";
+import Filters from "../Calendar/Filters";
 import Grid from "../../atoms/Grid";
 import {
   DateRangeEvent,
@@ -30,7 +30,7 @@ import {
   initDateRange,
   lastWeekOfMonth,
   weekOfMonth,
-} from "./dateUtils";
+} from "../Calendar/dateUtils";
 import { queryClient } from "../../../../query";
 
 const queryId = "events";
