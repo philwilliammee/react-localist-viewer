@@ -35,7 +35,7 @@ const Toolbar = (props: ToolBarProps) => {
             nextMonth();
           }}
         >
-          Next <i className="prev fa fa-fw fa-chevron-right"></i>
+          Next <i className="next fa fa-fw fa-chevron-right"></i>
         </button>
       </div>
       <div className="header-title">

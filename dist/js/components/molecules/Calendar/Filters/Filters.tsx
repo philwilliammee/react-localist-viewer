@@ -100,6 +100,7 @@ const Filters = () => {
     <div id="calendarFilters">
       <div className="heading">
         <h4>Narrow Your Results</h4>
+        <p className="help sr-only">By checking the options below.</p>
       </div>
 
       <div className="filter-groups padded">
