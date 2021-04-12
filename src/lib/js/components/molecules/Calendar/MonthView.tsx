@@ -127,13 +127,27 @@ const MonthView = (props: Props) => {
 const Weekdays = React.memo(function tableHeader() {
   return (
     <>
-      <td className="week-day">Sun</td>
-      <td className="week-day">Mon</td>
-      <td className="week-day">Tue</td>
-      <td className="week-day">Wed</td>
-      <td className="week-day">Thur</td>
-      <td className="week-day">Fri</td>
-      <td className="week-day">Sat</td>
+      <th className="week-day" aria-label="Sunday" scope="col">
+        Sun
+      </th>
+      <th className="week-day" aria-label="Monday" scope="col">
+        Mon
+      </th>
+      <th className="week-day" aria-label="Tuesday" scope="col">
+        Tue
+      </th>
+      <th className="week-day" aria-label="Wednesday" scope="col">
+        Wed
+      </th>
+      <th className="week-day" aria-label="Thursday" scope="col">
+        Thur
+      </th>
+      <th className="week-day" aria-label="Friday" scope="col">
+        Fri
+      </th>
+      <th className="week-day" aria-label="Saturday" scope="col">
+        Sat
+      </th>
     </>
   );
 });
