@@ -45,7 +45,7 @@ const Calendar = (props: Props) => {
   const [selectedDay, setSelectedDay] = useState<number>(moment().date());
   const [view, setView] = useState<"month" | "day" | "list">("month");
   const key = getKeyFromDateRange(dateRange);
-
+  // @todo all of this should be moved up to the main component.
   const { data } = useQuery(
     [queryId, key],
     () => fetchEvents(props as ViewComponentProps, 0, dateRange),
@@ -70,6 +70,14 @@ const Calendar = (props: Props) => {
       if (data) {
         setEvents(data.events);
         setFilteredEvents(data.events);
+        // preload and disc-cache event images @todo replace big with actual
+        // Photo crop should be defined in the base parent.
+        // Or each component is responsible for pre-fetching their images.
+        data.events.forEach((event) => {
+          const src = event.event.photo_url.replace("/huge/", `/big/`);
+          const img = new Image();
+          img.src = src;
+        });
       }
     },
 
