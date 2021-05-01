@@ -5,7 +5,7 @@ import AddCal from "./AddCal";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";
 import { Department, InnerProps, StandardProps } from "../../../types/types";
-import EventImg from "../atoms/EventImage";
+import EventImage from "../atoms/EventImage/EventImage";
 
 export const ModernStandardInner = (props: InnerProps) => {
   const { event, hideimages, hidetime } = props;
@@ -51,7 +51,7 @@ export const ModernStandardInner = (props: InnerProps) => {
           </div>
           <div className="field field-name-summary summary">
             <p>
-              <EventImg
+              <EventImage
                 photoUrl={event.photo_url}
                 title={event.title}
                 hideimages={hideimages}

@@ -11,7 +11,7 @@ import truncateUrl from "truncate-url";
 import Grid from "../../atoms/Grid";
 import "./EventStyle.scss";
 import { EventEvent } from "../../../../types/types";
-import EventImg from "../../atoms/EventImage";
+import EventImage from "../../atoms/EventImage/EventImage";
 
 interface Props {
   event: EventEvent;
@@ -40,7 +40,7 @@ const EventInner = ({ event }: Props) => {
           <div className="field field-name-summary summary">
             <div>
               <div style={{ float: "left", paddingRight: "15px" }}>
-                <EventImg
+                <EventImage
                   photoUrl={event.photo_url}
                   title={event.title}
                   hideimages={"false"}
