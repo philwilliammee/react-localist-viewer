@@ -1,5 +1,5 @@
 import React from "react";
-import Localist from "./localist";
+import Localist from "./Localist";
 import EventsState from "./js/context/EventState";
 import { AppProps } from "./types/types";
 import { QueryClientProvider } from "react-query";

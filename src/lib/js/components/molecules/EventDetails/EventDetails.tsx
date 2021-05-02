@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./EventStyle.scss";
 import { EventEvent } from "../../../../types/types";
 import EventInner from "./EventInner";
 

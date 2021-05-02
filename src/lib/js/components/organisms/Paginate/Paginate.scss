@@ -1,0 +1,51 @@
+@import "../../../../styles/theme.css";
+
+@media all {
+  .rlc-paginate {
+    border-top: none !important;
+    padding-top: 0px !important;
+  }
+
+  .rlc-paginate ul {
+    padding-left: 0;
+  }
+
+  .rlc-paginate ul li {
+    display: inline-block;
+    margin: 0 4px 8px 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 2;
+    border: 0;
+  }
+
+  .rlc-paginate ul li a {
+    display: inline-block;
+    padding: 0 0.6em;
+    text-decoration: none;
+    background: var(--lightest-black-alpha);
+    border: 1px solid var(--grey-alpha);
+  }
+
+  .rlc-paginate ul li a:hover,
+  .rlc-paginate ul li a:focus {
+    background: var(--lightest-black-alpha);
+    border: 1px solid var(--lighter-black-alpha);
+    color: var(--black);
+  }
+
+  .rlc-paginate ul li.rlc-paginate__item a,
+  .rlc-paginate ul li.is-active a {
+    min-width: 2.5em;
+    min-height: 2em;
+    padding: 0.2em 0.6em;
+    text-align: center;
+  }
+
+  .rlc-paginate ul li.is-active a {
+    background: var(--lightblue-alpha) !important;
+    font-weight: 600;
+    color: var(--white);
+    border: 1px solid var(--lightblue-alpha);
+  }
+}

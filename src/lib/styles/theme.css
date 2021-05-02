@@ -1,0 +1,29 @@
+reach-portal,
+.cwd-events-style {
+  --waThemeBlue: #4B7995;
+  --waLightBlue: #017bb1;
+  --lightblue: #127cb5;
+  --lightblue-alpha: #3584ba;
+  --waGoogleGreen: #2d863e;
+  --appleBlueGray: #545a5f;
+  --black: #000;
+  --light-black: #111;
+  --light-black-alpha: rgba(0, 0, 0, 0.5);
+  --lighter-black-alpha: rgba(0, 0, 0, 0.2);
+  --lightest-black-alpha: rgba(0, 0, 0, 0.05);
+  --grey: #767676;
+  --red: #b31b1b;
+  --darkred: #762425;
+  --lightgrey: #ccc;
+  --lighter-blue: #d3e1e8;
+  --lightest-blue: #e7eff3;
+  --white: #fff;
+  --off-white: #fcf3e1;
+
+  --spacing-0: 0px;
+  --spacing-1: 5px;
+  --spacing-2: 10px;
+  --spacing-3: 15px;
+  --spacing-4: 20px;
+
+}

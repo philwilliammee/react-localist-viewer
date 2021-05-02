@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
-import { isHidden } from "../../helpers/common";
-import { HideType } from "../../../types/types";
+import { isHidden } from "../../../helpers/common";
+import { HideType } from "../../../../types/types";
+import "./Paginate.scss";
 
 interface Props {
   hidepagination: HideType;
@@ -18,7 +19,7 @@ const Paginate = (props: Props) => {
   }
 
   return (
-    <nav className="pager">
+    <nav className="rlc-paginate">
       <ReactPaginate
         previousLabel="previous"
         nextLabel="next"
@@ -29,9 +30,6 @@ const Paginate = (props: Props) => {
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}
         containerClassName="pager_items"
-        //onMouseEnter={()=>void}
-        // subContainerClassName="pager__item"
-
         activeClassName="is-active"
       />
     </nav>

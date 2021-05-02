@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { fetchEvents } from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/Heading";
-import Paginate from "./js/components/organisms/Paginate";
+import Paginate from "./js/components/organisms/Paginate/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
 import EventFilters from "./js/components/organisms/EventFilterBy";
 import { isHidden, isNotHidden } from "./js/helpers/common";
@@ -97,7 +97,7 @@ const Localist = (props: AppProps) => {
   }
 
   return (
-    <div>
+    <div className="rlc-localist cwd-events-style">
       <Heading
         heading={props.heading || ""}
         readmore={props.readmore || ""}
