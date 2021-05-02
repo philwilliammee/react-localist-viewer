@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./FilterButton.scss";
 
 interface FilterButtonProps {
   name: string;
@@ -12,7 +13,9 @@ const FilterButton = (props: FilterButtonProps) => {
   return (
     <button
       id={filterId}
-      className={`filter-btn ${active === filterId ? "active" : ""}`}
+      className={`rlv-filter-button filter-btn ${
+        active === filterId ? "active" : ""
+      }`}
       type="button"
       onClick={clickHandler}
     >
