@@ -10,11 +10,7 @@ const EventTitleStories = {
 
 const Template: Story<ComponentProps<typeof EventTitle>> = (args) => (
   <div className="cwd-events-style">
-    <div className="cwd-component">
-      <div className="events">
-        <EventTitle {...args} />
-      </div>
-    </div>
+    <EventTitle {...args} />
   </div>
 );
 
