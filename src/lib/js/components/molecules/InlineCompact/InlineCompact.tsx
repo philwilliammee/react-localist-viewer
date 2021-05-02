@@ -6,8 +6,9 @@ import {
   getEventTime,
   getEventEndTime,
   getClassItem,
-} from "../../helpers/displayEvent";
-import { EventElement, EventEvent } from "../../../types/types";
+} from "../../../helpers/displayEvent";
+import { EventElement, EventEvent } from "../../../../types/types";
+import "./InlineCompact.scss";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const eventTime = getEventTime(event);
@@ -26,7 +27,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   };
   const classList = getClassItem(event);
   return (
-    <div className={`views-row ${classList}`}>
+    <div className={`rlv-inline-compact views-row ${classList}`}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-2 event-month-and-day">

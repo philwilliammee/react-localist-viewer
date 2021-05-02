@@ -5,8 +5,9 @@ import {
   getDay,
   getEventDate,
   getEventTime,
-} from "../../helpers/displayEvent";
-import { EventEvent } from "../../../types/types";
+} from "../../../helpers/displayEvent";
+import { EventEvent } from "../../../../types/types";
+import "./Time.scss";
 
 interface Props {
   event: EventEvent;
@@ -14,7 +15,11 @@ interface Props {
 const Time = (props: Props) => {
   const { event } = props;
   return (
-    <time title={getEventDate(event)} dateTime={getEventTime(event)}>
+    <time
+      className="rlv-time"
+      title={getEventDate(event)}
+      dateTime={getEventTime(event)}
+    >
       <span className="month">{getAbbrMonth(event)}</span>
       <span className="day">{getDay(event)}</span>
     </time>

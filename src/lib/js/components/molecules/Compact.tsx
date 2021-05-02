@@ -5,7 +5,7 @@ import {
   getEventDateCompact,
   getClassItem,
 } from "../../helpers/displayEvent";
-import AddCal from "./AddCal";
+import AddCal from "./AddCal/AddCal";
 import EventDescription from "../atoms/EventDescription";
 import EventTitle from "../atoms/EventTitle";
 import { InnerProps, StandardProps } from "../../../types/types";

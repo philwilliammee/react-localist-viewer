@@ -7,7 +7,7 @@ import {
   getDisplayDate,
   getClassItem,
 } from "../../helpers/displayEvent";
-import AddCal from "./AddCal";
+import AddCal from "./AddCal/AddCal";
 import EventDescription from "../atoms/EventDescription";
 import {
   EventElement,

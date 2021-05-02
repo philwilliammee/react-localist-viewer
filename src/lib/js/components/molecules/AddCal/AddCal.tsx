@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import buildUrl from "build-url";
-import { getCalStartDate, getCalEndDate } from "../../helpers/displayEvent";
-import { isHidden } from "../../helpers/common";
-import { EventEvent, HideType } from "../../../types/types";
+import { getCalStartDate, getCalEndDate } from "../../../helpers/displayEvent";
+import { isHidden } from "../../../helpers/common";
+import { EventEvent, HideType } from "../../../../types/types";
+import "./AddCal.scss";
 
 const buildGoogleLink = (myObj: EventEvent) => {
   const gDateStart = getCalStartDate(myObj);
@@ -80,7 +81,7 @@ const AddCal = (props: AddCalProps) => {
   }
 
   return (
-    <span className="event-subscribe">
+    <span className="rlc-add-cal">
       add to calendar {buildGoogleStr(event)} {buildiCal(event)}
       {buildOutlookCal(event)}
     </span>

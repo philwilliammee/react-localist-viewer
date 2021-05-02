@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../helpers/displayEvent";
-import AddCal from "./AddCal";
+import AddCal from "./AddCal/AddCal";
 import EventThumbnail from "../atoms/EventThumbnail";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";

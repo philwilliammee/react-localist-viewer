@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../helpers/displayEvent";
-import AddCal from "./AddCal";
+import AddCal from "./AddCal/AddCal";
 import Truncate from "../atoms/Truncate";
 import Time from "../atoms/Time";
 import { Department, InnerProps, StandardProps } from "../../../types/types";
 import EventImage from "../atoms/EventImage/EventImage";
+import "./Modern.scss";
 
 export const ModernStandardInner = (props: InnerProps) => {
   const { event, hideimages, hidetime } = props;
@@ -32,7 +33,7 @@ export const ModernStandardInner = (props: InnerProps) => {
   const eventTime = getEventTime(event);
   const classList = getClassItem(event);
   return (
-    <div className={classList}>
+    <div className={`rlv-modern ${classList}`}>
       <div className="events">
         <a
           href={event.localist_url}

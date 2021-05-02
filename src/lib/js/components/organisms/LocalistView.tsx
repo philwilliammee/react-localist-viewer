@@ -4,7 +4,7 @@ import Standard from "../molecules/Standard";
 import Compact from "../molecules/Compact";
 import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/ModernCompact";
-import InlineCompact from "../molecules/InlineCompact";
+import InlineCompact from "../molecules/InlineCompact/InlineCompact";
 import Calendar from "../molecules/Calendar";
 import { EventElement, FilterBy, Format, HideType } from "../../../types/types";
 
