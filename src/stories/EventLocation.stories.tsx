@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventLocation from "../lib/js/components/atoms/EventLocation";
+import EventLocation from "../lib/js/components/atoms/EventLocation/EventLocation";
 
 const EventLocationStories = {
   title: "Atoms/EventLocation ",
@@ -9,13 +9,7 @@ const EventLocationStories = {
 };
 
 const Template: Story<ComponentProps<typeof EventLocation>> = (args) => (
-  <div className="cwd-events-style">
-    <section className="standard">
-      <div className="events-listing">
-        <EventLocation {...args} />
-      </div>
-    </section>
-  </div>
+  <EventLocation {...args} />
 );
 
 export const Default = Template.bind({});

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./EventLocation.scss";
 
 interface EventLocationProps {
   locationName?: string;
@@ -7,7 +8,7 @@ interface EventLocationProps {
 const EventLocation = (props: EventLocationProps) => {
   const { locationName } = props;
   if (locationName) {
-    return <h4 className="meta location">{locationName}</h4>;
+    return <h4 className="rlv-event-location meta location">{locationName}</h4>;
   }
   return <></>;
 };
