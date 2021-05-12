@@ -8,13 +8,8 @@ const HeadingStories = {
   component: Heading,
 };
 
-// @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof Heading>> = (args) => (
-  <div className="cwd-events-style">
-    <div className="cwd-component">
-      <Heading {...args} />
-    </div>
-  </div>
+  <Heading {...args} />
 );
 
 export const Default = Template.bind({});

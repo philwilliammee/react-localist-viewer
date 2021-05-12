@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Heading.scss";
 
 interface Props {
   heading: string;
@@ -10,16 +11,9 @@ interface Props {
 const Heading = (props: Props) => {
   const { heading, readmore, url } = props;
   const renderHeading = heading ? <h2>{heading}</h2> : "";
-  const renderReadmore =
-    !readmore || !url ? (
-      ""
-    ) : (
-      <a className="cwd_events_readmore" href={url}>
-        {readmore}
-      </a>
-    );
+  const renderReadmore = !readmore || !url ? "" : <a href={url}>{readmore}</a>;
   return (
-    <div>
+    <div className="rlv-heading">
       {renderHeading}
       {renderReadmore}
     </div>
