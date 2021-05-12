@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getEventTime, getClassItem } from "../../helpers/displayEvent";
-import AddCal from "./AddCal/AddCal";
-import Truncate from "../atoms/Truncate";
-import Time from "../atoms/Time";
-import { Department, InnerProps, StandardProps } from "../../../types/types";
-import EventImage from "../atoms/EventImage/EventImage";
-import "./Modern.scss";
+import { getEventTime, getClassItem } from "../../../helpers/displayEvent";
+import AddCal from "../AddCal/AddCal";
+import Truncate from "../../atoms/Truncate/Truncate";
+import Time from "../../atoms/Time";
+import { Department, InnerProps, StandardProps } from "../../../../types/types";
+import EventImage from "../../atoms/EventImage/EventImage";
+import "./ModernStandard.scss";
 
 export const ModernStandardInner = (props: InnerProps) => {
   const { event, hideimages, hidetime } = props;
@@ -33,7 +33,7 @@ export const ModernStandardInner = (props: InnerProps) => {
   const eventTime = getEventTime(event);
   const classList = getClassItem(event);
   return (
-    <div className={`rlv-modern ${classList}`}>
+    <div className={`rlv-modern-standard ${classList}`}>
       <div className="events">
         <a
           href={event.localist_url}
@@ -91,7 +91,7 @@ const ModernStandard = (props: StandardProps) => {
   return (
     <section className="events-modern-standard modern" title="Events List">
       <div>
-        <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
+        <div className={`rlv-component cwd-card-grid ${wrapperClassList}`}>
           <div className={listClassList}>
             {events.length > 0 ? (
               events.map((event) => {
