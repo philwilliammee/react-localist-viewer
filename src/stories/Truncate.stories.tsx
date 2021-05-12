@@ -16,16 +16,7 @@ const TruncateStories = {
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof Truncate>> = (args) => (
-  <div className="cwd-events-style">
-    <div className="events-modern-standard ">
-      <div className="cwd-component">
-        <div className="events">
-          {" "}
-          <Truncate {...args} />{" "}
-        </div>
-      </div>
-    </div>
-  </div>
+  <Truncate {...args} />
 );
 
 const eventData: EventEvent = { ...singleEvent.event };
