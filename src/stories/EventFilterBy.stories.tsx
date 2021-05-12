@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventFilterBy from "../lib/js/components/organisms/EventFilterBy";
+import EventFilterBy from "../lib/js/components/organisms/EventFilterBy/EventFilterBy";
 import { EventElement } from "../lib/types/types";
 import { componentData } from "./assets/testData";
 
@@ -15,16 +15,7 @@ const EventFilterByStories = {
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof EventFilterBy>> = (args) => (
-  <div className="cwd-events-style">
-    <div className="events-modern-standard ">
-      <div className="cwd-component">
-        <div className="events">
-          {" "}
-          <EventFilterBy {...args} />{" "}
-        </div>
-      </div>
-    </div>
-  </div>
+  <EventFilterBy {...args} />
 );
 
 const eventsData: EventElement[] = componentData.events;
