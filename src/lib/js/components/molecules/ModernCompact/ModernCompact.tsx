@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import EventThumbnail from "../../atoms/EventThumbnail";
-import Truncate from "../../atoms/Truncate";
+import Truncate from "../../atoms/Truncate/Truncate";
 import Time from "../../atoms/Time";
 import { InnerProps, StandardProps } from "../../../../types/types";
 

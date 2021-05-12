@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getTruncDesc } from "../../helpers/displayEvent";
-import { isHidden } from "../../helpers/common";
-import { EventEvent, HideType } from "../../../types/types";
+import { getTruncDesc } from "../../../helpers/displayEvent";
+import { isHidden } from "../../../helpers/common";
+import { EventEvent, HideType } from "../../../../types/types";
+
+import "./Truncate.scss";
 
 interface Props {
   event: EventEvent;
@@ -17,10 +19,10 @@ const Truncate = (props: Props) => {
     return <></>;
   }
   return (
-    <>
+    <span className="rlv-truncate">
       {getTruncDesc(event, truncatedescription)}{" "}
       {truncatedescription ? readMore : ""}
-    </>
+    </span>
   );
 };
 

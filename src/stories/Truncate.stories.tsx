@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import Truncate from "../lib/js/components/atoms/Truncate";
+import Truncate from "../lib/js/components/atoms/Truncate/Truncate";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "../lib/types/types";
 import { HideSelect } from "./assets/utilities";
