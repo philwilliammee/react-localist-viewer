@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getEventTime, getClassItem } from "../../helpers/displayEvent";
-import AddCal from "./AddCal/AddCal";
-import EventThumbnail from "../atoms/EventThumbnail";
-import Truncate from "../atoms/Truncate";
-import Time from "../atoms/Time";
-import { InnerProps, StandardProps } from "../../../types/types";
+import { getEventTime, getClassItem } from "../../../helpers/displayEvent";
+import AddCal from "../AddCal/AddCal";
+import EventThumbnail from "../../atoms/EventThumbnail";
+import Truncate from "../../atoms/Truncate";
+import Time from "../../atoms/Time";
+import { InnerProps, StandardProps } from "../../../../types/types";
+
+import "./ModernCompact.scss";
 
 const ModernCompactInner = (props: InnerProps) => {
   const { event, hideimages } = props;
@@ -62,9 +64,9 @@ const ModernCompact = (props: StandardProps) => {
   const wrapperClassList = wrapperClassArray.join(" ");
   const listClassList = listClassArray.join(" ");
   return (
-    <section className="events-modern-compact modern" title="Events List">
+    <section className="rlv-modern-compact modern" title="Events List">
       <div className="events-main-body">
-        <div className={`cwd-component cwd-card-grid ${wrapperClassList}`}>
+        <div className={`rlv-component cwd-card-grid ${wrapperClassList}`}>
           <div className={listClassList}>
             {events.length > 0 ? (
               events.map((event) => {
