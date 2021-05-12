@@ -14,7 +14,9 @@ const PaginateStories = {
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof Paginate>> = (args) => (
-  <Paginate {...args} />
+  <div className="cwd-events-style">
+    <Paginate {...args} />
+  </div>
 );
 
 export const Default = Template.bind({});

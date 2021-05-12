@@ -12,13 +12,7 @@ const EventInnerStories = {
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof EventInner>> = (args) => (
   <div className="cwd-events-style">
-    <div className="events-modern-standard ">
-      <div className="cwd-component">
-        <div className="events">
-          <EventInner {...args} />
-        </div>
-      </div>
-    </div>
+    <EventInner {...args} />
   </div>
 );
 
