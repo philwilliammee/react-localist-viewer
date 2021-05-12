@@ -12,13 +12,7 @@ const AgendaInnerContentStories = {
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof AgendaInnerContent>> = (args) => (
   <div className="cwd-events-style">
-    <div className="events-modern-standard ">
-      <div className="cwd-component">
-        <div className="events">
-          <AgendaInnerContent {...args} />
-        </div>
-      </div>
-    </div>
+    <AgendaInnerContent {...args} />
   </div>
 );
 
