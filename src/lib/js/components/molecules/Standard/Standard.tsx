@@ -6,20 +6,21 @@ import {
   getMonthHeader,
   getDisplayDate,
   getClassItem,
-} from "../../helpers/displayEvent";
-import AddCal from "./AddCal/AddCal";
-import EventDescription from "../atoms/EventDescription";
+} from "../../../helpers/displayEvent";
+import AddCal from "../AddCal/AddCal";
+import EventDescription from "../../atoms/EventDescription";
 import {
   EventElement,
   EventEvent,
   FilterBy,
   Format,
   HideType,
-} from "../../../types/types";
-import EventTitle from "../atoms/EventTitle";
-import EventDate from "../atoms/EventDate";
-import EventLocation from "../atoms/EventLocation";
-import EventThumbnail from "../atoms/EventThumbnail";
+} from "../../../../types/types";
+import EventTitle from "../../atoms/EventTitle";
+import EventDate from "../../atoms/EventDate";
+import EventLocation from "../../atoms/EventLocation/EventLocation";
+import EventThumbnail from "../../atoms/EventThumbnail";
+import "./Standard.scss";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -128,7 +129,7 @@ const Standard = (props: StandardProps) => {
   const wrapperClassList = wrapperClassArray.join(" ");
   const listClassList = listClassArray.join(" ");
   return (
-    <section className="standard" title="Events List">
+    <section className="rlv-standard" title="Events List">
       <div className="events-main-body">
         <div className={`events-listing ${wrapperClassList}`}>
           <div className={`events-list ${listClassList}`}>
