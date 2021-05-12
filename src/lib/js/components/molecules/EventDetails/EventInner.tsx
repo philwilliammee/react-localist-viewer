@@ -9,9 +9,10 @@ import {
 import AddCal from "../AddCal/AddCal";
 import truncateUrl from "truncate-url";
 import Grid from "../../atoms/Grid";
-import "./EventInner.scss";
 import { EventEvent } from "../../../../types/types";
 import EventImage from "../../atoms/EventImage/EventImage";
+
+import "./EventInner.scss";
 
 interface Props {
   event: EventEvent;
@@ -26,7 +27,7 @@ const EventInner = ({ event }: Props) => {
 
   return (
     <section className="rlv-event-inner event-details">
-      <div className="cwd-component">
+      <div>
         <div className="field title">
           <h3>{event.title}</h3>
         </div>
@@ -38,7 +39,7 @@ const EventInner = ({ event }: Props) => {
         </span>
         <div className="field field-name-summary summary">
           <div>
-            <div style={{ float: "left", paddingRight: "15px" }}>
+            <div className="rlv-event-image-wrapper">
               <EventImage
                 photoUrl={event.photo_url}
                 title={event.title}
