@@ -1,4 +1,14 @@
 .calendar-container {
+
+    table td,
+    table th {
+        border-width: 1px;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
     .month-view {
         table {
             border: 1px solid #eee;
@@ -40,10 +50,6 @@
             color: black;
         }
 
-        .emptySlot {
-            background-color: rgb(230, 230, 230);
-        }
-
         .content {
             display: flex;
             flex-direction: column;
@@ -59,12 +65,16 @@
                 margin: 0;
                 padding: 2px 5px;
                 background-color: #3174ad;
-                border-radius: 5px;
+
                 color: #fff;
                 cursor: pointer;
                 width: 100%;
                 text-align: left;
-                height: 24px
+                height: 24px;
+
+                &:hover {
+                    background: #017bb1;
+                }
             }
 
             .button-text {
@@ -151,3 +161,7 @@
         }
     }
 }
+
+
+/*! CSS Used from: https://live-cihmid.pantheonsite.io/wp-content/themes/cihmid/css/project.css?ver=5.7.1&r=32806349 ; media=all */
+@media all {}
