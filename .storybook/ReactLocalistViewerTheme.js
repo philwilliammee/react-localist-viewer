@@ -5,7 +5,7 @@ import { create } from "@storybook/theming";
 // const png =
 //   "https://drive.google.com/file/d/1a8qr7UKAc9eXuX5esVRwurnmCSgPFbR6/view?usp=sharing";
 export default create({
-  // base: "dark",
+  base: "dark",
   brandTitle: "React Localist Viewer",
   brandUrl:
     "https://philwilliammee.github.io/react-localist-viewer/?path=/story/react-localist-viewer-introduction--page",

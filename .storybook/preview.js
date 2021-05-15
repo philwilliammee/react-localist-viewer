@@ -5,4 +5,7 @@ export const parameters = {
   // docs: {
   //   theme: themes.dark,
   // },
+  backgrounds: {
+    default: "light",
+  },
 };
