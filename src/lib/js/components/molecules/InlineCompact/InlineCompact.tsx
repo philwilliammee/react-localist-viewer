@@ -70,7 +70,7 @@ const InlineCompact = (props: InlineCompactProps) => {
   return (
     <section className="modern" id="eventsInlineCompact" title="Events List">
       <div className="events-main-body">
-        <div className={`cwd-component compact events-listing ${wrapperclass}`}>
+        <div className={`rlv-component compact events-listing ${wrapperclass}`}>
           <div className={`events-list view-content ${listclass}`}>
             {events.length > 0 ? (
               events.map((event) => {

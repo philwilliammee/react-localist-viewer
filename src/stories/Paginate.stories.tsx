@@ -3,6 +3,7 @@ import React, { ComponentProps } from "react";
 import { Story, Meta } from "@storybook/react";
 import Paginate from "../lib/js/components/organisms/Paginate/Paginate";
 import { HideSelect } from "./assets/utilities";
+import Theme from "lib/js/components/Theme";
 
 const PaginateStories = {
   title: "Organisms/Paginate ",
@@ -14,9 +15,9 @@ const PaginateStories = {
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof Paginate>> = (args) => (
-  <div className="cwd-events-style">
+  <Theme>
     <Paginate {...args} />
-  </div>
+  </Theme>
 );
 
 export const Default = Template.bind({});

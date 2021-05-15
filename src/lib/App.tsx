@@ -5,11 +5,14 @@ import { AppProps } from "./types/types";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { queryClient } from "./query";
+import Theme from "./js/components/Theme";
 
 const App = (props: AppProps) => (
   <QueryClientProvider client={queryClient}>
     <EventsState>
-      <Localist {...props} />
+      <Theme>
+        <Localist {...props} />
+      </Theme>
     </EventsState>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

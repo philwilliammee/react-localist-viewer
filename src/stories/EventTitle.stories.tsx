@@ -2,6 +2,7 @@ import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
 import EventTitle from "../lib/js/components/atoms/EventTitle";
+import Theme from "lib/js/components/Theme";
 
 const EventTitleStories = {
   title: "Atoms/EventTitle ",
@@ -9,9 +10,9 @@ const EventTitleStories = {
 };
 
 const Template: Story<ComponentProps<typeof EventTitle>> = (args) => (
-  <div className="cwd-events-style">
+  <Theme>
     <EventTitle {...args} />
-  </div>
+  </Theme>
 );
 
 export const Default = Template.bind({});

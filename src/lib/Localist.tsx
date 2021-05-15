@@ -97,7 +97,7 @@ const Localist = (props: AppProps) => {
   }
 
   return (
-    <div className="rlc-localist cwd-events-style">
+    <div className="rlc-localist">
       <Heading
         heading={props.heading || ""}
         readmore={props.readmore || ""}

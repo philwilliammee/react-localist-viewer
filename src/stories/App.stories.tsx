@@ -5,6 +5,7 @@ import React, { ComponentProps } from "react";
 import { Meta, Story } from "@storybook/react";
 import App from "../lib/App";
 import { HideSelect } from "./assets/utilities";
+import Theme from "lib/js/components/Theme";
 
 const AppStories = {
   title: "React-Localist-Viewer/Localist App",
@@ -18,11 +19,10 @@ const AppStories = {
   },
 };
 
-// all templates should be wrapped in events-listing cwd-events-style
 const Template: Story<ComponentProps<typeof App>> = (args) => (
-  <div className="events-listing cwd-events-style">
+  <Theme>
     <App {...args} />
-  </div>
+  </Theme>
 );
 
 export const Calendar = Template.bind({});
