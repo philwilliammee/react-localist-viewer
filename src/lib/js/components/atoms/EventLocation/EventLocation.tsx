@@ -8,7 +8,7 @@ interface EventLocationProps {
 const EventLocation = (props: EventLocationProps) => {
   const { locationName } = props;
   if (locationName) {
-    return <h4 className="rlv-event-location meta location">{locationName}</h4>;
+    return <h4 className="rlv-event-location">{locationName}</h4>;
   }
   return <></>;
 };

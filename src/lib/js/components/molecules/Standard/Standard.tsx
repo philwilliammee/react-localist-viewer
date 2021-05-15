@@ -8,7 +8,7 @@ import {
   getClassItem,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
-import EventDescription from "../../atoms/EventDescription";
+import EventDescription from "../../atoms/EventDescription/EventDescription";
 import {
   EventElement,
   EventEvent,
@@ -18,9 +18,10 @@ import {
 } from "../../../../types/types";
 import EventTitle from "../../atoms/EventTitle";
 import EventDate from "../../atoms/EventDate";
-import EventLocation from "../../atoms/EventLocation/EventLocation";
+import EventLocation from "../../atoms/EventLocation";
 import EventThumbnail from "../../atoms/EventThumbnail";
 import "./Standard.scss";
+import Grid from "../../atoms/Grid";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -41,10 +42,14 @@ const StandardInner = (props: StandardInnerProps) => {
           <div className="field title">
             <EventTitle title={event.title} url={event.localist_url} />
           </div>
-          <EventLocation locationName={event.location_name} />
-          <div>
-            <EventDate date={getEventTime(event)} />
-          </div>
+          <Grid container>
+            <Grid col={9} style={{ marginBottom: 0 }}>
+              <EventLocation locationName={event.location_name} />
+            </Grid>
+            <Grid col={3} style={{ marginBottom: 0 }}>
+              <EventDate date={getEventTime(event)} />
+            </Grid>
+          </Grid>
           <EventThumbnail
             photoUrl={event.photo_url}
             title={event.title}

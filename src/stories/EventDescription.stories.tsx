@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import EventDescription from "../lib/js/components/atoms/EventDescription";
+import EventDescription from "../lib/js/components/atoms/EventDescription/EventDescription";
 import { HideSelect } from "./assets/utilities";
 
 const EventDescriptionStories = {

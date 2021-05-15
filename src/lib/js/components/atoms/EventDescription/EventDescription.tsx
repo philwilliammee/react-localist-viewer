@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { isHidden } from "../../helpers/common";
-import { HideType } from "../../../types/types";
+import { isHidden } from "../../../helpers/common";
+import { HideType } from "../../../../types/types";
+import "./EventDescription.scss";
 
 interface EventDescriptionProps {
   description: string;
@@ -11,6 +12,10 @@ interface EventDescriptionProps {
 }
 const EventDescription = (props: EventDescriptionProps) => {
   const { description, title, url, hidedescription } = props;
+
+  if (isHidden(hidedescription) && isHidden(hidedescription)) {
+    return <></>;
+  }
 
   const descriptionLink = (
     <a
@@ -26,8 +31,8 @@ const EventDescription = (props: EventDescriptionProps) => {
   );
 
   return (
-    <div className="summary">
-      <p className="description">
+    <div className="rlv-event-description">
+      <p>
         {isHidden(hidedescription) ? "" : description}
         {isHidden(hidedescription) ? "" : descriptionLink}
       </p>
