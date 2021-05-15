@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { Meta, Story } from "@storybook/react";
 
 import ModalDialog from "../lib/js/components/atoms/ModalDialog";
-import { Default as EventInnerStoriesDefault } from "./EventDetails.stories";
+import { Default as EventInnerStoriesDefault } from "./EventInner.stories";
 import { EventEvent } from "../lib/types/types";
 import { singleEvent } from "./assets/testData";
 

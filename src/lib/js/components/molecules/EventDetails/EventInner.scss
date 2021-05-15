@@ -1,33 +1,4 @@
 .rlv-event-inner {
-    .cwd-more-info {
-
-        h4,
-        .flex-12 {
-            margin-bottom: var(--spacing-2);
-        }
-
-        h5 {
-            margin-bottom: var(--spacing-0);
-        }
-
-        p {
-            margin-bottom: var(--spacing-1);
-        }
-
-        padding: var(--spacing-2);
-        background-color: var(--lightest-black-alpha);
-        margin: var(--spacing-4) var(--spacing-0);
-
-    }
-
-    .inline-events-type {
-        padding: 2px 8px 1px;
-        background: var(--off-white);
-        border-radius: var(--spacing-1);
-        text-decoration: none !important;
-        color: var(--black);
-        margin-left: var(--spacing-2);
-    }
 
     div.field.field-name-summary.summary {
         padding-top: var(--spacing-2);
@@ -37,9 +8,9 @@
     .rlv-event-image-wrapper {
         float: left;
         padding-right: 15px;
+    }
 
-        img {
-            max-height: 200px;
-        }
+    .clear {
+        clear: both;
     }
 }
