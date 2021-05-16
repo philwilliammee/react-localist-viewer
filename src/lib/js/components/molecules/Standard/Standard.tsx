@@ -22,6 +22,7 @@ import EventLocation from "../../atoms/EventLocation";
 import EventThumbnail from "../../atoms/EventThumbnail";
 import "./Standard.scss";
 import Grid from "../../atoms/Grid";
+import EventIcon from "@material-ui/icons/Event";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -124,7 +125,7 @@ const Standard = (props: StandardProps) => {
       lastDay = displayDate;
       return (
         <h4 className="day-header">
-          <span className="fa fa-calendar-o" />
+          <EventIcon className="event-icon" />
           {displayDate}
         </h4>
       );

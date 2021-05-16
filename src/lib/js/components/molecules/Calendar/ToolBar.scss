@@ -1,0 +1,52 @@
+.rlv-tool-bar {
+
+  display: flex;
+  height: 50px;
+
+  .links {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-title {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .view {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  button.active {
+    background-image: none;
+    // box-shadow: inset 0 3px 5px #ccc;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+
+  button {
+    background: none;
+    white-space: nowrap;
+  }
+
+  button:first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  button:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+}

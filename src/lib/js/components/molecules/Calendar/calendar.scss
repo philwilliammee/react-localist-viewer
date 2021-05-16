@@ -42,7 +42,6 @@
 
         .selected-day {
             background-color: #fcf3e1;
-            ;
             width: 28px;
             height: 28px;
             line-height: 28px;
@@ -95,69 +94,6 @@
                 }
             }
 
-        }
-    }
-
-    // Calendar Nav
-
-    .toolbar {
-        display: flex;
-        height: 50px;
-
-        .links {
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-title {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .view {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
-        button.active {
-            background-image: none;
-            box-shadow: inset 0 3px 5px #ccc;
-            background-color: #e6e6e6;
-            border-color: #adadad;
-        }
-
-        button {
-            color: #373a3c;
-            display: inline-block;
-            margin: 0;
-            text-align: center;
-            vertical-align: middle;
-            background: none;
-            background-image: none;
-            border: 1px solid #ccc;
-            padding: .375rem 1rem;
-            border-radius: 4px;
-            line-height: normal;
-            white-space: nowrap;
-        }
-
-        button:first-child:not(:last-child) {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        button:last-child:not(:first-child) {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        button:not(:first-child):not(:last-child) {
-            border-radius: 0;
         }
     }
 }

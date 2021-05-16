@@ -13,7 +13,10 @@ const EventLocation = (props: EventLocationProps) => {
   }
   return (
     <h4 className="rlv-event-location">
-      <RoomIcon />
+      <RoomIcon
+        className="room-icon"
+        style={{ fontSize: "inherit", marginRight: "5px" }}
+      />
       {locationName}
     </h4>
   );
