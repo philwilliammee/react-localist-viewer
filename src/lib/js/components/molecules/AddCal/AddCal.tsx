@@ -4,6 +4,10 @@ import buildUrl from "build-url";
 import { getCalStartDate, getCalEndDate } from "../../../helpers/displayEvent";
 import { isHidden } from "../../../helpers/common";
 import { EventEvent, HideType } from "../../../../types/types";
+import GoogleIcon from "@material-ui/icons/Google";
+import AppleIcon from "@material-ui/icons/Apple";
+import EventIcon from "@material-ui/icons/Event";
+
 import "./AddCal.scss";
 
 const buildGoogleLink = (myObj: EventEvent) => {
@@ -26,12 +30,12 @@ const buildGoogleStr = (myObj: EventEvent) => {
   const href = buildGoogleLink(myObj);
   return (
     <a
-      className="fa fa-google google"
       href={href}
       title="Save to Google Calendar"
       rel="noreferrer noopener"
       target="_blank"
     >
+      <GoogleIcon className="google" />
       <span className="sr-only">Add {myObj.title} to Google Calendar</span>
     </a>
   );
@@ -40,12 +44,12 @@ const buildGoogleStr = (myObj: EventEvent) => {
 const buildiCal = (myObj: EventEvent) => {
   return (
     <a
-      className="fa fa-calendar apple"
       href={myObj.localist_ics_url}
       title="Save to iCal"
       rel="noreferrer noopener"
       target="_blank"
     >
+      <AppleIcon className="apple" />
       <span className="sr-only">Add {myObj.title} to iCal</span>
     </a>
   );
@@ -54,12 +58,12 @@ const buildiCal = (myObj: EventEvent) => {
 const buildOutlookCal = (myObj: EventEvent) => {
   return (
     <a
-      className="fa fa-clock-o microsoft"
       href={myObj.localist_ics_url}
       title="Save to Outlook"
       rel="noreferrer noopener"
       target="_blank"
     >
+      <EventIcon className="microsoft" />
       <span className="sr-only">Add {myObj.title} to Outlook</span>
     </a>
   );
