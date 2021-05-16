@@ -1,16 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./EventLocation.scss";
+import RoomIcon from "@material-ui/icons/Room";
 
 interface EventLocationProps {
   locationName?: string;
 }
 const EventLocation = (props: EventLocationProps) => {
   const { locationName } = props;
-  if (locationName) {
-    return <h4 className="rlv-event-location">{locationName}</h4>;
+  if (!locationName) {
+    return <></>;
   }
-  return <></>;
+  return (
+    <h4 className="rlv-event-location">
+      <RoomIcon />
+      {locationName}
+    </h4>
+  );
 };
 EventLocation.propTypes = {
   locationName: PropTypes.string,

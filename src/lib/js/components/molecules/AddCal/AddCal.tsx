@@ -10,24 +10,24 @@ import EventIcon from "@material-ui/icons/Event";
 
 import "./AddCal.scss";
 
-const buildGoogleLink = (myObj: EventEvent) => {
-  const gDateStart = getCalStartDate(myObj);
-  const gDateStop = getCalEndDate(myObj);
+const buildGoogleLink = (event: EventEvent) => {
+  const gDateStart = getCalStartDate(event);
+  const gDateStop = getCalEndDate(event);
   const href = buildUrl("https://calendar.google.com/calendar/event", {
     queryParams: {
       action: "TEMPLATE",
       dates: `${gDateStart}/${gDateStop}`,
-      details: myObj.description_text.replace(/[\r\n]/g, `<br />`),
-      location: myObj.location,
+      details: event.description_text.replace(/[\r\n]/g, `<br />`),
+      location: event.location,
       sprop: "website:events.cornell.edu",
-      text: myObj.title,
+      text: event.title,
     },
   });
   return href;
 };
 
-const buildGoogleStr = (myObj: EventEvent) => {
-  const href = buildGoogleLink(myObj);
+const buildGoogleStr = (event: EventEvent) => {
+  const href = buildGoogleLink(event);
   return (
     <a
       href={href}
@@ -36,35 +36,35 @@ const buildGoogleStr = (myObj: EventEvent) => {
       target="_blank"
     >
       <GoogleIcon className="google" />
-      <span className="sr-only">Add {myObj.title} to Google Calendar</span>
+      <span className="sr-only">Add {event.title} to Google Calendar</span>
     </a>
   );
 };
 
-const buildiCal = (myObj: EventEvent) => {
+const buildiCal = (event: EventEvent) => {
   return (
     <a
-      href={myObj.localist_ics_url}
+      href={event.localist_ics_url}
       title="Save to iCal"
       rel="noreferrer noopener"
       target="_blank"
     >
       <AppleIcon className="apple" />
-      <span className="sr-only">Add {myObj.title} to iCal</span>
+      <span className="sr-only">Add {event.title} to iCal</span>
     </a>
   );
 };
 
-const buildOutlookCal = (myObj: EventEvent) => {
+const buildOutlookCal = (event: EventEvent) => {
   return (
     <a
-      href={myObj.localist_ics_url}
+      href={event.localist_ics_url}
       title="Save to Outlook"
       rel="noreferrer noopener"
       target="_blank"
     >
       <EventIcon className="microsoft" />
-      <span className="sr-only">Add {myObj.title} to Outlook</span>
+      <span className="sr-only">Add {event.title} to Outlook</span>
     </a>
   );
 };
@@ -73,10 +73,7 @@ interface AddCalProps {
   event: EventEvent;
   hideaddcal?: HideType;
 }
-/**
- * @param {obj} props.event The localist event object
- * @return {jsx} The rendered template.
- */
+
 const AddCal = (props: AddCalProps) => {
   const { event, hideaddcal } = props;
 

@@ -9,6 +9,8 @@ import {
 } from "../../../helpers/displayEvent";
 import { EventElement, EventEvent } from "../../../../types/types";
 import "./InlineCompact.scss";
+import RoomIcon from "@material-ui/icons/Room";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const eventTime = getEventTime(event);
@@ -20,7 +22,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
     }
     return (
       <div className="event-location">
-        <span className="fa fa-map-marker" />
+        <RoomIcon className="room-icon" />
         {locationName}
       </div>
     );
@@ -43,7 +45,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
               </a>
             </div>
             <div className="event-times">
-              <span className="fa fa-clock-o" />
+              <AccessTimeIcon className="access-time-icon" />
               {eventTime}
               {endTime ? ` - ${endTime}` : ""}
             </div>
