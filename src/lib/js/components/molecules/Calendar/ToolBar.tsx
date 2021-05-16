@@ -16,7 +16,7 @@ interface ToolBarProps {
 const Toolbar = (props: ToolBarProps) => {
   const { prevMonth, nextMonth, children, setView, view, today } = props;
   return (
-    <div className="rlv-tool-bar toolbar">
+    <div className="rlv-tool-bar">
       <div className="links">
         <Button
           variant="contained"

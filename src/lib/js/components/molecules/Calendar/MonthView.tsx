@@ -9,6 +9,7 @@ import {
 } from "./dateUtils";
 import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
+import "./MonthView.scss";
 
 interface Props {
   dateContext: Moment;
@@ -112,7 +113,7 @@ const MonthView = (props: Props) => {
     return <tr key={`${i}-days`}>{d}</tr>;
   });
   return (
-    <table className="table compact calendar">
+    <table className="rlv-month-view table compact calendar">
       <thead>
         <tr>
           <Weekdays />
