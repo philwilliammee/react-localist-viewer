@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { EventEvent } from "../../../../types/types";
 import EventImage from "../../atoms/EventImage/EventImage";
@@ -8,6 +7,7 @@ import EventImage from "../../atoms/EventImage/EventImage";
 import "./EventInner.scss";
 import MoreInfo from "../MoreInfo";
 import Tag from "../../atoms/Tag";
+import EventDate from "../../atoms/EventDateTime";
 
 interface Props {
   event: EventEvent;
@@ -18,7 +18,7 @@ const EventInner = ({ event }: Props) => (
     <div>
       <h3>{event.title}</h3>
       <div>
-        {getEventDate(event)} @ {getEventFullTime(event)}
+        <EventDate event={event} hideTime={false} />
         <Tag>{event.location_name}</Tag>
       </div>
       <div className="field field-name-summary summary">
