@@ -27,7 +27,7 @@ const Template: Story<ComponentProps<typeof App>> = (args) => (
 
 export const Calendar = Template.bind({});
 Calendar.args = {
-  depts: "25364",
+  depts: "4888",
   entries: "100",
   daysahead: "300",
   format: "calendar",

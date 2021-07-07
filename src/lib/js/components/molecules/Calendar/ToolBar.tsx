@@ -3,6 +3,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import "./ToolBar.scss";
+import { Typography } from "@material-ui/core";
 
 interface ToolBarProps {
   children: React.ReactChild;
@@ -48,7 +49,7 @@ const Toolbar = (props: ToolBarProps) => {
         </Button>
       </div>
       <div className="header-title">
-        <h3>{children}</h3>
+        <Typography variant="h3">{children}</Typography>
       </div>
       <div className="view">
         <Button

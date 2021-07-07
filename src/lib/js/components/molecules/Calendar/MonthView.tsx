@@ -10,6 +10,7 @@ import {
 import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
 import "./MonthView.scss";
+import { Button } from "@material-ui/core";
 
 interface Props {
   dateContext: Moment;
@@ -67,12 +68,20 @@ const MonthView = (props: Props) => {
           {todaysEvents?.map((event) => {
             return (
               <div key={event.event.event_instances[0].event_instance.id}>
-                <button
+                {/* <button
+                  className="event"
+                  onClick={(e) => handleEventSelect(event.event)}
+                >
+
+                </button> */}
+                <Button
+                  variant="contained"
+                  color="primary"
                   className="event"
                   onClick={(e) => handleEventSelect(event.event)}
                 >
                   <span className="button-text">{event.event.title}</span>
-                </button>
+                </Button>
               </div>
             );
           })}
