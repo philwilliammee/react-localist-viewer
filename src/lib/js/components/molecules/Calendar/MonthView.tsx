@@ -10,7 +10,7 @@ import {
 import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
 import "./MonthView.scss";
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 
 interface Props {
   dateContext: Moment;
@@ -56,24 +56,20 @@ const MonthView = (props: Props) => {
       <td key={d} className={className + selectedClass}>
         <div className="content">
           <div>
-            <button
-              className="align-right day-btn"
+            <IconButton
+              size="small"
               onClick={(e) => {
                 onDayClick(e, d);
               }}
+              aria-label="close dialog"
+              className="align-right day-btn"
             >
               {d}
-            </button>
+            </IconButton>
           </div>
           {todaysEvents?.map((event) => {
             return (
               <div key={event.event.event_instances[0].event_instance.id}>
-                {/* <button
-                  className="event"
-                  onClick={(e) => handleEventSelect(event.event)}
-                >
-
-                </button> */}
                 <Button
                   variant="contained"
                   color="primary"
