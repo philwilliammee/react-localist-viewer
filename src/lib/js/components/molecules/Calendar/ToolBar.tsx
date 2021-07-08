@@ -49,7 +49,7 @@ const Toolbar = (props: ToolBarProps) => {
         </Button>
       </div>
       <div className="header-title">
-        <Typography variant="h3">{children}</Typography>
+        <Typography variant="h2">{children}</Typography>
       </div>
       <div className="view">
         <Button

@@ -100,13 +100,13 @@ const Filters = () => {
   return (
     <div id="calendarFilters">
       <div className="heading">
-        <Typography variant="h4">
+        <Typography variant="subtitle2">
           Check the boxes below to broaden your results.
         </Typography>
       </div>
 
       <div className="filter-groups padded">
-        <Typography variant="h5">Group Name</Typography>
+        <Typography variant="h4">Group Name</Typography>
         <div className="filter-group">
           <ul>
             {eventGroupNames.map((group, id) => {
@@ -125,7 +125,7 @@ const Filters = () => {
           </ul>
         </div>
         <hr />
-        <Typography variant="h5">Types</Typography>
+        <Typography variant="h4">Types</Typography>
         <div className="filter-group">
           <ul>
             {eventTypes.map((type, id) => {
@@ -144,7 +144,7 @@ const Filters = () => {
           </ul>
         </div>
         <hr />
-        <Typography variant="h5">Keywords</Typography>
+        <Typography variant="h4">Keywords</Typography>
         <div className="filter-group">
           <ul>
             {eventKeywords.map((keyword, id) => {
