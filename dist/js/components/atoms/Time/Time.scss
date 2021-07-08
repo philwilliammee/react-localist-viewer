@@ -1,0 +1,27 @@
+.rlv-time {
+  background: #b31b1b;
+  color: #fff;
+  float: left;
+  text-align: center;
+  transition: background .15s;
+  width: auto;
+  min-height: 0;
+  margin: 0 0 1em;
+
+  .month {
+    float: left;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    padding: 9px 12px;
+    text-transform: uppercase;
+  }
+
+  .day {
+    float: left;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    padding: 9px 12px;
+  }
+}

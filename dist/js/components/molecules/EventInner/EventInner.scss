@@ -1,0 +1,16 @@
+.rlv-event-inner {
+
+    div.field.field-name-summary.summary {
+        padding-top: var(--spacing-2);
+        min-height: 150px; //@todo get rid of this.
+    }
+
+    .rlv-event-image-wrapper {
+        float: left;
+        padding-right: 15px;
+    }
+
+    .clear {
+        clear: both;
+    }
+}

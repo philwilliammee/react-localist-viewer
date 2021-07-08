@@ -1,4 +1,9 @@
 import React from "react";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Button from "@material-ui/core/Button";
+import "./ToolBar.scss";
+import { Typography } from "@material-ui/core";
 
 interface ToolBarProps {
   children: React.ReactChild;
@@ -12,60 +17,68 @@ interface ToolBarProps {
 const Toolbar = (props: ToolBarProps) => {
   const { prevMonth, nextMonth, children, setView, view, today } = props;
   return (
-    <div className="toolbar">
+    <div className="rlv-tool-bar">
       <div className="links">
-        <button
+        <Button
+          variant="contained"
           onClick={(e) => {
             prevMonth();
           }}
+          startIcon={<ChevronLeftIcon />}
         >
-          <i className="prev fa fa-fw fa-chevron-left"></i> Back
-        </button>
+          Back
+        </Button>
 
-        <button
+        <Button
+          variant="contained"
           onClick={(e) => {
             today();
           }}
         >
           {" "}
           Today
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="contained"
           onClick={(e) => {
             nextMonth();
           }}
+          endIcon={<ChevronRightIcon />}
         >
-          Next <i className="next fa fa-fw fa-chevron-right"></i>
-        </button>
+          Next
+        </Button>
       </div>
       <div className="header-title">
-        <h3>{children}</h3>
+        <Typography variant="h2">{children}</Typography>
       </div>
       <div className="view">
-        <button
+        <Button
+          variant="contained"
           className={view === "month" ? "active" : ""}
           onClick={() => {
             setView("month");
           }}
         >
           Month
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="contained"
           className={view === "day" ? "active" : ""}
           onClick={() => {
             setView("day");
           }}
         >
           Day
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="contained"
           className={view === "list" ? "active" : ""}
           onClick={() => {
             setView("list");
           }}
         >
           List
-        </button>
+        </Button>
       </div>
     </div>
   );

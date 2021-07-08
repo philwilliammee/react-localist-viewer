@@ -1,0 +1,19 @@
+.rlv-more-info {
+
+  h4,
+  .flex-12 {
+    margin-bottom: var(--spacing-2);
+  }
+
+  h5 {
+    margin-bottom: var(--spacing-0);
+  }
+
+  p {
+    margin-bottom: var(--spacing-1);
+  }
+
+  padding: var(--spacing-2);
+  background-color: var(--lightest-black-alpha);
+  margin: var(--spacing-4) var(--spacing-0);
+}

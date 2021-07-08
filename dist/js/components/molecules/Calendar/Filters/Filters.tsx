@@ -3,6 +3,7 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
+import { Button, Typography } from "@material-ui/core";
 // import moment from "moment";
 
 /**
@@ -99,65 +100,63 @@ const Filters = () => {
   return (
     <div id="calendarFilters">
       <div className="heading">
-        <h4>Narrow Your Results</h4>
-        <p className="help sr-only">By checking the options below.</p>
+        <Typography variant="subtitle2">
+          Check the boxes below to broaden your results.
+        </Typography>
       </div>
 
       <div className="filter-groups padded">
-        <h5>Group Name</h5>
+        <Typography variant="h4">Group Name</Typography>
         <div className="filter-group">
           <ul>
             {eventGroupNames.map((group, id) => {
               return (
                 <li key={group}>
-                  <label>
-                    <CheckBox
-                      name={group}
-                      checked={checkedItems.get(group)}
-                      onChange={handleChange}
-                    />
-                    {" " + group}
-                  </label>
+                  <CheckBox
+                    name={group}
+                    label={group}
+                    color={"primary"}
+                    checked={checkedItems.get(group)}
+                    onChange={handleChange}
+                  />
                 </li>
               );
             })}
           </ul>
         </div>
         <hr />
-        <h5>Types</h5>
+        <Typography variant="h4">Types</Typography>
         <div className="filter-group">
           <ul>
             {eventTypes.map((type, id) => {
               return (
                 <li key={type}>
-                  <label>
-                    <CheckBox
-                      name={type}
-                      checked={checkedItems.get(type)}
-                      onChange={handleChange}
-                    />
-                    {" " + type}
-                  </label>
+                  <CheckBox
+                    name={type}
+                    label={type}
+                    color={"primary"}
+                    checked={checkedItems.get(type)}
+                    onChange={handleChange}
+                  />
                 </li>
               );
             })}
           </ul>
         </div>
         <hr />
-        <h5>Keywords</h5>
+        <Typography variant="h4">Keywords</Typography>
         <div className="filter-group">
           <ul>
             {eventKeywords.map((keyword, id) => {
               return (
                 <li key={keyword}>
-                  <label>
-                    <CheckBox
-                      name={keyword}
-                      checked={checkedItems.get(keyword)}
-                      onChange={handleChange}
-                    />
-                    {" " + keyword}
-                  </label>
+                  <CheckBox
+                    name={keyword}
+                    label={keyword}
+                    color={"primary"}
+                    checked={checkedItems.get(keyword)}
+                    onChange={handleChange}
+                  />
                 </li>
               );
             })}
@@ -165,13 +164,14 @@ const Filters = () => {
         </div>
       </div>
       <div className="reset">
-        <button
+        <Button
+          variant="contained"
           onClick={() => {
             handleResetFilters();
           }}
         >
           Reset Filters
-        </button>
+        </Button>
       </div>
     </div>
   );

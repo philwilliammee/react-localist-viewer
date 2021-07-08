@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { isHidden } from "../../helpers/common";
 import { EventImageCropTypes, HideType } from "../../../types/types";
-import EventImg from "./EventImage";
+import EventImage from "./EventImage/EventImage";
 
 interface EventThumbnailProps {
   photoUrl: string;
@@ -18,7 +18,7 @@ const EventThumbnail = (props: EventThumbnailProps) => {
   }
   return (
     <div className="group-image">
-      <EventImg
+      <EventImage
         hideimages={hideimages}
         photoUrl={photoUrl}
         title={title}

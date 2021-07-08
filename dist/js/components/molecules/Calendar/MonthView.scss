@@ -1,0 +1,91 @@
+.rlv-month-view {
+  border: 1px solid #eee;
+  table-layout: fixed;
+  width: 100%;
+
+  // button {
+  //   cursor: pointer;
+  // }
+
+  thead th {
+    text-align: center;
+  }
+
+  .day {
+    width: 24px;
+    height: 129px;
+    line-height: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .current-day {
+    background-color: #eaf6ff;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+  }
+
+  .selected-day {
+    background-color: #fcf3e1;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2%;
+    color: black;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      height: 25px;
+    }
+
+    .event {
+      border: none;
+      box-sizing: border-box;
+      box-shadow: none;
+      margin: 0;
+      padding: 2px 5px;
+      background-color: #3174ad;
+
+      color: #fff;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      height: 24px;
+
+      &:hover {
+        background: #017bb1;
+      }
+    }
+
+    .button-text {
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+      text-overflow: ellipsis;
+    }
+
+    button .MuiIconButton-label {
+      min-width: 20px;
+      font-size: 1rem;
+    }
+
+    button.day-btn {
+      border-radius: 50%;
+      border: none;
+      padding-bottom: 4px;
+      padding-top: 4px;
+
+      &:hover {
+        background-color: #fcf3e1;
+      }
+    }
+
+  }
+
+}

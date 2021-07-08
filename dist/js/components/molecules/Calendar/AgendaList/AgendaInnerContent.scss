@@ -1,0 +1,99 @@
+.rlv-agenda-inner-content {
+  .events .field {
+    clear: both;
+  }
+
+  .events time {
+    width: auto;
+    min-height: 0;
+    margin: 0 0 1em;
+  }
+
+  .events time .month {
+    float: left;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    padding: 9px 12px;
+    text-transform: uppercase;
+  }
+
+  .events time .day {
+    float: left;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    padding: 9px 12px;
+  }
+
+  .events h3 {
+    width: 100%;
+    font-size: 21px;
+    line-height: 1.4;
+    margin-bottom: 0.25em;
+    font-family: Iowan Old Style, Georgia, Athelas, Baskerville, Sitka Display, Constansia, serif;
+  }
+
+  .events .meta {
+    color: #767676;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .events a {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+
+  .events a:hover h3,
+  .events a:focus h3 {
+    text-decoration: underline;
+    color: #127cb5;
+  }
+
+  .events a:active h3 {
+    color: #000;
+  }
+
+  .events a:hover,
+  .events a:focus {
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .events a:active {
+    background: rgba(0, 0, 0, 0.09);
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0.09);
+  }
+
+  .inline-events-type {
+    float: none;
+    padding: 2px 8px 1px;
+    background: #fcf3e1;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    color: #000;
+    margin-left: 10px;
+  }
+
+  img {
+    float: left;
+    margin: 0 20px 0px 0px;
+    object-fit: cover;
+    object-position: 100% 0;
+    width: 200px;
+    height: 150px;
+  }
+
+  @media only screen and (max-width: 833px) {
+    img {
+      width: 100vw;
+      padding-bottom: 10px;
+    }
+  }
+}

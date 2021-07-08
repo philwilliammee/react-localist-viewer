@@ -4,9 +4,10 @@ import Standard from "../molecules/Standard";
 import Compact from "../molecules/Compact";
 import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/ModernCompact";
-import InlineCompact from "../molecules/InlineCompact";
+import InlineCompact from "../molecules/InlineCompact/InlineCompact";
 import Calendar from "../molecules/Calendar";
 import { EventElement, FilterBy, Format, HideType } from "../../../types/types";
+import Loading from "../atoms/Loading";
 
 export interface Props {
   events: EventElement[];
@@ -30,11 +31,7 @@ const LocalistView = (props: Props) => {
   const { format, page, loading } = props;
 
   if (loading) {
-    return (
-      <div className="loader p-4">
-        <span className="fa fa-spin fa-cog" />
-      </div>
-    );
+    return <Loading />;
   }
 
   switch (format) {

@@ -29,7 +29,7 @@ function AgendaList(props: Props) {
         {props.events.map((event: EventElement) => (
           <div
             key={event.event.event_instances[0].event_instance.id}
-            className="cwd-component cwd-card-grid"
+            className="rlv-component cwd-card-grid"
           >
             <AgendaListView
               event={event.event}

@@ -4,7 +4,8 @@ import { getEventTime, getClassItem } from "../../../../helpers/displayEvent";
 import Truncate from "../../../atoms/Truncate";
 import Time from "../../../atoms/Time";
 import { EventEvent, HideType } from "../../../../../types/types";
-import EventImg from "../../../atoms/EventImage";
+import EventImage from "../../../atoms/EventImage/EventImage";
+import "./AgendaInnerContent.scss";
 
 interface Props {
   hideaddcal: HideType;
@@ -53,8 +54,9 @@ const AgendaInnerContent = (props: Props) => {
 
   const eventTime = getEventTime(event);
   const classList = getClassItem(event);
+
   return (
-    <div className={classList}>
+    <div className={`rlv-agenda-inner-content ${classList}`}>
       <div className="events">
         <a
           href={`#${event.id}`}
@@ -74,7 +76,7 @@ const AgendaInnerContent = (props: Props) => {
           </div>
           <div className="field field-name-summary summary">
             <p>
-              <EventImg
+              <EventImage
                 photoUrl={event.photo_url}
                 title={event.title}
                 hideimages={hideimages}

@@ -1,0 +1,111 @@
+.rlv-standard {
+
+  .events-listing {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 1em 0 2em;
+    min-height: 120px;
+  }
+
+  .events-listing .node {
+    float: left;
+    width: 100%;
+    margin: 1em 0 2em;
+  }
+
+  .events-listing .node h3 {
+    margin-bottom: 8px;
+    font-family: Avenir Next, Proxima Nova, "proxima-nova", Segoe UI Bold, Helvetica Neue, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .events-listing h4 {
+    text-transform: none;
+  }
+
+  .events-listing .description {
+    clear: right;
+    padding-left: 112px;
+    font-size: 13px;
+  }
+
+  .events-listing .description :last-child {
+    margin-bottom: 0;
+  }
+
+  .events-listing .meta {
+    font-weight: normal;
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 12px;
+  }
+
+  .events-listing .location {
+    float: right;
+  }
+
+  .events-listing .date {
+    float: right;
+    margin-left: 20px;
+  }
+
+  .events-listing .date .fulldate {
+    margin-right: 5px;
+  }
+
+  .events-listing .month-header {
+    text-align: center;
+    color: #fff;
+    float: left;
+    width: 100%;
+    padding: 9px 0;
+    margin-top: 12px;
+    font-size: 20px;
+    background: #762425;
+  }
+
+  .events-listing .day-header {
+    font-size: 14px;
+    border-top: 1px solid #e0e0e0;
+    padding: 10px 0 5px;
+    margin-bottom: 5px;
+    float: left;
+    width: 100%;
+    background: 4;
+    background: -moz-linear-gradient(45deg, #ffffff 0%, #f2f2f2 100%);
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #ffffff), color-stop(100%, #f2f2f2));
+    background: -webkit-linear-gradient(45deg, #ffffff 0%, #f2f2f2 100%);
+    background: -o-linear-gradient(45deg, #ffffff 0%, #f2f2f2 100%);
+    background: -ms-linear-gradient(45deg, #ffffff 0%, #f2f2f2 100%);
+    background: linear-gradient(45deg, #ffffff 0%, #f2f2f2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#f2f2f2", GradientType=1);
+    font-family: Avenir Next, Proxima Nova, "proxima-nova", Segoe UI Semibold, Helvetica Neue, sans-serif;
+    font-weight: 500;
+  }
+
+  .event-icon {
+    font-size: 14px;
+    margin: 0 8px 0 0;
+    color: #555;
+  }
+
+  .events-listing img {
+    float: left;
+    margin: 0 20px 0px 0px;
+    object-fit: cover;
+    object-position: 100% 0;
+    width: 200px;
+    height: 150px;
+  }
+
+  .events-listing .location {
+    float: left;
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}

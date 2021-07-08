@@ -1,0 +1,50 @@
+/*! end @import */
+/*! @import https://cu-communityapps.github.io/CD_cwd_events/src/app/css/framework/drupal.css */
+.rlc-paginate {
+  width: 100%;
+  clear: both;
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+}
+
+.rlc-paginate ul {
+  padding-left: 0;
+}
+
+.rlc-paginate ul li {
+  display: inline-block;
+  margin: 0 4px 8px 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 2;
+  border: 0;
+}
+
+.rlc-paginate ul li a {
+  display: inline-block;
+  padding: 0 0.6em;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.rlc-paginate ul li a:hover,
+.rlc-paginate ul li a:focus {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.rlc-paginate ul li.is-active a {
+  min-width: 2.5em;
+  min-height: 2em;
+  padding: 0 0.6em;
+  text-align: center;
+}
+
+.rlc-paginate ul li.is-active a {
+  background: #3584ba !important;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #3584ba;
+}
