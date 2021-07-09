@@ -1,3 +1,4 @@
+import { NodeEvent } from "./../../../types/graphql";
 import {
   ViewComponentProps,
   DisplayedDateRange,
@@ -6,6 +7,17 @@ import {
 // import { ApiConnectorProps } from "./../../types/types";
 import axios from "axios";
 import moment from "moment";
+import {
+  EntityQueryResult,
+  GetEventsByDateQueryQuery,
+  GetEventsByDateQueryQueryVariables,
+} from "types/graphql";
+
+import { loader } from "graphql.macro";
+
+const GET_EVENTS = loader("../../graphql/queries/getEventsByDateQuery.graphql");
+
+console.log();
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -91,7 +103,14 @@ const localistApiConnector = (props: ApiConnectorProps) => {
     params.days = daysahead;
   }
 
-  return axios.get(calendarurl, { params });
+  const query = GET_EVENTS.loc?.source.body;
+  const variables: GetEventsByDateQueryQueryVariables = {
+    startDate: params.start,
+    endDate: params.end,
+  };
+
+  // return axios.post("/graphql", { query, variables });
+  return axios.post(calendarurl, { query, variables });
 };
 
 export default localistApiConnector;
@@ -103,15 +122,19 @@ export async function fetchEvents(
 ) {
   let start, end;
   if (props.format === "calendar") {
-    start = displayedDateRange.start.format("YYYY-MM-DD hh:mm");
-    end = displayedDateRange.end.format("YYYY-MM-DD hh:mm");
+    start = displayedDateRange.start.format("YYYY-MM-DD");
+    end = displayedDateRange.end.format("YYYY-MM-DD");
   }
 
-  const { data }: { data: Events } = await localistApiConnector({
+  const { data }: { data: any } = await localistApiConnector({
     ...props,
     page: currentPage,
     start,
     end,
   });
-  return data;
+
+  console.log(data);
+  const events = data.data.nodeQuery.entities as NodeEvent[];
+
+  return events;
 }

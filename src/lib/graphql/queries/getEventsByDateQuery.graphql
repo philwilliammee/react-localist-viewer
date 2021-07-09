@@ -1,0 +1,49 @@
+query getEventsByDateQuery($startDate: String, $endDate: String) {
+  nodeQuery(
+    filter: {
+      conjunction: AND
+      conditions: [
+        { field: "type", value: "event", operator: EQUAL }
+        {
+          operator: GREATER_THAN_OR_EQUAL
+          field: "field_event_date"
+          value: [$startDate]
+        }
+        {
+          operator: SMALLER_THAN_OR_EQUAL
+          field: "field_event_date"
+          value: [$endDate]
+        }
+      ]
+    }
+  ) {
+    entities {
+      ... on NodeEvent {
+        title
+        fieldEventDate {
+          value
+        }
+        fieldEventDateEnd {
+          value
+        }
+        fieldEventLocation
+        fieldEventImage {
+          url
+        }
+        fieldDestinationUrl {
+          url {
+            path
+            routed
+          }
+        }
+        fieldLocalistId
+        fieldShortDescription {
+          value
+        }
+        fieldTags {
+          targetId
+        }
+      }
+    }
+  }
+}
