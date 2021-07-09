@@ -1,6 +1,7 @@
-import { EventEvent, Format, Department } from "./../../types/types";
+import { Format, Department } from "./../../types/types";
 import moment from "moment";
 import truncate from "truncate";
+import { NodeEvent } from "types/graphql";
 
 /**
  * @file A collection of functions for working with event objects.
@@ -9,23 +10,17 @@ import truncate from "truncate";
 /**
  * Some events don't have end dates/times but the end date/time must come after the start date
  * So we default to the start date.
- * @param {EventEvent} event
+ * @param {NodeEvent} event
  * @returns {Date}
  */
-export const getEventEnd = (event: EventEvent): Date => {
-  return (
-    event.event_instances[0].event_instance.end ||
-    event.event_instances[0].event_instance.start
-  );
+export const getEventEnd = (event: NodeEvent): Date => {
+  const date = event.fieldEventDateEnd || event.fieldEventDate;
+  return moment(date).toDate();
 };
 
-/**
- * Get event start date.
- * @param {EventEvent} event A localist event obj
- * @return {string} Date string.
- */
-export const getEventStart = (event: EventEvent) => {
-  return event.event_instances[0].event_instance.start;
+export const getEventStart = (event: NodeEvent): Date => {
+  const date = event.fieldEventDate?.value || "";
+  return moment(date).toDate();
 };
 
 /**
@@ -66,12 +61,12 @@ const getDayFromDateTime = (dateTime: Date) => {
 
 /**
  * Get event last end date.
- * @param {EventEvent} event A localist event obj
+ * @param {NodeEvent} event A localist event obj
  * @return {string} Date string.
  */
-export const getEventEndDate = (event: EventEvent) => {
-  const endDateTime = event.last_date;
-  return endDateTime;
+export const getEventEndDate = (event: NodeEvent): Date => {
+  const endDateTime = event.fieldEventDateEnd;
+  return moment(endDateTime).toDate();
 };
 
 /**
@@ -86,10 +81,10 @@ const stripDate = (date: Date) => {
 
 /**
  * Used by calendars
- * @param {EventEvent} event A localist event obj.
+ * @param {NodeEvent} event A localist event obj.
  * @return {string} Date string.
  */
-export const getCalStartDate = (event: EventEvent) => {
+export const getCalStartDate = (event: NodeEvent) => {
   const sd = getEventStart(event);
   const cd = stripDate(sd);
   return cd;
@@ -97,10 +92,10 @@ export const getCalStartDate = (event: EventEvent) => {
 
 /**
  *  Used by calendars
- * @param {EventEvent} event A localist event obj.
+ * @param {NodeEvent} event A localist event obj.
  * @return {string} Date string.
  */
-export const getCalEndDate = (event: EventEvent) => {
+export const getCalEndDate = (event: NodeEvent) => {
   const ed = getEventEndDate(event);
   const sd = stripDate(ed);
   return sd;
@@ -109,12 +104,12 @@ export const getCalEndDate = (event: EventEvent) => {
 /**
  * The logic for determining the type of date string.
  *
- * @param {EventEvent} event The localist event.
+ * @param {NodeEvent} event The localist event.
  * @param {Format} format
  *
  * @return {string} The date string.
  */
-export const getDisplayDate = (event: EventEvent, format: Format) => {
+export const getDisplayDate = (event: NodeEvent, format: Format) => {
   const dateTime = getEventStart(event);
   const eventDate =
     format === "compact"
@@ -125,10 +120,10 @@ export const getDisplayDate = (event: EventEvent, format: Format) => {
 
 /**
  *
- * @param {EventEvent} event The localist event.
+ * @param {NodeEvent} event The localist event.
  * @return {string} The event start date.
  */
-export const getEventDate = (event: EventEvent) => {
+export const getEventDate = (event: NodeEvent) => {
   const startDateTime = getEventStart(event);
   const eventStartDate = getMonthDayFromDateTime(startDateTime);
   return eventStartDate;
@@ -138,41 +133,41 @@ export const getEventDate = (event: EventEvent) => {
  * Truncates the description text.
  *   Does not support html.
  *
- * @param {EventEvent} event the event object.
+ * @param {NodeEvent} event the event object.
  * @param {number} excerptLength The length of the excerpt.
  *
  * @return {string} The truncated description string
  */
 export const getTruncDesc = (
-  event: EventEvent,
+  event: NodeEvent,
   excerptLength?: number | string
 ) => {
   if (!event) {
     return "";
   }
-  let description = event.description_text;
+  let description = event.fieldShortDescription?.value;
   if (excerptLength) {
     const maxLength =
       typeof excerptLength == "string"
         ? parseInt(excerptLength, 10)
         : excerptLength;
-    description = truncate(event.description_text, maxLength);
+    description = truncate(event.fieldShortDescription?.value || "", maxLength);
   }
-  return description;
+  return description || "";
 };
 
 /**
  *
- * @param {EventEvent} event The localist event.
+ * @param {NodeEvent} event The localist event.
  * @return {string} The day of the event.
  */
-export const getDay = (event: EventEvent) => {
+export const getDay = (event: NodeEvent) => {
   const startDateTime = getEventStart(event);
   const date = getDayFromDateTime(startDateTime);
   return date;
 };
 
-export const getEventEndTime = (event: EventEvent) => {
+export const getEventEndTime = (event: NodeEvent) => {
   const endTime = getEventEnd(event);
   let time = "";
   // Some end times are null if so it will return start date.
@@ -183,19 +178,19 @@ export const getEventEndTime = (event: EventEvent) => {
   return time;
 };
 
-export const isAllDay = (event: EventEvent) => {
-  if (event.event_instances[0].event_instance.all_day) {
-    return true;
-  }
+export const isAllDay = (event: NodeEvent) => {
+  // if (event.event_instances[0].event_instance.all_day) {
+  //   return true;
+  // }
   return false;
 };
 
 /**
  * Checks if event is all day and returns appropriate start time.
- * @param {EventEvent} event The event obj.
+ * @param {NodeEvent} event The event obj.
  * @return {string} the eventTime string.
  */
-export const getEventTime = (event: EventEvent) => {
+export const getEventTime = (event: NodeEvent) => {
   let eventTime = "";
   if (isAllDay(event)) {
     eventTime = "all day";
@@ -208,10 +203,10 @@ export const getEventTime = (event: EventEvent) => {
 
 /**
  * Checks if event is all day and returns appropriate start time.
- * @param {EventEvent} event The event obj.
+ * @param {NodeEvent} event The event obj.
  * @return {string} the eventTime string.
  */
-export const getEventFullTime = (event: EventEvent) => {
+export const getEventFullTime = (event: NodeEvent) => {
   let eventTime = "";
   if (isAllDay(event)) {
     eventTime = "all day";
@@ -226,141 +221,143 @@ export const getEventFullTime = (event: EventEvent) => {
 
 /**
  *
- * @param {EventEvent} event The localist event
+ * @param {NodeEvent} event The localist event
  * @return {string} The group name.
  */
-export const getGroupName = (event: EventEvent) => {
+export const getGroupName = (event: NodeEvent) => {
   let groupName = "";
-  if (typeof event.group_name !== "undefined") {
-    groupName = event.group_name || "";
-  }
+  // if (typeof event.group_name !== "undefined") {
+  //   groupName = event.group_name || "";
+  // }
   return groupName;
 };
 
 /**
  *
- * @param {EventEvent} event The localist event
+ * @param {NodeEvent} event The localist event
  * @return {integer} The group Id.
  */
-export const getGroupId = (event: EventEvent) => {
+export const getGroupId = (event: NodeEvent) => {
   let groupId = 0;
-  if (typeof event.group_name !== "undefined") {
-    groupId = event.group_id || -1;
-  }
+  // if (typeof event.group_name !== "undefined") {
+  //   groupId = event.group_id || -1;
+  // }
   return groupId;
 };
 
 /**
  * The event type ids.
- * @param {EventEvent} event The event object.
+ * @param {NodeEvent} event The event object.
  * @return {array} An array of event type ids.
  */
-export const getTypeIds = (event: EventEvent) => {
+export const getTypeIds = (event: NodeEvent) => {
   let types: number[] = [];
-  if (typeof event.filters.event_types !== "undefined") {
-    types = event.filters.event_types.map((type) => {
-      return type.id;
-    });
-  }
+  // if (typeof event.filters.event_types !== "undefined") {
+  //   types = event.filters.event_types.map((type) => {
+  //     return type.id;
+  //   });
+  // }
   return types;
 };
 
 /**
  * The events departments id
- * @param {EventEvent} event The event object.
+ * @param {NodeEvent} event The event object.
  *
  * @return {array} The department id.
  */
-export const getDepartmentIds = (event: EventEvent) => {
+export const getDepartmentIds = (event: NodeEvent) => {
   let departments: number[] = [];
-  if (typeof event.filters.departments !== "undefined") {
-    departments = event.filters.departments.map((dept) => {
-      return dept.id;
-    });
-  }
+  // if (typeof event.filters.departments !== "undefined") {
+  //   departments = event.filters.departments.map((dept) => {
+  //     return dept.id;
+  //   });
+  // }
   return departments;
 };
 
 /**
  * The events department id
- * @param {EventEvent} event The event object.
+ * @param {NodeEvent} event The event object.
  *
  * @return {number|undefined} The department id.
  */
-export const getDepartment = (event: EventEvent) => {
+export const getDepartment = (event: NodeEvent) => {
   let department;
-  if (typeof event.filters.departments !== "undefined") {
-    department = event.filters.departments[0].id;
-  }
+  // if (typeof event.filters.departments !== "undefined") {
+  //   department = event.filters.departments[0].id;
+  // }
   return department;
 };
 
 /**
  * An array of the filters event types.
  * @todo departments are an array get all of the departments.
- * @param {EventEvent} event The localist Event.
+ * @param {NodeEvent} event The localist Event.
  * @return {string} The filter text.
  */
-export const getFiltersType = (event: EventEvent) => {
-  return event.filters.event_types;
+export const getFiltersType = (event: NodeEvent) => {
+  return "";
+  // return event.filters.event_types;
 };
 
 /**
  * Get an array of the filters departments.
  * @todo departments are an array get all of the departments.
- * @param {EventEvent} event The localist Event.
+ * @param {NodeEvent} event The localist Event.
  * @return {string} The filter text.
  */
-export const getFiltersDepartments = (event: EventEvent) => {
-  return event.filters.departments;
+export const getFiltersDepartments = (event: NodeEvent) => {
+  return "";
+  // return event.filters.departments;
 };
 
 /**
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
- * @param {EventEvent} event The localist Event.
+ * @param {NodeEvent} event The localist Event.
  * @param {string} prefCategory The preferred category filter.
  * @return {mixed} An array or a string if only one.
  */
-export const getEventType = (event: EventEvent, prefCategory: string) => {
+export const getEventType = (event: NodeEvent, prefCategory: string) => {
   const department = getDepartment(event);
   const groupName = getGroupName(event);
   let eventTypes: Department[] | string[] = [];
-  if (typeof event.filters.event_types !== "undefined") {
-    eventTypes = getFiltersType(event);
-  }
-  if (prefCategory === "dept" && department !== 0) {
-    eventTypes = getFiltersDepartments(event);
-  }
-  if (prefCategory === "group" && groupName !== "") {
-    eventTypes = [groupName];
-  }
+  // if (typeof event.filters.event_types !== "undefined") {
+  //   eventTypes = getFiltersType(event);
+  // }
+  // if (prefCategory === "dept" && department !== 0) {
+  //   eventTypes = getFiltersDepartments(event);
+  // }
+  // if (prefCategory === "group" && groupName !== "") {
+  //   eventTypes = [groupName];
+  // }
   return eventTypes;
 };
 
 /**
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
- * @param {EventEvent} event The localist Event.
+ * @param {NodeEvent} event The localist Event.
  * @return {mixed} A string of event types or null
  */
-export const getEventTypeString = (event: EventEvent) => {
-  if (typeof event.filters.event_types !== "undefined") {
-    return event.filters.event_types.map((type) => type.name).join(", ");
-  }
+export const getEventTypeString = (event: NodeEvent) => {
+  // if (typeof event.filters.event_types !== "undefined") {
+  //   return event.filters.event_types.map((type) => type.name).join(", ");
+  // }
   return null;
 };
 
 /**
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
- * @param {EventEvent} event The localist Event.
+ * @param {NodeEvent} event The localist Event.
  * @return {mixed} A string of event types or null
  */
-export const getEventDepartmentsString = (event: EventEvent) => {
-  if (typeof event.filters.departments !== "undefined") {
-    return event.filters.departments.map((type) => type.name).join(", ");
-  }
+export const getEventDepartmentsString = (event: NodeEvent) => {
+  // if (typeof event.filters.departments !== "undefined") {
+  //   return event.filters.departments.map((type) => type.name).join(", ");
+  // }
   return null;
 };
 
@@ -369,7 +366,7 @@ export const getEventDepartmentsString = (event: EventEvent) => {
  * @param {event} event The event.
  * @return {string} The MMM D".
  */
-export const getEventDateCompact = (event: EventEvent) => {
+export const getEventDateCompact = (event: NodeEvent) => {
   const startDateTime = getEventStart(event);
   const eventDateCompact = moment(startDateTime).format("MMM D");
   return eventDateCompact;
@@ -380,7 +377,7 @@ export const getEventDateCompact = (event: EventEvent) => {
  * @param {event} event The event.
  * @return {string} The MMMM YYYY".
  */
-export const getMonthHeader = (event: EventEvent) => {
+export const getMonthHeader = (event: NodeEvent) => {
   const startDateTime = getEventStart(event);
   const eventMonthHeader = moment(startDateTime).format("MMMM YYYY");
   return eventMonthHeader;
@@ -391,7 +388,7 @@ export const getMonthHeader = (event: EventEvent) => {
  * @param {event} event The event.
  * @return {string} The MMM".
  */
-export const getAbbrMonth = (event: EventEvent) => {
+export const getAbbrMonth = (event: NodeEvent) => {
   const startDateTime = getEventStart(event);
   const abbrMonth = moment(startDateTime).format("MMM");
   return abbrMonth;
@@ -402,9 +399,9 @@ export const getAbbrMonth = (event: EventEvent) => {
  * @param {event} event The event.
  * @return {string}
  */
-export const getClassItem = (event: EventEvent) => {
-  if ("itemClassArray" in event) {
-    return event?.itemClassArray?.join(" ");
-  }
+export const getClassItem = (event: NodeEvent) => {
+  // if ("itemClassArray" in event) {
+  //   return event?.itemClassArray?.join(" ");
+  // }
   return "";
 };

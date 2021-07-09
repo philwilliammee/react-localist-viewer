@@ -7,12 +7,13 @@ import {
   getEventEndTime,
   getClassItem,
 } from "../../../helpers/displayEvent";
-import { EventElement, EventEvent } from "../../../../types/types";
+import { EventElement } from "../../../../types/types";
 import "./InlineCompact.scss";
 import RoomIcon from "@material-ui/icons/Room";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import { NodeEvent } from "types/graphql";
 
-const InlineCompactInner = ({ event }: { event: EventEvent }) => {
+const InlineCompactInner = ({ event }: { event: NodeEvent }) => {
   const eventTime = getEventTime(event);
   const endTime = getEventEndTime(event);
 
@@ -40,7 +41,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
           </div>
           <div className="col-sm-8 event-title-and-location">
             <div className="event-title">
-              <a href={event.localist_url} hrefLang="en">
+              <a href={event.fieldDestinationUrl?.uri || ""} hrefLang="en">
                 {event.title}
               </a>
             </div>
@@ -49,7 +50,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
               {eventTime}
               {endTime ? ` - ${endTime}` : ""}
             </div>
-            {renderEventLocation(event.location_name)}
+            {renderEventLocation(event.title || "")}
           </div>
         </div>
       </div>
@@ -78,7 +79,7 @@ const InlineCompact = (props: InlineCompactProps) => {
               events.map((event) => {
                 return (
                   <InlineCompactInner
-                    key={event.event.event_instances[0].event_instance.id}
+                    key={event.event.entityId}
                     event={event.event}
                   />
                 );

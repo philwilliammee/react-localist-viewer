@@ -25,20 +25,23 @@ const CompactInner = (props: InnerProps) => {
   return (
     <div className={`views-row ${classList}`}>
       <EventThumbnail
-        photoUrl={event.photo_url}
-        title={event.title}
+        photoUrl={event.fieldEventImage?.url || ""}
+        title={event.title || ""}
         hideimages={hideimages}
         photoCrop="big"
       />
       <div className="event-node node">
         <div className="events">
-          <EventTitle title={event.title} url={event.localist_url} />
-          <EventLocation locationName={event.location_name} />
+          <EventTitle
+            title={event.title || ""}
+            url={(event.fieldDestinationUrl?.url as string) || ""}
+          />
+          <EventLocation locationName={event.fieldEventLocation || ""} />
           <EventDate date={getEventDateCompact(event)} />
           <EventDescription
             description={getTruncDesc(event, truncatedescription)}
-            title={event.title}
-            url={event.localist_url}
+            title={event.title || ""}
+            url={(event.fieldDestinationUrl?.url as string) || ""}
             hidedescription={hidedescription}
           />
           <AddCal hideaddcal={hideaddcal} event={event} />
@@ -72,8 +75,8 @@ const Compact = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <CompactInner
-                    key={event.event.event_instances[0].event_instance.id}
-                    event={event.event}
+                    key={event.entityId}
+                    event={event}
                     // filterby={filterby}
                     {...props}
                   />

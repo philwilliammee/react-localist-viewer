@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Standard from "../molecules/Standard";
-import Compact from "../molecules/Compact";
-import ModernStandard from "../molecules/ModernStandard";
-import ModernCompact from "../molecules/ModernCompact";
-import InlineCompact from "../molecules/InlineCompact/InlineCompact";
+// import Standard from "../molecules/Standard";
+// import Compact from "../molecules/Compact";
+// import ModernStandard from "../molecules/ModernStandard";
+// import ModernCompact from "../molecules/ModernCompact";
+// import InlineCompact from "../molecules/InlineCompact/InlineCompact";
 import Calendar from "../molecules/Calendar";
 import { EventElement, FilterBy, Format, HideType } from "../../../types/types";
 import Loading from "../atoms/Loading";
+import { NodeEvent } from "types/graphql";
 
 export interface Props {
-  events: EventElement[];
+  events: NodeEvent[];
   format: Format;
   truncatedescription: string;
   hidedescription: HideType;
@@ -35,27 +36,27 @@ const LocalistView = (props: Props) => {
   }
 
   switch (format) {
-    case "standard":
-      component = <Standard key={page} {...props} />;
-      break;
+    // case "standard":
+    //   component = <Standard key={page} {...props} />;
+    //   break;
 
-    case "compact":
-      component = <Compact key={page} {...props} />;
-      break;
+    // case "compact":
+    //   component = <Compact key={page} {...props} />;
+    //   break;
 
-    case "modern_standard":
-      props.wrapperClassArray.push("singles");
-      component = <ModernStandard key={page} {...props} />;
-      break;
+    // case "modern_standard":
+    //   props.wrapperClassArray.push("singles");
+    //   component = <ModernStandard key={page} {...props} />;
+    //   break;
 
-    case "modern_compact":
-      props.wrapperClassArray.push("compact");
-      component = <ModernCompact key={page} {...props} />;
-      break;
+    // case "modern_compact":
+    //   props.wrapperClassArray.push("compact");
+    //   component = <ModernCompact key={page} {...props} />;
+    //   break;
 
-    case "inline_compact":
-      component = <InlineCompact key={page} {...props} />;
-      break;
+    // case "inline_compact":
+    //   component = <InlineCompact key={page} {...props} />;
+    //   break;
 
     case "calendar":
       component = <Calendar key={page} {...props} />;

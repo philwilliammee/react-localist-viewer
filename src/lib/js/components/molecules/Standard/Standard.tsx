@@ -11,7 +11,6 @@ import AddCal from "../AddCal/AddCal";
 import EventDescription from "../../atoms/EventDescription/EventDescription";
 import {
   EventElement,
-  EventEvent,
   FilterBy,
   Format,
   HideType,
@@ -23,9 +22,10 @@ import EventThumbnail from "../../atoms/EventThumbnail";
 import "./Standard.scss";
 import Grid from "../../atoms/Grid";
 import EventIcon from "@material-ui/icons/Event";
+import { NodeEvent } from "types/graphql";
 
 interface StandardInnerProps {
-  event: EventEvent;
+  event: NodeEvent;
   filterby: FilterBy;
   truncatedescription?: string;
   hideaddcal: HideType;
@@ -41,26 +41,29 @@ const StandardInner = (props: StandardInnerProps) => {
       <div className={`event-node node ${classList}`}>
         <div className="events">
           <div className="field title">
-            <EventTitle title={event.title} url={event.localist_url} />
+            <EventTitle
+              title={event.title || ""}
+              url={event.fieldEventLocation || ""}
+            />
           </div>
           <Grid container>
             <Grid col={9} style={{ marginBottom: 0 }}>
-              <EventLocation locationName={event.location_name} />
+              <EventLocation locationName={event.fieldEventLocation || ""} />
             </Grid>
             <Grid col={3} style={{ marginBottom: 0 }}>
               <EventDate date={getEventTime(event)} />
             </Grid>
           </Grid>
           <EventThumbnail
-            photoUrl={event.photo_url}
-            title={event.title}
+            photoUrl={event.fieldEventImage?.url || ""}
+            title={event.title || ""}
             hideimages={hideimages}
             photoCrop="big"
           />
           <EventDescription
             description={getTruncDesc(event, truncatedescription)}
-            title={event.title}
-            url={event.localist_url}
+            title={event.title || ""}
+            url={event.fieldDestinationUrl?.uri || ""}
             hidedescription={hidedescription}
           />
           <AddCal {...props} />
@@ -110,7 +113,7 @@ const Standard = (props: StandardProps) => {
   let lastMonth = "";
   let lastDay = "";
 
-  const getMonth = (event: EventEvent) => {
+  const getMonth = (event: NodeEvent) => {
     const month = getMonthHeader(event);
     if (lastMonth !== month) {
       lastMonth = month;
@@ -119,7 +122,7 @@ const Standard = (props: StandardProps) => {
     return "";
   };
 
-  const getDay = (event: EventEvent, format: Format) => {
+  const getDay = (event: NodeEvent, format: Format) => {
     const displayDate = getDisplayDate(event, format);
     if (lastDay !== displayDate) {
       lastDay = displayDate;
@@ -142,7 +145,7 @@ const Standard = (props: StandardProps) => {
             {events.length > 0 ? (
               events.map((event) => {
                 return (
-                  <div key={event.event.event_instances[0].event_instance.id}>
+                  <div key={event.event.entityId}>
                     {getMonth(event.event)}
                     {getDay(event.event, props.format)}
                     <StandardInner

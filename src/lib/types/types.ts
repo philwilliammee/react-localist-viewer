@@ -1,4 +1,5 @@
 import moment from "moment";
+import { NodeEvent } from "types/graphql";
 
 export interface AppProps {
   calendarurl: string;
@@ -62,7 +63,7 @@ export interface DisplayedDateRange {
 }
 
 export interface StandardProps {
-  events: EventElement[];
+  events: NodeEvent[];
   hideaddcal: HideType;
   truncatedescription: string;
   hidedescription: HideType;
@@ -73,7 +74,7 @@ export interface StandardProps {
 }
 
 export interface InnerProps {
-  event: EventEvent;
+  event: NodeEvent;
   hideaddcal: HideType;
   truncatedescription: string;
   hidedescription: HideType;
@@ -108,67 +109,67 @@ export interface DateClass {
 }
 
 export interface EventElement {
-  event: EventEvent;
+  event: NodeEvent;
 }
 
-export interface EventEvent {
-  id: number;
-  title: string;
-  url: string | null;
-  updated_at: Date;
-  created_at: Date;
-  facebook_id: null;
-  first_date: Date;
-  last_date: Date;
-  hashtag: string | null;
-  urlname: string;
-  user_id: number | null;
-  directions: string | null;
-  allows_reviews: boolean;
-  allows_attendance: boolean;
-  location: string;
-  room_number: string | null;
-  location_name: string;
-  status?: string;
-  experience?: string;
-  stream_url?: string | null;
-  stream_info?: string | null;
-  stream_embed_code?: string | null;
-  created_by: number | null;
-  updated_by: number | null;
-  city_id: null;
-  neighborhood_id: null;
-  school_id: number;
-  campus_id: null;
-  recurring: boolean;
-  free: boolean;
-  private: boolean;
-  verified: boolean;
-  rejected: boolean;
-  sponsored: boolean;
-  venue_id: number | null;
-  ticket_url: string | null;
-  ticket_cost: string | null;
-  keywords: string[];
-  tags: string[];
-  description_text: string;
-  photo_id: number | null;
-  detail_views: number;
-  event_instances: EventInstanceElement[];
-  address: string;
-  description: string;
-  featured: boolean;
-  geo: Geo;
-  filters: Filters;
-  custom_fields?: CustomFields;
-  localist_url: string;
-  localist_ics_url: string;
-  photo_url: string;
-  venue_url?: string | null;
-  group_id?: number | null;
-  group_name?: string | null;
-  itemClassArray?: string[]; // custom type
-}
+// export interface NodeEvent {
+//   id: number;
+//   title: string;
+//   url: string | null;
+//   updated_at: Date;
+//   created_at: Date;
+//   facebook_id: null;
+//   first_date: Date;
+//   last_date: Date;
+//   hashtag: string | null;
+//   urlname: string;
+//   user_id: number | null;
+//   directions: string | null;
+//   allows_reviews: boolean;
+//   allows_attendance: boolean;
+//   location: string;
+//   room_number: string | null;
+//   location_name: string;
+//   status?: string;
+//   experience?: string;
+//   stream_url?: string | null;
+//   stream_info?: string | null;
+//   stream_embed_code?: string | null;
+//   created_by: number | null;
+//   updated_by: number | null;
+//   city_id: null;
+//   neighborhood_id: null;
+//   school_id: number;
+//   campus_id: null;
+//   recurring: boolean;
+//   free: boolean;
+//   private: boolean;
+//   verified: boolean;
+//   rejected: boolean;
+//   sponsored: boolean;
+//   venue_id: number | null;
+//   ticket_url: string | null;
+//   ticket_cost: string | null;
+//   keywords: string[];
+//   tags: string[];
+//   description_text: string;
+//   photo_id: number | null;
+//   detail_views: number;
+//   event_instances: EventInstanceElement[];
+//   address: string;
+//   description: string;
+//   featured: boolean;
+//   geo: Geo;
+//   filters: Filters;
+//   custom_fields?: CustomFields;
+//   localist_url: string;
+//   localist_ics_url: string;
+//   photo_url: string;
+//   venue_url?: string | null;
+//   group_id?: number | null;
+//   group_name?: string | null;
+//   itemClassArray?: string[]; // custom type
+// }
 
 export interface CustomFields {
   contact_email?: string | null;

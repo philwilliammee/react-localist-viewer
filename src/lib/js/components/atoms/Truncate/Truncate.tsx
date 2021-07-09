@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { getTruncDesc } from "../../../helpers/displayEvent";
 import { isHidden } from "../../../helpers/common";
-import { EventEvent, HideType } from "../../../../types/types";
+import { HideType } from "../../../../types/types";
 
 import "./Truncate.scss";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  event: EventEvent;
+  event: NodeEvent;
   truncatedescription: string;
   hidedescription: HideType;
   readMore?: string;

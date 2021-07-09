@@ -1,11 +1,12 @@
 import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
-import { EventEvent } from "../../../../types/types";
+// import { EventEvent } from "../../../../types/types";
 import React, { ReactElement } from "react";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import "./EventDateTime.scss";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  event: EventEvent;
+  event: NodeEvent;
   hideTime: Boolean;
 }
 

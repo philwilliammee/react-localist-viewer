@@ -20,6 +20,8 @@ query getEventsByDateQuery($startDate: String, $endDate: String) {
     entities {
       ... on NodeEvent {
         title
+        entityId
+        nid
         fieldEventDate {
           value
         }
@@ -31,6 +33,7 @@ query getEventsByDateQuery($startDate: String, $endDate: String) {
           url
         }
         fieldDestinationUrl {
+          uri
           url {
             path
             routed
@@ -39,9 +42,13 @@ query getEventsByDateQuery($startDate: String, $endDate: String) {
         fieldLocalistId
         fieldShortDescription {
           value
+          processed
         }
         fieldTags {
           targetId
+          entity {
+            entityLabel
+          }
         }
       }
     }

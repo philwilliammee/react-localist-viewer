@@ -6,11 +6,12 @@ import {
   getEventDate,
   getEventTime,
 } from "../../../helpers/displayEvent";
-import { EventEvent } from "../../../../types/types";
+// import { EventEvent } from "../../../../types/types";
 import "./Time.scss";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  event: EventEvent;
+  event: NodeEvent;
 }
 const Time = (props: Props) => {
   const { event } = props;

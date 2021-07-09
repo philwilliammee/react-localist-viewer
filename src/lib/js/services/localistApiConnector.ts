@@ -17,8 +17,6 @@ import { loader } from "graphql.macro";
 
 const GET_EVENTS = loader("../../graphql/queries/getEventsByDateQuery.graphql");
 
-console.log();
-
 export interface ApiConnectorProps {
   depts?: string;
   entries?: string;

@@ -10,11 +10,12 @@ import {
 import FilterButton from "../../atoms/FilterButton";
 import { Department, EventElement, FilterBy } from "../../../../types/types";
 import "./EventFilterBy.scss";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  handleEventFilter: (events: EventElement[], objName: string) => void;
+  handleEventFilter: (events: NodeEvent[], objName: string) => void;
   filterby: FilterBy;
-  events: EventElement[];
+  events: NodeEvent[];
   active: string;
   setActive: (active: string) => void;
 }
@@ -31,33 +32,15 @@ const EventFilters = (props: Props) => {
   }
 
   const applyFilter = (obj: Department) => {
-    events.forEach((event: EventElement) => {
-      const ids = getTypeIds(event.event);
-      const departmentIds = getDepartmentIds(event.event);
-      const groupId = getGroupId(event.event);
-      if (obj.name === "filterAll") {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
-      } else if (filterby === "type" && ids.includes(obj.id)) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
-      } else if (filterby === "dept" && departmentIds.includes(obj.id)) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
-      } else if (filterby === "group" && groupId === obj.id) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
-      } else {
-        addUniqueElement(event.event.itemClassArray, "fadeOut");
-      }
+    events.forEach((event: NodeEvent) => {
+      const ids = getTypeIds(event);
+      // if (obj.name === "filterAll") {
+      //   event.itemClassArray = removeElement(event.itemClassArray, "fadeOut");
+      // } else if (filterby === "type" && ids.includes(obj.id)) {
+      //   event.itemClassArray = removeElement(event.itemClassArray, "fadeOut");
+      // } else {
+      //   addUniqueElement(event.itemClassArray, "fadeOut");
+      // }
     });
     handleEventFilter(events, obj.name);
   };
@@ -79,7 +62,7 @@ const EventFilters = (props: Props) => {
           />
         </li>
         {filterButtons
-          ? filterButtons.map((obj) => {
+          ? filterButtons.map((obj: any) => {
               const { id, name } = obj;
               const filterId = `filter${id}`;
               return (

@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AddCal from "../AddCal/AddCal";
-import { EventEvent } from "../../../../types/types";
 import EventImage from "../../atoms/EventImage/EventImage";
 
 import "./EventInner.scss";
 import MoreInfo from "../MoreInfo";
 import Tag from "../../atoms/Tag";
 import EventDate from "../../atoms/EventDateTime";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  event: EventEvent;
+  event: NodeEvent;
 }
 
 const EventInner = ({ event }: Props) => (
@@ -19,18 +19,22 @@ const EventInner = ({ event }: Props) => (
       <h3>{event.title}</h3>
       <div>
         <EventDate event={event} hideTime={false} />
-        <Tag>{event.location_name}</Tag>
+        <Tag>{event.fieldEventLocation || ""}</Tag>
       </div>
       <div className="field field-name-summary summary">
         <div className="rlv-event-image-wrapper">
           <EventImage
-            photoUrl={event.photo_url}
-            title={event.title}
+            photoUrl={event.fieldEventImage?.url as string}
+            title={event.title || ""}
             hideimages={"false"}
             photoCrop="big"
           />
         </div>
-        <span dangerouslySetInnerHTML={{ __html: event.description }} />
+        <span
+          dangerouslySetInnerHTML={{
+            __html: event.fieldShortDescription?.processed || "",
+          }}
+        />
       </div>
       <div className="clear" />
       <MoreInfo event={event} />

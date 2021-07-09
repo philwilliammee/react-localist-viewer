@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import EventsContext, { initialEvent } from "./EventsContext";
 import moment from "moment";
-import { EventElement, EventEvent } from "../../types/types";
+import { EventElement } from "../../types/types";
+import { NodeEvent } from "types/graphql";
 
 const EventsState = ({ children }: { children: React.ReactNode }) => {
-  const [events, setEvents] = useState<EventElement[]>([]);
-  const [filteredEvents, setFilteredEvents] = useState<EventElement[]>([]);
+  const [events, setEvents] = useState<NodeEvent[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<NodeEvent[]>([]);
   const [showDialog, setShowDialog] = useState(false);
-  const [eventSelected, setEventSelected] = useState<EventEvent>(initialEvent);
+  const [eventSelected, setEventSelected] = useState<NodeEvent>(initialEvent);
   const [displayedDateRange, setDisplayedDateRange] = useState({
     start: moment().startOf("month"),
     end: moment().endOf("month"),

@@ -11,7 +11,6 @@ import EventsContext from "lib/js/context/EventsContext";
 import {
   DisplayedDateRange,
   EventElement,
-  EventEvent,
   ViewComponentProps,
 } from "lib/types/types";
 import { queryClient } from "lib/query";
@@ -26,6 +25,7 @@ import AgendaList from "./AgendaList";
 import { getEventStart } from "lib/js/helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
+import { NodeEvent } from "types/graphql";
 
 const queryId = "events";
 
@@ -48,7 +48,7 @@ const Calendar = (props: Props) => {
   // @todo all of this should be moved up to the main component.
   const { data } = useQuery(
     [queryId, key],
-    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
+    () => fetchEvents(props as any, 0, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );
 
@@ -57,26 +57,28 @@ const Calendar = (props: Props) => {
       let lastMonthDateRange = getLastMonth(dr);
       queryClient.prefetchQuery(
         [queryId, getKeyFromDateRange(lastMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
+        () => fetchEvents(props as any, 0, lastMonthDateRange),
         { staleTime: Infinity }
       );
 
       let nextMonthDateRange = getNextMonth(dr);
       queryClient.prefetchQuery(
         [queryId, getKeyFromDateRange(nextMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
+        () => fetchEvents(props as any, 0, nextMonthDateRange),
         { staleTime: Infinity }
       );
       if (data) {
-        setEvents(data.events);
-        setFilteredEvents(data.events);
+        setEvents(data);
+        setFilteredEvents(data);
         // preload and disc-cache event images @todo replace big with actual
         // Photo crop should be defined in the base parent.
         // Or each component is responsible for pre-fetching their images.
-        data.events.forEach((event) => {
-          const src = event.event.photo_url.replace("/huge/", `/big/`);
-          const img = new Image();
-          img.src = src;
+        data.forEach((event) => {
+          const src = event.fieldEventImage?.url;
+          if (src) {
+            const img = new Image();
+            img.src = src;
+          }
         });
       }
     },
@@ -122,7 +124,7 @@ const Calendar = (props: Props) => {
     setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
   };
 
-  const handleEventSelect = (event: EventEvent) => {
+  const handleEventSelect = (event: NodeEvent) => {
     setEventSelected(event);
     setShowDialog(true);
   };
@@ -181,10 +183,9 @@ const Calendar = (props: Props) => {
             {view === "list" ? (
               <AgendaList
                 // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
+                events={filteredEvents.filter((event: NodeEvent) => {
                   return (
-                    moment(getEventStart(event.event)).month() ===
-                    dateContext.month()
+                    moment(getEventStart(event)).month() === dateContext.month()
                   );
                 })}
                 hideaddcal="true"
@@ -201,9 +202,9 @@ const Calendar = (props: Props) => {
             {view === "day" ? (
               <AgendaList
                 // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
+                events={filteredEvents.filter((event: NodeEvent) => {
                   return (
-                    moment(getEventStart(event.event)).date() ===
+                    moment(getEventStart(event)).date() ===
                     (selectedDay || moment().date())
                   );
                 })}

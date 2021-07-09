@@ -4,7 +4,8 @@ import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
 import { Button, Typography } from "@material-ui/core";
-// import moment from "moment";
+import moment from "moment";
+import { getEventDate } from "lib/js/helpers/displayEvent";
 
 /**
  * @todo optimize this it has a lot of re-renders
@@ -14,46 +15,25 @@ import { Button, Typography } from "@material-ui/core";
  * Is nested should be able to be removed.
  */
 const Filters = () => {
-  const { events, setFilteredEvents } = useContext(EventsContext);
+  const { events, setFilteredEvents, displayedDateRange } = useContext(
+    EventsContext
+  );
   const [checkedItems, setCheckedItems] = useState(new Map());
   const eventTypesFull: string[] = [];
-  const eventKeywordsFull: string[] = [];
-  const eventGroupNamesFull: string[] = [];
   if (!events) {
     return <></>;
   }
 
   events.forEach((event) => {
-    // if (
-    //   moment(event.event.first_date).isBetween(
-    //     displayedDateRange.start,
-    //     displayedDateRange.end
-    //   ) ||
-    //   moment(event.event.first_date).isSame(displayedDateRange.start)
-    // ) {
     // some events don't have types
-    if (isNested(event, "event", "filters", "event_types")) {
-      event.event.filters.event_types.forEach((type) => {
-        eventTypesFull.push(type.name);
-      });
-    }
-
-    if (isNested(event, "event", "keywords")) {
-      event.event.keywords.forEach((keyword) => {
-        eventKeywordsFull.push(keyword);
-      });
-    }
-    // eventKeywordsFull.push(event.event.experience);
-
-    if (isNested(event, "event", "group_name")) {
-      eventGroupNamesFull.push(event.event?.group_name || "");
-    }
-    //}
+    event?.fieldTags?.forEach((type) => {
+      if (type?.entity?.entityLabel) {
+        eventTypesFull.push(type?.entity?.entityLabel);
+      }
+    });
   });
 
   const eventTypes = [...new Set(eventTypesFull)].sort();
-  const eventKeywords = [...new Set(eventKeywordsFull)].sort();
-  const eventGroupNames = [...new Set(eventGroupNamesFull)].sort();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item = e.target.name;
@@ -65,24 +45,14 @@ const Filters = () => {
   // Working but needs to set and get filtered events.
   const filterEvents = () => {
     const filteredEvents = [...events].filter((event) => {
-      if (checkedItems.get(event.event.group_name)) {
+      const foundEventTypesName = event?.fieldTags?.find((type) =>
+        checkedItems.get(type?.entity?.entityLabel)
+      );
+      if (foundEventTypesName) {
         return true;
       }
 
-      if (isNested(event, "event", "filters", "event_types")) {
-        const foundEventTypesName = event.event.filters.event_types.find(
-          (type) => checkedItems.get(type.name)
-        );
-        if (foundEventTypesName) {
-          return true;
-        }
-      }
-
-      const foundKeyword = event.event.keywords.find((element) =>
-        checkedItems.get(element)
-      );
-
-      return false || foundKeyword;
+      return false;
     });
 
     if (filteredEvents.length) {
@@ -106,10 +76,10 @@ const Filters = () => {
       </div>
 
       <div className="filter-groups padded">
-        <Typography variant="h4">Group Name</Typography>
+        <Typography variant="h4">Tags</Typography>
         <div className="filter-group">
           <ul>
-            {eventGroupNames.map((group, id) => {
+            {eventTypes.map((group, id) => {
               return (
                 <li key={group}>
                   <CheckBox
@@ -125,43 +95,6 @@ const Filters = () => {
           </ul>
         </div>
         <hr />
-        <Typography variant="h4">Types</Typography>
-        <div className="filter-group">
-          <ul>
-            {eventTypes.map((type, id) => {
-              return (
-                <li key={type}>
-                  <CheckBox
-                    name={type}
-                    label={type}
-                    color={"primary"}
-                    checked={checkedItems.get(type)}
-                    onChange={handleChange}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <hr />
-        <Typography variant="h4">Keywords</Typography>
-        <div className="filter-group">
-          <ul>
-            {eventKeywords.map((keyword, id) => {
-              return (
-                <li key={keyword}>
-                  <CheckBox
-                    name={keyword}
-                    label={keyword}
-                    color={"primary"}
-                    checked={checkedItems.get(keyword)}
-                    onChange={handleChange}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
       </div>
       <div className="reset">
         <Button

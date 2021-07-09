@@ -3,30 +3,32 @@ import PropTypes from "prop-types";
 import buildUrl from "build-url";
 import { getCalStartDate, getCalEndDate } from "../../../helpers/displayEvent";
 import { isHidden } from "../../../helpers/common";
-import { EventEvent, HideType } from "../../../../types/types";
+import { HideType } from "../../../../types/types";
 import GoogleIcon from "@material-ui/icons/Google";
 import AppleIcon from "@material-ui/icons/Apple";
 import EventIcon from "@material-ui/icons/Event";
 
 import "./AddCal.scss";
+import { NodeEvent } from "types/graphql";
 
-const buildGoogleLink = (event: EventEvent) => {
+const buildGoogleLink = (event: NodeEvent) => {
   const gDateStart = getCalStartDate(event);
   const gDateStop = getCalEndDate(event);
   const href = buildUrl("https://calendar.google.com/calendar/event", {
     queryParams: {
       action: "TEMPLATE",
       dates: `${gDateStart}/${gDateStop}`,
-      details: event.description_text.replace(/[\r\n]/g, `<br />`),
-      location: event.location,
+      details:
+        event.fieldShortDescription?.value?.replace(/[\r\n]/g, `<br />`) || "",
+      location: event.fieldEventLocation || "",
       sprop: "website:events.cornell.edu",
-      text: event.title,
+      text: event.title || "",
     },
   });
   return href;
 };
 
-const buildGoogleStr = (event: EventEvent) => {
+const buildGoogleStr = (event: NodeEvent) => {
   const href = buildGoogleLink(event);
   return (
     <a
@@ -41,10 +43,10 @@ const buildGoogleStr = (event: EventEvent) => {
   );
 };
 
-const buildiCal = (event: EventEvent) => {
+const buildiCal = (event: NodeEvent) => {
   return (
     <a
-      href={event.localist_ics_url}
+      href={(event.fieldDestinationUrl?.url as string) || ""}
       title="Save to iCal"
       rel="noreferrer noopener"
       target="_blank"
@@ -55,10 +57,10 @@ const buildiCal = (event: EventEvent) => {
   );
 };
 
-const buildOutlookCal = (event: EventEvent) => {
+const buildOutlookCal = (event: NodeEvent) => {
   return (
     <a
-      href={event.localist_ics_url}
+      href={(event.fieldDestinationUrl?.url as string) || ""}
       title="Save to Outlook"
       rel="noreferrer noopener"
       target="_blank"
@@ -70,7 +72,7 @@ const buildOutlookCal = (event: EventEvent) => {
 };
 
 interface AddCalProps {
-  event: EventEvent;
+  event: NodeEvent;
   hideaddcal?: HideType;
 }
 

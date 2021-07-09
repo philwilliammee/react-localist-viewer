@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { EventEvent } from "../../../../types/types";
+// import { EventEvent } from "../../../../types/types";
 import EventInner from "../EventInner/EventInner";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
-  event: EventEvent;
+  event: NodeEvent;
 }
 
 const EventDetails = (props: Props) => {

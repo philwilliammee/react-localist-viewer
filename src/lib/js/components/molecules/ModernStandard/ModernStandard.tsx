@@ -36,7 +36,7 @@ export const ModernStandardInner = (props: InnerProps) => {
     <div className={`rlv-modern-standard ${classList}`}>
       <div className="events">
         <a
-          href={event.localist_url}
+          href={event.fieldDestinationUrl?.uri || ""}
           className="group-link-wrapper field-group-link"
         >
           {hidetime ? "" : <Time event={event} />}
@@ -46,15 +46,15 @@ export const ModernStandardInner = (props: InnerProps) => {
           <div className="field meta">
             <p>
               {hidetime ? "" : eventTime}
-              {event.location_name ? `, ${event.location_name}` : ""}
-              {tagStr(event.filters.event_types)}
+              {event.fieldEventLocation ? `, ${event.fieldEventLocation}` : ""}
+              {/* {tagStr(event.filters.event_types)} */}
             </p>
           </div>
           <div className="field field-name-summary summary">
             <p>
               <EventImage
-                photoUrl={event.photo_url}
-                title={event.title}
+                photoUrl={event.fieldEventImage?.url || ""}
+                title={event.title || ""}
                 hideimages={hideimages}
                 photoCrop="big"
               />
@@ -97,8 +97,8 @@ const ModernStandard = (props: StandardProps) => {
               events.map((event) => {
                 return (
                   <ModernStandardInner
-                    key={event.event.event_instances[0].event_instance.id}
-                    event={event.event}
+                    key={event.entityId}
+                    event={event}
                     {...props}
                   />
                 );

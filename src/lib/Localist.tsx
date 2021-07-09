@@ -5,16 +5,16 @@ import { fetchEvents } from "./js/services/localistApiConnector";
 import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
-import EventFilters from "./js/components/organisms/EventFilterBy";
 import { isHidden, isNotHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
-import { AppProps, EventElement, ViewComponentProps } from "./types/types";
+import { AppProps, ViewComponentProps } from "./types/types";
 import { useQuery } from "react-query";
 import {
   getKeyFromDateRange,
   initDateRange,
 } from "./js/components/molecules/Calendar/dateUtils";
 import { queryClient } from "./query";
+import { NodeEvent } from "types/graphql";
 
 const dateRange = initDateRange();
 
@@ -55,16 +55,16 @@ const Localist = (props: AppProps) => {
     if (mounted) {
       if (data) {
         // There has got to be a better way to set these.
-        const itemClassArray =
-          props?.itemclass?.split(" ").concat(["event-node"]) || [];
-        data.events.forEach((event: EventElement) => {
-          event.event.itemClassArray = [...itemClassArray];
-        });
+        // const itemClassArray =
+        //   props?.itemclass?.split(" ").concat(["event-node"]) || [];
+        // events.forEach((event: NodeEvent) => {
+        //   event.itemClassArray = [...itemClassArray];
+        // });
 
         // Used by calendar only.
-        setFilteredEvents(data.events);
-        setEvents(data.events);
-        setLlPage(data.page);
+        setFilteredEvents(data);
+        setEvents(data);
+        // setLlPage(data.page);
       }
 
       // prefetch pagination data next page
@@ -91,10 +91,10 @@ const Localist = (props: AppProps) => {
     setCurrentPage(newPage);
   }
 
-  function handleEventFilter(events: EventElement[], filter: string) {
-    setFilter(filter);
-    setEvents(events);
-  }
+  // function handleEventFilter(events: NodeEvent[], filter: string) {
+  //   setFilter(filter);
+  //   setEvents(events);
+  // }
 
   return (
     <div className="rlc-localist">
@@ -103,14 +103,14 @@ const Localist = (props: AppProps) => {
         readmore={props.readmore || ""}
         url={props.url || ""}
       />
-      <EventFilters
+      {/* <EventFilters
         key={currentPage}
         events={events}
         handleEventFilter={handleEventFilter}
         active={filter}
         setActive={setFilter}
         filterby={props.filterby}
-      />
+      /> */}
       <LocalistView
         key={filter}
         {...props}

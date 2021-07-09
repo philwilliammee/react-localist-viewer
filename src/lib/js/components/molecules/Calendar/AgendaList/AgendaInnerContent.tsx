@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../../../helpers/displayEvent";
 import Truncate from "../../../atoms/Truncate";
 import Time from "../../../atoms/Time";
-import { EventEvent, HideType } from "../../../../../types/types";
+import { HideType } from "../../../../../types/types";
 import EventImage from "../../../atoms/EventImage/EventImage";
 import "./AgendaInnerContent.scss";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
   hideaddcal: HideType;
@@ -14,8 +15,8 @@ interface Props {
   hideimages: HideType;
   hidetime: boolean;
   setShowDialog: (bool: boolean) => void;
-  setEventSelected: (event: EventEvent) => void;
-  event: EventEvent;
+  setEventSelected: (event: NodeEvent) => void;
+  event: NodeEvent;
 }
 
 const AgendaInnerContent = (props: Props) => {
@@ -59,7 +60,7 @@ const AgendaInnerContent = (props: Props) => {
     <div className={`rlv-agenda-inner-content ${classList}`}>
       <div className="events">
         <a
-          href={`#${event.id}`}
+          href={`#${event.entityId}`}
           className="group-link-wrapper field-group-link"
           onClick={handleOnClick}
         >
@@ -70,15 +71,15 @@ const AgendaInnerContent = (props: Props) => {
           <div className="field meta">
             <p>
               {hidetime ? "" : eventTime}
-              {event.location_name ? `, ${event.location_name}` : ""}
-              {tagStr(event.filters.event_types)}
+              {event.fieldEventLocation ? `, ${event.fieldEventLocation}` : ""}
+              {/* {tagStr(event.filters.event_types)} */}
             </p>
           </div>
           <div className="field field-name-summary summary">
             <p>
               <EventImage
-                photoUrl={event.photo_url}
-                title={event.title}
+                photoUrl={event.fieldEventImage?.url || ""}
+                title={event.title || ""}
                 hideimages={hideimages}
                 photoCrop="big"
               />

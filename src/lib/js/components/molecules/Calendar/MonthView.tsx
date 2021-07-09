@@ -1,6 +1,6 @@
 import React from "react";
 import Proptypes from "prop-types";
-import { EventElement, EventEvent } from "lib/types/types";
+import { EventElement } from "lib/types/types";
 import {
   currentDay,
   daysInMonth,
@@ -11,13 +11,14 @@ import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
 import "./MonthView.scss";
 import { Button, IconButton } from "@material-ui/core";
+import { NodeEvent } from "types/graphql";
 
 interface Props {
   dateContext: Moment;
-  events: EventElement[];
+  events: NodeEvent[];
   setSelectedDay: (day: number) => void;
   selectedDay: number | null;
-  handleEventSelect: (eventEvent: EventEvent) => void;
+  handleEventSelect: (eventEvent: NodeEvent) => void;
 }
 
 const MonthView = (props: Props) => {
@@ -45,7 +46,7 @@ const MonthView = (props: Props) => {
     // Find all events for today
 
     const todaysEvents = events.filter((event) => {
-      const eventDate = new Date(getEventStart(event.event));
+      const eventDate = new Date(getEventStart(event));
       /** @todo handle this dateContext is just a month but events are calendar month*/
       if (eventDate.getMonth() === dateContext.month()) {
         return eventDate.getDate() === d;
@@ -69,14 +70,14 @@ const MonthView = (props: Props) => {
           </div>
           {todaysEvents?.map((event) => {
             return (
-              <div key={event.event.event_instances[0].event_instance.id}>
+              <div key={event.entityId}>
                 <Button
                   variant="contained"
                   color="primary"
                   className="event"
-                  onClick={(e) => handleEventSelect(event.event)}
+                  onClick={(e) => handleEventSelect(event)}
                 >
-                  <span className="button-text">{event.event.title}</span>
+                  <span className="button-text">{event.title}</span>
                 </Button>
               </div>
             );
