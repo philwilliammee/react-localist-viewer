@@ -1,6 +1,6 @@
 import React from "react";
 import Proptypes from "prop-types";
-import { EventElement, EventEvent } from "lib/types/types";
+import { EventElement, EventEvent } from "../../../../types/types";
 import {
   currentDay,
   daysInMonth,
@@ -29,7 +29,7 @@ const MonthView = (props: Props) => {
     props.setSelectedDay(day);
   };
 
-  let blanks = [];
+  let blanks: JSX.Element[] = [];
   for (let i = 0; i < firstDayOfMonth(dateContext); i++) {
     blanks.push(
       <td key={`${i}-empty-slot`} className="emptySlot">
@@ -86,7 +86,7 @@ const MonthView = (props: Props) => {
     );
   }
 
-  let endBlanks = [];
+  let endBlanks: JSX.Element[] = [];
   for (let i = lastDayOfMonth(dateContext); i < 6; i++) {
     endBlanks.push(
       <td key={`${i}-end-empty-slot`} className="emptySlot">

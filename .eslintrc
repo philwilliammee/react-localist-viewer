@@ -12,5 +12,8 @@
     "rules": {
         "no-unused-vars": "warn",
         "react/prop-types": 0
+    },
+    "globals": {
+        "JSX": true
     }
 }

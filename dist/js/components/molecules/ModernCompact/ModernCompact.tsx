@@ -80,7 +80,7 @@ const ModernCompact = (props: StandardProps) => {
                 );
               })
             ) : (
-              <p>There are no upcomming events.</p>
+              <p>There are no upcoming events.</p>
             )}
           </div>
         </div>

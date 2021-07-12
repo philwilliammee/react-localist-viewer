@@ -7,23 +7,24 @@ import {
   getNextMonth,
   initDateRange,
 } from "./dateUtils";
-import EventsContext from "lib/js/context/EventsContext";
+import EventsContext from "../../../context/EventsContext";
+
 import {
   DisplayedDateRange,
   EventElement,
   EventEvent,
   ViewComponentProps,
-} from "lib/types/types";
-import { queryClient } from "lib/query";
+} from "../../../../types/types";
+import { queryClient } from "../../../../query";
 import { useQuery } from "react-query";
-import { fetchEvents } from "lib/js/services/localistApiConnector";
+import { fetchEvents } from "../../../services/localistApiConnector";
 import MonthView from "./MonthView";
 import EventDetails from "../EventDetails";
 import EventModal from "../../atoms/ModalDialog";
 import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
-import { getEventStart } from "lib/js/helpers/displayEvent";
+import { getEventStart } from "../../../helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
 

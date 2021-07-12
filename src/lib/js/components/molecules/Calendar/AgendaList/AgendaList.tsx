@@ -1,4 +1,4 @@
-import { EventElement, HideType } from "lib/types/types";
+import { EventElement, HideType } from "../../../../../types/types";
 import React, { useContext } from "react";
 import EventContext from "../../../../context/EventsContext";
 import AgendaListView from "./AgendaInner";
