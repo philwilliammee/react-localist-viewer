@@ -8,6 +8,7 @@ import "./EventInner.scss";
 import MoreInfo from "../MoreInfo";
 import Tag from "../../atoms/Tag";
 import EventDate from "../../atoms/EventDateTime";
+import EventLocation from "../../atoms/EventLocation";
 
 interface Props {
   event: EventEvent;
@@ -19,7 +20,10 @@ const EventInner = ({ event }: Props) => (
       <h3>{event.title}</h3>
       <div>
         <EventDate event={event} hideTime={false} />
-        <Tag>{event.location_name}</Tag>
+        <EventLocation locationName={event.location_name} />
+        {event.tags.map((tag, id) => {
+          return <Tag key={`${tag}-${id}`}>{tag}</Tag>;
+        })}
       </div>
       <div className="field field-name-summary summary">
         <div className="rlv-event-image-wrapper">
