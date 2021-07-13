@@ -3,7 +3,6 @@ import {
   DisplayedDateRange,
   Events,
 } from "./../../types/types";
-// import { ApiConnectorProps } from "./../../types/types";
 import axios from "axios";
 import moment from "moment";
 
