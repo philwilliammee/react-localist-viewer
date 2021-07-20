@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { fetchEvents } from "./js/services/localistApiConnector";
+import { fetchEvents } from "./js/services/apiInterface";
 import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
@@ -20,8 +20,6 @@ const dateRange = initDateRange();
 
 /**
  * Localist Component
- * @todo reset filters on pagination load.
- * @todo implement class lists for all components.
  */
 const Localist = (props: AppProps) => {
   const { events, setEvents, setFilteredEvents } = useContext(EventsContext);
@@ -164,6 +162,7 @@ Localist.propTypes = {
   page: PropTypes.number,
   readmore: PropTypes.string,
   url: PropTypes.string,
+  api: PropTypes.string,
 };
 
 Localist.defaultProps = {

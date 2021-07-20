@@ -17,7 +17,7 @@ import {
 } from "../../../../types/types";
 import { queryClient } from "../../../../query";
 import { useQuery } from "react-query";
-import { fetchEvents } from "../../../services/localistApiConnector";
+import { fetchEvents } from "../../../services/apiInterface";
 import MonthView from "./MonthView";
 import EventDetails from "../EventDetails";
 import EventModal from "../../atoms/ModalDialog";

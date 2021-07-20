@@ -23,6 +23,7 @@ export interface AppProps {
   page?: CurrentPage;
   readmore?: string;
   url?: string;
+  api: Api;
 }
 
 // @todo consolidate these props
@@ -44,6 +45,7 @@ export interface ViewProps {
   calendarurl: string;
   setCurrentPage: (page: number) => void;
   currentPage: number;
+  api: Api;
 }
 
 export type HideType = 0 | "true" | 1 | "false" | "";
@@ -56,6 +58,8 @@ export interface DateRangeEvent {
   start: Date;
   end: Date;
 }
+
+export type Api = "localist" | "drupal" | "wordpress";
 
 export interface DisplayedDateRange {
   start: moment.Moment;

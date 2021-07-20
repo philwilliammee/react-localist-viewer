@@ -1,5 +1,15 @@
+import { NodeEvent } from "./../../../types/graphql";
+import { ViewComponentProps, DisplayedDateRange } from "./../../types/types";
+// import { ApiConnectorProps } from "./../../types/types";
 import axios from "axios";
 import moment from "moment";
+import { GetEventsByDateQueryQueryVariables } from "types/graphql";
+
+import { loader } from "graphql.macro";
+
+const GET_EVENTS = loader(
+  "../../graphql/queries/getDrupalEventsByDateQuery.graphql"
+);
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -33,19 +43,8 @@ interface ApiParams {
  * Sets params and returns axios Promise.
  * options: https://developer.localist.com/doc/api#event-list
  */
-const localistApiConnector = (props: ApiConnectorProps) => {
-  const {
-    depts,
-    entries,
-    group,
-    keyword,
-    daysahead,
-    apikey,
-    calendarurl,
-    page,
-    start,
-    end,
-  } = props;
+const drupalApiConnector = (props: ApiConnectorProps) => {
+  const { entries, daysahead, apikey, calendarurl, page, start, end } = props;
 
   const params: ApiParams = {
     apikey,
@@ -54,23 +53,6 @@ const localistApiConnector = (props: ApiConnectorProps) => {
     page,
     direction: daysahead?.startsWith("-") ? "desc" : "asc",
   };
-
-  // Supports multiple departments with CSV string.
-  if (depts && depts !== "0") {
-    params.type = [];
-    depts.split(",").forEach((item) => {
-      params?.type?.push(item.trim());
-    });
-  }
-
-  if (group && group !== "0") {
-    params.group_id = group;
-  }
-
-  // @todo add support for multiple keywords
-  if (keyword && keyword !== "") {
-    params.keyword = keyword;
-  }
 
   // Archive support
   if (daysahead?.startsWith("-")) {
@@ -85,7 +67,15 @@ const localistApiConnector = (props: ApiConnectorProps) => {
     params.days = daysahead;
   }
 
-  return axios.get(calendarurl, { params });
+  const query = GET_EVENTS.loc?.source.body;
+  const variables: GetEventsByDateQueryQueryVariables = {
+    startDate: params.start,
+    endDate: params.end,
+    limit: 1000,
+    offset: 0,
+  };
+
+  return axios.post(calendarurl, { query, variables });
 };
 
-export default localistApiConnector;
+export default drupalApiConnector;

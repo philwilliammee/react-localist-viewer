@@ -1,5 +1,5 @@
 {
-    "target":"root",
+    "target": "root",
     "depts": "",
     "entries": "3",
     "daysahead": "-30",
@@ -14,10 +14,11 @@
     "hidedescription": "",
     "truncatedescription": "250",
     "hideimages": "",
-    "hidepagination" :"'",
+    "hidepagination": "'",
     "wrapperclass": "cwd-card-grid three-card",
     "listclass": "cards",
     "itemclass": "card",
     "readmore": "Read More »",
-    "url": "https://philwilliammee.github.io/react-localist-viewer/"
+    "url": "https://philwilliammee.github.io/react-localist-viewer/",
+    "api": "localist"
 }

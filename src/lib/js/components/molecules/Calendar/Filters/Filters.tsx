@@ -89,8 +89,6 @@ const Filters = () => {
   const hasTypes = eventTypes.length;
   const hasKeywords = eventKeywords.length;
 
-  console.log(eventTypes);
-
   return (
     <div id="calendarFilters">
       <div className="heading">

@@ -1,0 +1,8 @@
+overwrite: true
+schema: "https://psw-test-cd-demo.pantheonsite.io/graphql"
+documents: "src/lib/graphql/**/*.graphql"
+generates:
+  src/types/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"

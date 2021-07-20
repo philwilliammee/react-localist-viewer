@@ -30,7 +30,7 @@ const EventImage = (props: EventImageProps) => {
     <img
       className="rlv-event-image"
       alt={title}
-      height="150"
+      width="200"
       src={photo}
       loading="lazy"
       onError={handleError}
