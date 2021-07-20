@@ -1,4 +1,1 @@
-declare module "truncate-url" {
-  function truncateUrl(input: string, length: number): string;
-  export default truncateUrl;
-}
+// Define types for libraries that don't have any here.

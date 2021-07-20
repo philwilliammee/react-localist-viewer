@@ -60,6 +60,14 @@ export const isNested = (obj: any, ...args: string[]) => {
   return args.reduce((obj, level) => obj && obj[level], obj);
 };
 
+export const truncateString = (str: string, num: number) => {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  }
+
+  return str;
+};
+
 // export const addElement = (a, e) => {
 //     return a.push(e);
 // }

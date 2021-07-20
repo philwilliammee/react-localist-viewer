@@ -4,11 +4,11 @@ import {
   getEventTypeString,
   getEventDepartmentsString,
 } from "../../../helpers/displayEvent";
-import truncateUrl from "truncate-url";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
 
 import "./MoreInfo.scss";
+import { truncateString } from "lib/js/helpers/common";
 
 interface Props {
   event: EventEvent;
@@ -50,7 +50,7 @@ const MoreInfo = ({ event }: Props) => {
             <>
               <h5>Website</h5>
               <p>
-                <a href={event.url}>{truncateUrl(event.url, 60)}</a>
+                <a href={event.url}>{truncateString(event.url, 60)}</a>
               </p>
             </>
           ) : (
@@ -81,7 +81,7 @@ const MoreInfo = ({ event }: Props) => {
             <>
               <h5>Dept. Web Site</h5>
               <p>
-                <a href={deptWebsite}>{truncateUrl(deptWebsite, 60)}</a>
+                <a href={deptWebsite}>{truncateString(deptWebsite, 60)}</a>
               </p>
             </>
           ) : (
