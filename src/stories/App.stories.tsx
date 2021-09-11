@@ -28,6 +28,7 @@ const Template: Story<ComponentProps<typeof App>> = (args) => (
 export const Calendar = Template.bind({});
 Calendar.args = {
   depts: "4888",
+  api: "localist",
   entries: "100",
   daysahead: "300",
   format: "calendar",
@@ -47,6 +48,20 @@ Calendar.args = {
   itemclass: "",
   readmore: "",
   url: "https://philwilliammee.github.io/react-localist-viewer/",
+};
+
+export const DrupalApiCalendar = Template.bind({});
+DrupalApiCalendar.args = {
+  ...Calendar.args,
+  api: "drupal",
+  calendarurl: "https://psw-test-cd-demo.pantheonsite.io/graphql",
+};
+
+export const WordPressApiCalendar = Template.bind({});
+WordPressApiCalendar.args = {
+  ...Calendar.args,
+  api: "wordpress",
+  calendarurl: "https://api-test-cihmid.pantheonsite.io/graphql",
 };
 
 export const Standard = Template.bind({});

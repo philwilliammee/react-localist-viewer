@@ -24,6 +24,8 @@ export interface Props {
   loading: boolean;
   wrapperClassArray: string[];
   listClassArray: string[];
+  api: string;
+  depts?: string;
 }
 
 const LocalistView = (props: Props) => {

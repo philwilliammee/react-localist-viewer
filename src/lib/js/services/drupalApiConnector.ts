@@ -1,6 +1,3 @@
-import { NodeEvent } from "./../../../types/graphql";
-import { ViewComponentProps, DisplayedDateRange } from "./../../types/types";
-// import { ApiConnectorProps } from "./../../types/types";
 import axios from "axios";
 import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
@@ -25,54 +22,33 @@ export interface ApiConnectorProps {
   type?: [];
 }
 
-interface ApiParams {
-  apikey?: string;
-  distinct: boolean;
-  pp?: string;
-  page?: number;
-  direction: string;
-  type?: string[];
-  start?: string;
-  group_id?: string;
-  end?: string;
-  keyword?: string;
-  days?: string;
-}
-
-/**
- * Sets params and returns axios Promise.
- * options: https://developer.localist.com/doc/api#event-list
- */
 const drupalApiConnector = (props: ApiConnectorProps) => {
-  const { entries, daysahead, apikey, calendarurl, page, start, end } = props;
+  const { entries, daysahead, calendarurl, page, start, end } = props;
 
-  const params: ApiParams = {
-    apikey,
-    distinct: false, // show repeating events
-    pp: entries,
-    page,
-    direction: daysahead?.startsWith("-") ? "desc" : "asc",
-  };
+  let start_param = start;
+  let end_param = end;
 
   // Archive support
   if (daysahead?.startsWith("-")) {
-    params.start = moment()
+    start_param = moment()
       .add(parseInt(daysahead), "days")
       .format("YYYY-MM-DD");
-    params.end = moment().format("YYYY-MM-DD");
+    end_param = moment().format("YYYY-MM-DD");
   } else if (start && end) {
-    params.start = start;
-    params.end = end;
+    start_param = start;
+    end_param = end;
   } else {
-    params.days = daysahead;
+    end_param = moment()
+      .add(parseInt(daysahead || "365"), "days")
+      .format("YYYY-MM-DD");
   }
 
   const query = GET_EVENTS.loc?.source.body;
   const variables: GetEventsByDateQueryQueryVariables = {
-    startDate: params.start,
-    endDate: params.end,
-    limit: 1000,
-    offset: 0,
+    startDate: start_param,
+    endDate: end_param,
+    limit: parseInt(entries || "1000", 10),
+    offset: page,
   };
 
   return axios.post(calendarurl, { query, variables });

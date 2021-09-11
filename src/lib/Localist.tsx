@@ -6,7 +6,7 @@ import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate/Paginate";
 import LocalistView from "./js/components/organisms/LocalistView";
 import EventFilters from "./js/components/organisms/EventFilterBy";
-import { isHidden, isNotHidden } from "./js/helpers/common";
+import { getQueryId, isHidden, isNotHidden } from "./js/helpers/common";
 import EventsContext from "./js/context/EventsContext";
 import { AppProps, EventElement, ViewComponentProps } from "./types/types";
 import { useQuery } from "react-query";
@@ -31,10 +31,11 @@ const Localist = (props: AppProps) => {
   const [currentPage, setCurrentPage] = useState(props.page);
   const [filter, setFilter] = useState("filterAll");
 
+  const queryId = getQueryId(props);
   let key =
     props.format === "calendar" ? getKeyFromDateRange(dateRange) : currentPage;
   const { isLoading: loading, data } = useQuery(
-    ["events", key],
+    [queryId, key],
     () => fetchEvents(props as ViewComponentProps, currentPage, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );

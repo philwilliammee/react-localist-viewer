@@ -46,6 +46,7 @@ export interface ViewProps {
   setCurrentPage: (page: number) => void;
   currentPage: number;
   api: Api;
+  depts?: string;
 }
 
 export type HideType = 0 | "true" | 1 | "false" | "";

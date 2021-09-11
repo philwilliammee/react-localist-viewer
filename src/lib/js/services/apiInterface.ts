@@ -1,9 +1,7 @@
 import { NodeEvent } from "./../../../types/graphql";
-import { last } from "cypress/types/lodash";
 import moment from "moment";
 import { GetEventsByDateQueryQuery } from "types/graphql";
 import {
-  ViewComponentProps,
   AppProps,
   DisplayedDateRange,
   Events,

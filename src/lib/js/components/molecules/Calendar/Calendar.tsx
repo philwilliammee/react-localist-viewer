@@ -27,10 +27,10 @@ import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
-
-const queryId = "events";
+import { getQueryId } from "../../../helpers/common";
 
 const Calendar = (props: Props) => {
+  const queryId = getQueryId(props);
   const {
     setEvents,
     filteredEvents,
