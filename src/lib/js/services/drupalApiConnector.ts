@@ -1,4 +1,3 @@
-import { initialEvent } from "../context/EventsContext";
 import axios from "axios";
 import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
