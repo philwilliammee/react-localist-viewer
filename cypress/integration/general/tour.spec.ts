@@ -46,8 +46,6 @@ const eventsData = initEvents.events.map((event, i) => {
 // sets the 4 events to the beginning odf the month.
 const events = { ...initEvents, events: eventsData };
 
-console.log(events);
-
 var months = [
   "January",
   "February",

@@ -192,7 +192,7 @@ export interface EventInstanceEventInstance {
   id: number;
   event_id: number;
   start: Date;
-  end: Date;
+  end: Date | null;
   ranking: number;
   all_day: boolean;
   num_attending: number;

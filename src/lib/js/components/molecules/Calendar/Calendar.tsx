@@ -82,7 +82,7 @@ const Calendar = (props: Props) => {
       }
     },
 
-    [props, setEvents, setFilteredEvents, data]
+    [props, setEvents, setFilteredEvents, data, queryId]
   );
 
   useEffect(() => {
