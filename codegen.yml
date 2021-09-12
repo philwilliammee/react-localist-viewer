@@ -1,8 +1,8 @@
 overwrite: true
 schema: "https://psw-test-cd-demo.pantheonsite.io/graphql"
-documents: "src/lib/graphql/**/*.graphql"
+documents: "src/lib/graphql/**/getDrupalEventsByDateQuery.graphql"
 generates:
-  src/types/graphql.tsx:
+  src/types/drupalGraphql.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"
