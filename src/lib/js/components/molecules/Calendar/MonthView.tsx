@@ -55,14 +55,14 @@ const MonthView = (props: Props) => {
     daysInMonthArray.push(
       <td key={d} className={className + selectedClass}>
         <div className="content">
-          <div>
+          <div className="day-wrapper">
             <IconButton
               size="small"
               onClick={(e) => {
                 onDayClick(e, d);
               }}
               aria-label="close dialog"
-              className="align-right day-btn"
+              className="day-btn"
             >
               {d}
             </IconButton>
@@ -72,7 +72,6 @@ const MonthView = (props: Props) => {
               <div key={event.event.event_instances[0].event_instance.id}>
                 <Button
                   variant="contained"
-                  color="primary"
                   className="event"
                   onClick={(e) => handleEventSelect(event.event)}
                 >

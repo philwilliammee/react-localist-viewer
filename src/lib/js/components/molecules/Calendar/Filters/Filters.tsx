@@ -3,7 +3,7 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import { Button, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 
 /**
  * @todo optimize this it has a lot of re-renders
@@ -96,120 +96,124 @@ const Filters = () => {
           Check the boxes below to broaden your results.
         </Typography>
       </div>
-      <div className="filter-groups padded">
-        {hasGroupNames ? (
-          <>
-            <Typography variant="h4">Group Name</Typography>
-            <div className="filter-group">
-              <ul>
-                {eventGroupNames.map((group, id) => {
-                  return (
-                    <li key={group}>
-                      <CheckBox
-                        name={group}
-                        label={group}
-                        color={"primary"}
-                        checked={checkedItems.get(group)}
-                        onChange={handleChange}
-                      />
-                      (
-                      {
-                        eventGroupNamesFull.filter((fullType) => {
-                          return fullType === group;
-                        }).length
-                      }
-                      )
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            {hasTypes ? <hr /> : ""}
-          </>
-        ) : (
-          ""
-        )}
-        {hasTypes ? (
-          <>
-            <Typography variant="h4">Types</Typography>
-            <div className="filter-group">
-              <ul>
-                {eventTypes.map((type, id) => {
-                  return (
-                    <li key={type}>
-                      <CheckBox
-                        name={type}
-                        label={type}
-                        color={"primary"}
-                        checked={checkedItems.get(type)}
-                        onChange={handleChange}
-                      />
-                      (
-                      {
-                        eventTypesFull.filter((fullType) => {
-                          return fullType === type;
-                        }).length
-                      }
-                      )
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            {hasKeywords ? <hr /> : ""}
-          </>
-        ) : (
-          ""
-        )}
-        {hasKeywords ? (
-          <>
-            <Typography variant="h4">Keywords</Typography>
-            <div className="filter-group">
-              {}
-              <ul>
-                {eventKeywords.map((keyword, id) => {
-                  return (
-                    <li key={keyword}>
-                      <CheckBox
-                        name={keyword}
-                        label={keyword}
-                        color={"primary"}
-                        checked={checkedItems.get(keyword)}
-                        onChange={handleChange}
-                      />{" "}
-                      (
-                      {
-                        eventKeywordsFull.filter((fullType) => {
-                          return fullType === keyword;
-                        }).length
-                      }
-                      )
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </>
-        ) : (
-          ""
-        )}
-        {hasGroupNames || hasTypes || hasKeywords ? "" : "No Filters Available"}
-      </div>
+      <Paper variant="outlined" square>
+        <div className="filter-groups padded">
+          {hasGroupNames ? (
+            <>
+              <Typography variant="h4">Group Name</Typography>
+              <div className="filter-group">
+                <ul>
+                  {eventGroupNames.map((group, id) => {
+                    return (
+                      <li key={group}>
+                        <CheckBox
+                          name={group}
+                          label={group}
+                          color={"primary"}
+                          checked={checkedItems.get(group)}
+                          onChange={handleChange}
+                        />
+                        (
+                        {
+                          eventGroupNamesFull.filter((fullType) => {
+                            return fullType === group;
+                          }).length
+                        }
+                        )
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              {hasTypes ? <hr /> : ""}
+            </>
+          ) : (
+            ""
+          )}
+          {hasTypes ? (
+            <>
+              <Typography variant="h4">Types</Typography>
+              <div className="filter-group">
+                <ul>
+                  {eventTypes.map((type, id) => {
+                    return (
+                      <li key={type}>
+                        <CheckBox
+                          name={type}
+                          label={type}
+                          color={"primary"}
+                          checked={checkedItems.get(type)}
+                          onChange={handleChange}
+                        />
+                        (
+                        {
+                          eventTypesFull.filter((fullType) => {
+                            return fullType === type;
+                          }).length
+                        }
+                        )
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              {hasKeywords ? <hr /> : ""}
+            </>
+          ) : (
+            ""
+          )}
+          {hasKeywords ? (
+            <>
+              <Typography variant="h4">Keywords</Typography>
+              <div className="filter-group">
+                {}
+                <ul>
+                  {eventKeywords.map((keyword, id) => {
+                    return (
+                      <li key={keyword}>
+                        <CheckBox
+                          name={keyword}
+                          label={keyword}
+                          color={"primary"}
+                          checked={checkedItems.get(keyword)}
+                          onChange={handleChange}
+                        />{" "}
+                        (
+                        {
+                          eventKeywordsFull.filter((fullType) => {
+                            return fullType === keyword;
+                          }).length
+                        }
+                        )
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+          {hasGroupNames || hasTypes || hasKeywords
+            ? ""
+            : "No Filters Available"}
 
-      {hasGroupNames || hasTypes || hasKeywords ? (
-        <div className="reset">
-          <Button
-            variant="contained"
-            onClick={() => {
-              handleResetFilters();
-            }}
-          >
-            Reset Filters
-          </Button>
+          {hasGroupNames || hasTypes || hasKeywords ? (
+            <div className="reset">
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleResetFilters();
+                }}
+              >
+                Reset Filters
+              </Button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
+      </Paper>
     </div>
   );
 };

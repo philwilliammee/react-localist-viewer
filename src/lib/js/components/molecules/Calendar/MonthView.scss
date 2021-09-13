@@ -3,10 +3,6 @@
   table-layout: fixed;
   width: 100%;
 
-  // button {
-  //   cursor: pointer;
-  // }
-
   thead th {
     text-align: center;
   }
@@ -45,22 +41,11 @@
     }
 
     .event {
-      border: none;
-      box-sizing: border-box;
-      box-shadow: none;
       margin: 0;
       padding: 2px 5px;
-      background-color: #3174ad;
-
-      color: #fff;
-      cursor: pointer;
       width: 100%;
       text-align: left;
       height: 24px;
-
-      &:hover {
-        background: #017bb1;
-      }
     }
 
     .button-text {
@@ -75,14 +60,19 @@
       font-size: 1rem;
     }
 
-    button.day-btn {
-      border-radius: 50%;
-      border: none;
-      padding-bottom: 4px;
-      padding-top: 4px;
+    .day-wrapper {
+      display: flex;
+      flex-direction: row-reverse;
 
-      &:hover {
-        background-color: #fcf3e1;
+      button.day-btn {
+        border-radius: 50%;
+        border: none;
+        padding-bottom: 4px;
+        padding-top: 4px;
+
+        &:hover {
+          background-color: #fcf3e1;
+        }
       }
     }
 
