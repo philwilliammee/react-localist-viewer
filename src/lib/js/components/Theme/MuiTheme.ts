@@ -35,7 +35,7 @@ const theme = createTheme({
     },
     h4: {
       fontFamily: "Georgia, serif",
-      fontSize: "px18",
+      fontSize: "18px",
     },
     h5: {
       fontFamily: "Georgia, serif",

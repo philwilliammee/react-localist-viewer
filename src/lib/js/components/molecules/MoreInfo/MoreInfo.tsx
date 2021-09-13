@@ -3,66 +3,79 @@ import PropTypes from "prop-types";
 import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
-
-import "./MoreInfo.scss";
 import { truncateString } from "lib/js/helpers/common";
+import { createTheme, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 interface Props {
   event: EventEvent;
 }
 
-// function createMarkup(markup: string) {
-//   return { __html: markup };
-// }
+const theme = createTheme();
 
 const MoreInfo = ({ event }: Props) => {
   const deptWebsite = event?.custom_fields?.dept_web_site
     ? event.custom_fields.dept_web_site
     : event.url;
 
-  // const eventType = getEventTypeString(event);
-  // const startDate = moment(getEventStart(event))
-  // const end
-
   return (
-    <div className="rlv-more-info">
+    <Box
+      className="rlv-more-info"
+      sx={{
+        bgcolor: theme.palette.grey[100],
+        paddingTop: theme.spacing(2),
+        paddingLeft: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        marginTop: theme.spacing(2),
+      }}
+    >
       <Grid container>
         <Grid col={12}>
-          <h4>Details</h4>
+          <Typography variant="h4" color={theme.palette.text.primary}>
+            Details
+          </Typography>
         </Grid>
         <Grid col={6}>
-          <h5>When</h5>
-          <p>{getFullDate(event)}</p>
-          <p>
-            {/* {event.event.startTime}{" "}
-            {event.event.endTime ? `- ${event.event.endTime}` : ""} */}
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            When
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {getFullDate(event)}
+            <br />
             {getEventFullTime(event)}
-          </p>
+          </Typography>
 
-          <h5>Where</h5>
-          <p>{event.location ? event.location : "NA"}</p>
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            Where
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {event.location ? event.location : "NA"}
+          </Typography>
 
-          <h5>Room</h5>
-          <p>{event.room_number ? event.room_number : "NA"}</p>
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            Room
+          </Typography>
+          <Typography variant="body2">
+            {event.room_number ? event.room_number : "NA"}
+          </Typography>
         </Grid>
 
         <Grid col={6}>
-          <h5>Website</h5>
-          <p>
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            Website
+          </Typography>
+          <Typography variant="body2" gutterBottom>
             {deptWebsite ? (
-              <>
-                <h5>Website</h5>
-                <p>
-                  <a href={deptWebsite}>{truncateString(deptWebsite, 60)}</a>
-                </p>
-              </>
+              <a href={deptWebsite}>{truncateString(deptWebsite, 60)}</a>
             ) : (
               "NA"
             )}
-          </p>
+          </Typography>
 
-          <h5>Contact E-Mail</h5>
-          <p>
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            Contact E-Mail
+          </Typography>
+          <Typography variant="body2" gutterBottom>
             {event?.custom_fields?.contact_email ? (
               <a href={`mailto:${event?.custom_fields?.contact_email}`}>
                 {event?.custom_fields?.contact_email}
@@ -70,23 +83,21 @@ const MoreInfo = ({ event }: Props) => {
             ) : (
               "NA"
             )}
-          </p>
+          </Typography>
 
-          <h5>Zoom Link</h5>
-          <div className="zoom-link">
+          <Typography fontWeight={theme.typography.fontWeightMedium}>
+            Zoom Link
+          </Typography>
+          <Typography variant="body2" className="zoom-link">
             {event.stream_url ? (
-              // <a href={`mailto:${event.event.zoomLink}`}>
-              /**  @todo get actual zoom link */
-              // <div dangerouslySetInnerHTML={createMarkup(event.url)} />
-              // <a href={`mailto:${event.}`}>{event.zoomLink}</a>
               <a href={event.stream_url}>{event.stream_url}</a>
             ) : (
               "NA"
             )}
-          </div>
+          </Typography>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 

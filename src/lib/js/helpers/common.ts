@@ -73,6 +73,10 @@ export function getQueryId(props: AppProps | Props) {
   return [props.depts, props.api, props.format];
 }
 
+export function createMarkup(markup: string) {
+  return { __html: markup };
+}
+
 // export const addElement = (a, e) => {
 //     return a.push(e);
 // }

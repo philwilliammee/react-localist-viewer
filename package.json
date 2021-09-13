@@ -110,7 +110,7 @@
     "react-paginate": "^7.1.0",
     "react-query": "^3.12.1",
     "react-spring": "^8.0.27",
-    "truncate": "^2.1.0"
+    "truncate-html": "^1.0.4"
   },
   "keywords": [
     "localist",

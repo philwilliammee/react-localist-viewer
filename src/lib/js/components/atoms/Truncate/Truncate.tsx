@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { getTruncDesc } from "../../../helpers/displayEvent";
-import { isHidden } from "../../../helpers/common";
+import { createMarkup, isHidden } from "../../../helpers/common";
 import { EventEvent, HideType } from "../../../../types/types";
 
 import "./Truncate.scss";
@@ -18,12 +18,10 @@ const Truncate = (props: Props) => {
   if (isHidden(hidedescription)) {
     return <></>;
   }
-  return (
-    <span className="rlv-truncate">
-      {getTruncDesc(event, truncatedescription)}{" "}
-      {truncatedescription ? readMore : ""}
-    </span>
-  );
+  let htmlString = getTruncDesc(event, truncatedescription, readMore);
+  const markup = createMarkup(htmlString);
+
+  return <span className="rlv-truncate" dangerouslySetInnerHTML={markup} />;
 };
 
 Truncate.propTypes = {
