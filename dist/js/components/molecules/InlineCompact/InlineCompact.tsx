@@ -9,8 +9,8 @@ import {
 } from "../../../helpers/displayEvent";
 import { EventElement, EventEvent } from "../../../../types/types";
 import "./InlineCompact.scss";
-import RoomIcon from "@material-ui/icons/Room";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import RoomIcon from "@mui/icons-material/Room";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const eventTime = getEventTime(event);

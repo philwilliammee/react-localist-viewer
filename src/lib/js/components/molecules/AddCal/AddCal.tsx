@@ -4,9 +4,9 @@ import buildUrl from "build-url";
 import { getCalStartDate, getCalEndDate } from "../../../helpers/displayEvent";
 import { isHidden } from "../../../helpers/common";
 import { EventEvent, HideType } from "../../../../types/types";
-import GoogleIcon from "@material-ui/icons/Google";
-import AppleIcon from "@material-ui/icons/Apple";
-import EventIcon from "@material-ui/icons/Event";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
+import EventIcon from "@mui/icons-material/Event";
 
 import "./AddCal.scss";
 

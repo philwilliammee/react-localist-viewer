@@ -18,6 +18,7 @@ const Template: Story<ComponentProps<typeof Checkbox>> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  label: "Checkbox",
   color: "primary",
   name: "form-name",
   checked: false,

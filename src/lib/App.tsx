@@ -5,18 +5,29 @@ import { AppProps } from "./types/types";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { queryClient } from "./query";
-import Theme from "./js/components/Theme";
-import { ThemeProvider } from "@material-ui/core/styles";
+import RlvTheme from "./js/components/Theme";
+import {
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+} from "@mui/material/styles";
 import MuiTheme from "./js/components/Theme/MuiTheme";
+
+// declare module "@mui/styles/defaultTheme" {
+//   // eslint-disable-next-line @typescript-eslint/no-empty-interface
+//   interface DefaultTheme extends Theme {}
+// }
 
 const App = (props: AppProps) => (
   <QueryClientProvider client={queryClient}>
     <EventsState>
-      <Theme>
+      <StyledEngineProvider injectFirst>
         <ThemeProvider theme={MuiTheme}>
-          <Localist {...props} />
+          <RlvTheme>
+            <Localist {...props} />
+          </RlvTheme>
         </ThemeProvider>
-      </Theme>
+      </StyledEngineProvider>
     </EventsState>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

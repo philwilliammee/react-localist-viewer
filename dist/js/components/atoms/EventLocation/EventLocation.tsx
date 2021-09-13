@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./EventLocation.scss";
-import RoomIcon from "@material-ui/icons/Room";
+import RoomIcon from "@mui/icons-material/Room";
 
 interface EventLocationProps {
   locationName?: string;

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import "./Loading.scss";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Loading(): ReactElement {
   return (

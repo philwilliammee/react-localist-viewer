@@ -3,7 +3,6 @@ import { Story, Meta } from "@storybook/react";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "../lib/types/types";
 import AgendaInnerContent from "../lib/js/components/molecules/Calendar/AgendaList/AgendaInnerContent";
-import Theme from "lib/js/components/Theme";
 
 const AgendaInnerContentStories = {
   title: "Molecules/AgendaInnerContent",
@@ -12,9 +11,7 @@ const AgendaInnerContentStories = {
 
 // @todo fix this omg this is ugly. Why pass the whole event?
 const Template: Story<ComponentProps<typeof AgendaInnerContent>> = (args) => (
-  <Theme>
-    <AgendaInnerContent {...args} />
-  </Theme>
+  <AgendaInnerContent {...args} />
 );
 
 const eventData: EventEvent = { ...singleEvent.event };

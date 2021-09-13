@@ -4,7 +4,7 @@ import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
   FormControlLabel,
-} from "@material-ui/core";
+} from "@mui/material";
 
 interface Props {
   name: string;

@@ -22,7 +22,7 @@ import EventLocation from "../../atoms/EventLocation";
 import EventThumbnail from "../../atoms/EventThumbnail";
 import "./Standard.scss";
 import Grid from "../../atoms/Grid";
-import EventIcon from "@material-ui/icons/Event";
+import EventIcon from "@mui/icons-material/Event";
 
 interface StandardInnerProps {
   event: EventEvent;

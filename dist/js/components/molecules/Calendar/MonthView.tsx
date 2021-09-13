@@ -10,7 +10,7 @@ import {
 import { Moment } from "moment";
 import { getEventStart } from "../../../helpers/displayEvent";
 import "./MonthView.scss";
-import { Button, IconButton } from "@material-ui/core";
+import { Button, IconButton } from "@mui/material";
 
 interface Props {
   dateContext: Moment;

@@ -5,7 +5,6 @@ import React, { ComponentProps } from "react";
 import { Meta, Story } from "@storybook/react";
 import App from "../lib/App";
 import { HideSelect } from "./assets/utilities";
-import Theme from "lib/js/components/Theme";
 
 const AppStories = {
   title: "React-Localist-Viewer/Localist App",
@@ -19,11 +18,7 @@ const AppStories = {
   },
 };
 
-const Template: Story<ComponentProps<typeof App>> = (args) => (
-  <Theme>
-    <App {...args} />
-  </Theme>
-);
+const Template: Story<ComponentProps<typeof App>> = (args) => <App {...args} />;
 
 export const Calendar = Template.bind({});
 Calendar.args = {

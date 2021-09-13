@@ -1,7 +1,7 @@
 import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import { EventEvent } from "../../../../types/types";
 import React, { ReactElement } from "react";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import "./EventDateTime.scss";
 
 interface Props {

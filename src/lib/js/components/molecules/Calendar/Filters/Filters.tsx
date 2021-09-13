@@ -3,7 +3,7 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography } from "@mui/material";
 
 /**
  * @todo optimize this it has a lot of re-renders

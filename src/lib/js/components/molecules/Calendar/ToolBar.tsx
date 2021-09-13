@@ -1,9 +1,9 @@
 import React from "react";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import Button from "@mui/material/Button";
 import "./ToolBar.scss";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 interface ToolBarProps {
   children: React.ReactChild;
