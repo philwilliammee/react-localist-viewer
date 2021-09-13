@@ -3,7 +3,10 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import { Button, Paper, Typography } from "@mui/material";
+import { Button, createTheme, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+
+const theme = createTheme();
 
 /**
  * @todo optimize this it has a lot of re-renders
@@ -96,7 +99,11 @@ const Filters = () => {
           Check the boxes below to broaden your results.
         </Typography>
       </div>
-      <Paper variant="outlined" square>
+      <Box
+        sx={{
+          bgcolor: theme.palette.background.default,
+        }}
+      >
         <div className="filter-groups padded">
           {hasGroupNames ? (
             <>
@@ -213,7 +220,7 @@ const Filters = () => {
             ""
           )}
         </div>
-      </Paper>
+      </Box>
     </div>
   );
 };

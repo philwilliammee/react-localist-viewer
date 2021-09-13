@@ -1,6 +1,6 @@
 import { EventEvent, Format, Department } from "./../../types/types";
 import moment from "moment";
-import truncate from "truncate";
+import truncate from "truncate-html";
 
 /**
  * @file A collection of functions for working with event objects.
@@ -159,7 +159,8 @@ export const getEventDate = (event: EventEvent) => {
  */
 export const getTruncDesc = (
   event: EventEvent,
-  excerptLength?: number | string
+  excerptLength?: number | string,
+  readMore?: string
 ) => {
   if (!event) {
     return "";
@@ -170,7 +171,9 @@ export const getTruncDesc = (
       typeof excerptLength == "string"
         ? parseInt(excerptLength, 10)
         : excerptLength;
-    description = truncate(event.description_text, maxLength);
+    const ellipsis = readMore ? "... " + readMore : "...";
+    truncate.setup({ ellipsis, length: maxLength });
+    description = truncate(event.description_text);
   }
   return description;
 };
