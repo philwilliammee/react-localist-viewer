@@ -14,7 +14,6 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const Checkbox = ({ name, color, label, checked = false, onChange }: Props) => (
-  // <input type={type} name={name} checked={checked} onChange={onChange} />
   <FormControlLabel
     control={
       <MuiCheckbox
@@ -30,7 +29,6 @@ const Checkbox = ({ name, color, label, checked = false, onChange }: Props) => (
 );
 
 Checkbox.propTypes = {
-  type: PropTypes.string,
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

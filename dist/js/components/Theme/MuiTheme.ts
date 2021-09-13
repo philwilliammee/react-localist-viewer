@@ -1,7 +1,8 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material/styles";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
+    mode: "light",
     primary: {
       main: "#2d668e",
     },
@@ -26,19 +27,19 @@ const theme = createMuiTheme({
     },
     h2: {
       fontFamily: "Georgia, serif",
-      fontSize: 30,
+      fontSize: "30px",
     },
     h3: {
       fontFamily: "Georgia, serif",
-      fontSize: 24,
+      fontSize: "24px",
     },
     h4: {
       fontFamily: "Georgia, serif",
-      fontSize: 18,
+      fontSize: "px18",
     },
     h5: {
       fontFamily: "Georgia, serif",
-      fontSize: 16,
+      fontSize: "16px",
     },
     h6: {
       fontFamily: "Georgia, serif",

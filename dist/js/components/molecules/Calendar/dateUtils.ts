@@ -1,13 +1,23 @@
 import { DisplayedDateRange } from "../../../../types/types";
 import moment, { Moment } from "moment";
 
-export function weekOfMonth(m: Moment) {
+/**
+ * This is unused it can be used to get start of calendar month day
+ * @param m Moment
+ * @returns Moment
+ */
+export function calendarWeekOfMonth(m: Moment) {
   var first = m.clone().startOf("month").week(); // mutates original value
   const firstDay = moment(m).week(first).day(0);
   return firstDay;
 }
 
-export function lastWeekOfMonth(m: Moment) {
+/**
+ * This is unused it can be used to get end of calendar month day
+ * @param m Moment
+ * @returns Moment
+ */
+export function calendarLastWeekOfMonth(m: Moment) {
   let last = m.clone().endOf("month").week(); // mutates original value
   // @todo fix this. is not getting
   if (last === 1) {
@@ -15,6 +25,14 @@ export function lastWeekOfMonth(m: Moment) {
   }
   const lastDay = moment(m).week(last).day(6);
   return lastDay;
+}
+
+export function weekOfMonth(m: Moment) {
+  return m.clone().startOf("month");
+}
+
+export function lastWeekOfMonth(m: Moment) {
+  return m.clone().endOf("month");
 }
 
 export function getKeyFromDateRange(dateRange: DisplayedDateRange) {
@@ -44,18 +62,6 @@ export function getMonthFromThisDateRange(
 
 export function getLastMonth(dateRange: DisplayedDateRange) {
   const newDateRange = getMonthFromThisDateRange(dateRange, -1);
-  // console.log(
-  //   "received start: " +
-  //     dateRange.start.format("YYYY-MM-DD") +
-  //     " returned start: " +
-  //     newDateRange.start.format("YYYY-MM-DD")
-  // );
-  // console.log(
-  //   "received end: " +
-  //     dateRange.end.format("YYYY-MM-DD") +
-  //     " returned end: " +
-  //     newDateRange.end.format("YYYY-MM-DD")
-  // );
   return newDateRange;
 }
 

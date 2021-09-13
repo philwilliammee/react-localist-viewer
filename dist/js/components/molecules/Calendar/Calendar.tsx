@@ -17,7 +17,7 @@ import {
 } from "../../../../types/types";
 import { queryClient } from "../../../../query";
 import { useQuery } from "react-query";
-import { fetchEvents } from "../../../services/localistApiConnector";
+import { fetchEvents } from "../../../services/apiInterface";
 import MonthView from "./MonthView";
 import EventDetails from "../EventDetails";
 import EventModal from "../../atoms/ModalDialog";
@@ -27,10 +27,10 @@ import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
-
-const queryId = "events";
+import { getQueryId } from "../../../helpers/common";
 
 const Calendar = (props: Props) => {
+  const queryId = getQueryId(props);
   const {
     setEvents,
     filteredEvents,
@@ -82,7 +82,7 @@ const Calendar = (props: Props) => {
       }
     },
 
-    [props, setEvents, setFilteredEvents, data]
+    [props, setEvents, setFilteredEvents, data, queryId]
   );
 
   useEffect(() => {

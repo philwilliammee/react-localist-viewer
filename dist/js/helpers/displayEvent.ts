@@ -116,11 +116,25 @@ export const getCalEndDate = (event: EventEvent) => {
  */
 export const getDisplayDate = (event: EventEvent, format: Format) => {
   const dateTime = getEventStart(event);
-  const eventDate =
-    format === "compact"
-      ? moment(dateTime).format("MMM D")
-      : moment(dateTime).format("M/DD/YYYY");
+  let eventDate = moment(dateTime).format("M/DD/YYYY");
+  switch (format) {
+    case "compact":
+      eventDate = moment(dateTime).format("MMM D");
+      break;
+    default:
+      break;
+  }
   return eventDate;
+};
+
+/**
+ * @param {EventEvent} event The localist event.
+ * @param {Format} format
+ *
+ * @return {string} The date string in format "MMMM D, YYYY".
+ */
+export const getFullDate = (event: EventEvent) => {
+  return moment(getEventStart(event)).format("MMMM D, YYYY");
 };
 
 /**
