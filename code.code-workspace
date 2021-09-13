@@ -1,9 +1,7 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ],
+  "folders": [{
+    "path": "."
+  }],
   "settings": {
     "breadcrumbs.enabled": true,
     "css.validate": true,
@@ -51,5 +49,6 @@
       "urlname",
       "wrapperclass"
     ],
+    "git.ignoreLimitWarning": true,
   }
 }
