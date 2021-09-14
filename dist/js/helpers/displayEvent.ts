@@ -1,6 +1,6 @@
 import { EventEvent, Format, Department } from "./../../types/types";
 import moment from "moment";
-import truncate from "truncate-html";
+import truncate from "text-clipper";
 
 /**
  * @file A collection of functions for working with event objects.
@@ -172,8 +172,11 @@ export const getTruncDesc = (
         ? parseInt(excerptLength, 10)
         : excerptLength;
     const ellipsis = readMore ? "... " + readMore : "...";
-    truncate.setup({ ellipsis, length: maxLength });
-    description = truncate(event.description_text);
+    description = truncate(event.description_text, maxLength, {
+      html: true,
+      maxLines: 5,
+      indicator: ellipsis,
+    });
   }
   return description;
 };

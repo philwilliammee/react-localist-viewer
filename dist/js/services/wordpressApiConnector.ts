@@ -2,12 +2,71 @@ import { Department, EventElement } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
 
-import { loader } from "graphql.macro";
+// import { gql } from "graphql.macro";
 import { NodesEntity, WordpressEventsQuery } from "types/wordpressGraphql";
 
-const GET_EVENTS = loader(
-  "../../graphql/queries/getWordpressEventsByDateQuery.graphql"
-);
+// const GET_EVENTS = loader(
+//   "../../graphql/queries/getWordpressEventsByDateQuery.graphql"
+// );
+
+const GET_EVENTS = `query getWordpressEventsByDateQuery($startDate: String!, $endDate: String!) {
+    events(
+      first: 500
+      where: {
+        metaQuery: {
+          relation: AND
+          metaArray: [
+            {
+              key: "date"
+              type: DATE
+              value: $startDate
+              compare: GREATER_THAN_OR_EQUAL_TO
+            }
+            {
+              key: "date"
+              type: DATE
+              value: $endDate
+              compare: LESS_THAN_OR_EQUAL_TO
+            }
+          ]
+        }
+      }
+    ) {
+      nodes {
+        id
+        date
+        title
+        uri
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        event {
+          eventId
+          description
+          location
+          isAllDay
+          localistUrl
+          startTime
+          photoUrl
+          email
+          endDate
+          endTime
+          eventUrl
+          zoomLink
+          date
+        }
+        eventTaxonomies {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -39,7 +98,8 @@ const wordpressApiConnector = (props: ApiConnectorProps) => {
     end_param = moment().add(parseInt(daysahead || "365"), "days");
   }
 
-  const query = GET_EVENTS.loc?.source.body;
+  // const query = GET_EVENTS.loc?.source.body;
+  const query = GET_EVENTS;
   const variables: WordpressEventsQuery = {
     startDate: start_param.format("YYYY-MM-DD"),
     endDate: end_param.format("YYYY-MM-DD"),
@@ -56,7 +116,6 @@ const wordpressTransformEvents = (events: NodesEntity[]): EventElement[] => {
     const startDateTime = new Date(
       `${event.event.date} ${event.event.startTime}`
     );
-    console.log(event);
     const wordpressTransformedEvent: EventElement = {
       event: {
         id: parseInt(event.event.eventId, 10),

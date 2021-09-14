@@ -2,13 +2,85 @@ import axios from "axios";
 import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
 
-import { loader } from "graphql.macro";
+// import { loader } from "graphql.macro";
 import { EventElement } from "../../types/types";
 import { NodeEvent } from "types/drupalGraphql";
+// Rollup cant handle this
+// import { gql } from "graphql.macro";
 
-const GET_EVENTS = loader(
-  "../../graphql/queries/getDrupalEventsByDateQuery.graphql"
-);
+// const GET_EVENTS = loader(
+//   "../../graphql/queries/getDrupalEventsByDateQuery.graphql"
+// );
+
+const GET_EVENTS = `
+  query getEventsByDateQuery(
+    $startDate: String
+    $endDate: String
+    $limit: Int
+    $offset: Int
+  ) {
+    nodeQuery(
+      filter: {
+        conjunction: AND
+        conditions: [
+          { field: "type", value: "event", operator: EQUAL }
+          {
+            operator: GREATER_THAN_OR_EQUAL
+            field: "field_event_date"
+            value: [$startDate]
+          }
+          {
+            operator: SMALLER_THAN_OR_EQUAL
+            field: "field_event_date"
+            value: [$endDate]
+          }
+        ]
+      }
+      limit: $limit
+      offset: $offset
+    ) {
+      count
+      entities {
+        ... on NodeEvent {
+          title
+          entityId
+          nid
+          entityUrl{
+            path
+          }
+          fieldEventDate {
+            value
+          }
+          fieldEventDateEnd {
+            value
+          }
+          fieldEventLocation
+          fieldEventImage {
+            url
+          }
+          fieldDestinationUrl {
+            uri
+            url {
+              path
+              routed
+            }
+          }
+          fieldLocalistId
+          fieldShortDescription {
+            value
+            processed
+          }
+          fieldTags {
+            targetId
+            entity {
+              entityLabel
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -45,7 +117,8 @@ const drupalApiConnector = (props: ApiConnectorProps) => {
       .format("YYYY-MM-DD");
   }
 
-  const query = GET_EVENTS.loc?.source.body;
+  // const query = GET_EVENTS.loc?.source.body;
+  const query = GET_EVENTS;
   const variables: GetEventsByDateQueryQueryVariables = {
     startDate: start_param,
     endDate: end_param,
@@ -56,8 +129,13 @@ const drupalApiConnector = (props: ApiConnectorProps) => {
   return axios.post(calendarurl, { query, variables });
 };
 
-const drupalEventsTransformer = (drupalEvents: NodeEvent[]): EventElement[] => {
+const drupalEventsTransformer = (
+  drupalEvents: NodeEvent[],
+  calendarurl: string
+): EventElement[] => {
+  const baseUrl = calendarurl.replace("/graphql", "");
   const drupalTransformedEvents: EventElement[] = drupalEvents?.map((event) => {
+    console.log(event);
     const drupalTransformedEvent: EventElement = {
       event: {
         id: parseInt(event.entityId!, 10),
@@ -139,7 +217,7 @@ const drupalEventsTransformer = (drupalEvents: NodeEvent[]): EventElement[] => {
             }) || [],
         },
         custom_fields: {},
-        localist_url: event.entityUrl?.path || "",
+        localist_url: baseUrl + event.entityUrl?.path,
         localist_ics_url: "",
         photo_url: event.fieldEventImage?.url || "",
         venue_url: null,

@@ -51,7 +51,8 @@ export async function fetchEvents(
     const events = response_data.nodeQuery?.entities as NodeEvent[];
 
     const drupalTransformedEvents: EventElement[] = drupalEventsTransformer(
-      events
+      events,
+      props.calendarurl
     );
     data = {
       events: drupalTransformedEvents,

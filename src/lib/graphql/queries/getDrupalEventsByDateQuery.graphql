@@ -30,6 +30,9 @@ query getEventsByDateQuery(
         title
         entityId
         nid
+        entityUrl {
+          path
+        }
         fieldEventDate {
           value
         }
