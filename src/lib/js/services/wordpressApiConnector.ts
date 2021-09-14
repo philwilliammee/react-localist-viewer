@@ -1,10 +1,9 @@
-import { Department } from "../../types/types";
+import { Department, EventElement } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
 
 import { loader } from "graphql.macro";
 import { NodesEntity, WordpressEventsQuery } from "types/wordpressGraphql";
-import { EventElement } from "lib/types/types";
 
 const GET_EVENTS = loader(
   "../../graphql/queries/getWordpressEventsByDateQuery.graphql"
