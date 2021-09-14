@@ -17,7 +17,7 @@ const MoreInfo = ({ event }: Props) => {
   const deptWebsite = event?.custom_fields?.dept_web_site
     ? event.custom_fields.dept_web_site
     : event.url;
-
+  const { fontWeightMedium } = theme.typography;
   return (
     <Box
       className="rlv-more-info"
@@ -31,39 +31,29 @@ const MoreInfo = ({ event }: Props) => {
     >
       <Grid container>
         <Grid col={12}>
-          <Typography variant="h4" color={theme.palette.text.primary}>
-            Details
-          </Typography>
+          <Typography variant="h4">Details</Typography>
         </Grid>
         <Grid col={6}>
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            When
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>When</Typography>
           <Typography variant="body2" gutterBottom>
             {getFullDate(event)}
             <br />
             {getEventFullTime(event)}
           </Typography>
 
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            Where
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>Where</Typography>
           <Typography variant="body2" gutterBottom>
             {event.location ? event.location : "NA"}
           </Typography>
 
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            Room
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>Room</Typography>
           <Typography variant="body2">
             {event.room_number ? event.room_number : "NA"}
           </Typography>
         </Grid>
 
         <Grid col={6}>
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            Website
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>Website</Typography>
           <Typography variant="body2" gutterBottom>
             {deptWebsite ? (
               <a href={deptWebsite}>{truncateString(deptWebsite, 60)}</a>
@@ -72,9 +62,7 @@ const MoreInfo = ({ event }: Props) => {
             )}
           </Typography>
 
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            Contact E-Mail
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>Contact E-Mail</Typography>
           <Typography variant="body2" gutterBottom>
             {event?.custom_fields?.contact_email ? (
               <a href={`mailto:${event?.custom_fields?.contact_email}`}>
@@ -85,9 +73,7 @@ const MoreInfo = ({ event }: Props) => {
             )}
           </Typography>
 
-          <Typography fontWeight={theme.typography.fontWeightMedium}>
-            Zoom Link
-          </Typography>
+          <Typography fontWeight={fontWeightMedium}>Zoom Link</Typography>
           <Typography variant="body2" className="zoom-link">
             {event.stream_url ? (
               <a href={event.stream_url}>{event.stream_url}</a>
