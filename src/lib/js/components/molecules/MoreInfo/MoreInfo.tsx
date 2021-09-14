@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
-import { createMarkup, truncateString } from "lib/js/helpers/common";
+import { createMarkup, truncateString } from "../../../helpers/common";
 import { createTheme, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
