@@ -1,4 +1,4 @@
-import { Department } from "./../../../../dist/types/types";
+import { Department } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
 

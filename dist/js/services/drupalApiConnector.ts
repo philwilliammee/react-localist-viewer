@@ -3,7 +3,7 @@ import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
 
 import { loader } from "graphql.macro";
-import { EventElement } from "lib/types/types";
+import { EventElement } from "../../types/types";
 import { NodeEvent } from "types/drupalGraphql";
 
 const GET_EVENTS = loader(
