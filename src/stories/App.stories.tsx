@@ -49,6 +49,7 @@ export const DrupalApiCalendar = Template.bind({});
 DrupalApiCalendar.args = {
   ...Calendar.args,
   api: "drupal",
+  heading: "Drupal API Calendar",
   calendarurl: "https://psw-test-cd-demo.pantheonsite.io/graphql",
 };
 
@@ -56,6 +57,7 @@ export const WordPressApiCalendar = Template.bind({});
 WordPressApiCalendar.args = {
   ...Calendar.args,
   api: "wordpress",
+  heading: "Wordpress API Calendar",
   calendarurl: "https://api-test-cihmid.pantheonsite.io/graphql",
 };
 

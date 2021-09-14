@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Grid as MuiGrid } from "@mui/material";
 
 export type GridCol = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
@@ -11,33 +11,27 @@ export interface GridProps {
 }
 
 /**
- * Implements CWD FlexBox Grid
- * https://iws-preview.hosting.cornell.edu/ama39/cssf/style.html#section-59
+ * View CWD FlexBox Grid https://iws-preview.hosting.cornell.edu/ama39/cssf/style.html#section-59
  */
 const Grid = (props: GridProps) => {
   if (props.container) {
     return (
-      <div className="flex-grid" style={props.style}>
+      <MuiGrid container className="rlv-flex-grid" style={props.style}>
         {props.children}
-      </div>
+      </MuiGrid>
     );
   }
   return (
-    <div style={props.style} className={`flex-${props.col}`}>
+    <MuiGrid
+      style={props.style}
+      className={`rlv-flex-${props.col}`}
+      item
+      md={props.col}
+      xs={12}
+    >
       {props.children}
-    </div>
+    </MuiGrid>
   );
-};
-
-Grid.propTypes = {
-  container: PropTypes.bool,
-  children: PropTypes.node,
-  style: PropTypes.object,
-  col: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-};
-
-Grid.defaultProps = {
-  col: 12,
 };
 
 export default Grid;

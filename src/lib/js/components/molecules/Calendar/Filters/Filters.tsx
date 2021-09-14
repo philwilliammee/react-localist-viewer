@@ -8,12 +8,6 @@ import { Box } from "@mui/system";
 
 const theme = createTheme();
 
-/**
- * @todo optimize this it has a lot of re-renders
- * onEach page key change filters reset.
- * departments may be a good one.
- * Is nested should be able to be removed.
- */
 const Filters = () => {
   const { events, setFilteredEvents } = useContext(EventsContext);
   const [checkedItems, setCheckedItems] = useState(new Map());
@@ -93,17 +87,11 @@ const Filters = () => {
   const hasKeywords = eventKeywords.length;
 
   return (
-    <div id="calendarFilters">
-      <div className="heading">
-        <Typography variant="subtitle2">
-          Check the boxes below to broaden your results.
-        </Typography>
-      </div>
-      <Box
-        sx={{
-          bgcolor: theme.palette.background.default,
-        }}
-      >
+    <div id="rlv-filters">
+      <Typography variant="subtitle2">
+        Check the boxes below to broaden your results.
+      </Typography>
+      <Box bgcolor={theme.palette.background.default} mr={1}>
         <div className="filter-groups padded">
           {hasGroupNames ? (
             <>

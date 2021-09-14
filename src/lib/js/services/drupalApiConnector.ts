@@ -98,7 +98,8 @@ const drupalEventsTransformer = (drupalEvents: NodeEvent[]): EventElement[] => {
         ticket_url: null,
         ticket_cost: null,
         keywords: [],
-        tags: [],
+        tags:
+          event?.fieldTags?.map((tag) => tag?.entity?.entityLabel || "") || [],
         description_text: event.fieldShortDescription?.value || "",
         photo_id: 0,
         detail_views: 0,
@@ -129,7 +130,13 @@ const drupalEventsTransformer = (drupalEvents: NodeEvent[]): EventElement[] => {
         },
         filters: {
           departments: [],
-          event_types: [],
+          event_types:
+            event?.fieldTags?.map((tag) => {
+              return {
+                name: tag?.entity?.entityLabel || "",
+                id: parseInt(tag?.entity?.entityId || "0", 10),
+              };
+            }) || [],
         },
         custom_fields: {},
         localist_url: event.entityUrl?.path || "",

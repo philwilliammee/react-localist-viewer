@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
-import { truncateString } from "lib/js/helpers/common";
+import { createMarkup, truncateString } from "lib/js/helpers/common";
 import { createTheme, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
@@ -24,6 +24,7 @@ const MoreInfo = ({ event }: Props) => {
       sx={{
         bgcolor: theme.palette.grey[100],
         paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
         paddingLeft: theme.spacing(2),
         marginBottom: theme.spacing(2),
         marginTop: theme.spacing(2),
@@ -31,7 +32,9 @@ const MoreInfo = ({ event }: Props) => {
     >
       <Grid container>
         <Grid col={12}>
-          <Typography variant="h4">Details</Typography>
+          <Typography variant="h4" pb={2}>
+            Details
+          </Typography>
         </Grid>
         <Grid col={6}>
           <Typography fontWeight={fontWeightMedium}>When</Typography>
@@ -76,7 +79,7 @@ const MoreInfo = ({ event }: Props) => {
           <Typography fontWeight={fontWeightMedium}>Zoom Link</Typography>
           <Typography variant="body2" className="zoom-link">
             {event.stream_url ? (
-              <a href={event.stream_url}>{event.stream_url}</a>
+              <div dangerouslySetInnerHTML={createMarkup(event.stream_url)} />
             ) : (
               "NA"
             )}
