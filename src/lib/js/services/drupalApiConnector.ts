@@ -99,8 +99,9 @@ export interface ApiConnectorProps {
 const drupalApiConnector = (props: ApiConnectorProps) => {
   const { entries, daysahead, calendarurl, page, start, end } = props;
 
-  let start_param = start;
-  let end_param = end;
+  let start_param = start || moment().format("YYYY-MM-DD");
+  let end_param = end || moment().add(daysahead, "days").format("YYYY-MM-DD");
+  let page_param = page || 1;
 
   // Archive support
   if (daysahead?.startsWith("-")) {
@@ -116,14 +117,16 @@ const drupalApiConnector = (props: ApiConnectorProps) => {
       .add(parseInt(daysahead || "365"), "days")
       .format("YYYY-MM-DD");
   }
+  const limit = parseInt(entries || "1000", 10);
 
+  const offset = (page_param - 1) * limit;
   // const query = GET_EVENTS.loc?.source.body;
   const query = GET_EVENTS;
   const variables: GetEventsByDateQueryQueryVariables = {
     startDate: start_param,
     endDate: end_param,
-    limit: parseInt(entries || "1000", 10),
-    offset: page,
+    limit,
+    offset,
   };
 
   return axios.post(calendarurl, { query, variables });
@@ -135,7 +138,6 @@ const drupalEventsTransformer = (
 ): EventElement[] => {
   const baseUrl = calendarurl.replace("/graphql", "");
   const drupalTransformedEvents: EventElement[] = drupalEvents?.map((event) => {
-    console.log(event);
     const drupalTransformedEvent: EventElement = {
       event: {
         id: parseInt(event.entityId!, 10),

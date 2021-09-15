@@ -73,7 +73,7 @@ const Localist = (props: AppProps) => {
         const nextPage = llPage.current + 1;
         if (morePages) {
           queryClient.prefetchQuery(
-            ["events", nextPage],
+            [queryId, nextPage],
             () => fetchEvents(props as ViewComponentProps, nextPage, dateRange),
             { staleTime: Infinity }
           );

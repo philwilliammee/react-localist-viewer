@@ -50,4 +50,5 @@ export interface DebugEntity {
 export interface WordpressEventsQuery {
   startDate: string; //YYYY-MM-DD
   endDate: string;
+  limit: number;
 }

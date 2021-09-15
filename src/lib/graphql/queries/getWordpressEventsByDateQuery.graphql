@@ -19,6 +19,7 @@ query getWordpressEventsByDateQuery($startDate: String!, $endDate: String!) {
           }
         ]
       }
+      orderby: { field: DATE, order: DESC }
     }
   ) {
     nodes {

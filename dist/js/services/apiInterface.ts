@@ -80,7 +80,11 @@ export async function fetchEvents(
     const events = response_data.data.events.nodes;
 
     if (events) {
-      const wordpressTransformedEvents = wordpressTransformEvents(events);
+      const wordpressTransformedEvents = wordpressTransformEvents(
+        events,
+        limit,
+        currentPage
+      );
 
       data = {
         events: wordpressTransformedEvents,
