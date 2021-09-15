@@ -106,4 +106,14 @@ InlineCompact.args = {
   truncatedescription: "250",
 };
 
+export const Cards = Template.bind({});
+Cards.args = {
+  ...Calendar.args,
+  entries: "9",
+  format: "cards",
+  heading: "Localist-Viewer Cards",
+  hidepagination: 1,
+  truncatedescription: "250",
+};
+
 export default AppStories as Meta;
