@@ -83,7 +83,7 @@ const AgendaInnerContent = (props: Props) => {
                 photoCrop="big"
               />
               <Truncate
-                event={event}
+                description={event.description}
                 hidedescription="false"
                 truncatedescription="300"
                 readMore="read more"

@@ -58,7 +58,11 @@ export const ModernStandardInner = (props: InnerProps) => {
                 hideimages={hideimages}
                 photoCrop="big"
               />
-              <Truncate {...props} readMore="read more" />
+              <Truncate
+                description={props.event.description}
+                {...props}
+                readMore="read more"
+              />
             </p>
           </div>
         </a>

@@ -36,7 +36,10 @@ const CompactInner = (props: InnerProps) => {
           <EventLocation locationName={event.location_name} />
           <EventDate date={getEventDateCompact(event)} />
           <EventDescription
-            description={getTruncDesc(event, truncatedescription)}
+            description={getTruncDesc(
+              event.description_text,
+              truncatedescription
+            )}
             title={event.title}
             url={event.localist_url}
             hidedescription={hidedescription}

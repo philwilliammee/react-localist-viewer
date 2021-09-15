@@ -148,6 +148,7 @@ Localist.propTypes = {
     "modern_standard",
     "inline_compact",
     "calendar",
+    "cards",
   ]),
   apikey: PropTypes.string,
   truncatedescription: PropTypes.string.isRequired,

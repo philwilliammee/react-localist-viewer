@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Standard from "../molecules/Standard";
 import Compact from "../molecules/Compact";
 import ModernStandard from "../molecules/ModernStandard";
@@ -8,6 +7,7 @@ import InlineCompact from "../molecules/InlineCompact/InlineCompact";
 import Calendar from "../molecules/Calendar";
 import { EventElement, FilterBy, Format, HideType } from "../../../types/types";
 import Loading from "../atoms/Loading";
+import Cards from "../molecules/Cards";
 
 export interface Props {
   events: EventElement[];
@@ -63,38 +63,15 @@ const LocalistView = (props: Props) => {
       component = <Calendar key={page} {...props} />;
       break;
 
+    case "cards":
+      component = <Cards key={page} {...props} />;
+      break;
+
     default:
       component = <>Invalid Component Selected</>;
       break;
   }
   return component;
-};
-
-LocalistView.propTypes = {
-  events: PropTypes.array.isRequired,
-  format: PropTypes.oneOf([
-    "standard",
-    "compact",
-    "modern_compact",
-    "modern_standard",
-    "inline_compact",
-    "calendar",
-  ]).isRequired,
-  truncatedescription: PropTypes.string.isRequired,
-  hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  hideimages: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  hideaddcal: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  filterby: PropTypes.string.isRequired,
-  wrapperclass: PropTypes.string.isRequired,
-  listclass: PropTypes.string.isRequired,
-  itemclass: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
-  loading: PropTypes.bool.isRequired,
-  wrapperClassArray: PropTypes.array.isRequired,
-  listClassArray: PropTypes.array.isRequired,
 };
 
 export default LocalistView;

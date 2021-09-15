@@ -58,7 +58,10 @@ const StandardInner = (props: StandardInnerProps) => {
             photoCrop="big"
           />
           <EventDescription
-            description={getTruncDesc(event, truncatedescription)}
+            description={getTruncDesc(
+              event.description_text,
+              truncatedescription
+            )}
             title={event.title}
             url={event.localist_url}
             hidedescription={hidedescription}

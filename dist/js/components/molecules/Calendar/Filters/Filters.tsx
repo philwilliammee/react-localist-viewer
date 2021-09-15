@@ -3,10 +3,8 @@ import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
 import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import { Button, createTheme, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
-const theme = createTheme();
 
 const Filters = () => {
   const { events, setFilteredEvents } = useContext(EventsContext);
@@ -91,7 +89,7 @@ const Filters = () => {
       <Typography variant="subtitle2">
         Check the boxes below to broaden your results.
       </Typography>
-      <Box bgcolor={theme.palette.background.default} mr={1}>
+      <Box bgcolor="background.default" mr={1}>
         <div className="filter-groups padded">
           {hasGroupNames ? (
             <>

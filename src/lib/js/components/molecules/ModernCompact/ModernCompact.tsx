@@ -38,7 +38,7 @@ const ModernCompactInner = (props: InnerProps) => {
           </div>
           <div className="field field-name-summary summary">
             <p>
-              <Truncate {...props} />
+              <Truncate description={props.event.description} {...props} />
             </p>
           </div>
         </a>

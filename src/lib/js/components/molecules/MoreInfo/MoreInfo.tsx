@@ -4,16 +4,15 @@ import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
 import { createMarkup, truncateString } from "../../../helpers/common";
-import { createTheme, Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 
 interface Props {
   event: EventEvent;
 }
 
-const theme = createTheme();
-
 const MoreInfo = ({ event }: Props) => {
+  const theme = useTheme();
   const deptWebsite = event?.custom_fields?.dept_web_site
     ? event.custom_fields.dept_web_site
     : event.url;

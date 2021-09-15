@@ -22,7 +22,7 @@ const Template: Story<ComponentProps<typeof Truncate>> = (args) => (
 const eventData: EventEvent = { ...singleEvent.event };
 export const Example = Template.bind({});
 Example.args = {
-  event: eventData,
+  description: eventData.description,
   truncatedescription: "25",
   hidedescription: "false",
   readMore: "📖",

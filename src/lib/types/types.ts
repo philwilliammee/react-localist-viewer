@@ -100,7 +100,8 @@ export type Format =
   | "modern_compact"
   | "modern_standard"
   | "inline_compact"
-  | "calendar";
+  | "calendar"
+  | "cards";
 
 export interface Events {
   events: EventElement[];

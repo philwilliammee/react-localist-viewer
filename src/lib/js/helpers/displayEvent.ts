@@ -158,21 +158,21 @@ export const getEventDate = (event: EventEvent) => {
  * @return {string} The truncated description string
  */
 export const getTruncDesc = (
-  event: EventEvent,
+  description_text: string,
   excerptLength?: number | string,
   readMore?: string
 ) => {
-  if (!event) {
+  if (!description_text) {
     return "";
   }
-  let description = event.description_text;
+  let description = description_text;
   if (excerptLength) {
     const maxLength =
       typeof excerptLength == "string"
         ? parseInt(excerptLength, 10)
         : excerptLength;
     const ellipsis = readMore ? "... " + readMore : "...";
-    description = truncate(event.description_text, maxLength, {
+    description = truncate(description_text, maxLength, {
       html: true,
       maxLines: 5,
       indicator: ellipsis,
