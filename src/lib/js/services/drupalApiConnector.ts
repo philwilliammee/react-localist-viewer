@@ -35,7 +35,11 @@ const GET_EVENTS = `
             value: [$endDate]
           }
         ]
-      }
+      },
+      sort: [{
+        field: "field_event_date",
+        direction: ASC
+      }],
       limit: $limit
       offset: $offset
     ) {
