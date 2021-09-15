@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
-import { HideType } from "lib/types/types";
+import { HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
 
 interface Props {
