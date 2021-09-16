@@ -7,8 +7,12 @@ import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
 import { HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
+import EventDateTime from "../../atoms/EventDateTime";
+import EventLocation from "../../atoms/EventLocation";
 
 interface Props {
+  dateFormat: string;
+  timeFormat: string;
   title: string;
   description?: string;
   image: string;
@@ -17,6 +21,7 @@ interface Props {
   hideimages: HideType;
   truncatedescription: string;
   tags: string[];
+  locationName: string;
 }
 export default function Card({
   title,
@@ -27,6 +32,9 @@ export default function Card({
   hideimages,
   truncatedescription,
   tags,
+  timeFormat,
+  dateFormat,
+  locationName,
 }: Props) {
   return (
     <MuiCard sx={{ maxWidth: 345 }}>
@@ -49,12 +57,18 @@ export default function Card({
           <CardContent>
             <Typography
               gutterBottom
-              variant="h5"
+              variant="h4"
               component="div"
               sx={{ minHeight: "42px" }}
             >
               {title}
             </Typography>
+            <EventDateTime
+              dateFormat={dateFormat}
+              timeFormat={timeFormat}
+              hideTime={false}
+            />
+            <EventLocation locationName={locationName} />
             <Typography variant="body2" color="text.secondary">
               <Truncate
                 description={description}
