@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import { StandardProps } from "../../../../types/types";
 import Card from "../Card";
+import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 
 const Cards = (props: StandardProps) => {
   const { events, listClassArray, wrapperClassArray } = props;
@@ -30,6 +31,10 @@ const Cards = (props: StandardProps) => {
                         hideimages={props.hideimages}
                         truncatedescription={props.truncatedescription}
                         tags={event.event.tags}
+                        dateFormat={getEventDate(event.event)}
+                        timeFormat={getEventFullTime(event.event)}
+                        locationName={event.event.location_name}
+
                         // event={event.event}
                         // {...props}
                       />

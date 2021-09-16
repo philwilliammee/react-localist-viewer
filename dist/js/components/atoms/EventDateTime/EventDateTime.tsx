@@ -1,19 +1,33 @@
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
-import { EventEvent } from "../../../../types/types";
 import React, { ReactElement } from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import "./EventDateTime.scss";
+import { Typography, useTheme } from "@mui/material";
 
 interface Props {
-  event: EventEvent;
+  dateFormat: string;
+  timeFormat: string;
   hideTime: Boolean;
 }
 
-export default function EventDate({ event, hideTime }: Props): ReactElement {
+export default function EventDateTime({
+  dateFormat,
+  timeFormat,
+  hideTime,
+}: Props): ReactElement {
+  const theme = useTheme();
   return (
-    <span className="rlv-event-date-time">
-      <AccessTimeIcon className="access-time-icon" />
-      {getEventDate(event)} {hideTime ? "" : `@ ${getEventFullTime(event)}`}
-    </span>
+    <Typography
+      component="span"
+      color="text.primary"
+      className="rlv-event-date-time"
+    >
+      <AccessTimeIcon
+        className="access-time-icon"
+        sx={{
+          fontSize: "inherit",
+          marginRight: theme.spacing(1),
+        }}
+      />
+      {dateFormat} {hideTime ? "" : `@ ${timeFormat}`}
+    </Typography>
   );
 }

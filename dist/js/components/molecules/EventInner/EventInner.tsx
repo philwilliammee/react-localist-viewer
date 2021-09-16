@@ -7,8 +7,9 @@ import EventImage from "../../atoms/EventImage/EventImage";
 import "./EventInner.scss";
 import MoreInfo from "../MoreInfo";
 import Tag from "../../atoms/Tag";
-import EventDate from "../../atoms/EventDateTime";
+import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
+import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 
 interface Props {
   event: EventEvent;
@@ -19,7 +20,11 @@ const EventInner = ({ event }: Props) => (
     <div>
       <h3>{event.title}</h3>
       <div>
-        <EventDate event={event} hideTime={false} />
+        <EventDateTime
+          dateFormat={getEventDate(event)}
+          timeFormat={getEventFullTime(event)}
+          hideTime={false}
+        />
         <EventLocation locationName={event.location_name} />
         {event.tags.map((tag, id) => {
           return <Tag key={`${tag}-${id}`}>{tag}</Tag>;
