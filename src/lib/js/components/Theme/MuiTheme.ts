@@ -23,26 +23,26 @@ const theme = createTheme({
       "sans-serif",
     ].join(","),
     h1: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
     },
     h2: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
       fontSize: "30px",
     },
     h3: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
       fontSize: "24px",
     },
     h4: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
       fontSize: "18px",
     },
     h5: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
       fontSize: "16px",
     },
     h6: {
-      fontFamily: "Georgia, serif",
+      fontFamily: "freight-sans-pro, sans-serif, Georgia, serif",
     },
   },
 });
