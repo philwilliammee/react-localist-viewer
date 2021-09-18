@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Typography, useTheme } from "@mui/material";
+import { Typography } from "@mui/material";
 
 interface Props {
-  dateFormat: string;
+  dateFormat?: string;
   timeFormat: string;
   hideTime: Boolean;
 }
@@ -13,7 +13,7 @@ export default function EventDateTime({
   timeFormat,
   hideTime,
 }: Props): ReactElement {
-  const theme = useTheme();
+  let separator = dateFormat ? "@ " : "";
   return (
     <Typography
       component="span"
@@ -24,10 +24,10 @@ export default function EventDateTime({
         className="access-time-icon"
         sx={{
           fontSize: "inherit",
-          marginRight: theme.spacing(1),
+          marginRight: 1,
         }}
       />
-      {dateFormat} {hideTime ? "" : `@ ${timeFormat}`}
+      {dateFormat} {hideTime ? "" : `${separator}${timeFormat}`}
     </Typography>
   );
 }
