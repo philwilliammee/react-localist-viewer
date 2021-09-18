@@ -107,7 +107,6 @@
     "graphql.macro": "^1.4.2",
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
-    "react-paginate": "^7.1.0",
     "react-query": "^3.12.1",
     "react-spring": "^8.0.27",
     "text-clipper": "^2.1.0"

@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  MouseEventHandler,
+  MouseEvent,
+} from "react";
 import PropTypes from "prop-types";
 import { fetchEvents } from "./js/services/apiInterface";
 import Heading from "./js/components/organisms/Heading";
@@ -85,9 +91,8 @@ const Localist = (props: AppProps) => {
     };
   }, [llPage, data, loading]); // this was key, data, loading changed to llPage
 
-  function handlePageClick(data: { selected: number }) {
-    const newPage = data.selected + 1;
-    setCurrentPage(newPage);
+  function handlePageClick(event: React.ChangeEvent<unknown>, page: number) {
+    setCurrentPage(page);
   }
 
   function handleEventFilter(events: EventElement[], filter: string) {

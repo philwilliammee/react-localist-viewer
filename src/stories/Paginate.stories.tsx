@@ -21,7 +21,7 @@ export const Default = Template.bind({});
 Default.args = {
   hidepagination: 0,
   total: 3,
-  handlePageClick: () => {},
+  handlePageClick: (event: React.ChangeEvent<unknown>, page: number) => {},
 };
 
 export default PaginateStories as Meta;
