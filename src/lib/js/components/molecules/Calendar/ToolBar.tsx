@@ -48,7 +48,7 @@ const Toolbar = (props: ToolBarProps) => {
   const { prevMonth, nextMonth, children, setView, view, today } = props;
   const classes = useStyles();
   return (
-    <Grid container className="rlv-tool-bar" height="50px">
+    <Grid container className="rlv-tool-bar" minHeight="50px">
       <Grid container alignItems="center" flex={1}>
         <Button
           classes={classes}

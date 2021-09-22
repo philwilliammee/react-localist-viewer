@@ -1,12 +1,17 @@
 import * as React from "react";
-import { Card as MuiCard, CardActions, Grid, Theme } from "@mui/material";
+import {
+  Card as MuiCard,
+  CardActions,
+  Grid,
+  Stack,
+  Theme,
+} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
 import { Department, EventEvent, HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
-
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
 import { getEventTime } from "../../../helpers/displayEvent";
@@ -100,53 +105,36 @@ function CustomCardContent(props: Props) {
     return spanStr;
   };
   return (
-    <Grid
-      container
-      direction="row"
-      justifyItems="space-evenly"
-      alignItems="center"
-    >
-      <Grid item xs={12}>
-        <Time event={event} />
-      </Grid>
-      <Grid item xs={12} sx={{ marginTop: 1, marginBottom: 1 }}>
-        <EventTitle title={title} />
-      </Grid>
-      <Grid item xs={12}>
-        <Typography component="p" variant="body2" color="text.secondary" pb={1}>
-          {eventTime} {event.location_name ? `, ${event.location_name}` : ""}
-          {/* {tags.map((tag) => (
-                  <Tag key={tag}>{tag}</Tag>
-                ))} */}
-          {tagStr(event.filters.event_types)}
-        </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography
-          color="text.primary"
-          sx={{
-            "img.rlv-event-image": {
-              float: "left",
-              margin: "0 20px 0px 0px",
-              objectFit: "cover",
-              objectPosition: "100% 0",
-              width: "200px",
-              height: "150px",
-            },
-          }}
-        >
-          {!hideimages ? (
-            <EventImage title={event.title} photoUrl={image} />
-          ) : (
-            ""
-          )}
-          <Truncate
-            description={description}
-            hidedescription={hidedescription}
-            truncatedescription={truncatedescription}
-          />
-        </Typography>
-      </Grid>
+    <Stack spacing={1}>
+      <Time event={event} />
+      <EventTitle title={title} />
+      <Typography component="p" variant="body2" color="text.secondary">
+        {eventTime} {event.location_name ? `, ${event.location_name}` : ""}
+        {tagStr(event.filters.event_types)}
+      </Typography>
+
+      <Typography
+        color="text.primary"
+        sx={{
+          "img.rlv-event-image": {
+            float: "left",
+            margin: "0 20px 0px 0px",
+            objectFit: "cover",
+            objectPosition: "100% 0",
+          },
+        }}
+      >
+        {isNotHidden(hideimages) ? (
+          <EventImage title={event.title} photoUrl={image} />
+        ) : (
+          ""
+        )}
+        <Truncate
+          description={description}
+          hidedescription={hidedescription}
+          truncatedescription={truncatedescription}
+        />
+      </Typography>
       {/* clear fix */}
       <Box
         sx={{
@@ -155,6 +143,6 @@ function CustomCardContent(props: Props) {
         }}
       />
       <CardContent></CardContent>
-    </Grid>
+    </Stack>
   );
 }
