@@ -135,12 +135,11 @@ const Calendar = (props: Props) => {
 
   const getListEvents = () => {
     if (view === "day") {
-      return filteredEvents.filter((event: EventElement) => {
-        return (
+      return filteredEvents.filter(
+        (event: EventElement) =>
           moment(getEventStart(event.event)).date() ===
           (selectedDay || moment().date())
-        );
-      });
+      );
     }
     return filteredEvents;
   };
