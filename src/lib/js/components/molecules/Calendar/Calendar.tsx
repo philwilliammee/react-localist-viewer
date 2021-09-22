@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import "./calendar.scss";
 import {
   getKeyFromDateRange,
@@ -96,7 +96,7 @@ const Calendar = (props: Props) => {
     // This is ok we only want to fetch new data when the date range changes,
     // This allows us to apply filtering.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateRange]);
+  }, [dateRange, data]);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
@@ -133,13 +133,17 @@ const Calendar = (props: Props) => {
     setView("day");
   };
 
-  const title = (
-    <>
-      <span className="label-month">{dateContext.format("MMMM")}</span>{" "}
-      {view === "day" ? <span className="label-day">{selectedDay}, </span> : ""}
-      <span className="label-year">{dateContext.format("Y")}</span>
-    </>
-  );
+  const getListEvents = () => {
+    if (view === "day") {
+      return filteredEvents.filter((event: EventElement) => {
+        return (
+          moment(getEventStart(event.event)).date() ===
+          (selectedDay || moment().date())
+        );
+      });
+    }
+    return filteredEvents;
+  };
 
   return (
     <div className="calendar-container">
@@ -164,7 +168,11 @@ const Calendar = (props: Props) => {
               view={view}
               today={today}
             >
-              {title}
+              <ToolBarTitle
+                dateContext={dateContext}
+                view={view}
+                selectedDay={selectedDay}
+              />
             </Toolbar>
             {view === "month" ? (
               <div className="month-view">
@@ -177,17 +185,9 @@ const Calendar = (props: Props) => {
                 />
               </div>
             ) : (
-              ""
-            )}
-            {view === "list" ? (
+              //list or day view
               <AgendaList
-                // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
-                  return (
-                    moment(getEventStart(event.event)).month() ===
-                    dateContext.month()
-                  );
-                })}
+                events={getListEvents()}
                 setShowDialog={setShowDialog}
                 setEventSelected={setEventSelected}
                 dateContext={dateContext}
@@ -198,35 +198,30 @@ const Calendar = (props: Props) => {
                 wrapperClassArray={props.wrapperClassArray}
                 listClassArray={props.listClassArray}
               />
-            ) : (
-              ""
-            )}
-            {view === "day" ? (
-              <AgendaList
-                // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
-                  return (
-                    moment(getEventStart(event.event)).date() ===
-                    (selectedDay || moment().date())
-                  );
-                })}
-                setShowDialog={setShowDialog}
-                setEventSelected={setEventSelected}
-                dateContext={dateContext}
-                truncatedescription={props.truncatedescription}
-                hidedescription={props.hidedescription}
-                hideimages={props.hideimages}
-                hideaddcal={props.hideaddcal}
-                wrapperClassArray={props.wrapperClassArray}
-                listClassArray={props.listClassArray}
-              />
-            ) : (
-              ""
             )}
           </div>
         </Grid>
       </Grid>
     </div>
+  );
+};
+
+interface ToolBarTitleProps {
+  view: "month" | "day" | "list";
+  dateContext: Moment;
+  selectedDay?: number;
+}
+const ToolBarTitle = (props: ToolBarTitleProps) => {
+  return (
+    <>
+      <span className="label-month">{props.dateContext.format("MMMM")}</span>{" "}
+      {props.view === "day" ? (
+        <span className="label-day">{props.selectedDay}, </span>
+      ) : (
+        ""
+      )}
+      <span className="label-year">{props.dateContext.format("Y")}</span>
+    </>
   );
 };
 
