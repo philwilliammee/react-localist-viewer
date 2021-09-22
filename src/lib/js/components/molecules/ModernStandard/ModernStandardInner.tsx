@@ -6,7 +6,6 @@ import {
   Stack,
   Theme,
 } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";

@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import "./Loading.scss";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/system";
 import theme from "../../Theme/MuiTheme";
