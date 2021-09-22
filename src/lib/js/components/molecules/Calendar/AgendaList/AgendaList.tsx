@@ -13,6 +13,7 @@ import {
   getEventKey,
 } from "../../../../helpers/displayEvent";
 import ModernStandardInner from "../../ModernStandard/ModernStandardInner";
+import { Stack } from "@mui/material";
 
 interface Props extends StandardProps {
   events: EventElement[];
@@ -40,7 +41,7 @@ function AgendaList(props: Props) {
   return (
     <section className="rlv-modern-standard" title="Events List">
       <div className={wrapperClassList}>
-        <div className={listClassList}>
+        <Stack className={listClassList} spacing={2}>
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
@@ -73,7 +74,7 @@ function AgendaList(props: Props) {
           ) : (
             <p>There are no upcoming events.</p>
           )}
-        </div>
+        </Stack>
       </div>
     </section>
   );

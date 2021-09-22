@@ -47,7 +47,6 @@ export default function ModernStandardInner(props: Props) {
         borderRadius: "0px",
         boxShadow: "none",
         border: "0",
-        mb: 2,
       }}
       className={listClass}
       raised={false}
@@ -142,7 +141,6 @@ function CustomCardContent(props: Props) {
           display: "table",
         }}
       />
-      <CardContent></CardContent>
     </Stack>
   );
 }

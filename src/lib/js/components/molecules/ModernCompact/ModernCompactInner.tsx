@@ -54,7 +54,7 @@ export default function ModernCompactInner(props: Props) {
         borderRadius: "0px",
         boxShadow: "none",
         border: "0",
-        mb: 2,
+        // mb: 2,
       }}
       className={`rlv-modern-compact-inner ${listClass}`}
       raised={false}

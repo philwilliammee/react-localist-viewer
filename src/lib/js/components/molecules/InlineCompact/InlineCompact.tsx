@@ -7,11 +7,10 @@ import {
   getClassItem,
 } from "../../../helpers/displayEvent";
 import { EventElement, EventEvent } from "../../../../types/types";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import EventLocation from "../../atoms/EventLocation";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
-import { Box } from "@mui/system";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const endTime = getEventEndTime(event);
@@ -22,7 +21,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const classList = getClassItem(event);
 
   return (
-    <Grid container className={classList} mb={4}>
+    <Grid container className={classList}>
       <Grid
         item
         sx={{
@@ -79,7 +78,11 @@ const InlineCompact = (props: InlineCompactProps) => {
   }
 
   return (
-    <Box component="section" className={`rlv-inline-compact ${wrapperclass}`}>
+    <Stack
+      spacing={3}
+      component="section"
+      className={`rlv-inline-compact ${wrapperclass}`}
+    >
       {events.map((event) => {
         return (
           <InlineCompactInner
@@ -88,7 +91,7 @@ const InlineCompact = (props: InlineCompactProps) => {
           />
         );
       })}
-    </Box>
+    </Stack>
   );
 };
 
