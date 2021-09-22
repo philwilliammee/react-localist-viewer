@@ -2,6 +2,7 @@ import React from "react";
 import { isHidden } from "../../../helpers/common";
 import { HideType } from "../../../../types/types";
 import { Pagination } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
 
 interface Props {
   hidepagination: HideType;
@@ -9,15 +10,27 @@ interface Props {
   handlePageClick: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 
+// Sadly override cwd theme.
+const useStyles = makeStyles(() =>
+  createStyles({
+    ul: {
+      "& li": {
+        margin: 0,
+      },
+    },
+  })
+);
+
 const Paginate = (props: Props) => {
   const { hidepagination, handlePageClick, total } = props;
-
+  const classes = useStyles();
   if (total < 2 || isHidden(hidepagination)) {
     return <></>;
   }
 
   return (
     <Pagination
+      classes={classes}
       className="rlc-paginate"
       count={total}
       onChange={(e, p) => {

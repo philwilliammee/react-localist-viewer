@@ -8,7 +8,8 @@ import {
 } from "../../../helpers/displayEvent";
 import FilterButton from "../../atoms/FilterButton";
 import { Department, EventElement, FilterBy } from "../../../../types/types";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Box } from "@mui/system";
 
 interface Props {
   handleEventFilter: (events: EventElement[], objName: string) => void;
@@ -62,7 +63,7 @@ const EventFilters = (props: Props) => {
   };
 
   return (
-    <Typography component="div" className="rlv-event-filter-by">
+    <Box className="rlv-event-filter-by">
       <Grid className="events-filters" container spacing={1}>
         <Grid item key="filterAll">
           <FilterButton
@@ -96,7 +97,7 @@ const EventFilters = (props: Props) => {
             })
           : ""}
       </Grid>
-    </Typography>
+    </Box>
   );
 };
 

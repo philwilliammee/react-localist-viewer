@@ -85,9 +85,8 @@ const Localist = (props: AppProps) => {
     };
   }, [llPage, data, loading]); // this was key, data, loading changed to llPage
 
-  function handlePageClick(data: { selected: number }) {
-    const newPage = data.selected + 1;
-    setCurrentPage(newPage);
+  function handlePageClick(event: React.ChangeEvent<unknown>, page: number) {
+    setCurrentPage(page);
   }
 
   function handleEventFilter(events: EventElement[], filter: string) {
@@ -120,7 +119,7 @@ const Localist = (props: AppProps) => {
         listClassArray={listClassArray || []}
         hidedescription={props.hidedescription || ""}
         hideimages={props.hideimages || ""}
-        hideaddcal={props.hideimages || ""}
+        hideaddcal={props.hideaddcal || ""}
         wrapperclass={props.wrapperclass || ""}
         listclass={props.listclass || ""}
         itemclass={props.itemclass || ""}

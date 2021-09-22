@@ -188,13 +188,15 @@ const Calendar = (props: Props) => {
                     dateContext.month()
                   );
                 })}
-                hideaddcal="true"
-                hidedescription="false"
-                hideimages="true"
-                truncatedescription="200"
                 setShowDialog={setShowDialog}
                 setEventSelected={setEventSelected}
                 dateContext={dateContext}
+                truncatedescription={props.truncatedescription}
+                hidedescription={props.hidedescription}
+                hideimages={props.hideimages}
+                hideaddcal={props.hideaddcal}
+                wrapperClassArray={props.wrapperClassArray}
+                listClassArray={props.listClassArray}
               />
             ) : (
               ""
@@ -208,13 +210,15 @@ const Calendar = (props: Props) => {
                     (selectedDay || moment().date())
                   );
                 })}
-                hideaddcal="true"
-                hidedescription="false"
-                hideimages="true"
-                truncatedescription="200"
                 setShowDialog={setShowDialog}
                 setEventSelected={setEventSelected}
                 dateContext={dateContext}
+                truncatedescription={props.truncatedescription}
+                hidedescription={props.hidedescription}
+                hideimages={props.hideimages}
+                hideaddcal={props.hideaddcal}
+                wrapperClassArray={props.wrapperClassArray}
+                listClassArray={props.listClassArray}
               />
             ) : (
               ""

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card as MuiCard, CardActions, Link } from "@mui/material";
+import { Card as MuiCard, CardActions, Link, Theme } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -9,6 +9,7 @@ import { HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
+import { SxProps } from "@mui/system";
 
 interface Props {
   dateFormat: string;
@@ -22,6 +23,7 @@ interface Props {
   truncatedescription: string;
   tags: string[];
   locationName: string;
+  sx?: SxProps<Theme> | undefined;
 }
 export default function Card({
   title,
@@ -35,9 +37,10 @@ export default function Card({
   timeFormat,
   dateFormat,
   locationName,
+  sx,
 }: Props) {
   return (
-    <MuiCard sx={{ maxWidth: 345 }}>
+    <MuiCard sx={sx}>
       <Link href={link} sx={{ textDecoration: "none" }}>
         <CardActionArea>
           {!hideimages ? (

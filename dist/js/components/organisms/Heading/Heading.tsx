@@ -1,7 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./Heading.scss";
-import { Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 
 interface Props {
   heading: string;
@@ -11,24 +9,36 @@ interface Props {
 
 const Heading = (props: Props) => {
   const { heading, readmore, url } = props;
-  const renderHeading = heading ? (
-    <Typography variant="h2">{heading}</Typography>
-  ) : (
-    ""
-  );
-  const renderReadmore = !readmore || !url ? "" : <a href={url}>{readmore}</a>;
   return (
-    <div className="rlv-heading">
-      {renderHeading}
-      {renderReadmore}
-    </div>
+    <Grid container className="rlv-heading" mb={2}>
+      <Grid>
+        <HeadingMarkup heading={heading} />
+      </Grid>
+      <Grid flexGrow={1} />
+      <Grid>
+        <ReadMore readmore={readmore} url={url} />
+      </Grid>
+    </Grid>
   );
 };
 
-Heading.propTypes = {
-  heading: PropTypes.string.isRequired,
-  readmore: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+const HeadingMarkup = ({ heading }: { heading: string }) => {
+  if (!heading) {
+    return <></>;
+  }
+  return <Typography variant="h2">{heading}</Typography>;
+};
+
+const ReadMore = ({ readmore, url }: { readmore: string; url: string }) => {
+  if (!readmore || !url) {
+    return <></>;
+  }
+  return (
+    <Link sx={{ textDecoration: "none" }} href={url}>
+      {readmore}
+    </Link>
+  );
 };
 
 export default Heading;
+export { HeadingMarkup, ReadMore };

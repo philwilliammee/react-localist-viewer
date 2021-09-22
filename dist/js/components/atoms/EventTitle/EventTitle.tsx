@@ -1,22 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./EventTitle.scss";
+import { Link, Typography } from "@mui/material";
+import { Variant } from "@mui/material/styles/createTypography";
 
 // @todo shouldn't these go in atoms?
 
 interface EventTitleProps {
   title: string;
   url: string;
+  variant?: Variant;
 }
 
 const EventTitle = (props: EventTitleProps) => {
-  const { title, url } = props;
+  const { title, url, variant } = props;
   return (
-    <h3 className="rlv-event-title">
-      <a rel="noreferrer noopener" target="_blank" href={url}>
+    <Typography
+      component="h3"
+      variant={variant || "h3"}
+      className="rlv-event-title"
+    >
+      <Link rel="noreferrer noopener" target="_blank" href={url}>
         {title}
-      </a>
-    </h3>
+      </Link>
+    </Typography>
   );
 };
 

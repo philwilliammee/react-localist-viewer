@@ -428,3 +428,7 @@ export const getClassItem = (event: EventEvent) => {
   }
   return "";
 };
+
+export const getEventKey = (event: EventEvent) => {
+  return event.event_instances[0].event_instance.id;
+};

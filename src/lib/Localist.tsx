@@ -1,11 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  MouseEventHandler,
-  MouseEvent,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { fetchEvents } from "./js/services/apiInterface";
 import Heading from "./js/components/organisms/Heading";
@@ -125,7 +119,7 @@ const Localist = (props: AppProps) => {
         listClassArray={listClassArray || []}
         hidedescription={props.hidedescription || ""}
         hideimages={props.hideimages || ""}
-        hideaddcal={props.hideimages || ""}
+        hideaddcal={props.hideaddcal || ""}
         wrapperclass={props.wrapperclass || ""}
         listclass={props.listclass || ""}
         itemclass={props.itemclass || ""}

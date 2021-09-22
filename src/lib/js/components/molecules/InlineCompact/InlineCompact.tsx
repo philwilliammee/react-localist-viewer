@@ -11,6 +11,7 @@ import { Grid, Typography } from "@mui/material";
 import EventLocation from "../../atoms/EventLocation";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
+import { Box } from "@mui/system";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   const endTime = getEventEndTime(event);
@@ -40,11 +41,7 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
           width="50px"
           height="100%"
         >
-          <Typography
-            component="div"
-            className="event-month"
-            textAlign="center"
-          >
+          <Typography component="div" textAlign="center">
             <Typography
               component="div"
               variant="overline"
@@ -73,6 +70,7 @@ interface InlineCompactProps {
   wrapperclass?: string;
   listclass?: string;
 }
+
 const InlineCompact = (props: InlineCompactProps) => {
   const { events, wrapperclass } = props;
 
@@ -81,18 +79,16 @@ const InlineCompact = (props: InlineCompactProps) => {
   }
 
   return (
-    <Typography component="section" className="rlv-inline-compact">
-      <div className={wrapperclass}>
-        {events.map((event) => {
-          return (
-            <InlineCompactInner
-              key={event.event.event_instances[0].event_instance.id}
-              event={event.event}
-            />
-          );
-        })}
-      </div>
-    </Typography>
+    <Box component="section" className={`rlv-inline-compact ${wrapperclass}`}>
+      {events.map((event) => {
+        return (
+          <InlineCompactInner
+            key={event.event.event_instances[0].event_instance.id}
+            event={event.event}
+          />
+        );
+      })}
+    </Box>
   );
 };
 

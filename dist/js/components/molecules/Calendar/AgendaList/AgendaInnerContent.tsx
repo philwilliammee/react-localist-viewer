@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { getEventTime, getClassItem } from "../../../../helpers/displayEvent";
 import Truncate from "../../../atoms/Truncate";
 import Time from "../../../atoms/Time";
-import { EventEvent, HideType } from "../../../../../types/types";
+import { Department, EventEvent, HideType } from "../../../../../types/types";
 import EventImage from "../../../atoms/EventImage/EventImage";
-import "./AgendaInnerContent.scss";
+// import "./AgendaInnerContent.scss";
+import { Box } from "@mui/system";
 
 interface Props {
   hideaddcal: HideType;
@@ -28,15 +29,10 @@ const AgendaInnerContent = (props: Props) => {
     event,
   } = props;
 
-  /**
-   *
-   * @param {obj} eventTypes
-   * @return {string} Html string
-   */
-  const tagStr = (eventTypes: any) => {
+  const tagStr = (eventTypes: Department[]) => {
     let spanStr;
     if (eventTypes) {
-      spanStr = eventTypes.map((element: any) => {
+      spanStr = eventTypes.map((element: Department) => {
         return (
           <span key={element.id} className="inline-events-type">
             {element.name}
@@ -56,7 +52,98 @@ const AgendaInnerContent = (props: Props) => {
   const classList = getClassItem(event);
 
   return (
-    <div className={`rlv-agenda-inner-content ${classList}`}>
+    <Box
+      className={`rlv-agenda-inner-content ${classList}`}
+      sx={{
+        "& .events .field": {
+          clear: "both",
+        },
+
+        "& .events time": {
+          width: "auto",
+          minHeight: 0,
+          margin: "0 0 1em",
+        },
+
+        "& .events time .month": {
+          float: "left",
+          fontSize: "15px",
+          lineHeight: "1",
+          fontWeight: "400",
+          padding: "9px 12px",
+          textTransform: "uppercase",
+        },
+
+        "& .events time .day": {
+          float: "left",
+          fontSize: "15px",
+          lineHeight: "1",
+          fontWeight: "400",
+          padding: "9px 12px",
+        },
+
+        "& .events h3": {
+          width: "100%",
+          fontSize: "21px",
+          lineHeight: "1.4",
+          marginBottom: "0.25em",
+          fontFamily:
+            "Iowan Old Style, Georgia, Athelas, Baskerville, Sitka Display, Constansia, serif",
+        },
+
+        "& .events .meta": {
+          color: "#767676",
+          fontSize: "13px",
+          fontWeight: "400",
+        },
+
+        "& .events a": {
+          display: "inline-block",
+          width: "100%",
+          textDecoration: "none",
+          color: "#000",
+          transition: "background 0.15s, box-shadow 0.15s",
+        },
+
+        "& .events a:hover h3, .events a:focus h3": {
+          textDecoration: "underline",
+          color: "#127cb5",
+        },
+
+        "& .events a:active h3": {
+          color: "#000",
+        },
+
+        "& .events a:hover, .events a:focus": {
+          background: "rgba(0, 0, 0, 0.05)",
+          boxShadow: "0 0 0 15px rgba(0, 0, 0, 0.05)",
+        },
+
+        "& .events a:active": {
+          background: "rgba(0, 0, 0, 0.09)",
+          boxShadow: "0 0 0 15px rgba(0, 0, 0, 0.09)",
+        },
+
+        "& .inline-events-type": {
+          float: "none",
+          padding: "2px 8px 1px",
+          background: "#fcf3e1",
+          borderRadius: "4px",
+          textDecoration: "none !important",
+          color: "#000",
+          marginLeft: "10px",
+        },
+
+        "& img": {
+          float: "left",
+          margin: "0 20px 0px 0px",
+          objectFit: "cover",
+          objectPosition: "100% 0",
+          width: "200px",
+          height: "150px",
+        },
+      }}
+    >
       <div className="events">
         <a
           href={`#${event.id}`}
@@ -92,7 +179,7 @@ const AgendaInnerContent = (props: Props) => {
           </div>
         </a>
       </div>
-    </div>
+    </Box>
   );
 };
 

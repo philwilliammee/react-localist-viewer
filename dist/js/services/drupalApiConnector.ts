@@ -1,90 +1,9 @@
 import axios from "axios";
 import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
-
-// import { loader } from "graphql.macro";
 import { EventElement } from "../../types/types";
 import { NodeEvent } from "types/drupalGraphql";
-// Rollup cant handle this
-// import { gql } from "graphql.macro";
-
-// const GET_EVENTS = loader(
-//   "../../graphql/queries/getDrupalEventsByDateQuery.graphql"
-// );
-
-const GET_EVENTS = `
-  query getEventsByDateQuery(
-    $startDate: String
-    $endDate: String
-    $limit: Int
-    $offset: Int
-  ) {
-    nodeQuery(
-      filter: {
-        conjunction: AND
-        conditions: [
-          { field: "type", value: "event", operator: EQUAL }
-          {
-            operator: GREATER_THAN_OR_EQUAL
-            field: "field_event_date"
-            value: [$startDate]
-          }
-          {
-            operator: SMALLER_THAN_OR_EQUAL
-            field: "field_event_date"
-            value: [$endDate]
-          }
-        ]
-      },
-      sort: [{
-        field: "field_event_date",
-        direction: ASC
-      }],
-      limit: $limit
-      offset: $offset
-    ) {
-      count
-      entities {
-        ... on NodeEvent {
-          title
-          entityId
-          nid
-          entityUrl{
-            path
-          }
-          fieldEventDate {
-            value
-          }
-          fieldEventDateEnd {
-            value
-          }
-          fieldEventLocation
-          fieldEventImage {
-            url
-          }
-          fieldDestinationUrl {
-            uri
-            url {
-              path
-              routed
-            }
-          }
-          fieldLocalistId
-          fieldShortDescription {
-            value
-            processed
-          }
-          fieldTags {
-            targetId
-            entity {
-              entityLabel
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import GET_EVENTS from "../../graphql/drupalQuery";
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -102,7 +21,6 @@ export interface ApiConnectorProps {
 
 const drupalApiConnector = (props: ApiConnectorProps) => {
   const { entries, daysahead, calendarurl, page, start, end } = props;
-
   let start_param = start || moment().format("YYYY-MM-DD");
   let end_param = end || moment().add(daysahead, "days").format("YYYY-MM-DD");
   let page_param = page || 1;
@@ -121,10 +39,9 @@ const drupalApiConnector = (props: ApiConnectorProps) => {
       .add(parseInt(daysahead || "365"), "days")
       .format("YYYY-MM-DD");
   }
-  const limit = parseInt(entries || "1000", 10);
 
+  const limit = parseInt(entries || "1000", 10);
   const offset = (page_param - 1) * limit;
-  // const query = GET_EVENTS.loc?.source.body;
   const query = GET_EVENTS;
   const variables: GetEventsByDateQueryQueryVariables = {
     startDate: start_param,

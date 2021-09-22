@@ -1,10 +1,20 @@
-import { EventElement, HideType } from "../../../../../types/types";
+import {
+  EventElement,
+  HideType,
+  StandardProps,
+} from "../../../../../types/types";
 import React, { useContext } from "react";
 import EventContext from "../../../../context/EventsContext";
-import AgendaListView from "./AgendaInner";
 import { Moment } from "moment";
+import {
+  getClassItem,
+  getEventDate,
+  getEventFullTime,
+  getEventKey,
+} from "../../../../helpers/displayEvent";
+import ModernStandardInner from "../../ModernStandard/ModernStandardInner";
 
-interface Props {
+interface Props extends StandardProps {
   events: EventElement[];
   dateContext: Moment;
   hideaddcal: HideType;
@@ -14,6 +24,8 @@ interface Props {
   // hidetime: HideType;
   setShowDialog: Function;
   setEventSelected: Function;
+  listClassArray: string[];
+  wrapperClassArray: string[];
 }
 
 function AgendaList(props: Props) {
@@ -22,26 +34,46 @@ function AgendaList(props: Props) {
   if (props.events.length === 0) {
     return <p>There are no events in this range.</p>;
   }
-
+  const { events, listClassArray, wrapperClassArray } = props;
+  const wrapperClassList = wrapperClassArray.join(" ");
+  const listClassList = listClassArray.join(" ");
   return (
-    <section className="events-modern-compact modern" title="Events List">
-      <div className="events-main-body">
-        {props.events.map((event: EventElement) => (
-          <div
-            key={event.event.event_instances[0].event_instance.id}
-            className="rlv-component cwd-card-grid"
-          >
-            <AgendaListView
-              event={event.event}
-              hideaddcal={props.hideaddcal}
-              hidedescription={props.hidedescription}
-              hideimages={props.hideimages}
-              setEventSelected={setEventSelected}
-              setShowDialog={setShowDialog}
-              truncatedescription={props.truncatedescription}
-            />
-          </div>
-        ))}
+    <section className="rlv-modern-standard" title="Events List">
+      <div className={wrapperClassList}>
+        <div className={listClassList}>
+          {events.length > 0 ? (
+            events.map((event) => {
+              const key = getEventKey(event.event);
+              const classList = getClassItem(event.event);
+
+              const handleOnClick = () => {
+                setEventSelected(event.event);
+                setShowDialog(true);
+              };
+              return (
+                <ModernStandardInner
+                  key={key}
+                  title={event.event.title}
+                  description={event.event.description}
+                  image={event.event.photo_url}
+                  hidedescription={props.hidedescription}
+                  hideimages={props.hideimages}
+                  truncatedescription={props.truncatedescription}
+                  tags={event.event.tags}
+                  dateFormat={getEventDate(event.event)}
+                  timeFormat={getEventFullTime(event.event)}
+                  locationName={event.event.location_name}
+                  listClass={classList}
+                  event={event.event}
+                  hideaddcal={props.hideaddcal}
+                  handleClick={handleOnClick}
+                />
+              );
+            })
+          ) : (
+            <p>There are no upcoming events.</p>
+          )}
+        </div>
       </div>
     </section>
   );
