@@ -1,7 +1,6 @@
 import { Department, EventElement } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
-
 import { NodesEntity, WordpressEventsQuery } from "types/wordpressGraphql";
 import GET_EVENTS from "../../graphql/wordpressQuery";
 
@@ -48,17 +47,22 @@ const wordpressApiConnector = (props: ApiConnectorProps) => {
 const wordpressTransformEvents = (
   events: NodesEntity[],
   limit: number,
-  currentPage: number
+  currentPage: number,
+  format: string
 ): EventElement[] => {
-  const offset = currentPage * limit;
-  // for now just sort the array by meta-date and limit it to limit_param
-  const sortedEvents = events
-    .sort((a, b) => {
-      return moment(a.event.date, "MMMM D, YYY").diff(
-        moment(b.event.date, "MMMM D, YYY")
-      );
-    })
-    .slice(offset - limit, offset);
+  let sortedEvents = events;
+
+  if (format !== "calendar") {
+    const offset = currentPage * limit;
+    // for now just sort the array by meta-date and limit it to limit_param
+    sortedEvents = events
+      .sort((a, b) => {
+        return moment(a.event.date, "MMMM D, YYY").diff(
+          moment(b.event.date, "MMMM D, YYY")
+        );
+      })
+      .slice(offset - limit, offset);
+  }
   const wordpressTransformedEvents: EventElement[] = sortedEvents?.map(
     (event) => {
       const endDateTime = event.event.endDate

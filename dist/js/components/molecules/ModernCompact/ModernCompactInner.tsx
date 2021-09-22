@@ -7,12 +7,14 @@ import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
 import { EventEvent, HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
-
-import { SxProps } from "@mui/system";
+import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
-import { getEventTime } from "../../../helpers/displayEvent";
+import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
+import EventTitle from "../../atoms/EventTitle";
+import EventDateTime from "../../atoms/EventDateTime";
+import EventLocation from "../../atoms/EventLocation";
 
 interface Props {
   dateFormat: string;
@@ -45,21 +47,21 @@ export default function ModernCompactInner(props: Props) {
     hideaddcal,
     event,
   } = props;
-  const eventTime = getEventTime(event);
+  // const eventTime = getEventTime(event);
   return (
     <MuiCard
       sx={{
         borderRadius: "0px",
         boxShadow: "none",
         border: "0",
-        mb: 2,
+        // mb: 2,
       }}
-      className={listClass}
+      className={`rlv-modern-compact-inner ${listClass}`}
       raised={false}
     >
       <Link href={link} sx={{ textDecoration: "none" }}>
         <CardActionArea>
-          {!hideimages ? (
+          {isNotHidden(hideimages) ? (
             <CardMedia
               component="img"
               image={image}
@@ -67,6 +69,7 @@ export default function ModernCompactInner(props: Props) {
               sx={{
                 borderBottom: "5px solid",
                 borderBottomColor: "secondary.main",
+                paddingBottom: "0px", // @todo remove this override.
               }}
             />
           ) : (
@@ -74,17 +77,23 @@ export default function ModernCompactInner(props: Props) {
           )}
           <CardContent>
             <Time event={event} />
-            <Typography gutterBottom variant="h4" component="div" marginTop={1}>
-              {title}
-            </Typography>
+            <Box sx={{ marginTop: 1, marginBottom: 1 }}>
+              <EventTitle title={title} />
+            </Box>
             <Typography
               component="p"
               variant="body2"
               color="text.secondary"
               gutterBottom
             >
-              {eventTime}{" "}
-              {event.location_name ? `, ${event.location_name}` : ""}
+              {/* {eventTime}{" "}
+              {event.location_name ? `, ${event.location_name}` : ""} */}
+              <EventDateTime
+                dateFormat={getEventDate(event)}
+                timeFormat={getEventFullTime(event)}
+                hideTime={false}
+              />
+              <EventLocation locationName={event.location_name} />
             </Typography>
             <Typography color="text.primary">
               <Truncate

@@ -1,11 +1,19 @@
 import React, { ReactElement } from "react";
-import "./Loading.scss";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Box } from "@mui/system";
+import theme from "../../Theme/MuiTheme";
 
 export default function Loading(): ReactElement {
   return (
-    <div className="rlv-loading">
+    <Box
+      className="rlv-loading"
+      sx={{
+        textAlign: "center",
+        margin: "auto",
+        padding: theme.spacing(8),
+      }}
+    >
       <CircularProgress />
-    </div>
+    </Box>
   );
 }

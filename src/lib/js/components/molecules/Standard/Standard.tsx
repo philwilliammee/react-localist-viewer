@@ -122,8 +122,8 @@ const Standard = (props: StandardProps) => {
     return "";
   };
 
-  const getDay = (event: EventEvent, format: Format) => {
-    const displayDate = getDisplayDate(event, format);
+  const getDay = (event: EventEvent) => {
+    const displayDate = getDisplayDate(event);
     if (lastDay !== displayDate) {
       lastDay = displayDate;
       return (
@@ -147,7 +147,7 @@ const Standard = (props: StandardProps) => {
                 return (
                   <div key={event.event.event_instances[0].event_instance.id}>
                     {getMonth(event.event)}
-                    {getDay(event.event, props.format)}
+                    {getDay(event.event)}
                     <StandardInner
                       event={event.event}
                       filterby={filterby}

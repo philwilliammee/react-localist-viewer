@@ -1,6 +1,5 @@
 import React from "react";
 import Standard from "../molecules/Standard";
-import Compact from "../molecules/Compact";
 import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/ModernCompact";
 import InlineCompact from "../molecules/InlineCompact/InlineCompact";
@@ -39,10 +38,6 @@ const LocalistView = (props: Props) => {
   switch (format) {
     case "standard":
       component = <Standard key={page} {...props} />;
-      break;
-
-    case "compact":
-      component = <Compact key={page} {...props} />;
       break;
 
     case "modern_standard":

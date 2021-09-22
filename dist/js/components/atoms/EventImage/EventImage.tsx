@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import PropTypes from "prop-types";
 import { isHidden } from "../../../helpers/common";
 import { EventImageCropTypes, HideType } from "../../../../types/types";
-import "./EventImage.scss";
+import { Box } from "@mui/system";
 
 interface EventImageProps {
   photoUrl: string;
@@ -27,13 +27,27 @@ const EventImage = (props: EventImageProps) => {
     return <></>;
   }
   return (
-    <img
+    <Box
+      component="img"
       className="rlv-event-image"
       alt={title}
-      width="200"
       src={photo}
       loading="lazy"
       onError={handleError}
+      sx={{
+        width: "200px",
+        opacity: 0,
+        animation: "fade-in 0.3s ease-out forwards",
+        "@keyframes fade-in": {
+          from: {
+            opacity: 0,
+          },
+
+          to: {
+            opacity: 1,
+          },
+        },
+      }}
     />
   );
 };

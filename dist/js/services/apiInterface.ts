@@ -83,7 +83,8 @@ export async function fetchEvents(
       const wordpressTransformedEvents = wordpressTransformEvents(
         events,
         limit,
-        currentPage
+        currentPage,
+        props.format
       );
 
       data = {

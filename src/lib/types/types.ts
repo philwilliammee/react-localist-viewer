@@ -96,7 +96,6 @@ export type EventImageCropTypes = "huge" | "big" | "big_square";
 
 export type Format =
   | "standard"
-  | "compact"
   | "modern_compact"
   | "modern_standard"
   | "inline_compact"

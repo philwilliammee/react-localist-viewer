@@ -114,16 +114,9 @@ export const getCalEndDate = (event: EventEvent) => {
  *
  * @return {string} The date string.
  */
-export const getDisplayDate = (event: EventEvent, format: Format) => {
+export const getDisplayDate = (event: EventEvent) => {
   const dateTime = getEventStart(event);
   let eventDate = moment(dateTime).format("M/DD/YYYY");
-  switch (format) {
-    case "compact":
-      eventDate = moment(dateTime).format("MMM D");
-      break;
-    default:
-      break;
-  }
   return eventDate;
 };
 
