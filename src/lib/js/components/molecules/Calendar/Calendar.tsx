@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import moment, { Moment } from "moment";
-import "./calendar.scss";
 import {
   getKeyFromDateRange,
   getLastMonth,
@@ -8,7 +7,6 @@ import {
   initDateRange,
 } from "./dateUtils";
 import EventsContext from "../../../context/EventsContext";
-
 import {
   DisplayedDateRange,
   EventElement,
@@ -28,6 +26,8 @@ import { getEventStart } from "../../../helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
 import { getQueryId } from "../../../helpers/common";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 const Calendar = (props: Props) => {
   const queryId = getQueryId(props);
@@ -153,52 +153,60 @@ const Calendar = (props: Props) => {
       >
         {eventSelected ? <EventDetails event={eventSelected} /> : ""}
       </EventModal>
-
       <Grid container>
         <Grid col={3}>
           <Filters key={key} />
         </Grid>
         <Grid col={9}>
-          <div>
-            <Toolbar
-              setView={setView}
-              nextMonth={nextMonth}
-              prevMonth={prevMonth}
+          <Toolbar
+            setView={setView}
+            nextMonth={nextMonth}
+            prevMonth={prevMonth}
+            view={view}
+            today={today}
+          >
+            <ToolBarTitle
+              dateContext={dateContext}
               view={view}
-              today={today}
+              selectedDay={selectedDay}
+            />
+          </Toolbar>
+          {view === "month" ? (
+            <Box
+              className="month-view"
+              sx={{
+                "table td, table th": {
+                  borderWidth: "1px",
+                  fontSize: "body1.fontSize",
+                },
+                td: {
+                  verticalAlign: "top",
+                },
+              }}
             >
-              <ToolBarTitle
+              <MonthView
+                events={filteredEvents || []}
                 dateContext={dateContext}
-                view={view}
+                setSelectedDay={handleDateClick}
                 selectedDay={selectedDay}
+                handleEventSelect={handleEventSelect}
               />
-            </Toolbar>
-            {view === "month" ? (
-              <div className="month-view">
-                <MonthView
-                  events={filteredEvents || []}
-                  dateContext={dateContext}
-                  setSelectedDay={handleDateClick}
-                  selectedDay={selectedDay}
-                  handleEventSelect={handleEventSelect}
-                />
-              </div>
-            ) : (
-              //list or day view
-              <AgendaList
-                events={getListEvents()}
-                setShowDialog={setShowDialog}
-                setEventSelected={setEventSelected}
-                dateContext={dateContext}
-                truncatedescription={props.truncatedescription}
-                hidedescription={props.hidedescription}
-                hideimages={props.hideimages}
-                hideaddcal={props.hideaddcal}
-                wrapperClassArray={props.wrapperClassArray}
-                listClassArray={props.listClassArray}
-              />
-            )}
-          </div>
+            </Box>
+          ) : (
+            //list or day view
+            <AgendaList
+              events={getListEvents()}
+              setShowDialog={setShowDialog}
+              setEventSelected={setEventSelected}
+              dateContext={dateContext}
+              truncatedescription={props.truncatedescription}
+              hidedescription={props.hidedescription}
+              hideimages={props.hideimages}
+              hideaddcal={props.hideaddcal}
+              wrapperClassArray={props.wrapperClassArray}
+              listClassArray={props.listClassArray}
+            />
+          )}
         </Grid>
       </Grid>
     </div>
@@ -212,7 +220,7 @@ interface ToolBarTitleProps {
 }
 const ToolBarTitle = (props: ToolBarTitleProps) => {
   return (
-    <>
+    <Typography variant="h2">
       <span className="label-month">{props.dateContext.format("MMMM")}</span>{" "}
       {props.view === "day" ? (
         <span className="label-day">{props.selectedDay}, </span>
@@ -220,7 +228,7 @@ const ToolBarTitle = (props: ToolBarTitleProps) => {
         ""
       )}
       <span className="label-year">{props.dateContext.format("Y")}</span>
-    </>
+    </Typography>
   );
 };
 

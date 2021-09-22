@@ -83,7 +83,7 @@ const Toolbar = (props: ToolBarProps) => {
         </Button>
       </Grid>
       <Grid container justifyContent="center" flex={1} alignItems="center">
-        <Typography variant="h2">{children}</Typography>
+        {children}
       </Grid>
       <Grid container justifyContent="flex-end" alignItems="center" flex={1}>
         <Button
