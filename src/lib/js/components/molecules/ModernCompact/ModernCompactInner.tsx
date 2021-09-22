@@ -9,10 +9,12 @@ import { EventEvent, HideType } from "../../../../types/types";
 import Tag from "../../atoms/Tag";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
-import { getEventTime } from "../../../helpers/displayEvent";
+import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
+import EventDateTime from "../../atoms/EventDateTime";
+import EventLocation from "../../atoms/EventLocation";
 
 interface Props {
   dateFormat: string;
@@ -45,7 +47,7 @@ export default function ModernCompactInner(props: Props) {
     hideaddcal,
     event,
   } = props;
-  const eventTime = getEventTime(event);
+  // const eventTime = getEventTime(event);
   return (
     <MuiCard
       sx={{
@@ -54,12 +56,12 @@ export default function ModernCompactInner(props: Props) {
         border: "0",
         mb: 2,
       }}
-      className={listClass}
+      className={`rlv-modern-compact-inner ${listClass}`}
       raised={false}
     >
       <Link href={link} sx={{ textDecoration: "none" }}>
         <CardActionArea>
-          {!hideimages ? (
+          {isNotHidden(hideimages) ? (
             <CardMedia
               component="img"
               image={image}
@@ -67,6 +69,7 @@ export default function ModernCompactInner(props: Props) {
               sx={{
                 borderBottom: "5px solid",
                 borderBottomColor: "secondary.main",
+                paddingBottom: "0px", // @todo remove this override.
               }}
             />
           ) : (
@@ -83,8 +86,14 @@ export default function ModernCompactInner(props: Props) {
               color="text.secondary"
               gutterBottom
             >
-              {eventTime}{" "}
-              {event.location_name ? `, ${event.location_name}` : ""}
+              {/* {eventTime}{" "}
+              {event.location_name ? `, ${event.location_name}` : ""} */}
+              <EventDateTime
+                dateFormat={getEventDate(event)}
+                timeFormat={getEventFullTime(event)}
+                hideTime={false}
+              />
+              <EventLocation locationName={event.location_name} />
             </Typography>
             <Typography color="text.primary">
               <Truncate

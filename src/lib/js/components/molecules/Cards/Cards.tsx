@@ -1,12 +1,13 @@
-import { Grid } from "@mui/material";
 import React from "react";
+import { Grid } from "@mui/material";
 import { StandardProps } from "../../../../types/types";
-import Card from "../Card";
 import {
+  getClassItem,
   getEventDate,
   getEventFullTime,
   getEventKey,
 } from "../../../helpers/displayEvent";
+import ModernCompactInner from "../ModernCompact/ModernCompactInner";
 
 const Cards = (props: StandardProps) => {
   const { events, listClassArray, wrapperClassArray } = props;
@@ -19,9 +20,10 @@ const Cards = (props: StandardProps) => {
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
+              const classList = getClassItem(event.event);
               return (
-                <Grid item key={key} className={listClassList}>
-                  <Card
+                <Grid item key={key} className={listClassList} xs={12} md={4}>
+                  <ModernCompactInner
                     title={event.event.title}
                     description={event.event.description}
                     image={event.event.photo_url}
@@ -33,7 +35,9 @@ const Cards = (props: StandardProps) => {
                     dateFormat={getEventDate(event.event)}
                     timeFormat={getEventFullTime(event.event)}
                     locationName={event.event.location_name}
-                    sx={{ maxWidth: 365 }}
+                    listClass={classList}
+                    event={event.event}
+                    hideaddcal={props.hideaddcal}
                   />
                 </Grid>
               );
