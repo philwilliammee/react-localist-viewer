@@ -1,77 +1,67 @@
 import React from "react";
-import { useTransition, animated, config } from "react-spring/web.cjs";
-import { DialogOverlay, DialogContent } from "@reach/dialog";
-import PropTypes from "prop-types";
-import "@reach/dialog/styles.css";
-import "./ModalDialog.scss";
 import CloseIcon from "@mui/icons-material/Close";
-import { IconButton } from "@mui/material";
-
-let AnimatedDialogOverlay = animated(DialogOverlay);
-let AnimatedDialogContent = animated(DialogContent);
-
-const transitionKeys = {
-  from: { opacity: 0, y: -10 },
-  enter: { opacity: 1, y: 0 },
-  leave: { opacity: 0, y: 10 },
-  config: config.stiff,
-};
+import {
+  Dialog,
+  DialogContentText,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+  Typography,
+} from "@mui/material";
 
 interface Props {
+  title: string;
   showDialog: boolean;
   setShowDialog: (state: boolean) => void;
   children?: React.ReactNode;
 }
 function ModalDialog(props: Props) {
-  // const [showDialog, setShowDialog] = useState(false);
-  const transitions = useTransition(props.showDialog, null, transitionKeys);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <div className="cwd-events-modal-dialog">
-      {transitions.map(
-        ({ item, props: styles, key }) =>
-          item && (
-            // @todo fix this https://github.com/pmndrs/react-spring/issues/1283
-            // @ts-ignore: next line
-            <AnimatedDialogOverlay
-              key={key}
-              style={{ opacity: styles.opacity }}
-              onDismiss={() => props.setShowDialog(false)}
-            >
-              {
-                // @ts-ignore: next line
-                <AnimatedDialogContent
-                  aria-label="The selected event dialog"
-                  style={{
-                    // @ts-ignore: next line
-                    // transform: styles.y.interpolate(
-                    //   (value: string) => `translate3d(0px, ${value}px, 0px)`
-                    // ),
-                    border: "4px solid hsla(0, 0%, 0%, 0.5)",
-                    borderRadius: 10,
-                    minHeight: 300,
-                  }}
-                >
-                  <IconButton
-                    style={{ float: "right" }}
-                    onClick={() => props.setShowDialog(false)}
-                    aria-label="close dialog"
-                    size="large">
-                    <CloseIcon />
-                  </IconButton>
-                  {props.children}
-                </AnimatedDialogContent>
-              }
-            </AnimatedDialogOverlay>
-          )
-      )}
+      <Dialog
+        fullScreen={fullScreen}
+        maxWidth="md"
+        open={props.showDialog}
+        onClose={() => props.setShowDialog(false)}
+        aria-labelledby="responsive-dialog-title"
+        sx={{
+          "& .MuiPaper-root": {
+            overflowY: "hidden",
+          },
+        }}
+      >
+        <DialogTitle
+          id="responsive-dialog-title"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: theme.typography.h3.fontSize,
+          }}
+        >
+          <Typography
+            component="span"
+            variant="h3"
+            dangerouslySetInnerHTML={{ __html: props.title }}
+          />
+          <IconButton
+            aria-label="close dialog"
+            size="large"
+            onClick={() => props.setShowDialog(false)}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>{props.children}</DialogContentText>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
-
-ModalDialog.propTypes = {
-  showDialog: PropTypes.bool.isRequired,
-  setShowDialog: PropTypes.func.isRequired,
-  children: PropTypes.node,
-};
 
 export default ModalDialog;

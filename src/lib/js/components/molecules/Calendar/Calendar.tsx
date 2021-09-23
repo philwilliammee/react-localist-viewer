@@ -150,9 +150,11 @@ const Calendar = (props: Props) => {
         showDialog={showDialog}
         setShowDialog={setShowDialog}
         aria-label="Selected Event"
+        title={eventSelected.title}
       >
         {eventSelected ? <EventDetails event={eventSelected} /> : ""}
       </EventModal>
+
       <Grid container>
         <Grid col={3}>
           <Filters key={key} />

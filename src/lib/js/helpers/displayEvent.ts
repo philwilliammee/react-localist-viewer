@@ -1,4 +1,4 @@
-import { EventEvent, Format, Department } from "./../../types/types";
+import { EventEvent, Department } from "./../../types/types";
 import moment from "moment";
 import truncate from "text-clipper";
 
