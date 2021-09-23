@@ -99,14 +99,8 @@ function CustomCardContent(props: Props) {
       <EventTitle title={title} />
       <Typography component="p" variant="body2" color="text.secondary">
         {eventTime} {event.location_name ? `, ${event.location_name}` : ""}
-        <Tags
-          tags={event.filters.event_types.map(
-            (element: Department) => element.name
-          )}
-        />
-        ;
       </Typography>
-
+      <Tags tags={event.tags} />
       <Typography
         color="text.primary"
         sx={{

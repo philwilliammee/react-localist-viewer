@@ -4,11 +4,11 @@ import * as React from "react";
 import Tag from "../../atoms/Tag";
 
 interface Props {
-  tags: string[];
+  tags?: string[];
 }
 
 const Tags = (props: Props) => {
-  if (props.tags.length === 0) {
+  if (!props.tags || props.tags.length === 0) {
     return <></>;
   }
   return (
