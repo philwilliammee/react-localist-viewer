@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
 import { Department, EventEvent, HideType } from "../../../../types/types";
-import Tag from "../../atoms/Tag";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
 import { getEventTime } from "../../../helpers/displayEvent";
@@ -18,6 +17,7 @@ import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
 import EventImage from "../../atoms/EventImage";
+import Tags from "../Tags";
 
 interface Props {
   dateFormat: string;
@@ -93,22 +93,18 @@ function CustomCardContent(props: Props) {
     event,
   } = props;
   const eventTime = getEventTime(event);
-  const tagStr = (eventTypes: Department[]) => {
-    let spanStr;
-    if (eventTypes) {
-      spanStr = eventTypes.map((element) => {
-        return <Tag key={element.id}>{element.name}</Tag>;
-      });
-    }
-    return spanStr;
-  };
   return (
     <Stack spacing={1}>
       <Time event={event} />
       <EventTitle title={title} />
       <Typography component="p" variant="body2" color="text.secondary">
         {eventTime} {event.location_name ? `, ${event.location_name}` : ""}
-        {tagStr(event.filters.event_types)}
+        <Tags
+          tags={event.filters.event_types.map(
+            (element: Department) => element.name
+          )}
+        />
+        ;
       </Typography>
 
       <Typography

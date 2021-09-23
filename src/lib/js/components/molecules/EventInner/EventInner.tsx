@@ -6,12 +6,12 @@ import EventImage from "../../atoms/EventImage/EventImage";
 
 import "./EventInner.scss";
 import MoreInfo from "../MoreInfo";
-import Tag from "../../atoms/Tag";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
 import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
+import Tags from "../Tags";
 
 interface Props {
   event: EventEvent;
@@ -26,11 +26,8 @@ const EventInner = ({ event }: Props) => (
     />
 
     <EventLocation locationName={event.location_name} />
-    <div>
-      {event.tags.map((tag, id) => {
-        return <Tag key={`${tag}-${id}`}>{tag}</Tag>;
-      })}
-    </div>
+
+    <Tags tags={event.tags} />
 
     <div className="field field-name-summary summary">
       <div className="rlv-event-image-wrapper">
