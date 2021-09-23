@@ -26,9 +26,11 @@ const EventInner = ({ event }: Props) => (
     />
 
     <EventLocation locationName={event.location_name} />
-    {event.tags.map((tag, id) => {
-      return <Tag key={`${tag}-${id}`}>{tag}</Tag>;
-    })}
+    <div>
+      {event.tags.map((tag, id) => {
+        return <Tag key={`${tag}-${id}`}>{tag}</Tag>;
+      })}
+    </div>
 
     <div className="field field-name-summary summary">
       <div className="rlv-event-image-wrapper">
