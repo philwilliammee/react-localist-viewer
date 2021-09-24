@@ -9,6 +9,7 @@ import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
 import { Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Tags from "../Tags";
+import InlineImage from "../InlineImage/InlineImage";
 
 interface Props {
   event: EventEvent;
@@ -21,36 +22,17 @@ const EventInner = ({ event }: Props) => (
       timeFormat={getEventFullTime(event)}
       hideTime={false}
     />
-
     <EventLocation locationName={event.location_name} />
-
     <Tags tags={event.tags} />
-
-    <Typography
-      color="text.primary"
-      sx={{
-        "img.rlv-event-image": {
-          float: "left",
-          margin: "0 20px 0px 0px",
-          objectFit: "cover",
-          objectPosition: "100% 0",
-        },
-      }}
-    >
-      <EventImage
-        photoUrl={event.photo_url}
-        title={event.title}
-        hideimages={"false"}
-        photoCrop="big"
-      />
-      <span dangerouslySetInnerHTML={{ __html: event.description }} />
-    </Typography>
-    {/* clear fix */}
-    <Box
-      sx={{
-        clear: "both",
-        display: "table",
-      }}
+    <InlineImage
+      photoUrl={event.photo_url}
+      title={event.title}
+      hideimages="false" //@todo pass this prop from parent
+      photoCrop="big"
+      description={event.description_text}
+      hidedescription="false" //@todo pass this prop from parent
+      truncatedescription={null} //@todo pass this prop from parent
+      readMore="Read More" //@todo pass this prop from parent
     />
     <MoreInfo event={event} />
     <Box>

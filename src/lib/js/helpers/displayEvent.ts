@@ -152,7 +152,7 @@ export const getEventDate = (event: EventEvent) => {
  */
 export const getTruncDesc = (
   description_text: string,
-  excerptLength?: number | string,
+  excerptLength?: number | string | null,
   readMore?: string
 ) => {
   if (!description_text) {

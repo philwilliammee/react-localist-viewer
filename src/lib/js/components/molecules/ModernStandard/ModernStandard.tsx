@@ -24,9 +24,7 @@ const ModernStandard = (props: StandardProps) => {
               return (
                 <ModernStandardInner
                   key={key}
-                  title={event.event.title}
                   description={event.event.description}
-                  image={event.event.photo_url}
                   link={event.event.localist_url}
                   hidedescription={props.hidedescription}
                   hideimages={props.hideimages}
@@ -34,7 +32,6 @@ const ModernStandard = (props: StandardProps) => {
                   tags={event.event.tags}
                   dateFormat={getEventDate(event.event)}
                   timeFormat={getEventFullTime(event.event)}
-                  locationName={event.event.location_name}
                   listClass={classList}
                   event={event.event}
                   hideaddcal={props.hideaddcal}

@@ -17,7 +17,6 @@ import { queryClient } from "../../../../query";
 import { useQuery } from "react-query";
 import { fetchEvents } from "../../../services/apiInterface";
 import MonthView from "./MonthView";
-import EventDetails from "../EventDetails";
 import EventModal from "../../atoms/ModalDialog";
 import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
@@ -28,6 +27,7 @@ import Toolbar from "./ToolBar";
 import { getQueryId } from "../../../helpers/common";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import EventInner from "../EventInner/EventInner";
 
 const Calendar = (props: Props) => {
   const queryId = getQueryId(props);
@@ -152,7 +152,7 @@ const Calendar = (props: Props) => {
         aria-label="Selected Event"
         title={eventSelected.title}
       >
-        {eventSelected ? <EventDetails event={eventSelected} /> : ""}
+        {eventSelected ? <EventInner event={eventSelected} /> : ""}
       </EventModal>
 
       <Grid container>

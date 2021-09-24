@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 
 interface Props {
   description?: string;
-  truncatedescription: string;
+  truncatedescription: string | null;
   hidedescription: HideType;
   readMore?: string;
 }

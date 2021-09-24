@@ -54,16 +54,13 @@ function AgendaList(props: Props) {
               return (
                 <ModernStandardInner
                   key={key}
-                  title={event.event.title}
                   description={event.event.description}
-                  image={event.event.photo_url}
                   hidedescription={props.hidedescription}
                   hideimages={props.hideimages}
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
                   dateFormat={getEventDate(event.event)}
                   timeFormat={getEventFullTime(event.event)}
-                  locationName={event.event.location_name}
                   listClass={classList}
                   event={event.event}
                   hideaddcal={props.hideaddcal}
