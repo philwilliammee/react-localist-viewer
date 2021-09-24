@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Truncate from "../../atoms/Truncate";
 import { EventEvent, HideType } from "../../../../types/types";
-import Tag from "../../atoms/Tag";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
 import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
@@ -15,6 +14,7 @@ import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
+import Tags from "../Tags";
 
 interface Props {
   dateFormat: string;
@@ -107,9 +107,7 @@ export default function ModernCompactInner(props: Props) {
             ""
           ) : (
             <CardActions>
-              {tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
+              <Tags tags={tags} />
             </CardActions>
           )}
         </CardActionArea>

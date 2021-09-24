@@ -62,7 +62,7 @@ const Localist = (props: AppProps) => {
 
         // Used by calendar only.
         setFilteredEvents(data.events);
-        setEvents(data.events);
+      setEvents(data.events);
         setLlPage(data.page);
       }
 

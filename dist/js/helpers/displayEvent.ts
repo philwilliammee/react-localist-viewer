@@ -1,4 +1,4 @@
-import { EventEvent, Format, Department } from "./../../types/types";
+import { EventEvent, Department } from "./../../types/types";
 import moment from "moment";
 import truncate from "text-clipper";
 
@@ -152,7 +152,7 @@ export const getEventDate = (event: EventEvent) => {
  */
 export const getTruncDesc = (
   description_text: string,
-  excerptLength?: number | string,
+  excerptLength?: number | string | null,
   readMore?: string
 ) => {
   if (!description_text) {

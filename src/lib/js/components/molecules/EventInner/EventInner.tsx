@@ -1,12 +1,11 @@
 import React from "react";
 import AddCal from "../AddCal/AddCal";
 import { EventEvent } from "../../../../types/types";
-import EventImage from "../../atoms/EventImage/EventImage";
 import MoreInfo from "../MoreInfo";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
 import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Tags from "../Tags";
 import InlineImage from "../InlineImage/InlineImage";

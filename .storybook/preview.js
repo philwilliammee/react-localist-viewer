@@ -5,7 +5,6 @@ import { StylesProvider } from "@mui/styles";
 // this will have to be removed when we upgrade to emotion 11.
 import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 import theme from "../src/lib/js/components/Theme/MuiTheme";
-import RlvTheme from "../src/lib/js/components/Theme";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -23,9 +22,7 @@ const withThemeProvider = (Story, context) => {
       <StylesProvider injectFirst>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <RlvTheme>
-            <Story {...context} />
-          </RlvTheme>
+          <Story {...context} />
         </ThemeProvider>
       </StylesProvider>
     </EmotionThemeProvider>

@@ -21,7 +21,6 @@ export default function EventDateTime({
       className="rlv-event-date-time"
     >
       <AccessTimeIcon
-        className="access-time-icon"
         sx={{
           fontSize: "inherit",
           marginRight: 1,
