@@ -2,7 +2,7 @@ import React from "react";
 import {
   getEventTime,
   getStartDateStringMonthYear,
-  getDisplayDate,
+  getStartDateStringMonthDayYear,
   getClassItem,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
@@ -79,7 +79,6 @@ const Standard = (props: StandardProps) => {
     filterby,
     hideaddcal,
     truncatedescription,
-    // thumbnail,
     hidedescription,
     hideimages,
     listClassArray,
@@ -113,7 +112,7 @@ const Standard = (props: StandardProps) => {
   };
 
   const getDay = (event: EventEvent) => {
-    const displayDate = getDisplayDate(event);
+    const displayDate = getStartDateStringMonthDayYear(event);
     if (lastDay !== displayDate) {
       lastDay = displayDate;
       return (

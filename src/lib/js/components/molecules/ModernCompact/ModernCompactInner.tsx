@@ -8,7 +8,10 @@ import Truncate from "../../atoms/Truncate";
 import { EventEvent, HideType } from "../../../../types/types";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
+import {
+  getEventDate,
+  getEventStartEndTimes,
+} from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
@@ -90,7 +93,7 @@ export default function ModernCompactInner(props: Props) {
               {event.location_name ? `, ${event.location_name}` : ""} */}
               <EventDateTime
                 dateFormat={getEventDate(event)}
-                timeFormat={getEventFullTime(event)}
+                timeFormat={getEventStartEndTimes(event)}
                 hideTime={false}
               />
               <EventLocation locationName={event.location_name} />

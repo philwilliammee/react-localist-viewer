@@ -9,7 +9,7 @@ import { Moment } from "moment";
 import {
   getClassItem,
   getEventDate,
-  getEventFullTime,
+  getEventStartEndTimes,
   getEventKey,
 } from "../../../../helpers/displayEvent";
 import ModernStandardInner from "../../ModernStandard/ModernStandardInner";
@@ -60,7 +60,7 @@ function AgendaList(props: Props) {
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
                   dateFormat={getEventDate(event.event)}
-                  timeFormat={getEventFullTime(event.event)}
+                  timeFormat={getEventStartEndTimes(event.event)}
                   listClass={classList}
                   event={event.event}
                   hideaddcal={props.hideaddcal}

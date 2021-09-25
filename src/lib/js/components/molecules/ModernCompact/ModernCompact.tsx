@@ -4,7 +4,7 @@ import ModernCompactInner from "./ModernCompactInner";
 import {
   getClassItem,
   getEventDate,
-  getEventFullTime,
+  getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
 
@@ -31,7 +31,7 @@ const ModernCompact = (props: StandardProps) => {
                 truncatedescription={props.truncatedescription}
                 tags={event.event.tags}
                 dateFormat={getEventDate(event.event)}
-                timeFormat={getEventFullTime(event.event)}
+                timeFormat={getEventStartEndTimes(event.event)}
                 locationName={event.event.location_name}
                 listClass={classList}
                 event={event.event}

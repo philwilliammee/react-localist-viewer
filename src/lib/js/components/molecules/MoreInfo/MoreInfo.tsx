@@ -1,10 +1,14 @@
 import React from "react";
-import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
+import {
+  getEventStartEndTimes,
+  getEventStart,
+} from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
 import { createMarkup, truncateString } from "../../../helpers/common";
 import { Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
+import moment from "moment";
 
 interface Props {
   event: EventEvent;
@@ -37,9 +41,9 @@ const MoreInfo = ({ event }: Props) => {
         <Grid col={6}>
           <Typography fontWeight={fontWeightMedium}>When</Typography>
           <Typography variant="body2" gutterBottom>
-            {getFullDate(event)}
+            {moment(getEventStart(event)).format("MMMM D, YYYY")}
             <br />
-            {getEventFullTime(event)}
+            {getEventStartEndTimes(event)}
           </Typography>
 
           <Typography fontWeight={fontWeightMedium}>Where</Typography>

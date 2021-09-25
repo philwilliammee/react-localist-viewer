@@ -4,7 +4,7 @@ import ModernStandardInner from "./ModernStandardInner";
 import {
   getClassItem,
   getEventDate,
-  getEventFullTime,
+  getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
@@ -31,7 +31,7 @@ const ModernStandard = (props: StandardProps) => {
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
                   dateFormat={getEventDate(event.event)}
-                  timeFormat={getEventFullTime(event.event)}
+                  timeFormat={getEventStartEndTimes(event.event)}
                   listClass={classList}
                   event={event.event}
                   hideaddcal={props.hideaddcal}

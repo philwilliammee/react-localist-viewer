@@ -4,7 +4,10 @@ import { Story, Meta } from "@storybook/react";
 import EventDateTime from "../lib/js/components/atoms/EventDateTime";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "../lib/types/types";
-import { getEventDate, getEventFullTime } from "lib/js/helpers/displayEvent";
+import {
+  getEventDate,
+  getEventStartEndTimes,
+} from "lib/js/helpers/displayEvent";
 
 const EventDateTimeStories = {
   title: "Atoms/EventDateTime ",
@@ -20,7 +23,7 @@ const eventData: EventEvent = { ...singleEvent.event };
 export const Default = Template.bind({});
 Default.args = {
   dateFormat: getEventDate(eventData),
-  timeFormat: getEventFullTime(eventData),
+  timeFormat: getEventStartEndTimes(eventData),
 };
 
 export default EventDateTimeStories as Meta;
