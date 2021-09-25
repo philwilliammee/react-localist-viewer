@@ -2,9 +2,8 @@ import * as React from "react";
 import {
   getAbbrMonth,
   getEventStartDayString,
-  getEventTime,
-  getEventEndTime,
   getClassItem,
+  getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
 import { EventElement, EventEvent } from "../../../../types/types";
 import { Grid, Stack, Typography } from "@mui/material";
@@ -13,11 +12,9 @@ import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
-  const endTime = getEventEndTime(event);
   const abbrMonth = getAbbrMonth(event);
   const eventDay = getEventStartDayString(event);
-  const eventEndTime = endTime ? ` - ${endTime}` : "";
-  const eventTimeString = getEventTime(event) + eventEndTime;
+
   const classList = getClassItem(event);
 
   return (
@@ -57,7 +54,10 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
       </Grid>
       <Grid item>
         <EventTitle variant="h5" title={event.title} url={event.localist_url} />
-        <EventDateTime hideTime={false} timeFormat={eventTimeString} />
+        <EventDateTime
+          hideTime={false}
+          timeFormat={getEventStartEndTimes(event)}
+        />
         <EventLocation locationName={event.location_name} />
       </Grid>
     </Grid>

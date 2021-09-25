@@ -34,10 +34,10 @@ const getMonthDayFromDateTime = (dateTime: Date): string => {
  * Some events don't have end dates/times but the end date/time must come after the start date
  * So we default to the start date.
  * @param {EventEvent} event
- * @returns {Date}
+ * @returns {Date | null}
  */
-export const getEventEnd = (event: EventEvent): Date => {
-  return event.event_instances[0].event_instance.end || event.last_date;
+export const getEventEnd = (event: EventEvent): Date | null => {
+  return event.event_instances[0].event_instance.end;
 };
 
 /**
@@ -105,9 +105,7 @@ export const getEventStartDayString = (event: EventEvent): string => {
 export const getEventEndTime = (event: EventEvent) => {
   const endTime = getEventEnd(event);
   let time = "";
-  // Some end times are null if so it will return start date.
-  // If its the start date don't return a end time.
-  if (endTime !== getEventStart(event)) {
+  if (endTime) {
     time = getTimeFromDateTime(endTime);
   }
   return time;
