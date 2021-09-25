@@ -13,7 +13,9 @@ const EventLocation = (props: EventLocationProps) => {
   }
   return (
     <Typography
+      component="span"
       sx={{
+        display: "block",
         textTransform: "none",
         fontWeight: "normal",
         fontSize: "1em",
