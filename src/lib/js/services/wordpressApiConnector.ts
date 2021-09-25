@@ -2,6 +2,7 @@ import { Department, EventElement } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
 import { NodesEntity, WordpressEventsQuery } from "types/wordpressGraphql";
+import { ics } from "calendar-link";
 import GET_EVENTS from "../../graphql/wordpressQuery";
 
 export interface ApiConnectorProps {
@@ -71,6 +72,15 @@ const wordpressTransformEvents = (
       const startDateTime = new Date(
         `${event.event.date} ${event.event.startTime}`
       );
+      // @todo save localist_ics_url to WP event so we dont have to build it here.
+      const icsEvent = ics({
+        title: event.title || "Cornell Event",
+        description: event.event.description.replace(/[\r\n]/g, `<br />`) || "",
+        start: startDateTime,
+        end: endDateTime,
+        location: event.event.location || "",
+      });
+
       const wordpressTransformedEvent: EventElement = {
         event: {
           id: parseInt(event.event.eventId, 10),
@@ -153,7 +163,7 @@ const wordpressTransformEvents = (
             contact_email: event.event.email,
           },
           localist_url: event.event.localistUrl || "",
-          localist_ics_url: "",
+          localist_ics_url: icsEvent,
           photo_url: event.event.photoUrl || "",
           venue_url: null,
           group_id: null,

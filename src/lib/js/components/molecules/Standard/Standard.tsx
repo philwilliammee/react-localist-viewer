@@ -1,7 +1,7 @@
 import React from "react";
 import {
   getEventTime,
-  getMonthHeader,
+  getStartDateStringMonthYear,
   getDisplayDate,
   getClassItem,
 } from "../../../helpers/displayEvent";
@@ -90,7 +90,7 @@ const Standard = (props: StandardProps) => {
   let lastDay = "";
 
   const getMonth = (event: EventEvent) => {
-    const month = getMonthHeader(event);
+    const month = getStartDateStringMonthYear(event);
     if (lastMonth !== month) {
       lastMonth = month;
       return (
