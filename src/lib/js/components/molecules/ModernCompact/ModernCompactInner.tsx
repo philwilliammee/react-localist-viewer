@@ -89,8 +89,6 @@ export default function ModernCompactInner(props: Props) {
               color="text.secondary"
               gutterBottom
             >
-              {/* {eventTime}{" "}
-              {event.location_name ? `, ${event.location_name}` : ""} */}
               <EventDateTime
                 dateFormat={getEventStartMonthDayString(event)}
                 timeFormat={getEventStartEndTimes(event)}

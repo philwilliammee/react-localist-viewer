@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  getAbbrMonth,
+  getStartDayMonthAbbr,
   getEventStartDayString,
   getEventStartMonthDayString,
   getEventTime,
@@ -41,7 +41,7 @@ const Time = (props: Props) => {
           paddingLeft: theme.spacing(2),
         }}
       >
-        {getAbbrMonth(event)}
+        {getStartDayMonthAbbr(event)}
       </Typography>
       <Typography
         component="span"

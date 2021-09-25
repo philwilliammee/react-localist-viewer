@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  getAbbrMonth,
+  getStartDayMonthAbbr,
   getEventStartDayString,
   getClassItem,
   getEventStartEndTimes,
@@ -12,7 +12,7 @@ import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
 
 const InlineCompactInner = ({ event }: { event: EventEvent }) => {
-  const abbrMonth = getAbbrMonth(event);
+  const abbrMonth = getStartDayMonthAbbr(event);
   const eventDay = getEventStartDayString(event);
 
   const classList = getClassItem(event);

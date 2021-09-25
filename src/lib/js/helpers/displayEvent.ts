@@ -30,6 +30,15 @@ const getMonthDayFromDateTime = (dateTime: Date): string => {
   return monthDay;
 };
 
+const getEventEndTime = (event: EventEvent) => {
+  const endTime = getEventEnd(event);
+  let time = "";
+  if (endTime) {
+    time = getTimeFromDateTime(endTime);
+  }
+  return time;
+};
+
 /**
  * Some events don't have end dates/times but the end date/time must come after the start date
  * So we default to the start date.
@@ -102,16 +111,7 @@ export const getEventStartDayString = (event: EventEvent): string => {
   return moment(getEventStart(event)).format("D");
 };
 
-export const getEventEndTime = (event: EventEvent) => {
-  const endTime = getEventEnd(event);
-  let time = "";
-  if (endTime) {
-    time = getTimeFromDateTime(endTime);
-  }
-  return time;
-};
-
-export const isAllDay = (event: EventEvent) => {
+export const isAllDay = (event: EventEvent): boolean => {
   if (event.event_instances[0].event_instance.all_day) {
     return true;
   }
@@ -153,32 +153,6 @@ export const getEventStartEndTimes = (event: EventEvent): string => {
 };
 
 /**
- *
- * @param {EventEvent} event The localist event
- * @return {string} The group name.
- */
-export const getGroupName = (event: EventEvent): string => {
-  let groupName = "";
-  if (typeof event.group_name !== "undefined") {
-    groupName = event.group_name || "";
-  }
-  return groupName;
-};
-
-/**
- *
- * @param {EventEvent} event The localist event
- * @return {number} The group Id.
- */
-export const getGroupId = (event: EventEvent): number => {
-  let groupId = 0;
-  if (typeof event.group_name !== "undefined") {
-    groupId = event.group_id || -1;
-  }
-  return groupId;
-};
-
-/**
  * The event type ids.
  * @param {EventEvent} event The event object.
  * @return {array} An array of event type ids.
@@ -210,40 +184,6 @@ export const getDepartmentIds = (event: EventEvent): Array<any> => {
 };
 
 /**
- * The events department id
- * @param {EventEvent} event The event object.
- *
- * @return {number|undefined} The department id.
- */
-export const getDepartment = (event: EventEvent): number | undefined => {
-  let department;
-  if (typeof event.filters.departments !== "undefined") {
-    department = event.filters.departments[0].id;
-  }
-  return department;
-};
-
-/**
- * An array of the filters event types.
- * @todo departments are an array get all of the departments.
- * @param {EventEvent} event The localist Event.
- * @return {Department[]} The filter text.
- */
-export const getFiltersType = (event: EventEvent): Department[] => {
-  return event.filters.event_types;
-};
-
-/**
- * Get an array of the filters departments.
- * @todo departments are an array get all of the departments.
- * @param {EventEvent} event The localist Event.
- * @return {Department[]} The filter text.
- */
-export const getFiltersDepartments = (event: EventEvent): Department[] => {
-  return event.filters.departments;
-};
-
-/**
  * Gets the appropriate event type.
  * @todo add support for multiple filter types.
  * @param {EventEvent} event The localist Event.
@@ -254,69 +194,19 @@ export const getEventType = (
   event: EventEvent,
   prefCategory: string
 ): Department[] | string[] => {
-  const department = getDepartment(event);
-  const groupName = getGroupName(event);
+  const department = event.filters.departments[0].id;
+  const groupName = event.group_name;
   let eventTypes: Department[] | string[] = [];
   if (typeof event.filters.event_types !== "undefined") {
-    eventTypes = getFiltersType(event);
+    eventTypes = event.filters.event_types;
   }
   if (prefCategory === "dept" && department !== 0) {
-    eventTypes = getFiltersDepartments(event);
+    eventTypes = event.filters.departments;
   }
-  if (prefCategory === "group" && groupName !== "") {
+  if (prefCategory === "group" && groupName) {
     eventTypes = [groupName];
   }
   return eventTypes;
-};
-
-/**
- * Gets the appropriate event type.
- * @todo add support for multiple filter types.
- * @param {EventEvent} event The localist Event.
- * @return {string | null} A string of event types or null
- */
-export const getEventTypeString = (event: EventEvent): string | null => {
-  if (typeof event.filters.event_types !== "undefined") {
-    return event.filters.event_types.map((type) => type.name).join(", ");
-  }
-  return null;
-};
-
-/**
- * Gets the appropriate event type.
- * @todo add support for multiple filter types.
- * @param {EventEvent} event The localist Event.
- * @return {string | null} A string of event types or null
- */
-export const getEventDepartmentsString = (event: EventEvent): string | null => {
-  if (typeof event.filters.departments !== "undefined") {
-    return event.filters.departments.map((type) => type.name).join(", ");
-  }
-  return null;
-};
-
-/**
- * Gets start date in compact format.
- * @param {event} event The event.
- * @return {string} The MMM D".
- */
-export const getEventStartMonthDayStringCompact = (
-  event: EventEvent
-): string => {
-  const startDateTime = getEventStart(event);
-  const eventDateCompact = moment(startDateTime).format("MMM D");
-  return eventDateCompact;
-};
-
-/**
- * Gets start date in standard format.
- * @param {event} event The event.
- * @return {string} The MMMM YYYY".
- */
-export const getStartDateStringMonthYear = (event: EventEvent): string => {
-  const startDateTime = getEventStart(event);
-  const eventMonthHeader = moment(startDateTime).format("MMMM YYYY");
-  return eventMonthHeader;
 };
 
 /**
@@ -324,7 +214,7 @@ export const getStartDateStringMonthYear = (event: EventEvent): string => {
  * @param {event} event The event.
  * @return {string} The MMM".
  */
-export const getAbbrMonth = (event: EventEvent): string => {
+export const getStartDayMonthAbbr = (event: EventEvent): string => {
   const startDateTime = getEventStart(event);
   const abbrMonth = moment(startDateTime).format("MMM");
   return abbrMonth;

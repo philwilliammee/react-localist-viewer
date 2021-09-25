@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import buildEventWrapperFilters from "../../../helpers/buildEventWrapperFilters";
 import {
   getTypeIds,
-  getGroupId,
   getDepartmentIds,
 } from "../../../helpers/displayEvent";
 import FilterButton from "../../atoms/FilterButton";
@@ -31,7 +30,7 @@ const EventFilters = (props: Props) => {
     const filteredEvents = events.filter((event: EventElement) => {
       const ids = getTypeIds(event.event);
       const departmentIds = getDepartmentIds(event.event);
-      const groupId = getGroupId(event.event);
+      const groupId = event.event.group_id;
       if (obj.name === "All Events") {
         return true;
       } else if (filterby === "type" && ids.includes(obj.id)) {
