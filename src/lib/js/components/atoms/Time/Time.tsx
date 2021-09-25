@@ -1,8 +1,8 @@
 import React from "react";
 import {
   getAbbrMonth,
-  getDay,
-  getEventDate,
+  getEventStartDayString,
+  getEventStartMonthDayString,
   getEventTime,
 } from "../../../helpers/displayEvent";
 import { EventEvent } from "../../../../types/types";
@@ -19,7 +19,7 @@ const Time = (props: Props) => {
     <Box
       component="time"
       className="rlv-time"
-      title={getEventDate(event)}
+      title={getEventStartMonthDayString(event)}
       dateTime={getEventTime(event)}
       sx={{
         display: "inline-block",
@@ -56,7 +56,7 @@ const Time = (props: Props) => {
           paddingLeft: theme.spacing(1),
         }}
       >
-        {getDay(event)}
+        {getEventStartDayString(event)}
       </Typography>
     </Box>
   );

@@ -8,7 +8,7 @@ import EventContext from "../../../../context/EventsContext";
 import { Moment } from "moment";
 import {
   getClassItem,
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../../helpers/displayEvent";
@@ -59,7 +59,7 @@ function AgendaList(props: Props) {
                   hideimages={props.hideimages}
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
-                  dateFormat={getEventDate(event.event)}
+                  dateFormat={getEventStartMonthDayString(event.event)}
                   timeFormat={getEventStartEndTimes(event.event)}
                   listClass={classList}
                   event={event.event}

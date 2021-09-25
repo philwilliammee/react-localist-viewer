@@ -5,7 +5,7 @@ import MoreInfo from "../MoreInfo";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
 import {
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
@@ -20,7 +20,7 @@ interface Props {
 const EventInner = ({ event }: Props) => (
   <Stack component="section" className="rlv-event-inner" spacing={1}>
     <EventDateTime
-      dateFormat={getEventDate(event)}
+      dateFormat={getEventStartMonthDayString(event)}
       timeFormat={getEventStartEndTimes(event)}
       hideTime={false}
     />

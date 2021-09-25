@@ -9,7 +9,7 @@ import { EventEvent, HideType } from "../../../../types/types";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
 import {
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
@@ -92,7 +92,7 @@ export default function ModernCompactInner(props: Props) {
               {/* {eventTime}{" "}
               {event.location_name ? `, ${event.location_name}` : ""} */}
               <EventDateTime
-                dateFormat={getEventDate(event)}
+                dateFormat={getEventStartMonthDayString(event)}
                 timeFormat={getEventStartEndTimes(event)}
                 hideTime={false}
               />

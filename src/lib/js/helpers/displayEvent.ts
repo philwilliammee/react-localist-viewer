@@ -31,18 +31,6 @@ const getMonthDayFromDateTime = (dateTime: Date): string => {
 };
 
 /**
- * Gets day  from dateTime.
- *
- * @param {dateTime} dateTime A valid date time.
- *
- * @return {string} The abbreviated day "1".
- */
-const getDayFromDateTime = (dateTime: Date): string => {
-  const day = moment(dateTime).format("D");
-  return day;
-};
-
-/**
  * Some events don't have end dates/times but the end date/time must come after the start date
  * So we default to the start date.
  * @param {EventEvent} event
@@ -58,21 +46,7 @@ export const getEventEnd = (event: EventEvent): Date => {
  * @return {Date} Date string.
  */
 export const getEventStart = (event: EventEvent): Date => {
-  return event.event_instances[0].event_instance.start;
-};
-
-/**
- * The logic for determining the type of date string.
- *
- * @param {EventEvent} event The localist event.
- * @param {Format} format
- *
- * @return {string} The date string.
- */
-export const getStartDateStringMonthDayYear = (event: EventEvent): string => {
-  const dateTime = getEventStart(event);
-  let eventDate = moment(dateTime).format("M/DD/YYYY");
-  return eventDate;
+  return event.event_instances[0].event_instance.start || event.first_date;
 };
 
 /**
@@ -80,7 +54,7 @@ export const getStartDateStringMonthDayYear = (event: EventEvent): string => {
  * @param {EventEvent} event The localist event.
  * @return {string} The event start date.
  */
-export const getEventDate = (event: EventEvent): string => {
+export const getEventStartMonthDayString = (event: EventEvent): string => {
   const startDateTime = getEventStart(event);
   const eventStartDate = getMonthDayFromDateTime(startDateTime);
   return eventStartDate;
@@ -124,10 +98,8 @@ export const getTruncDesc = (
  * @param {EventEvent} event The localist event.
  * @return {string} The day of the event.
  */
-export const getDay = (event: EventEvent): string => {
-  const startDateTime = getEventStart(event);
-  const date = getDayFromDateTime(startDateTime);
-  return date;
+export const getEventStartDayString = (event: EventEvent): string => {
+  return moment(getEventStart(event)).format("D");
 };
 
 export const getEventEndTime = (event: EventEvent) => {
@@ -330,7 +302,9 @@ export const getEventDepartmentsString = (event: EventEvent): string | null => {
  * @param {event} event The event.
  * @return {string} The MMM D".
  */
-export const getEventDateCompact = (event: EventEvent): string => {
+export const getEventStartMonthDayStringCompact = (
+  event: EventEvent
+): string => {
   const startDateTime = getEventStart(event);
   const eventDateCompact = moment(startDateTime).format("MMM D");
   return eventDateCompact;

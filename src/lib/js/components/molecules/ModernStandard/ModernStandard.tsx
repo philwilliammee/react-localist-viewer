@@ -3,7 +3,7 @@ import { StandardProps } from "../../../../types/types";
 import ModernStandardInner from "./ModernStandardInner";
 import {
   getClassItem,
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
@@ -30,7 +30,7 @@ const ModernStandard = (props: StandardProps) => {
                   hideimages={props.hideimages}
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
-                  dateFormat={getEventDate(event.event)}
+                  dateFormat={getEventStartMonthDayString(event.event)}
                   timeFormat={getEventStartEndTimes(event.event)}
                   listClass={classList}
                   event={event.event}

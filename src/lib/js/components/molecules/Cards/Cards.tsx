@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { StandardProps } from "../../../../types/types";
 import {
   getClassItem,
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
@@ -32,7 +32,7 @@ const Cards = (props: StandardProps) => {
                     hideimages={props.hideimages}
                     truncatedescription={props.truncatedescription}
                     tags={event.event.tags}
-                    dateFormat={getEventDate(event.event)}
+                    dateFormat={getEventStartMonthDayString(event.event)}
                     timeFormat={getEventStartEndTimes(event.event)}
                     locationName={event.event.location_name}
                     listClass={classList}

@@ -2,8 +2,8 @@ import React from "react";
 import {
   getEventTime,
   getStartDateStringMonthYear,
-  getStartDateStringMonthDayYear,
   getClassItem,
+  getEventStart,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import {
@@ -19,6 +19,7 @@ import EventIcon from "@mui/icons-material/Event";
 import InlineImage from "../InlineImage/InlineImage";
 import { Box } from "@mui/system";
 import { Stack, Typography, useTheme } from "@mui/material";
+import moment from "moment";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -111,8 +112,8 @@ const Standard = (props: StandardProps) => {
     return "";
   };
 
-  const getDay = (event: EventEvent) => {
-    const displayDate = getStartDateStringMonthDayYear(event);
+  const getEventStartDayString = (event: EventEvent) => {
+    const displayDate = moment(getEventStart(event)).format("M/DD/YYYY");
     if (lastDay !== displayDate) {
       lastDay = displayDate;
       return (
@@ -145,7 +146,7 @@ const Standard = (props: StandardProps) => {
             return (
               <div key={event.event.event_instances[0].event_instance.id}>
                 {getMonth(event.event)}
-                {getDay(event.event)}
+                {getEventStartDayString(event.event)}
                 <StandardInner
                   event={event.event}
                   filterby={filterby}

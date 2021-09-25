@@ -5,7 +5,7 @@ import EventDateTime from "../lib/js/components/atoms/EventDateTime";
 import { singleEvent } from "./assets/testData";
 import { EventEvent } from "../lib/types/types";
 import {
-  getEventDate,
+  getEventStartMonthDayString,
   getEventStartEndTimes,
 } from "lib/js/helpers/displayEvent";
 
@@ -22,7 +22,7 @@ const Template: Story<ComponentProps<typeof EventDateTime>> = (args) => (
 const eventData: EventEvent = { ...singleEvent.event };
 export const Default = Template.bind({});
 Default.args = {
-  dateFormat: getEventDate(eventData),
+  dateFormat: getEventStartMonthDayString(eventData),
   timeFormat: getEventStartEndTimes(eventData),
 };
 
