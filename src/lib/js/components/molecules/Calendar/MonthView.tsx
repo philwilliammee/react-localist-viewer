@@ -1,5 +1,4 @@
 import React from "react";
-import Proptypes from "prop-types";
 import { EventElement, EventEvent } from "../../../../types/types";
 import {
   currentDay,
@@ -223,9 +222,5 @@ const Weekdays = React.memo(function TableHeader() {
     </>
   );
 });
-
-MonthView.propTypes = {
-  trElems: Proptypes.node,
-};
 
 export default MonthView;

@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState } from "react";
-import PropTypes from "prop-types";
 import { isHidden } from "../../../helpers/common";
 import { EventImageCropTypes, HideType } from "../../../../types/types";
 import { Box } from "@mui/system";
@@ -50,17 +49,6 @@ const EventImage = (props: EventImageProps) => {
       }}
     />
   );
-};
-
-EventImage.propTypes = {
-  photoUrl: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  hideimages: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  photoCrop: PropTypes.oneOf(["huge", "big", "big_square"]),
-};
-EventImage.defaultProps = {
-  hideimages: null,
-  photoCrop: "big",
 };
 
 export default EventImage;

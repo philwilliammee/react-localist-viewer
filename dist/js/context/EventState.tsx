@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import EventsContext, { initialEvent } from "./EventsContext";
 import moment from "moment";
 import { EventElement, EventEvent } from "../../types/types";
@@ -34,10 +33,6 @@ const EventsState = ({ children }: { children: React.ReactNode }) => {
       {children}
     </EventsContext.Provider>
   );
-};
-
-EventsState.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default EventsState;

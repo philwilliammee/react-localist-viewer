@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import { fetchEvents } from "./js/services/apiInterface";
 import Heading from "./js/components/organisms/Heading";
 import Paginate from "./js/components/organisms/Paginate/Paginate";

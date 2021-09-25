@@ -14,9 +14,7 @@ const FilterButton = (props: FilterButtonProps) => {
     <Button
       variant="contained"
       id={filterId}
-      className={`rlv-filter-button filter-btn ${
-        active === filterId ? "active" : ""
-      }`}
+      className={`rlv-filter-button ${active === filterId ? "active" : ""}`}
       type="button"
       onClick={clickHandler}
       sx={{

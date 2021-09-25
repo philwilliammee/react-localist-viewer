@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   getAbbrMonth,
   getDay,
@@ -61,10 +60,6 @@ const Time = (props: Props) => {
       </Typography>
     </Box>
   );
-};
-
-Time.propTypes = {
-  event: PropTypes.object.isRequired,
 };
 
 export default Time;

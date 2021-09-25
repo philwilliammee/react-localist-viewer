@@ -101,7 +101,7 @@ const AddCal = (props: AddCalProps) => {
 
   return (
     <Box
-      className="rlc-add-cal"
+      className="rlv-add-cal"
       sx={{
         display: "flex",
         flexDirection: "row",

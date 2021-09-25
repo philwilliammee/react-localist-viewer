@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import RoomIcon from "@mui/icons-material/Room";
 import { Typography, useTheme } from "@mui/material";
 
@@ -36,9 +35,6 @@ const EventLocation = (props: EventLocationProps) => {
       {locationName}
     </Typography>
   );
-};
-EventLocation.propTypes = {
-  locationName: PropTypes.string,
 };
 
 export default EventLocation;

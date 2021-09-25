@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
 import Grid from "../../atoms/Grid";
 import { EventEvent } from "../../../../types/types";
@@ -87,10 +86,6 @@ const MoreInfo = ({ event }: Props) => {
       </Grid>
     </Box>
   );
-};
-
-MoreInfo.propTypes = {
-  event: PropTypes.object.isRequired,
 };
 
 export default MoreInfo;

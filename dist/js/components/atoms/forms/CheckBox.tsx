@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -38,11 +37,5 @@ const Checkbox = ({
     label={label}
   />
 );
-
-Checkbox.propTypes = {
-  name: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default Checkbox;
