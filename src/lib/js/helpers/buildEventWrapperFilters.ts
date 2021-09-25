@@ -13,9 +13,14 @@ const buildEventWrapperFilters = (
   filterby: FilterBy
 ) => {
   if (filterby === "none") {
-    return "";
+    return [];
   }
-  const filters: Department[] = [];
+  const filters: Department[] = [
+    {
+      id: -1,
+      name: "All Events",
+    },
+  ];
   events.forEach((eventObj) => {
     const { event } = eventObj;
     const groupName = getGroupName(event);

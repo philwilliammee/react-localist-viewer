@@ -14,18 +14,15 @@ const EventFilterByStories = {
 };
 
 // @todo fix this omg this is ugly. Why pass the whole event?
-const Template: Story<ComponentProps<typeof EventFilterBy>> = (args) => (
-  <EventFilterBy {...args} />
-);
+const Template: Story<ComponentProps<typeof EventFilterBy>> = (args) => {
+  return <EventFilterBy {...args} />;
+};
 
 const eventsData: EventElement[] = componentData.events;
 export const Example = Template.bind({});
 Example.args = {
-  handleEventFilter: () => {},
   filterby: "dept",
   events: eventsData,
-  active: "filterAll",
-  setActive: () => {},
 };
 
 export default EventFilterByStories as Meta;

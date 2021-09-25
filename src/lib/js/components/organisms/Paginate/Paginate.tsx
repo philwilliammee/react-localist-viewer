@@ -31,7 +31,7 @@ const Paginate = (props: Props) => {
   return (
     <Pagination
       classes={classes}
-      className="rlc-paginate"
+      className="rlv-paginate"
       count={total}
       onChange={(e, p) => {
         handlePageClick(e, p);
