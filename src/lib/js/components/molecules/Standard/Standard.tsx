@@ -5,13 +5,7 @@ import {
   getEventStart,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
-import {
-  EventElement,
-  EventEvent,
-  FilterBy,
-  Format,
-  HideType,
-} from "../../../../types/types";
+import { EventEvent, FilterBy, HideType } from "../../../../types/types";
 import EventTitle from "../../atoms/EventTitle";
 import EventLocation from "../../atoms/EventLocation";
 import EventIcon from "@mui/icons-material/Event";
@@ -19,6 +13,7 @@ import InlineImage from "../InlineImage/InlineImage";
 import { Box } from "@mui/system";
 import { Stack, Typography, useTheme } from "@mui/material";
 import moment from "moment";
+import { Props } from "../../organisms/LocalistView";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -61,19 +56,7 @@ const StandardInner = (props: StandardInnerProps) => {
   );
 };
 
-interface StandardProps {
-  events: EventElement[];
-  filterby: FilterBy;
-  format: Format;
-  truncatedescription?: string;
-  thumbnail?: string;
-  wrapperClassArray: string[];
-  listClassArray: string[];
-  hideaddcal: HideType;
-  hidedescription: HideType;
-  hideimages: HideType;
-}
-const Standard = (props: StandardProps) => {
+const Standard = (props: Props) => {
   const {
     events,
     filterby,
@@ -81,8 +64,6 @@ const Standard = (props: StandardProps) => {
     truncatedescription,
     hidedescription,
     hideimages,
-    listClassArray,
-    wrapperClassArray,
   } = props;
   const theme = useTheme();
   let lastMonth = "";
@@ -135,11 +116,10 @@ const Standard = (props: StandardProps) => {
     }
     return "";
   };
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+
   return (
-    <section className={`rlv-standard ${wrapperClassList}`}>
-      <div className={`events-list ${listClassList}`}>
+    <section className={`rlv-standard ${props.wrapperclass}`}>
+      <div className={`events-list ${props.listclass}`}>
         {events.length > 0 ? (
           events.map((event) => {
             return (

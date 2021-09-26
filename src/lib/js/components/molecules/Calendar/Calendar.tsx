@@ -1,21 +1,8 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import moment, { Moment } from "moment";
-import {
-  getKeyFromDateRange,
-  getLastMonth,
-  getNextMonth,
-  initDateRange,
-} from "./dateUtils";
+import { getLastMonth, getNextMonth, initDateRange } from "./dateUtils";
 import EventsContext from "../../../context/EventsContext";
-import {
-  DisplayedDateRange,
-  EventElement,
-  EventEvent,
-  ViewComponentProps,
-} from "../../../../types/types";
-import { queryClient } from "../../../../query";
-import { useQuery } from "react-query";
-import { fetchEvents } from "../../../services/apiInterface";
+import { EventElement, EventEvent } from "../../../../types/types";
 import MonthView from "./MonthView";
 import EventModal from "../../atoms/ModalDialog";
 import Grid from "../../atoms/Grid";
@@ -24,17 +11,14 @@ import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
 import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
-import { getQueryId } from "../../../helpers/common";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
+import useCalendarApi from "lib/js/hooks/useCalendarApi";
 
 const Calendar = (props: Props) => {
-  const queryId = getQueryId(props);
+  // const queryId = getQueryId(props);
   const {
-    setEvents,
-    filteredEvents,
-    setFilteredEvents,
     showDialog,
     setShowDialog,
     eventSelected,
@@ -45,85 +29,37 @@ const Calendar = (props: Props) => {
   const [dateRange, setDateRange] = useState(initDateRange());
   const [selectedDay, setSelectedDay] = useState<number>(moment().date());
   const [view, setView] = useState<"month" | "day" | "list">("month");
-  const key = getKeyFromDateRange(dateRange);
-  // @todo all of this should be moved up to the main component.
-  const { data } = useQuery(
-    [queryId, key],
-    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
-    { keepPreviousData: true, staleTime: Infinity }
-  );
-
-  const preFetchData = useCallback(
-    (dr: DisplayedDateRange) => {
-      let lastMonthDateRange = getLastMonth(dr);
-      queryClient.prefetchQuery(
-        [queryId, getKeyFromDateRange(lastMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
-        { staleTime: Infinity }
-      );
-
-      let nextMonthDateRange = getNextMonth(dr);
-      queryClient.prefetchQuery(
-        [queryId, getKeyFromDateRange(nextMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
-        { staleTime: Infinity }
-      );
-      if (data) {
-        setEvents(data.events);
-        setFilteredEvents(data.events);
-        // preload and disc-cache event images @todo replace big with actual
-        // Photo crop should be defined in the base parent.
-        // Or each component is responsible for pre-fetching their images.
-        data.events.forEach((event) => {
-          const src = event.event.photo_url.replace("/huge/", `/big/`);
-          const img = new Image();
-          img.src = src;
-        });
-      }
-    },
-
-    [props, setEvents, setFilteredEvents, data, queryId]
-  );
-
-  useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      preFetchData(dateRange);
-    }
-    return function cleanup() {
-      mounted = false;
-    };
-    // This is ok we only want to fetch new data when the date range changes,
-    // This allows us to apply filtering.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateRange, data]);
+  const { filteredEvents } = useCalendarApi(props, dateRange);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
     const newDateRange = getNextMonth(dateRange);
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
+    setDisplayedDateRange(newDateRange);
   };
 
   const prevMonth = () => {
     const newDateContext = moment(dateContext).clone().subtract(1, "month");
     const newDateRange = getLastMonth(dateRange);
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
+    setDisplayedDateRange(newDateRange);
   };
 
   const today = () => {
     const newDateContext = moment();
     const newDateRange = initDateRange();
     setSelectedDay(newDateContext.date());
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
+    setDisplayedDateRange(newDateRange);
   };
 
-  const handleEventSelect = (event: EventEvent) => {
+  const showModal = (event: EventEvent) => {
     setEventSelected(event);
     setShowDialog(true);
   };
@@ -133,6 +69,7 @@ const Calendar = (props: Props) => {
     setView("day");
   };
 
+  // If it is a day view only show results for that day.
   const getListEvents = () => {
     if (view === "day") {
       return filteredEvents.filter(
@@ -157,7 +94,7 @@ const Calendar = (props: Props) => {
 
       <Grid container>
         <Grid col={3}>
-          <Filters key={key} />
+          <Filters />
         </Grid>
         <Grid col={9}>
           <Toolbar
@@ -191,7 +128,7 @@ const Calendar = (props: Props) => {
                 dateContext={dateContext}
                 setSelectedDay={handleDateClick}
                 selectedDay={selectedDay}
-                handleEventSelect={handleEventSelect}
+                handleEventSelect={showModal}
               />
             </Box>
           ) : (
@@ -205,8 +142,10 @@ const Calendar = (props: Props) => {
               hidedescription={props.hidedescription}
               hideimages={props.hideimages}
               hideaddcal={props.hideaddcal}
-              wrapperClassArray={props.wrapperClassArray}
-              listClassArray={props.listClassArray}
+              wrapperclass={props.wrapperclass || ""}
+              listclass={props.listclass || ""}
+              wrapperClassArray={[]}
+              listClassArray={[]}
             />
           )}
         </Grid>

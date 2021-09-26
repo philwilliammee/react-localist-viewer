@@ -1,5 +1,4 @@
 import React from "react";
-import { StandardProps } from "../../../../types/types";
 import ModernStandardInner from "./ModernStandardInner";
 import {
   getClassItem,
@@ -8,15 +7,15 @@ import {
   getEventKey,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
+import { Props } from "../../organisms/LocalistView";
 
-const ModernStandard = (props: StandardProps) => {
-  const { events, listClassArray, wrapperClassArray } = props;
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+const ModernStandard = (props: Props) => {
+  const { events, wrapperclass, listclass } = props;
+
   return (
     <section className="rlv-modern-standard" title="Events List">
-      <div className={wrapperClassList}>
-        <Stack spacing={2} className={listClassList}>
+      <div className={wrapperclass}>
+        <Stack spacing={2} className={listclass}>
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);

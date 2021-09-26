@@ -21,8 +21,8 @@ export interface Props {
   itemclass: string;
   page: number;
   loading: boolean;
-  wrapperClassArray: string[];
-  listClassArray: string[];
+  // wrapperClassArray: string[];
+  // listClassArray: string[];
   api: string;
   depts?: string;
 }
@@ -41,12 +41,10 @@ const LocalistView = (props: Props) => {
       break;
 
     case "modern_standard":
-      props.wrapperClassArray.push("singles");
       component = <ModernStandard key={page} {...props} />;
       break;
 
     case "modern_compact":
-      props.wrapperClassArray.push("compact");
       component = <ModernCompact key={page} {...props} />;
       break;
 

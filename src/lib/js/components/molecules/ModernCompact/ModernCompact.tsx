@@ -1,5 +1,4 @@
 import React from "react";
-import { StandardProps } from "../../../../types/types";
 import ModernCompactInner from "./ModernCompactInner";
 import {
   getClassItem,
@@ -7,14 +6,13 @@ import {
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
+import { Props } from "../../organisms/LocalistView";
 
-const ModernCompact = (props: StandardProps) => {
-  const { events, listClassArray, wrapperClassArray } = props;
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+const ModernCompact = (props: Props) => {
+  const { events, listclass, wrapperclass } = props;
   return (
-    <section className={`rlv-modern-compact ${wrapperClassList}`}>
-      <div className={listClassList}>
+    <section className={`rlv-modern-compact ${wrapperclass}`}>
+      <div className={listclass}>
         {events.length > 0 ? (
           events.map((event) => {
             const key = getEventKey(event.event);

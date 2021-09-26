@@ -40,8 +40,7 @@ const getEventEndTime = (event: EventEvent) => {
 };
 
 /**
- * Some events don't have end dates/times but the end date/time must come after the start date
- * So we default to the start date.
+ * Some events don't have end dates/times
  * @param {EventEvent} event
  * @returns {Date | null}
  */
