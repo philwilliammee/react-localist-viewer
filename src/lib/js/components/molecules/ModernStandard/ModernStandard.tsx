@@ -7,9 +7,9 @@ import {
   getEventKey,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
-import { Props } from "../../organisms/LocalistView";
+import { ViewProps } from "../../organisms/LocalistView";
 
-const ModernStandard = (props: Props) => {
+const ModernStandard = (props: ViewProps) => {
   const { events, wrapperclass, listclass } = props;
 
   return (

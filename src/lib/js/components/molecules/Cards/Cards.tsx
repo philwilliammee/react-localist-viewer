@@ -7,9 +7,9 @@ import {
   getEventKey,
 } from "../../../helpers/displayEvent";
 import ModernCompactInner from "../ModernCompact/ModernCompactInner";
-import { Props } from "../../organisms/LocalistView";
+import { ViewProps } from "../../organisms/LocalistView";
 
-const Cards = (props: Props) => {
+const Cards = (props: ViewProps) => {
   const { events, listclass, wrapperclass } = props;
   return (
     <section className="rlv-cards">

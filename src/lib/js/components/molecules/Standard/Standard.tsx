@@ -13,15 +13,15 @@ import InlineImage from "../InlineImage/InlineImage";
 import { Box } from "@mui/system";
 import { Stack, Typography, useTheme } from "@mui/material";
 import moment from "moment";
-import { Props } from "../../organisms/LocalistView";
+import { ViewProps } from "../../organisms/LocalistView";
 
 interface StandardInnerProps {
   event: EventEvent;
   filterby: FilterBy;
   truncatedescription?: string;
-  hideaddcal: HideType;
-  hidedescription: HideType;
-  hideimages: HideType;
+  hideaddcal?: HideType;
+  hidedescription?: HideType;
+  hideimages?: HideType;
 }
 
 const StandardInner = (props: StandardInnerProps) => {
@@ -56,7 +56,7 @@ const StandardInner = (props: StandardInnerProps) => {
   );
 };
 
-const Standard = (props: Props) => {
+const Standard = (props: ViewProps) => {
   const {
     events,
     filterby,

@@ -26,8 +26,8 @@ interface Props {
   description?: string;
   image: string;
   link: string;
-  hidedescription: HideType;
-  hideimages: HideType;
+  hidedescription?: HideType;
+  hideimages?: HideType;
   truncatedescription: string;
   tags: string[];
   locationName: string;
@@ -99,7 +99,7 @@ export default function ModernCompactInner(props: Props) {
             <Typography color="text.primary">
               <Truncate
                 description={description}
-                hidedescription={hidedescription}
+                hidedescription={hidedescription || "false"}
                 truncatedescription={truncatedescription}
               />
             </Typography>

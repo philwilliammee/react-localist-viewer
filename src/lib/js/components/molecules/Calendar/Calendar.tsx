@@ -9,15 +9,14 @@ import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
-import { Props } from "../../../components/organisms/LocalistView";
+import { ViewProps } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
 import useCalendarApi from "lib/js/hooks/useCalendarApi";
 
-const Calendar = (props: Props) => {
-  // const queryId = getQueryId(props);
+const Calendar = (props: ViewProps) => {
   const {
     showDialog,
     setShowDialog,
@@ -82,7 +81,7 @@ const Calendar = (props: Props) => {
   };
 
   return (
-    <div className="calendar-container">
+    <div className="rlv-calendar">
       <EventModal
         showDialog={showDialog}
         setShowDialog={setShowDialog}
@@ -134,18 +133,9 @@ const Calendar = (props: Props) => {
           ) : (
             //list or day view
             <AgendaList
-              events={getListEvents()}
+              {...props}
               setShowDialog={setShowDialog}
-              setEventSelected={setEventSelected}
-              dateContext={dateContext}
-              truncatedescription={props.truncatedescription}
-              hidedescription={props.hidedescription}
-              hideimages={props.hideimages}
-              hideaddcal={props.hideaddcal}
-              wrapperclass={props.wrapperclass || ""}
-              listclass={props.listclass || ""}
-              wrapperClassArray={[]}
-              listClassArray={[]}
+              events={getListEvents()}
             />
           )}
         </Grid>

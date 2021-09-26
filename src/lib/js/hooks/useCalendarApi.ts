@@ -10,10 +10,10 @@ import {
 } from "../components/molecules/Calendar/dateUtils";
 import EventsContext from "../context/EventsContext";
 import { queryClient } from "lib/query";
-import { Props } from "../components/organisms/LocalistView";
+import { ViewProps } from "../components/organisms/LocalistView";
 
 export default function useCalendarApi(
-  props: Props,
+  props: ViewProps,
   dateRange: DisplayedDateRange
 ) {
   const { events, setEvents, filteredEvents, setFilteredEvents } = useContext(

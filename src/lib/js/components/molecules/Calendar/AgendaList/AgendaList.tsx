@@ -1,11 +1,5 @@
-import {
-  EventElement,
-  HideType,
-  StandardProps,
-} from "../../../../../types/types";
 import React, { useContext } from "react";
 import EventContext from "../../../../context/EventsContext";
-import { Moment } from "moment";
 import {
   getClassItem,
   getEventStartMonthDayString,
@@ -14,19 +8,10 @@ import {
 } from "../../../../helpers/displayEvent";
 import ModernStandardInner from "../../ModernStandard/ModernStandardInner";
 import { Stack } from "@mui/material";
-import { Props } from "../../../organisms/LocalistView";
+import { ViewProps } from "../../../organisms/LocalistView";
 
-interface AgendaProps extends StandardProps {
-  events: EventElement[];
-  dateContext: Moment;
-  hideaddcal: HideType;
-  truncatedescription: string;
-  hidedescription: HideType;
-  hideimages: HideType;
+interface AgendaProps extends ViewProps {
   setShowDialog: Function;
-  setEventSelected: Function;
-  wrapperclass: string;
-  listclass: string;
 }
 
 function AgendaList(props: AgendaProps) {

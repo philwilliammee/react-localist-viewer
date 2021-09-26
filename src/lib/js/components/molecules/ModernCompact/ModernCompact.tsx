@@ -6,9 +6,9 @@ import {
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
-import { Props } from "../../organisms/LocalistView";
+import { ViewProps } from "../../organisms/LocalistView";
 
-const ModernCompact = (props: Props) => {
+const ModernCompact = (props: ViewProps) => {
   const { events, listclass, wrapperclass } = props;
   return (
     <section className={`rlv-modern-compact ${wrapperclass}`}>

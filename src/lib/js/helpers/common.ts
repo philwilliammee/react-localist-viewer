@@ -1,5 +1,5 @@
 import { AppProps, Department } from "../../types/types";
-import { Props } from "../components/organisms/LocalistView";
+import { ViewProps } from "../components/organisms/LocalistView";
 
 /**
  * Removes an element from an array.
@@ -69,7 +69,7 @@ export const truncateString = (str: string, num: number) => {
   return str;
 };
 
-export function getQueryId(props: AppProps | Props) {
+export function getQueryId(props: AppProps | ViewProps) {
   return [props.depts, props.api, props.format];
 }
 
