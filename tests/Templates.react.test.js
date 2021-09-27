@@ -7,10 +7,9 @@ import Standard from "../src/lib/js/components/molecules/Standard";
 import ModernCompact from "../src/lib/js/components/molecules/ModernCompact";
 import ModernStandard from "../src/lib/js/components/molecules/ModernStandard";
 import InlineCompact from "../src/lib/js/components/molecules/InlineCompact";
-// import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
 import renderer from "react-test-renderer";
 import { componentData } from "./testData";
-// import { Calendar } from "../src/lib/js/components/molecules/Calendar";
+// import Calendar from "../src/lib/js/components/molecules/Calendar";
 // import { QueryClient, QueryClientProvider } from "react-query";
 
 beforeAll(() => {
