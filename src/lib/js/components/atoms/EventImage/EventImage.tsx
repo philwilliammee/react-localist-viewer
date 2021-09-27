@@ -14,17 +14,18 @@ const EventImage = (props: EventImageProps) => {
   const { hideimages, photoUrl, title, photoCrop } = props;
   const [src, setImg] = useState(photoUrl);
 
-  const photo = src.replace("/huge/", `/${photoCrop}/`);
+  if (isHidden(hideimages)) {
+    return <></>;
+  }
 
+  const photo = src.replace("/huge/", `/${photoCrop}/`);
   const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     // fall back image url
     setImg(
       "https://localist-images.azureedge.net/photos/383704/huge/280b45456aa9d4e5eb4e4de5828d4d1dc0772e63.jpg"
     );
   };
-  if (isHidden(hideimages)) {
-    return <></>;
-  }
+
   return (
     <Box
       component="img"

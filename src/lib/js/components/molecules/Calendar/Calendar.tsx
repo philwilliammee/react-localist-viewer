@@ -5,13 +5,12 @@ import EventsContext from "../../../context/EventsContext";
 import { EventElement, EventEvent, ViewProps } from "../../../../types/types";
 import MonthView from "./MonthView";
 import EventModal from "../../atoms/ModalDialog";
-import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
 import Toolbar from "./ToolBar";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
 import useApi from "lib/js/hooks/useApi";
 // import useCalendarApi from "lib/js/hooks/useCalendarApi";
@@ -94,10 +93,10 @@ const Calendar = (props: ViewProps) => {
       </EventModal>
 
       <Grid container>
-        <Grid col={3}>
+        <Grid item md={3} xs={12}>
           <Filters />
         </Grid>
-        <Grid col={9}>
+        <Grid item md={9} xs={12}>
           <Toolbar
             setView={setView}
             nextMonth={nextMonth}
