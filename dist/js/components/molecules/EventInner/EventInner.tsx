@@ -4,7 +4,10 @@ import { EventEvent } from "../../../../types/types";
 import MoreInfo from "../MoreInfo";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventLocation from "../../atoms/EventLocation";
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
+import {
+  getEventStartMonthDayString,
+  getEventStartEndTimes,
+} from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Tags from "../Tags";
@@ -17,8 +20,8 @@ interface Props {
 const EventInner = ({ event }: Props) => (
   <Stack component="section" className="rlv-event-inner" spacing={1}>
     <EventDateTime
-      dateFormat={getEventDate(event)}
-      timeFormat={getEventFullTime(event)}
+      dateFormat={getEventStartMonthDayString(event)}
+      timeFormat={getEventStartEndTimes(event)}
       hideTime={false}
     />
     <EventLocation locationName={event.location_name} />

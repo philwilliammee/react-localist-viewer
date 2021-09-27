@@ -1,27 +1,27 @@
 import * as React from "react";
 import {
-  getAbbrMonth,
-  getDay,
-  getEventTime,
-  getEventEndTime,
-  getClassItem,
+  getStartDayMonthAbbr,
+  getEventStartDayString,
+  getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
-import { EventElement, EventEvent } from "../../../../types/types";
+import { EventEvent, ViewProps } from "../../../../types/types";
 import { Grid, Stack, Typography } from "@mui/material";
 import EventLocation from "../../atoms/EventLocation";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
 
-const InlineCompactInner = ({ event }: { event: EventEvent }) => {
-  const endTime = getEventEndTime(event);
-  const abbrMonth = getAbbrMonth(event);
-  const eventDay = getDay(event);
-  const eventEndTime = endTime ? ` - ${endTime}` : "";
-  const eventTimeString = getEventTime(event) + eventEndTime;
-  const classList = getClassItem(event);
+const InlineCompactInner = ({
+  event,
+  listclass,
+}: {
+  event: EventEvent;
+  listclass: string;
+}) => {
+  const abbrMonth = getStartDayMonthAbbr(event);
+  const eventDay = getEventStartDayString(event);
 
   return (
-    <Grid container className={classList}>
+    <Grid container className={listclass}>
       <Grid
         item
         sx={{
@@ -57,21 +57,18 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
       </Grid>
       <Grid item>
         <EventTitle variant="h5" title={event.title} url={event.localist_url} />
-        <EventDateTime hideTime={false} timeFormat={eventTimeString} />
+        <EventDateTime
+          hideTime={false}
+          timeFormat={getEventStartEndTimes(event)}
+        />
         <EventLocation locationName={event.location_name} />
       </Grid>
     </Grid>
   );
 };
 
-interface InlineCompactProps {
-  events: EventElement[];
-  wrapperclass?: string;
-  listclass?: string;
-}
-
-const InlineCompact = (props: InlineCompactProps) => {
-  const { events, wrapperclass } = props;
+const InlineCompact = (props: ViewProps) => {
+  const { events, wrapperclass, listclass } = props;
 
   if (events.length === 0) {
     return <p>There are no upcoming events.</p>;
@@ -88,6 +85,7 @@ const InlineCompact = (props: InlineCompactProps) => {
           <InlineCompactInner
             key={event.event.event_instances[0].event_instance.id}
             event={event.event}
+            listclass={listclass || ""}
           />
         );
       })}

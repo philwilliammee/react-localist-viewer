@@ -21,7 +21,7 @@ function ModalDialog(props: Props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <div className="cwd-events-modal-dialog">
+    <div className="rlv-modal-dialog">
       <Dialog
         fullScreen={fullScreen}
         maxWidth="md"
@@ -57,7 +57,10 @@ function ModalDialog(props: Props) {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>{props.children}</DialogContentText>
+          {/* This defaults to p but our content can be any element. */}
+          <DialogContentText component="div">
+            {props.children}
+          </DialogContentText>
         </DialogContent>
       </Dialog>
     </div>

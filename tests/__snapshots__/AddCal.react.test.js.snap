@@ -1,19 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddCal returns calendar links 1`] = `
-<span
-  className="event-subscribe"
+<div
+  className="rlv-add-cal MuiBox-root css-1vknpg1"
 >
   add to calendar 
   <a
-    className="fa fa-google google"
-    href="https://calendar.google.com/calendar/event?action=TEMPLATE&dates=20190821%2F20190930&details=Threats%20to%20pollinator%20health%20are%20intense%20and%20varied%2C%20from%20habitat%20loss%20and%20climate%20change%20to%20diseases%20and%20pesticides.%20A%20summer%20exhibit%20in%20the%20%20Mann%20Gallery%2C%20PolliNation%3A%20Artists%20Crossing%20Borders%20with%20Scientists%20to%20Explore%20the%20Value%20of%20Pollinator%20Health%20showcases%20the%20results%20of%20a%20multi-year%20collaboration%20between%20Cornell%20entomologists%2C%20%20U.K.%20based%20scientists%20and%20Welsh%20artists%20who%2C%20crossing%20national%20and%20disciplinary%20boundaries%2C%20work%20to%20reveal%20and%20celebrate%20the%20beauty%20and%20importance%20of%20pollinators%2C%20and%20how%20their%20fate%20is%20linked%20to%20our%20planet%2C%20and%20to%20our%20own.%3Cbr%20%2F%3E%3Cbr%20%2F%3EThis%20exhibit%20is%20a%20collaboration%20between%20Mann%20Library%2C%20the%20Cornell%20Department%20of%20Entomology%20and%20the%20University%20of%20Wales%2C%20Trinity%20St.%20David.%20%20%3Cbr%20%2F%3E%3Cbr%20%2F%3EOn%20Friday%2C%20June%207%2C%20we%20will%20celebrate%20the%20exhibit%20with%20a%20special%20lecture%20%20by%20Cornell%20entomologist%20Scott%20McArt%2C%20a%20reception%20in%20the%20Mann%20Gallery%2C%20and%20a%20garden%20tour%20%20introducing%20participants%20to%20Cornell%E2%80%99s%20new%20%E2%80%9CBotanic%20Buzzline%E2%80%9D%20pollinator%20walkway%2C%20in%20the%20Cornell%20Botanic%20Gardens.%20All%20events%20are%20free%20and%20open%20to%20the%20public.%20%20%20%3Cbr%20%2F%3E%3Cbr%20%2F%3EFor%20more%20information%20visit%20us%20at%20mannlib.cornell.edu%2C%20find%20us%20at%20facebook.com%2Fmannlibrary%2C%20or%20call%20(607)%202550-3296&location=&sprop=website%3Aevents.cornell.edu&text=PolliNation%3A%20Artists%20%26%20Scientists%20Crossing%20Borders%20to%20Explore%20the%20Value%20of%20Pollinator%20Health"
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+    href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20190821T120000Z%2F20190821T210000Z&details=Threats%20to%20pollinator%20health%20are%20intense%20and%20varied%2C%20from%20habitat%20loss%20and%20climate%20change%20to%20diseases%20and%20pesticides.%20A%20summer%20exhibit%20in%20the%20%20Mann%20Gallery%2C%20PolliNation%3A%20Artists%20Crossing%20Borders%20with%20Scientists%20to%20Explore%20the%20Value%20of%20Pollinator%20Health%20showcases%20the%20results%20of%20a%20multi-year%20collaboration%20between%20Cornell%20entomologists%2C%20%20U.K.%20based%20scientists%20and%20Welsh%20artists%20who%2C%20crossing%20national%20and%20disciplinary%20boundaries%2C%20work%20to%20reveal%20and%20celebrate%20the%20beauty%20and%20importance%20of%20pollinators%2C%20and%20how%20their%20fate%20is%20linked%20to%20our%20planet%2C%20and%20to%20our%20own.%3Cbr%20%2F%3E%3Cbr%20%2F%3EThis%20exhibit%20is%20a%20collaboration%20between%20Mann%20Library%2C%20the%20Cornell%20Department%20of%20Entomology%20and%20the%20University%20of%20Wales%2C%20Trinity%20St.%20David.%20%20%3Cbr%20%2F%3E%3Cbr%20%2F%3EOn%20Friday%2C%20June%207%2C%20we%20will%20celebrate%20the%20exhibit%20with%20a%20special%20lecture%20%20by%20Cornell%20entomologist%20Scott%20McArt%2C%20a%20reception%20in%20the%20Mann%20Gallery%2C%20and%20a%20garden%20tour%20%20introducing%20participants%20to%20Cornell%E2%80%99s%20new%20%E2%80%9CBotanic%20Buzzline%E2%80%9D%20pollinator%20walkway%2C%20in%20the%20Cornell%20Botanic%20Gardens.%20All%20events%20are%20free%20and%20open%20to%20the%20public.%20%20%20%3Cbr%20%2F%3E%3Cbr%20%2F%3EFor%20more%20information%20visit%20us%20at%20mannlib.cornell.edu%2C%20find%20us%20at%20facebook.com%2Fmannlibrary%2C%20or%20call%20%28607%29%202550-3296&location=&text=PolliNation%3A%20Artists%20%26%20Scientists%20Crossing%20Borders%20to%20Explore%20the%20Value%20of%20Pollinator%20Health"
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
     rel="noreferrer noopener"
+    tabIndex={0}
     target="_blank"
     title="Save to Google Calendar"
   >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium google css-rkpruf-MuiSvgIcon-root"
+      data-testid="GoogleIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
+      />
+    </svg>
     <span
-      className="sr-only"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "height": "1px",
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": "1px",
+        }
+      }
     >
       Add 
       PolliNation: Artists & Scientists Crossing Borders to Explore the Value of Pollinator Health
@@ -22,14 +58,50 @@ exports[`AddCal returns calendar links 1`] = `
   </a>
    
   <a
-    className="fa fa-calendar apple"
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
     href="http://events.cornell.edu/event/artists_scientists_pollinator_health.ics"
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
     rel="noreferrer noopener"
+    tabIndex={0}
     target="_blank"
     title="Save to iCal"
   >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium apple css-1x0nepd-MuiSvgIcon-root"
+      data-testid="AppleIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+      />
+    </svg>
     <span
-      className="sr-only"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "height": "1px",
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": "1px",
+        }
+      }
     >
       Add 
       PolliNation: Artists & Scientists Crossing Borders to Explore the Value of Pollinator Health
@@ -37,19 +109,55 @@ exports[`AddCal returns calendar links 1`] = `
     </span>
   </a>
   <a
-    className="fa fa-clock-o microsoft"
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
     href="http://events.cornell.edu/event/artists_scientists_pollinator_health.ics"
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
     rel="noreferrer noopener"
+    tabIndex={0}
     target="_blank"
     title="Save to Outlook"
   >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium microsoft css-1qt6618-MuiSvgIcon-root"
+      data-testid="EventIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+      />
+    </svg>
     <span
-      className="sr-only"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "height": "1px",
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": "1px",
+        }
+      }
     >
       Add 
       PolliNation: Artists & Scientists Crossing Borders to Explore the Value of Pollinator Health
        to Outlook
     </span>
   </a>
-</span>
+</div>
 `;

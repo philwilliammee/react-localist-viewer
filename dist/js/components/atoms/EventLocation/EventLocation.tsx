@@ -13,17 +13,15 @@ const EventLocation = (props: EventLocationProps) => {
   }
   return (
     <Typography
+      className="rlv-event-location"
+      color="text.primary"
+      gutterBottom
+      component="span"
       sx={{
-        textTransform: "none",
-        fontWeight: "normal",
-        fontSize: "1em",
         overflow: "hidden",
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
       }}
-      className="rlv-event-location"
-      color="text.primary"
-      gutterBottom
     >
       <RoomIcon
         className="room-icon"

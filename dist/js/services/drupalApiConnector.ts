@@ -3,6 +3,7 @@ import moment from "moment";
 import { GetEventsByDateQueryQueryVariables } from "types/graphql";
 import { EventElement } from "../../types/types";
 import { NodeEvent } from "types/drupalGraphql";
+import { ics } from "calendar-link";
 import GET_EVENTS from "../../graphql/drupalQuery";
 
 export interface ApiConnectorProps {
@@ -58,7 +59,19 @@ const drupalEventsTransformer = (
   calendarurl: string
 ): EventElement[] => {
   const baseUrl = calendarurl.replace("/graphql", "");
+
   const drupalTransformedEvents: EventElement[] = drupalEvents?.map((event) => {
+    // @todo save localist_ics_url to Drupal event so we dont have to build it here.
+    const icsEvent = ics({
+      title: event.title || "Cornell Event",
+      description:
+        event.fieldShortDescription?.value?.replace(/[\r\n]/g, `<br />`) ||
+        "Cornell Event",
+      start: moment(event.fieldEventDate?.value).toDate(),
+      end: moment(event.fieldEventDateEnd?.value).toDate(),
+      location: event.fieldEventLocation || "",
+    });
+
     const drupalTransformedEvent: EventElement = {
       event: {
         id: parseInt(event.entityId!, 10),
@@ -141,7 +154,7 @@ const drupalEventsTransformer = (
         },
         custom_fields: {},
         localist_url: baseUrl + event.entityUrl?.path,
-        localist_ics_url: "",
+        localist_ics_url: icsEvent,
         photo_url: event.fieldEventImage?.url || "",
         venue_url: null,
         group_id: null,

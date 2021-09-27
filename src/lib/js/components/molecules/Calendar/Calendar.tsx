@@ -16,7 +16,6 @@ import EventInner from "../EventInner/EventInner";
 import useApi from "lib/js/hooks/useApi";
 // import useCalendarApi from "lib/js/hooks/useCalendarApi";
 
-
 const Calendar = (props: ViewProps) => {
   const {
     showDialog,
@@ -81,6 +80,8 @@ const Calendar = (props: ViewProps) => {
     return filteredEvents;
   };
 
+  // @todo refactor this into standalone component view and add tests.
+  // @todo make mobile toolbar.
   return (
     <div className="rlv-calendar">
       <EventModal

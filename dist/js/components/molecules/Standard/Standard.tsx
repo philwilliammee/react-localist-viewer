@@ -1,40 +1,31 @@
 import React from "react";
-import {
-  getEventTime,
-  getMonthHeader,
-  getDisplayDate,
-  getClassItem,
-} from "../../../helpers/displayEvent";
+import { getEventTime, getEventStart } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
-import {
-  EventElement,
-  EventEvent,
-  FilterBy,
-  Format,
-  HideType,
-} from "../../../../types/types";
+import { EventEvent, FilterBy, HideType } from "../../../../types/types";
 import EventTitle from "../../atoms/EventTitle";
 import EventLocation from "../../atoms/EventLocation";
 import EventIcon from "@mui/icons-material/Event";
 import InlineImage from "../InlineImage/InlineImage";
 import { Box } from "@mui/system";
 import { Stack, Typography, useTheme } from "@mui/material";
+import moment from "moment";
+import { ViewProps } from "../../../../types/types";
 
 interface StandardInnerProps {
   event: EventEvent;
   filterby: FilterBy;
   truncatedescription?: string;
-  hideaddcal: HideType;
-  hidedescription: HideType;
-  hideimages: HideType;
+  hideaddcal?: HideType;
+  hidedescription?: HideType;
+  hideimages?: HideType;
+  listclass: string;
 }
 
 const StandardInner = (props: StandardInnerProps) => {
   const { event, truncatedescription, hidedescription, hideimages } = props;
-  const classList = getClassItem(event);
   return (
     <div className="views-row">
-      <Stack className={classList} spacing={1} mb={3}>
+      <Stack className={props.listclass} spacing={1} mb={3}>
         <EventTitle title={event.title} url={event.localist_url} />
         <Box
           sx={{
@@ -61,36 +52,21 @@ const StandardInner = (props: StandardInnerProps) => {
   );
 };
 
-interface StandardProps {
-  events: EventElement[];
-  filterby: FilterBy;
-  format: Format;
-  truncatedescription?: string;
-  thumbnail?: string;
-  wrapperClassArray: string[];
-  listClassArray: string[];
-  hideaddcal: HideType;
-  hidedescription: HideType;
-  hideimages: HideType;
-}
-const Standard = (props: StandardProps) => {
+const Standard = (props: ViewProps) => {
   const {
     events,
     filterby,
     hideaddcal,
     truncatedescription,
-    // thumbnail,
     hidedescription,
     hideimages,
-    listClassArray,
-    wrapperClassArray,
   } = props;
   const theme = useTheme();
   let lastMonth = "";
   let lastDay = "";
 
   const getMonth = (event: EventEvent) => {
-    const month = getMonthHeader(event);
+    const month = moment(getEventStart(event)).format("MMMM YYYY");
     if (lastMonth !== month) {
       lastMonth = month;
       return (
@@ -112,8 +88,8 @@ const Standard = (props: StandardProps) => {
     return "";
   };
 
-  const getDay = (event: EventEvent) => {
-    const displayDate = getDisplayDate(event);
+  const getEventStartDayString = (event: EventEvent) => {
+    const displayDate = moment(getEventStart(event)).format("M/DD/YYYY");
     if (lastDay !== displayDate) {
       lastDay = displayDate;
       return (
@@ -136,17 +112,16 @@ const Standard = (props: StandardProps) => {
     }
     return "";
   };
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+
   return (
-    <section className={`rlv-standard ${wrapperClassList}`}>
-      <div className={`events-list ${listClassList}`}>
+    <section className={`rlv-standard ${props.wrapperclass}`}>
+      <div className={`events-list ${props.listclass}`}>
         {events.length > 0 ? (
           events.map((event) => {
             return (
               <div key={event.event.event_instances[0].event_instance.id}>
                 {getMonth(event.event)}
-                {getDay(event.event)}
+                {getEventStartDayString(event.event)}
                 <StandardInner
                   event={event.event}
                   filterby={filterby}
@@ -154,6 +129,7 @@ const Standard = (props: StandardProps) => {
                   truncatedescription={truncatedescription}
                   hidedescription={hidedescription}
                   hideimages={hideimages}
+                  listclass={props.listclass || ""}
                 />
               </div>
             );

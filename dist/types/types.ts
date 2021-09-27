@@ -27,33 +27,12 @@ export interface AppProps {
 }
 
 // @todo consolidate these props
-export interface ViewProps {
+export interface ViewProps extends AppProps {
   events: EventElement[];
-  format: Format;
-  truncatedescription: string;
-  hidedescription: HideType; //string | number;
-  hideimages: HideType; // string | number;
-  hideaddcal: HideType; // string | number;
-  filterby: FilterBy;
-  wrapperclass: string;
-  listclass: string;
-  itemclass: string;
-  page: number;
   loading: boolean;
-  wrapperClassArray: string[];
-  listClassArray: string[];
-  calendarurl: string;
-  setCurrentPage: (page: number) => void;
-  currentPage: number;
-  api: Api;
-  depts?: string;
 }
 
 export type HideType = 0 | "true" | 1 | "false" | "";
-
-export interface ViewComponentProps extends ViewProps {
-  key: number;
-}
 
 export interface DateRangeEvent {
   start: Date;
@@ -173,7 +152,6 @@ export interface EventEvent {
   venue_url?: string | null;
   group_id?: number | null;
   group_name?: string | null;
-  itemClassArray?: string[]; // custom type
 }
 
 export interface CustomFields {

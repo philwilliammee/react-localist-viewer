@@ -1,5 +1,5 @@
 import { Link, Typography, TypographyProps } from "@mui/material";
-import { createMarkup } from "lib/js/helpers/common";
+import { createMarkup } from "../../../helpers/common";
 import React from "react";
 
 interface EventTitleProps {

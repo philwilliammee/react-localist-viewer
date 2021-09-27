@@ -8,7 +8,10 @@ import Truncate from "../../atoms/Truncate";
 import { EventEvent, HideType } from "../../../../types/types";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
+import {
+  getEventStartMonthDayString,
+  getEventStartEndTimes,
+} from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
@@ -23,8 +26,8 @@ interface Props {
   description?: string;
   image: string;
   link: string;
-  hidedescription: HideType;
-  hideimages: HideType;
+  hidedescription?: HideType;
+  hideimages?: HideType;
   truncatedescription: string;
   tags: string[];
   locationName: string;
@@ -86,11 +89,9 @@ export default function ModernCompactInner(props: Props) {
               color="text.secondary"
               gutterBottom
             >
-              {/* {eventTime}{" "}
-              {event.location_name ? `, ${event.location_name}` : ""} */}
               <EventDateTime
-                dateFormat={getEventDate(event)}
-                timeFormat={getEventFullTime(event)}
+                dateFormat={getEventStartMonthDayString(event)}
+                timeFormat={getEventStartEndTimes(event)}
                 hideTime={false}
               />
               <EventLocation locationName={event.location_name} />
@@ -98,7 +99,7 @@ export default function ModernCompactInner(props: Props) {
             <Typography color="text.primary">
               <Truncate
                 description={description}
-                hidedescription={hidedescription}
+                hidedescription={hidedescription || "false"}
                 truncatedescription={truncatedescription}
               />
             </Typography>

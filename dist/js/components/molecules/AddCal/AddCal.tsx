@@ -1,6 +1,9 @@
 import React from "react";
-import buildUrl from "build-url";
-import { getCalStartDate, getCalEndDate } from "../../../helpers/displayEvent";
+import {
+  getEventStart,
+  getEventEnd,
+  isAllDay,
+} from "../../../helpers/displayEvent";
 import { isHidden } from "../../../helpers/common";
 import { EventEvent, HideType } from "../../../../types/types";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -9,21 +12,17 @@ import EventIcon from "@mui/icons-material/Event";
 import { IconButton } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 import { Box } from "@mui/system";
+import { google } from "calendar-link";
 
 const buildGoogleLink = (event: EventEvent) => {
-  const gDateStart = getCalStartDate(event);
-  const gDateStop = getCalEndDate(event);
-  const href = buildUrl("https://calendar.google.com/calendar/event", {
-    queryParams: {
-      action: "TEMPLATE",
-      dates: `${gDateStart}/${gDateStop}`,
-      details: event.description_text.replace(/[\r\n]/g, `<br />`),
-      location: event.location,
-      sprop: "website:events.cornell.edu",
-      text: event.title,
-    },
+  return google({
+    title: event.title,
+    description: event.description_text.replace(/[\r\n]/g, `<br />`),
+    location: event.location,
+    start: getEventStart(event),
+    end: getEventEnd(event),
+    allDay: isAllDay(event),
   });
-  return href;
 };
 
 const buildGoogleStr = (event: EventEvent) => {

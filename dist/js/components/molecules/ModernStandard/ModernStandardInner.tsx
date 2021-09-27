@@ -22,8 +22,8 @@ interface Props {
   dateFormat: string;
   timeFormat: string;
   description?: string;
-  hidedescription: HideType;
-  hideimages: HideType;
+  hidedescription?: HideType;
+  hideimages?: HideType;
   truncatedescription: string;
   link?: string;
   tags: string[];

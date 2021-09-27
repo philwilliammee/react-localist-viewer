@@ -1,26 +1,23 @@
 import React from "react";
-import { StandardProps } from "../../../../types/types";
 import ModernStandardInner from "./ModernStandardInner";
 import {
-  getClassItem,
-  getEventDate,
-  getEventFullTime,
+  getEventStartMonthDayString,
+  getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
+import { ViewProps } from "../../../../types/types";
 
-const ModernStandard = (props: StandardProps) => {
-  const { events, listClassArray, wrapperClassArray } = props;
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+const ModernStandard = (props: ViewProps) => {
+  const { events, wrapperclass, listclass } = props;
+
   return (
     <section className="rlv-modern-standard" title="Events List">
-      <div className={wrapperClassList}>
-        <Stack spacing={2} className={listClassList}>
+      <div className={wrapperclass}>
+        <Stack spacing={2} className={listclass}>
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
-              const classList = getClassItem(event.event);
               return (
                 <ModernStandardInner
                   key={key}
@@ -30,9 +27,9 @@ const ModernStandard = (props: StandardProps) => {
                   hideimages={props.hideimages}
                   truncatedescription={props.truncatedescription}
                   tags={event.event.tags}
-                  dateFormat={getEventDate(event.event)}
-                  timeFormat={getEventFullTime(event.event)}
-                  listClass={classList}
+                  dateFormat={getEventStartMonthDayString(event.event)}
+                  timeFormat={getEventStartEndTimes(event.event)}
+                  listClass={props.listclass}
                   event={event.event}
                   hideaddcal={props.hideaddcal}
                 />
