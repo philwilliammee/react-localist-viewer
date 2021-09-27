@@ -7,17 +7,26 @@ import EventsContext from "./js/context/EventsContext";
 import { AppProps } from "./types/types";
 import { Box } from "@mui/system";
 import useApi from "./js/hooks/useApi";
-import { initDateRange } from "./js/components/molecules/Calendar/dateUtils";
-
-const dateRange = initDateRange();
 
 /**
  * Localist Component
  */
 const Localist = (props: AppProps) => {
-  const { events, filteredEvents } = useContext(EventsContext);
+  const { events, filteredEvents, dateRange } = useContext(EventsContext);
   const [currentPage, setCurrentPage] = useState(props.page || 1);
-  const { isLoading: loading, llPage } = useApi(props, currentPage, dateRange);
+  const [llPage, setLlPage] = useState({
+    current: currentPage,
+    size: 1,
+    total: 1,
+  });
+
+  const { isLoading: loading } = useApi(
+    props,
+    currentPage,
+    dateRange,
+    setLlPage,
+    llPage
+  );
 
   function handlePageClick(event: React.ChangeEvent<unknown>, page: number) {
     setCurrentPage(page);
@@ -39,14 +48,14 @@ const Localist = (props: AppProps) => {
         // removed key for filters.
         {...props}
         events={filteredEvents}
-        page={currentPage || 1}
+        page={currentPage}
         loading={loading}
-        hidedescription={props.hidedescription || ""}
-        hideimages={props.hideimages || ""}
-        hideaddcal={props.hideaddcal || ""}
-        wrapperclass={props.wrapperclass || ""}
-        listclass={props.listclass || ""}
-        itemclass={props.itemclass || ""}
+        hidedescription={props.hidedescription}
+        hideimages={props.hideimages}
+        hideaddcal={props.hideaddcal}
+        wrapperclass={props.wrapperclass}
+        listclass={props.listclass}
+        itemclass={props.itemclass}
       />
       <Paginate
         hidepagination={props.hidepagination || ""}

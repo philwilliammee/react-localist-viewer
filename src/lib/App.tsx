@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { queryClient } from "./query";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import MuiTheme from "./js/components/Theme/MuiTheme";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, NoSsr } from "@mui/material";
 
 const App = (props: AppProps) => (
   <QueryClientProvider client={queryClient}>
@@ -15,7 +15,9 @@ const App = (props: AppProps) => (
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <ThemeProvider theme={MuiTheme}>
-          <Localist {...props} />
+          <NoSsr>
+            <Localist {...props} />
+          </NoSsr>
         </ThemeProvider>
       </StyledEngineProvider>
     </EventsState>

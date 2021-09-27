@@ -1,5 +1,6 @@
+import * as React from "react";
 import { isNotHidden } from "../helpers/common";
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AppProps, DisplayedDateRange, ViewProps } from "../../types/types";
 import {
   getKeyFromDateRange,
@@ -15,23 +16,28 @@ import { queryClient } from "lib/query";
 export default function useApi(
   props: AppProps | ViewProps,
   currentPage: number,
-  dateRange: DisplayedDateRange
+  dateRange: DisplayedDateRange,
+  setLlPage: React.Dispatch<
+    React.SetStateAction<{
+      current: number;
+      size: number;
+      total: number;
+    }>
+  >,
+  llPage: {
+    current: number;
+    size: number;
+    total: number;
+  }
 ) {
-  const { events, setEvents, filteredEvents, setFilteredEvents } = useContext(
-    EventsContext
-  );
+  const { setEvents, setFilteredEvents } = useContext(EventsContext);
 
-  const [llPage, setLlPage] = useState({
-    current: props.page,
-    size: 1,
-    total: 1,
-  });
   // This id can be replaced with the actual query params passed to fetchEvents.
   const queryId = getQueryId(props);
   const key =
     props.format === "calendar" ? getKeyFromDateRange(dateRange) : currentPage;
 
-  const { isLoading: loading, data } = useQuery(
+  const { isLoading, data } = useQuery(
     [queryId, key],
     () => fetchEvents(props, currentPage, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
@@ -40,7 +46,7 @@ export default function useApi(
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      if (data) {
+      if (data && !isLoading) {
         setEvents(data.events);
         setFilteredEvents(data.events);
         setLlPage(data.page);
@@ -74,27 +80,23 @@ export default function useApi(
 
       // Perhaps use callback here?
       // Use pagination to prefetch next page.
-      if (props.format !== "calendar") {
+      const isUsingPagination = isNotHidden(props.hidepagination);
+      if (props.format !== "calendar" && isUsingPagination) {
         // prefetch pagination data next page
-        const isUsingPagination = isNotHidden(props.hidepagination);
-        if (llPage.current && isUsingPagination) {
-          const morePages = llPage.current < llPage.total;
-          const nextPage = llPage.current + 1;
-          if (morePages) {
-            queryClient.prefetchQuery(
-              [queryId, nextPage],
-              () => fetchEvents(props, nextPage, dateRange),
-              { staleTime: Infinity }
-            );
-          }
-        }
+        const nextPage = currentPage + 1;
+        //const morePages = currentPage < llPage.total;
+        queryClient.prefetchQuery(
+          [queryId, nextPage],
+          () => fetchEvents(props, nextPage, dateRange),
+          { staleTime: Infinity }
+        );
       }
     }
     return function cleanup() {
       mounted = false;
     };
     /* eslint-disable react-hooks/exhaustive-deps */
-  }, [llPage, data, loading, dateRange]); // this was key, data, loading changed to llPage
+  }, [key, data, isLoading]); // this was key, data, loading changed to llPage
 
-  return { isLoading: loading, data, llPage, filteredEvents, events, key };
+  return { isLoading };
 }

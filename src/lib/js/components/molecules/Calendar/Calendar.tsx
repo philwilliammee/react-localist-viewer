@@ -12,8 +12,6 @@ import Toolbar from "./ToolBar";
 import { Box } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
-import useApi from "lib/js/hooks/useApi";
-// import useCalendarApi from "lib/js/hooks/useCalendarApi";
 
 const Calendar = (props: ViewProps) => {
   const {
@@ -21,13 +19,13 @@ const Calendar = (props: ViewProps) => {
     setShowDialog,
     eventSelected,
     setEventSelected,
-    setDisplayedDateRange,
+    dateRange,
+    setDateRange,
+    filteredEvents,
   } = useContext(EventsContext);
-  const [dateContext, setDateContext] = useState(moment());
-  const [dateRange, setDateRange] = useState(initDateRange());
-  const [selectedDay, setSelectedDay] = useState<number>(moment().date());
+  const [dateContext, setDateContext] = useState(moment()); // Date context is current month.
+  const [selectedDay, setSelectedDay] = useState<number>(moment().date()); // The individual day that is selected.
   const [view, setView] = useState<"month" | "day" | "list">("month");
-  const { filteredEvents } = useApi(props, 1, dateRange);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
@@ -35,7 +33,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const prevMonth = () => {
@@ -44,7 +41,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const today = () => {
@@ -54,7 +50,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const showModal = (event: EventEvent) => {

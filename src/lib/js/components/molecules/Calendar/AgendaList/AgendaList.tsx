@@ -19,9 +19,10 @@ function AgendaList(props: AgendaProps) {
   if (props.events.length === 0) {
     return <p>There are no events in this range.</p>;
   }
+
   const { events, listclass, wrapperclass } = props;
   return (
-    <section className="rlv-modern-standard" title="Events List">
+    <section className="rlv-agenda-list" title="Events List">
       <div className={wrapperclass}>
         <Stack className={listclass} spacing={2}>
           {events.length > 0 ? (

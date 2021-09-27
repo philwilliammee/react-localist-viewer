@@ -30,6 +30,7 @@ export interface AppProps {
 export interface ViewProps extends AppProps {
   events: EventElement[];
   loading: boolean;
+  page: CurrentPage;
 }
 
 export type HideType = 0 | "true" | 1 | "false" | "";
