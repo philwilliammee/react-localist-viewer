@@ -4,14 +4,9 @@ import ModernStandard from "../molecules/ModernStandard";
 import ModernCompact from "../molecules/ModernCompact";
 import InlineCompact from "../molecules/InlineCompact/InlineCompact";
 import Calendar from "../molecules/Calendar";
-import { AppProps, EventElement } from "../../../types/types";
+import { ViewProps } from "../../../types/types";
 import Loading from "../atoms/Loading";
 import Cards from "../molecules/Cards";
-
-export interface ViewProps extends AppProps {
-  events: EventElement[];
-  loading: boolean;
-}
 
 const LocalistView = (props: ViewProps) => {
   let component;

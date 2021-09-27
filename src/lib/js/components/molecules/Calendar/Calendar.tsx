@@ -2,19 +2,20 @@ import React, { useContext, useState } from "react";
 import moment, { Moment } from "moment";
 import { getLastMonth, getNextMonth, initDateRange } from "./dateUtils";
 import EventsContext from "../../../context/EventsContext";
-import { EventElement, EventEvent } from "../../../../types/types";
+import { EventElement, EventEvent, ViewProps } from "../../../../types/types";
 import MonthView from "./MonthView";
 import EventModal from "../../atoms/ModalDialog";
 import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
-import { ViewProps } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
-import useCalendarApi from "lib/js/hooks/useCalendarApi";
+import useApi from "lib/js/hooks/useApi";
+// import useCalendarApi from "lib/js/hooks/useCalendarApi";
+
 
 const Calendar = (props: ViewProps) => {
   const {
@@ -28,7 +29,7 @@ const Calendar = (props: ViewProps) => {
   const [dateRange, setDateRange] = useState(initDateRange());
   const [selectedDay, setSelectedDay] = useState<number>(moment().date());
   const [view, setView] = useState<"month" | "day" | "list">("month");
-  const { filteredEvents } = useCalendarApi(props, dateRange);
+  const { filteredEvents } = useApi(props, 1, dateRange);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");

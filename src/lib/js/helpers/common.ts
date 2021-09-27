@@ -1,5 +1,5 @@
 import { AppProps, Department } from "../../types/types";
-import { ViewProps } from "../components/organisms/LocalistView";
+import { ViewProps } from "../../types/types";
 
 /**
  * Removes an element from an array.

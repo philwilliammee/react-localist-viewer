@@ -1,13 +1,12 @@
 import React from "react";
 import ModernStandardInner from "./ModernStandardInner";
 import {
-  getClassItem,
   getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
 import { Stack } from "@mui/material";
-import { ViewProps } from "../../organisms/LocalistView";
+import { ViewProps } from "../../../../types/types";
 
 const ModernStandard = (props: ViewProps) => {
   const { events, wrapperclass, listclass } = props;
@@ -19,7 +18,6 @@ const ModernStandard = (props: ViewProps) => {
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
-              const classList = getClassItem(event.event);
               return (
                 <ModernStandardInner
                   key={key}
@@ -31,7 +29,7 @@ const ModernStandard = (props: ViewProps) => {
                   tags={event.event.tags}
                   dateFormat={getEventStartMonthDayString(event.event)}
                   timeFormat={getEventStartEndTimes(event.event)}
-                  listClass={classList}
+                  listClass={props.listclass}
                   event={event.event}
                   hideaddcal={props.hideaddcal}
                 />

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  getEventTime,
-  getClassItem,
-  getEventStart,
-} from "../../../helpers/displayEvent";
+import { getEventTime, getEventStart } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { EventEvent, FilterBy, HideType } from "../../../../types/types";
 import EventTitle from "../../atoms/EventTitle";
@@ -13,7 +9,7 @@ import InlineImage from "../InlineImage/InlineImage";
 import { Box } from "@mui/system";
 import { Stack, Typography, useTheme } from "@mui/material";
 import moment from "moment";
-import { ViewProps } from "../../organisms/LocalistView";
+import { ViewProps } from "../../../../types/types";
 
 interface StandardInnerProps {
   event: EventEvent;
@@ -22,14 +18,14 @@ interface StandardInnerProps {
   hideaddcal?: HideType;
   hidedescription?: HideType;
   hideimages?: HideType;
+  listclass: string;
 }
 
 const StandardInner = (props: StandardInnerProps) => {
   const { event, truncatedescription, hidedescription, hideimages } = props;
-  const classList = getClassItem(event);
   return (
     <div className="views-row">
-      <Stack className={classList} spacing={1} mb={3}>
+      <Stack className={props.listclass} spacing={1} mb={3}>
         <EventTitle title={event.title} url={event.localist_url} />
         <Box
           sx={{
@@ -133,6 +129,7 @@ const Standard = (props: ViewProps) => {
                   truncatedescription={truncatedescription}
                   hidedescription={hidedescription}
                   hideimages={hideimages}
+                  listclass={props.listclass || ""}
                 />
               </div>
             );

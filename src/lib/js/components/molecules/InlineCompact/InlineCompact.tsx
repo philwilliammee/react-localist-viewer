@@ -2,23 +2,26 @@ import * as React from "react";
 import {
   getStartDayMonthAbbr,
   getEventStartDayString,
-  getClassItem,
   getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
-import { EventElement, EventEvent } from "../../../../types/types";
+import { EventEvent, ViewProps } from "../../../../types/types";
 import { Grid, Stack, Typography } from "@mui/material";
 import EventLocation from "../../atoms/EventLocation";
 import EventDateTime from "../../atoms/EventDateTime";
 import EventTitle from "../../atoms/EventTitle";
 
-const InlineCompactInner = ({ event }: { event: EventEvent }) => {
+const InlineCompactInner = ({
+  event,
+  listclass,
+}: {
+  event: EventEvent;
+  listclass: string;
+}) => {
   const abbrMonth = getStartDayMonthAbbr(event);
   const eventDay = getEventStartDayString(event);
 
-  const classList = getClassItem(event);
-
   return (
-    <Grid container className={classList}>
+    <Grid container className={listclass}>
       <Grid
         item
         sx={{
@@ -64,14 +67,8 @@ const InlineCompactInner = ({ event }: { event: EventEvent }) => {
   );
 };
 
-interface InlineCompactProps {
-  events: EventElement[];
-  wrapperclass?: string;
-  listclass?: string;
-}
-
-const InlineCompact = (props: InlineCompactProps) => {
-  const { events, wrapperclass } = props;
+const InlineCompact = (props: ViewProps) => {
+  const { events, wrapperclass, listclass } = props;
 
   if (events.length === 0) {
     return <p>There are no upcoming events.</p>;
@@ -88,6 +85,7 @@ const InlineCompact = (props: InlineCompactProps) => {
           <InlineCompactInner
             key={event.event.event_instances[0].event_instance.id}
             event={event.event}
+            listclass={listclass || ""}
           />
         );
       })}

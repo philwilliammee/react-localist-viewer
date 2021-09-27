@@ -1,5 +1,5 @@
 import { useContext, useEffect, useCallback } from "react";
-import { DisplayedDateRange, ViewComponentProps } from "../../types/types";
+import { DisplayedDateRange, ViewProps } from "../../types/types";
 import { useQuery } from "react-query";
 import { fetchEvents } from "../services/apiInterface";
 import { getQueryId } from "../helpers/common";
@@ -10,7 +10,6 @@ import {
 } from "../components/molecules/Calendar/dateUtils";
 import EventsContext from "../context/EventsContext";
 import { queryClient } from "lib/query";
-import { ViewProps } from "../components/organisms/LocalistView";
 
 export default function useCalendarApi(
   props: ViewProps,
@@ -22,9 +21,10 @@ export default function useCalendarApi(
 
   const key = getKeyFromDateRange(dateRange);
   const queryId = getQueryId(props);
+
   const { data } = useQuery(
     [queryId, key],
-    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
+    () => fetchEvents(props, 0, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );
 
@@ -33,14 +33,14 @@ export default function useCalendarApi(
       let lastMonthDateRange = getLastMonth(dr);
       queryClient.prefetchQuery(
         [queryId, getKeyFromDateRange(lastMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
+        () => fetchEvents(props, 0, lastMonthDateRange),
         { staleTime: Infinity }
       );
 
       let nextMonthDateRange = getNextMonth(dr);
       queryClient.prefetchQuery(
         [queryId, getKeyFromDateRange(nextMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
+        () => fetchEvents(props, 0, nextMonthDateRange),
         { staleTime: Infinity }
       );
       if (data) {

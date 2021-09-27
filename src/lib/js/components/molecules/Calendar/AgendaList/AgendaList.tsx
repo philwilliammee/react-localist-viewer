@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import EventContext from "../../../../context/EventsContext";
 import {
-  getClassItem,
   getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../../helpers/displayEvent";
 import ModernStandardInner from "../../ModernStandard/ModernStandardInner";
 import { Stack } from "@mui/material";
-import { ViewProps } from "../../../organisms/LocalistView";
+import { ViewProps } from "../../../../../types/types";
 
 interface AgendaProps extends ViewProps {
   setShowDialog: Function;
@@ -28,7 +27,6 @@ function AgendaList(props: AgendaProps) {
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
-              const classList = getClassItem(event.event);
 
               const handleOnClick = () => {
                 setEventSelected(event.event);
@@ -44,7 +42,7 @@ function AgendaList(props: AgendaProps) {
                   tags={event.event.tags}
                   dateFormat={getEventStartMonthDayString(event.event)}
                   timeFormat={getEventStartEndTimes(event.event)}
-                  listClass={classList}
+                  listClass={props.listclass}
                   event={event.event}
                   hideaddcal={props.hideaddcal}
                   handleClick={handleOnClick}

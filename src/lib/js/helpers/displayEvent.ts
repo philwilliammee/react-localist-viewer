@@ -1,4 +1,9 @@
-import { EventEvent, Department } from "./../../types/types";
+import {
+  EventEvent,
+  Department,
+  AppProps,
+  ViewProps,
+} from "./../../types/types";
 import moment from "moment";
 import truncate from "text-clipper";
 
@@ -222,13 +227,10 @@ export const getStartDayMonthAbbr = (event: EventEvent): string => {
 /**
  * If event has a class array return it as a string.
  * @param {event} event The event.
- * @return {string | undefined}
+ * @return {string}
  */
-export const getClassItem = (event: EventEvent): string | undefined => {
-  if ("itemClassArray" in event) {
-    return event?.itemClassArray?.join(" ");
-  }
-  return "";
+export const getClassItem = (props: AppProps | ViewProps) => {
+  return props.itemclass;
 };
 
 export const getEventKey = (event: EventEvent) => {

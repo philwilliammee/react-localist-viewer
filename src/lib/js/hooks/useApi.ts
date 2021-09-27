@@ -1,20 +1,26 @@
 import { isNotHidden } from "../helpers/common";
 import { useState, useContext, useEffect } from "react";
-import { AppProps, EventElement, ViewComponentProps } from "../../types/types";
+import { AppProps, DisplayedDateRange, ViewProps } from "../../types/types";
+import {
+  getKeyFromDateRange,
+  getLastMonth,
+  getNextMonth,
+} from "../components/molecules/Calendar/dateUtils";
 import { useQuery } from "react-query";
 import { fetchEvents } from "../services/apiInterface";
 import { getQueryId } from "../helpers/common";
-import {
-  getKeyFromDateRange,
-  initDateRange,
-} from "../components/molecules/Calendar/dateUtils";
 import EventsContext from "../context/EventsContext";
 import { queryClient } from "lib/query";
 
-const dateRange = initDateRange();
+export default function useApi(
+  props: AppProps | ViewProps,
+  currentPage: number,
+  dateRange: DisplayedDateRange
+) {
+  const { events, setEvents, filteredEvents, setFilteredEvents } = useContext(
+    EventsContext
+  );
 
-export default function useApi(props: AppProps, currentPage?: number) {
-  const { setEvents, setFilteredEvents } = useContext(EventsContext);
   const [llPage, setLlPage] = useState({
     current: props.page,
     size: 1,
@@ -24,9 +30,10 @@ export default function useApi(props: AppProps, currentPage?: number) {
   const queryId = getQueryId(props);
   const key =
     props.format === "calendar" ? getKeyFromDateRange(dateRange) : currentPage;
+
   const { isLoading: loading, data } = useQuery(
     [queryId, key],
-    () => fetchEvents(props as ViewComponentProps, currentPage, dateRange),
+    () => fetchEvents(props, currentPage, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );
 
@@ -34,29 +41,52 @@ export default function useApi(props: AppProps, currentPage?: number) {
     let mounted = true;
     if (mounted) {
       if (data) {
-        // There has got to be a better way to set these.
-        // There is a better way pass this in the main component props and apply it to each event.
-        const itemClassArray = props?.itemclass?.split(" ") || [];
-        data.events.forEach((event: EventElement) => {
-          event.event.itemClassArray = [...itemClassArray];
-        });
-
-        setFilteredEvents(data.events);
         setEvents(data.events);
+        setFilteredEvents(data.events);
         setLlPage(data.page);
+        // preload and disc-cache event images @todo replace big with actual
+        // Photo crop should be defined in the base parent.
+        // Or each component is responsible for pre-fetching their images.
+        data.events.forEach((event) => {
+          const src = event.event.photo_url.replace("/huge/", `/big/`);
+          const img = new Image();
+          img.src = src;
+        });
       }
 
-      // prefetch pagination data next page
-      const isUsingPagination = isNotHidden(props.hidepagination);
-      if (props.format !== "calendar" && llPage.current && isUsingPagination) {
-        const morePages = llPage.current < llPage.total;
-        const nextPage = llPage.current + 1;
-        if (morePages) {
-          queryClient.prefetchQuery(
-            [queryId, nextPage],
-            () => fetchEvents(props as ViewComponentProps, nextPage, dateRange),
-            { staleTime: Infinity }
-          );
+      // Perhaps use callback here?
+      // Use Date to prefetch next prev month's events.
+      if (props.format === "calendar") {
+        let lastMonthDateRange = getLastMonth(dateRange);
+        queryClient.prefetchQuery(
+          [queryId, getKeyFromDateRange(lastMonthDateRange)],
+          () => fetchEvents(props, 0, lastMonthDateRange),
+          { staleTime: Infinity }
+        );
+
+        let nextMonthDateRange = getNextMonth(dateRange);
+        queryClient.prefetchQuery(
+          [queryId, getKeyFromDateRange(nextMonthDateRange)],
+          () => fetchEvents(props, 0, nextMonthDateRange),
+          { staleTime: Infinity }
+        );
+      }
+
+      // Perhaps use callback here?
+      // Use pagination to prefetch next page.
+      if (props.format !== "calendar") {
+        // prefetch pagination data next page
+        const isUsingPagination = isNotHidden(props.hidepagination);
+        if (llPage.current && isUsingPagination) {
+          const morePages = llPage.current < llPage.total;
+          const nextPage = llPage.current + 1;
+          if (morePages) {
+            queryClient.prefetchQuery(
+              [queryId, nextPage],
+              () => fetchEvents(props, nextPage, dateRange),
+              { staleTime: Infinity }
+            );
+          }
         }
       }
     }
@@ -64,7 +94,7 @@ export default function useApi(props: AppProps, currentPage?: number) {
       mounted = false;
     };
     /* eslint-disable react-hooks/exhaustive-deps */
-  }, [llPage, data, loading]); // this was key, data, loading changed to llPage
+  }, [llPage, data, loading, dateRange]); // this was key, data, loading changed to llPage
 
-  return { isLoading: loading, data, llPage };
+  return { isLoading: loading, data, llPage, filteredEvents, events, key };
 }

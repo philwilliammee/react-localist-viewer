@@ -1,13 +1,12 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import {
-  getClassItem,
   getEventStartMonthDayString,
   getEventStartEndTimes,
   getEventKey,
 } from "../../../helpers/displayEvent";
 import ModernCompactInner from "../ModernCompact/ModernCompactInner";
-import { ViewProps } from "../../organisms/LocalistView";
+import { ViewProps } from "../../../../types/types";
 
 const Cards = (props: ViewProps) => {
   const { events, listclass, wrapperclass } = props;
@@ -18,7 +17,6 @@ const Cards = (props: ViewProps) => {
           {events.length > 0 ? (
             events.map((event) => {
               const key = getEventKey(event.event);
-              const classList = getClassItem(event.event);
               return (
                 <Grid item key={key} className={listclass} xs={12} md={4}>
                   <ModernCompactInner
@@ -33,7 +31,7 @@ const Cards = (props: ViewProps) => {
                     dateFormat={getEventStartMonthDayString(event.event)}
                     timeFormat={getEventStartEndTimes(event.event)}
                     locationName={event.event.location_name}
-                    listClass={classList}
+                    listClass={props.listclass}
                     event={event.event}
                     hideaddcal={props.hideaddcal}
                   />
