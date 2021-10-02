@@ -7,7 +7,7 @@ import { EventEvent } from "../lib/types/types";
 import {
   getEventStartMonthDayString,
   getEventStartEndTimes,
-} from "lib/js/helpers/displayEvent";
+} from "../lib/js/helpers/displayEvent";
 
 const EventDateTimeStories = {
   title: "Atoms/EventDateTime ",

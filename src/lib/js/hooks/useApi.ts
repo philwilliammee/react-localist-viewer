@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 import { fetchEvents } from "../services/apiInterface";
 import { getQueryId } from "../helpers/common";
 import EventsContext from "../context/EventsContext";
-import { queryClient } from "lib/query";
+import { queryClient } from "../../query";
 
 export default function useApi(
   props: AppProps | ViewProps,

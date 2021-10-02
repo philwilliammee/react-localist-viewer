@@ -2,7 +2,7 @@ import React, { ComponentProps } from "react";
 import MoreInfo from "../lib/js/components/molecules/MoreInfo";
 import { Story, Meta } from "@storybook/react";
 import { singleEvent } from "./assets/testData";
-import { EventEvent } from "lib/types/types";
+import { EventEvent } from "../lib/types/types";
 
 const MoreInfoStories = {
   title: "Molecules/MoreInfo ",
