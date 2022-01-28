@@ -38,7 +38,7 @@ const buildGoogleStr = (event: EventEvent) => {
       <GoogleIcon
         className="google"
         sx={{
-          color: "#2d863e",
+          color: "#2d863e", //@todo add this to theme
         }}
       />
       <span style={visuallyHidden}>Add {event.title} to Google Calendar</span>
@@ -58,7 +58,7 @@ const buildiCal = (event: EventEvent) => {
       <AppleIcon
         className="apple"
         sx={{
-          color: "#545a5f",
+          color: "#545a5f", //@todo add this to theme
         }}
       />
       <span style={visuallyHidden}>Add {event.title} to iCal</span>
@@ -78,7 +78,7 @@ const buildOutlookCal = (event: EventEvent) => {
       <EventIcon
         className="microsoft"
         sx={{
-          color: "#0072c6",
+          color: "#0072c6", //@todo add this to theme
         }}
       />
       <span style={visuallyHidden}>Add {event.title} to Outlook</span>

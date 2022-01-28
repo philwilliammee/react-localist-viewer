@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { EventEvent, EventElement } from "../../types/types";
+import { initDateRange } from "../components/molecules/Calendar/dateUtils";
 
 interface DisplayedDateRange {
   start: moment.Moment;
@@ -115,11 +116,8 @@ const EventsContext = React.createContext({
   setShowDialog: (show: boolean) => {},
   eventSelected: initialEvent,
   setEventSelected: (selectedEvent: EventEvent) => {},
-  displayedDateRange: {
-    start: moment().startOf("month"),
-    end: moment().endOf("month"),
-  },
-  setDisplayedDateRange: (displayedDateRange: DisplayedDateRange) => {},
+  dateRange: initDateRange(),
+  setDateRange: (displayedDateRange: DisplayedDateRange) => {},
 });
 
 export default EventsContext;

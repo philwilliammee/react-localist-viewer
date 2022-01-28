@@ -1,5 +1,7 @@
+import { Events } from "./../../../../dist/types/types";
 import axios from "axios";
 import moment from "moment";
+import { EventElement, EventInstanceElement } from "../../types/types";
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -88,4 +90,46 @@ const localistApiConnector = (props: ApiConnectorProps) => {
   return axios.get(calendarurl, { params });
 };
 
+const localistTransformEvents = (events: Events): Events => {
+  const transformedEvents = events.events.map((event: EventElement) => {
+    //localist date format 2022-01-28 08:00:00 -0500
+    const transformedEventInstances = event.event.event_instances.map(
+      (eventInstance: EventInstanceElement) => {
+        const transformedEventInstance = {
+          start: moment(
+            eventInstance.event_instance.start,
+            "YYYY-MM-DD H:m:i Z"
+          ).toDate(),
+          end: moment(
+            eventInstance.event_instance.end,
+            "YYYY-MM-DD H:m:i Z"
+          ).toDate(),
+        };
+        eventInstance.event_instance = {
+          ...eventInstance.event_instance,
+          ...transformedEventInstance,
+        };
+        return eventInstance;
+      }
+    );
+
+    event.event.event_instances = transformedEventInstances;
+    event.event.first_date = moment(event.event.first_date).toDate();
+    event.event.created_at = moment(
+      event.event.created_at,
+      "YYYY-MM-DD H:m:i Z"
+    ).toDate();
+    event.event.updated_at = moment(
+      event.event.updated_at,
+      "YYYY-MM-DD H:m:i Z"
+    ).toDate();
+    return event;
+  });
+
+  events.events = transformedEvents;
+
+  return events;
+};
+
+export { localistTransformEvents };
 export default localistApiConnector;

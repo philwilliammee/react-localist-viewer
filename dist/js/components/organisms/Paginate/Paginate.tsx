@@ -40,7 +40,6 @@ const Paginate = (props: Props) => {
       shape="rounded"
       sx={{
         width: "100%",
-        clear: "both", // @todo This should be able to go away after we fix floats
         borderTop: "1px solid",
         borderColor: "divider",
         paddingTop: 2,

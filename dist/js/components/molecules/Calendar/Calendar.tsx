@@ -5,16 +5,13 @@ import EventsContext from "../../../context/EventsContext";
 import { EventElement, EventEvent, ViewProps } from "../../../../types/types";
 import MonthView from "./MonthView";
 import EventModal from "../../atoms/ModalDialog";
-import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
 import Toolbar from "./ToolBar";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import EventInner from "../EventInner/EventInner";
-import useApi from "lib/js/hooks/useApi";
-// import useCalendarApi from "lib/js/hooks/useCalendarApi";
 
 const Calendar = (props: ViewProps) => {
   const {
@@ -22,13 +19,13 @@ const Calendar = (props: ViewProps) => {
     setShowDialog,
     eventSelected,
     setEventSelected,
-    setDisplayedDateRange,
+    dateRange,
+    setDateRange,
+    filteredEvents,
   } = useContext(EventsContext);
-  const [dateContext, setDateContext] = useState(moment());
-  const [dateRange, setDateRange] = useState(initDateRange());
-  const [selectedDay, setSelectedDay] = useState<number>(moment().date());
+  const [dateContext, setDateContext] = useState(moment()); // Date context is current month.
+  const [selectedDay, setSelectedDay] = useState<number>(moment().date()); // The individual day that is selected.
   const [view, setView] = useState<"month" | "day" | "list">("month");
-  const { filteredEvents } = useApi(props, 1, dateRange);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
@@ -36,7 +33,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const prevMonth = () => {
@@ -45,7 +41,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const today = () => {
@@ -55,7 +50,6 @@ const Calendar = (props: ViewProps) => {
     // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange);
   };
 
   const showModal = (event: EventEvent) => {
@@ -94,10 +88,10 @@ const Calendar = (props: ViewProps) => {
       </EventModal>
 
       <Grid container>
-        <Grid col={3}>
+        <Grid item md={3} xs={12}>
           <Filters />
         </Grid>
-        <Grid col={9}>
+        <Grid item md={9} xs={12}>
           <Toolbar
             setView={setView}
             nextMonth={nextMonth}
