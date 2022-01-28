@@ -16,8 +16,8 @@ module.exports = {
   // },
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/preset-create-react-app",
+    // "@storybook/addon-links", //; Can create links to other stories.
+    "@storybook/addon-essentials", // Adds docs and controls.
+    "@storybook/preset-create-react-app", // not sure what this is used for
   ],
 };

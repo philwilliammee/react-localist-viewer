@@ -42,14 +42,19 @@ export default function useApi(
     () => fetchEvents(props, currentPage, dateRange),
     { keepPreviousData: true, staleTime: Infinity }
   );
-
+  // console.log("useApi: data", data);
+  const page = {
+    current: data?.page?.current || 1,
+    size: data?.page?.size || 0,
+    total: Math.round(data?.page?.total || 0), // total is sometimes a float.
+  };
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       if (data && !isLoading) {
         setEvents(data.events);
         setFilteredEvents(data.events);
-        setLlPage(data.page);
+        setLlPage(page);
         // preload and disc-cache event images @todo replace big with actual
         // Photo crop should be defined in the base parent.
         // Or each component is responsible for pre-fetching their images.
