@@ -1,11 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { getEventFullTime, getFullDate } from "../../../helpers/displayEvent";
-import Grid from "../../atoms/Grid";
+import {
+  getEventStartEndTimes,
+  getEventStart,
+} from "../../../helpers/displayEvent";
 import { EventEvent } from "../../../../types/types";
 import { createMarkup, truncateString } from "../../../helpers/common";
-import { Typography, useTheme } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
+import moment from "moment";
 
 interface Props {
   event: EventEvent;
@@ -30,17 +32,17 @@ const MoreInfo = ({ event }: Props) => {
       }}
     >
       <Grid container>
-        <Grid col={12}>
+        <Grid item md={12} xs={12}>
           <Typography variant="h4" pb={2}>
             Details
           </Typography>
         </Grid>
-        <Grid col={6}>
+        <Grid item md={6} xs={12}>
           <Typography fontWeight={fontWeightMedium}>When</Typography>
           <Typography variant="body2" gutterBottom>
-            {getFullDate(event)}
+            {moment(getEventStart(event)).format("MMMM D, YYYY")}
             <br />
-            {getEventFullTime(event)}
+            {getEventStartEndTimes(event)}
           </Typography>
 
           <Typography fontWeight={fontWeightMedium}>Where</Typography>
@@ -54,7 +56,7 @@ const MoreInfo = ({ event }: Props) => {
           </Typography>
         </Grid>
 
-        <Grid col={6}>
+        <Grid item md={6} xs={12}>
           <Typography fontWeight={fontWeightMedium}>Website</Typography>
           <Typography variant="body2" gutterBottom>
             {deptWebsite ? (
@@ -87,10 +89,6 @@ const MoreInfo = ({ event }: Props) => {
       </Grid>
     </Box>
   );
-};
-
-MoreInfo.propTypes = {
-  event: PropTypes.object.isRequired,
 };
 
 export default MoreInfo;

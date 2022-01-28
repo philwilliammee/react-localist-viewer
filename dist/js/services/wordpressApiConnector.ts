@@ -1,78 +1,9 @@
 import { Department, EventElement } from "../../types/types";
 import axios from "axios";
 import moment from "moment";
-
-// import { gql } from "graphql.macro";
 import { NodesEntity, WordpressEventsQuery } from "types/wordpressGraphql";
-
-// const GET_EVENTS = loader(
-//   "../../graphql/queries/getWordpressEventsByDateQuery.graphql"
-// );
-
-// Order By needs meta field, does not support pagination.
-const GET_EVENTS = `query getWordpressEventsByDateQuery(
-  $startDate: String!
-  $endDate: String!
-  $limit: Int!
-) {
-  events(
-    first: $limit
-    where: {
-      metaQuery: {
-        relation: AND
-        metaArray: [
-          {
-            key: "date"
-            type: DATE
-            value: $startDate
-            compare: GREATER_THAN_OR_EQUAL_TO
-          }
-          {
-            key: "date"
-            type: DATE
-            value: $endDate
-            compare: LESS_THAN_OR_EQUAL_TO
-          }
-        ]
-      }
-    }
-  ) {
-    nodes {
-      id
-      date
-      title
-      uri
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      event {
-        eventId
-        description
-        location
-        isAllDay
-        localistUrl
-        startTime
-        photoUrl
-        email
-        endDate
-        endTime
-        eventUrl
-        zoomLink
-        date
-      }
-      eventTaxonomies {
-        nodes {
-          id
-          name
-        }
-      }
-    }
-  }
-}
-
-`;
+import { ics } from "calendar-link";
+import GET_EVENTS from "../../graphql/wordpressQuery";
 
 export interface ApiConnectorProps {
   depts?: string;
@@ -117,17 +48,22 @@ const wordpressApiConnector = (props: ApiConnectorProps) => {
 const wordpressTransformEvents = (
   events: NodesEntity[],
   limit: number,
-  currentPage: number
+  currentPage: number,
+  format: string
 ): EventElement[] => {
-  const offset = currentPage * limit;
-  // for now just sort the array by meta-date and limit it to limit_param
-  const sortedEvents = events
-    .sort((a, b) => {
-      return moment(a.event.date, "MMMM D, YYY").diff(
-        moment(b.event.date, "MMMM D, YYY")
-      );
-    })
-    .slice(offset - limit, offset);
+  let sortedEvents = events;
+
+  if (format !== "calendar") {
+    const offset = currentPage * limit;
+    // for now just sort the array by meta-date and limit it to limit_param
+    sortedEvents = events
+      .sort((a, b) => {
+        return moment(a.event.date, "MMMM D, YYY").diff(
+          moment(b.event.date, "MMMM D, YYY")
+        );
+      })
+      .slice(offset - limit, offset);
+  }
   const wordpressTransformedEvents: EventElement[] = sortedEvents?.map(
     (event) => {
       const endDateTime = event.event.endDate
@@ -136,6 +72,15 @@ const wordpressTransformEvents = (
       const startDateTime = new Date(
         `${event.event.date} ${event.event.startTime}`
       );
+      // @todo save localist_ics_url to WP event so we dont have to build it here.
+      const icsEvent = ics({
+        title: event.title || "Cornell Event",
+        description: event.event.description.replace(/[\r\n]/g, `<br />`) || "",
+        start: startDateTime,
+        end: endDateTime,
+        location: event.event.location || "",
+      });
+
       const wordpressTransformedEvent: EventElement = {
         event: {
           id: parseInt(event.event.eventId, 10),
@@ -218,7 +163,7 @@ const wordpressTransformEvents = (
             contact_email: event.event.email,
           },
           localist_url: event.event.localistUrl || "",
-          localist_ics_url: "",
+          localist_ics_url: icsEvent,
           photo_url: event.event.photoUrl || "",
           venue_url: null,
           group_id: null,

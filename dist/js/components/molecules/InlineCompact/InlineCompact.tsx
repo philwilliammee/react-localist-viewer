@@ -1,107 +1,96 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {
-  getAbbrMonth,
-  getDay,
-  getEventTime,
-  getEventEndTime,
-  getClassItem,
+  getStartDayMonthAbbr,
+  getEventStartDayString,
+  getEventStartEndTimes,
 } from "../../../helpers/displayEvent";
-import { EventElement, EventEvent } from "../../../../types/types";
-import "./InlineCompact.scss";
-import RoomIcon from "@mui/icons-material/Room";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { EventEvent, ViewProps } from "../../../../types/types";
+import { Grid, Stack, Typography } from "@mui/material";
+import EventLocation from "../../atoms/EventLocation";
+import EventDateTime from "../../atoms/EventDateTime";
+import EventTitle from "../../atoms/EventTitle";
 
-const InlineCompactInner = ({ event }: { event: EventEvent }) => {
-  const eventTime = getEventTime(event);
-  const endTime = getEventEndTime(event);
+const InlineCompactInner = ({
+  event,
+  listclass,
+}: {
+  event: EventEvent;
+  listclass: string;
+}) => {
+  const abbrMonth = getStartDayMonthAbbr(event);
+  const eventDay = getEventStartDayString(event);
 
-  const renderEventLocation = (locationName?: string) => {
-    if (!locationName) {
-      return "";
-    }
-    return (
-      <div className="event-location">
-        <RoomIcon className="room-icon" />
-        {locationName}
-      </div>
-    );
-  };
-  const classList = getClassItem(event);
   return (
-    <div className={`rlv-inline-compact views-row ${classList}`}>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-2 event-month-and-day">
-            <div>
-              <span className="event-month">{getAbbrMonth(event)}</span>
-              <span className="event-day">{getDay(event)}</span>
-            </div>
-          </div>
-          <div className="col-sm-8 event-title-and-location">
-            <div className="event-title">
-              <a href={event.localist_url} hrefLang="en">
-                {event.title}
-              </a>
-            </div>
-            <div className="event-times">
-              <AccessTimeIcon className="access-time-icon" />
-              {eventTime}
-              {endTime ? ` - ${endTime}` : ""}
-            </div>
-            {renderEventLocation(event.location_name)}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Grid container className={listclass}>
+      <Grid
+        item
+        sx={{
+          borderLeft: "4px solid",
+          borderLeftColor: "secondary.main",
+          borderRight: "1px solid",
+          borderRightColor: "divider",
+        }}
+      >
+        <Grid
+          container
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center"
+          alignContent="center"
+          width="50px"
+          height="100%"
+        >
+          <Typography component="div" textAlign="center">
+            <Typography
+              component="div"
+              variant="overline"
+              fontWeight="light"
+              lineHeight="1"
+            >
+              {abbrMonth}
+            </Typography>
+            <Typography component="div" fontWeight="bold" lineHeight="1">
+              {eventDay}
+            </Typography>
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <EventTitle variant="h5" title={event.title} url={event.localist_url} />
+        <EventDateTime
+          hideTime={false}
+          timeFormat={getEventStartEndTimes(event)}
+        />
+        <EventLocation locationName={event.location_name} />
+      </Grid>
+    </Grid>
   );
 };
 
-InlineCompactInner.propTypes = {
-  event: PropTypes.object.isRequired,
-};
+const InlineCompact = (props: ViewProps) => {
+  const { events, wrapperclass, listclass } = props;
 
-interface InlineCompactProps {
-  events: EventElement[];
-  wrapperclass?: string;
-  listclass?: string;
-}
-const InlineCompact = (props: InlineCompactProps) => {
-  const { events, listclass, wrapperclass } = props;
+  if (events.length === 0) {
+    return <p>There are no upcoming events.</p>;
+  }
 
   return (
-    <section className="modern" id="eventsInlineCompact" title="Events List">
-      <div className="events-main-body">
-        <div className={`rlv-component compact events-listing ${wrapperclass}`}>
-          <div className={`events-list view-content ${listclass}`}>
-            {events.length > 0 ? (
-              events.map((event) => {
-                return (
-                  <InlineCompactInner
-                    key={event.event.event_instances[0].event_instance.id}
-                    event={event.event}
-                  />
-                );
-              })
-            ) : (
-              <p>There are no upcoming events.</p>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
+    <Stack
+      spacing={3}
+      component="section"
+      className={`rlv-inline-compact ${wrapperclass}`}
+    >
+      {events.map((event) => {
+        return (
+          <InlineCompactInner
+            key={event.event.event_instances[0].event_instance.id}
+            event={event.event}
+            listclass={listclass || ""}
+          />
+        );
+      })}
+    </Stack>
   );
 };
 
-InlineCompact.propTypes = {
-  events: PropTypes.array,
-  wrapperclass: PropTypes.string,
-  listclass: PropTypes.string,
-};
-
-InlineCompact.defaultProps = {
-  events: [],
-  wrapperclass: "",
-  listclass: "",
-};
 export default InlineCompact;

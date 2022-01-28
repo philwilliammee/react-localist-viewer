@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 
 interface Props {
   heading: string;
@@ -10,10 +10,15 @@ interface Props {
 const Heading = (props: Props) => {
   const { heading, readmore, url } = props;
   return (
-    <Typography component="div" className="rlv-heading" gutterBottom>
-      <HeadingMarkup heading={heading} />
-      <ReadMore readmore={readmore} url={url} />
-    </Typography>
+    <Grid container className="rlv-heading" mb={2}>
+      <Grid>
+        <HeadingMarkup heading={heading} />
+      </Grid>
+      <Grid flexGrow={1} />
+      <Grid>
+        <ReadMore readmore={readmore} url={url} />
+      </Grid>
+    </Grid>
   );
 };
 
@@ -21,11 +26,7 @@ const HeadingMarkup = ({ heading }: { heading: string }) => {
   if (!heading) {
     return <></>;
   }
-  return (
-    <Typography variant="h2" sx={{ display: "inline-block" }}>
-      {heading}
-    </Typography>
-  );
+  return <Typography variant="h2">{heading}</Typography>;
 };
 
 const ReadMore = ({ readmore, url }: { readmore: string; url: string }) => {
@@ -33,13 +34,7 @@ const ReadMore = ({ readmore, url }: { readmore: string; url: string }) => {
     return <></>;
   }
   return (
-    <Link
-      sx={{
-        float: "right",
-        textDecoration: "none",
-      }}
-      href={url}
-    >
+    <Link sx={{ textDecoration: "none" }} href={url}>
       {readmore}
     </Link>
   );

@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import EventsContext, { initialEvent } from "./EventsContext";
-import moment from "moment";
+//import moment from "moment";
 import { EventElement, EventEvent } from "../../types/types";
+import { initDateRange } from "../components/molecules/Calendar/dateUtils";
 
 const EventsState = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<EventElement[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<EventElement[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [eventSelected, setEventSelected] = useState<EventEvent>(initialEvent);
-  const [displayedDateRange, setDisplayedDateRange] = useState({
-    start: moment().startOf("month"),
-    end: moment().endOf("month"),
-  });
+  const [dateRange, setDateRange] = useState(initDateRange());
 
   // const initEvent: InitialEventState = eventSelected as InitialEventState;
 
@@ -27,17 +24,13 @@ const EventsState = ({ children }: { children: React.ReactNode }) => {
         setShowDialog,
         eventSelected,
         setEventSelected,
-        displayedDateRange,
-        setDisplayedDateRange,
+        dateRange,
+        setDateRange,
       }}
     >
       {children}
     </EventsContext.Provider>
   );
-};
-
-EventsState.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default EventsState;

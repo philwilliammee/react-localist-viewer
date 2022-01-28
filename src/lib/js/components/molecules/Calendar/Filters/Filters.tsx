@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import EventsContext from "../../../../context/EventsContext";
 import CheckBox from "../../../atoms/forms/CheckBox";
-import "./Filters.scss";
 import { isNested } from "../../../../helpers/common";
-import { Button, Typography } from "@mui/material";
+import { Button, List, ListItem, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 
 const Filters = () => {
   const { events, setFilteredEvents } = useContext(EventsContext);
   const [checkedItems, setCheckedItems] = useState(new Map());
+  const theme = useTheme();
   const eventTypesFull: string[] = [];
   const eventKeywordsFull: string[] = [];
   const eventGroupNamesFull: string[] = [];
@@ -89,35 +89,43 @@ const Filters = () => {
       <Typography variant="subtitle2">
         Check the boxes below to broaden your results.
       </Typography>
-      <Box bgcolor="background.default" mr={1}>
-        <div className="filter-groups padded">
+      <Box bgcolor="background.default" mr={theme.spacing(2)}>
+        <Box
+          className="filter-groups"
+          sx={{
+            padding: theme.spacing(1),
+          }}
+        >
           {hasGroupNames ? (
             <>
               <Typography variant="h4">Group Name</Typography>
-              <div className="filter-group">
-                <ul>
+              <Box
+                sx={{
+                  maxHeight: "275px",
+                  overflowY: "auto",
+                }}
+              >
+                <List>
                   {eventGroupNames.map((group, id) => {
+                    const filterLength = eventGroupNames.filter((fullType) => {
+                      return fullType === group;
+                    }).length;
+                    const label = `${group} (${filterLength})`;
                     return (
-                      <li key={group}>
+                      <ListItem key={group}>
                         <CheckBox
                           name={group}
-                          label={group}
+                          label={label}
                           color={"primary"}
                           checked={checkedItems.get(group)}
                           onChange={handleChange}
+                          sx_label={{}}
                         />
-                        (
-                        {
-                          eventGroupNamesFull.filter((fullType) => {
-                            return fullType === group;
-                          }).length
-                        }
-                        )
-                      </li>
+                      </ListItem>
                     );
                   })}
-                </ul>
-              </div>
+                </List>
+              </Box>
               {hasTypes ? <hr /> : ""}
             </>
           ) : (
@@ -126,30 +134,32 @@ const Filters = () => {
           {hasTypes ? (
             <>
               <Typography variant="h4">Types</Typography>
-              <div className="filter-group">
-                <ul>
+              <Box
+                sx={{
+                  maxHeight: "275px",
+                  overflowY: "auto",
+                }}
+              >
+                <List>
                   {eventTypes.map((type, id) => {
+                    const filterLength = eventTypesFull.filter((fullType) => {
+                      return fullType === type;
+                    }).length;
+                    const label = `${type} (${filterLength})`;
                     return (
-                      <li key={type}>
+                      <ListItem key={type}>
                         <CheckBox
                           name={type}
-                          label={type}
+                          label={label}
                           color={"primary"}
                           checked={checkedItems.get(type)}
                           onChange={handleChange}
                         />
-                        (
-                        {
-                          eventTypesFull.filter((fullType) => {
-                            return fullType === type;
-                          }).length
-                        }
-                        )
-                      </li>
+                      </ListItem>
                     );
                   })}
-                </ul>
-              </div>
+                </List>
+              </Box>
               {hasKeywords ? <hr /> : ""}
             </>
           ) : (
@@ -158,31 +168,34 @@ const Filters = () => {
           {hasKeywords ? (
             <>
               <Typography variant="h4">Keywords</Typography>
-              <div className="filter-group">
-                {}
-                <ul>
+              <Box
+                sx={{
+                  maxHeight: "275px",
+                  overflowY: "auto",
+                }}
+              >
+                <List>
                   {eventKeywords.map((keyword, id) => {
+                    const filterLength = eventKeywordsFull.filter(
+                      (fullType) => {
+                        return fullType === keyword;
+                      }
+                    ).length;
+                    const label = `${keyword} (${filterLength})`;
                     return (
-                      <li key={keyword}>
+                      <ListItem key={keyword}>
                         <CheckBox
                           name={keyword}
-                          label={keyword}
+                          label={label}
                           color={"primary"}
                           checked={checkedItems.get(keyword)}
                           onChange={handleChange}
-                        />{" "}
-                        (
-                        {
-                          eventKeywordsFull.filter((fullType) => {
-                            return fullType === keyword;
-                          }).length
-                        }
-                        )
-                      </li>
+                        />
+                      </ListItem>
                     );
                   })}
-                </ul>
-              </div>
+                </List>
+              </Box>
             </>
           ) : (
             ""
@@ -198,6 +211,7 @@ const Filters = () => {
                 onClick={() => {
                   handleResetFilters();
                 }}
+                fullWidth
               >
                 Reset Filters
               </Button>
@@ -205,7 +219,7 @@ const Filters = () => {
           ) : (
             ""
           )}
-        </div>
+        </Box>
       </Box>
     </div>
   );

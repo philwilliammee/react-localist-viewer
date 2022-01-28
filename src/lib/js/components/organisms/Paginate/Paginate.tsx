@@ -2,6 +2,7 @@ import React from "react";
 import { isHidden } from "../../../helpers/common";
 import { HideType } from "../../../../types/types";
 import { Pagination } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
 
 interface Props {
   hidepagination: HideType;
@@ -9,16 +10,28 @@ interface Props {
   handlePageClick: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 
+// Sadly override cwd theme.
+const useStyles = makeStyles(() =>
+  createStyles({
+    ul: {
+      "& li": {
+        margin: 0,
+      },
+    },
+  })
+);
+
 const Paginate = (props: Props) => {
   const { hidepagination, handlePageClick, total } = props;
-
+  const classes = useStyles();
   if (total < 2 || isHidden(hidepagination)) {
     return <></>;
   }
 
   return (
     <Pagination
-      className="rlc-paginate"
+      classes={classes}
+      className="rlv-paginate"
       count={total}
       onChange={(e, p) => {
         handlePageClick(e, p);
@@ -27,7 +40,6 @@ const Paginate = (props: Props) => {
       shape="rounded"
       sx={{
         width: "100%",
-        clear: "both", // @todo This should be able to go away after we fix floats
         borderTop: "1px solid",
         borderColor: "divider",
         paddingTop: 2,

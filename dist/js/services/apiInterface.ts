@@ -11,7 +11,9 @@ import {
 import drupalApiConnector, {
   drupalEventsTransformer,
 } from "./drupalApiConnector";
-import localistApiConnector from "./localistApiConnector";
+import localistApiConnector, {
+  localistTransformEvents,
+} from "./localistApiConnector";
 import wordpressApiConnector, {
   wordpressTransformEvents,
 } from "./wordpressApiConnector";
@@ -36,7 +38,7 @@ export async function fetchEvents(
       start,
       end,
     });
-    data = response.data;
+    data = localistTransformEvents(response.data);
   }
 
   if (props.api === "drupal") {
@@ -83,7 +85,8 @@ export async function fetchEvents(
       const wordpressTransformedEvents = wordpressTransformEvents(
         events,
         limit,
-        currentPage
+        currentPage,
+        props.format
       );
 
       data = {

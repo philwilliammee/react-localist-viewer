@@ -19,7 +19,7 @@ const Template: Story<ComponentProps<typeof EventDescription>> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  description: "Some plain text usually pre truncated",
+  description: "Some plain text usually pre truncated...",
   title: "the event title",
   url: "/?path=/docs/atoms-modaldialog--default",
   hidedescription: "false",

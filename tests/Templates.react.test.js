@@ -4,13 +4,12 @@
 // Link.react.test.js
 import React from "react";
 import Standard from "../src/lib/js/components/molecules/Standard";
-import Compact from "../src/lib/js/components/molecules/Compact";
 import ModernCompact from "../src/lib/js/components/molecules/ModernCompact";
 import ModernStandard from "../src/lib/js/components/molecules/ModernStandard";
 import InlineCompact from "../src/lib/js/components/molecules/InlineCompact";
-// import Calendar from "../src/lib/js/components/molecules/EventsCalendar";
 import renderer from "react-test-renderer";
 import { componentData } from "./testData";
+// import Calendar from "../src/lib/js/components/molecules/Calendar";
 // import { QueryClient, QueryClientProvider } from "react-query";
 
 beforeAll(() => {
@@ -31,24 +30,6 @@ test("Standard Enabled", () => {
       hideaddcal="false"
       wrapperClassArray={[]}
       listClassArray={[]}
-    />
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-test("Standard Enabled", () => {
-  const component = renderer.create(
-    <Compact
-      heading="Test"
-      events={componentData.events}
-      filterby="none"
-      wrapperClassArray={[]}
-      listClassArray={[]}
-      hidedescription="true"
-      truncatedescription="150"
-      hideimages="true"
-      hideaddcal="true"
     />
   );
   let tree = component.toJSON();
@@ -116,20 +97,18 @@ test("InlineCompact Enabled", () => {
  */
 // test("Calendar Enabled", () => {
 //   const component = renderer.create(
-//       <QueryClientProvider client={queryClient}>
-//         <Calendar
-//           heading="Calendar Test"
-//           events={componentData.events}
-//           filterby="none"
-//           wrapperClassArray={[]}
-//           listClassArray={[]}
-//           hidedescription="false"
-//           truncatedescription="250"
-//           hideimages="false"
-//           hideaddcal="true"
-//           hidepagination="true"
-//         />
-//       </QueryClientProvider>
+//     <Calendar
+//       heading="Calendar Test"
+//       events={componentData.events}
+//       filterby="none"
+//       wrapperClassArray={[]}
+//       listClassArray={[]}
+//       hidedescription="false"
+//       truncatedescription="250"
+//       hideimages="false"
+//       hideaddcal="true"
+//       hidepagination="true"
+//     />
 //   );
 //   let tree = component.toJSON();
 //   expect(tree).toMatchSnapshot();

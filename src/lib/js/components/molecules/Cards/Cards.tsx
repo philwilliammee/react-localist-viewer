@@ -1,52 +1,47 @@
-import { Grid } from "@mui/material";
 import React from "react";
-import { StandardProps } from "../../../../types/types";
-import Card from "../Card";
-import { getEventDate, getEventFullTime } from "../../../helpers/displayEvent";
+import { Grid } from "@mui/material";
+import {
+  getEventStartMonthDayString,
+  getEventStartEndTimes,
+  getEventKey,
+} from "../../../helpers/displayEvent";
+import ModernCompactInner from "../ModernCompact/ModernCompactInner";
+import { ViewProps } from "../../../../types/types";
 
-const Cards = (props: StandardProps) => {
-  const { events, listClassArray, wrapperClassArray } = props;
-  const wrapperClassList = wrapperClassArray.join(" ");
-  const listClassList = listClassArray.join(" ");
+const Cards = (props: ViewProps) => {
+  const { events, listclass, wrapperclass } = props;
   return (
-    <section className="events-modern-standard modern" title="Events List">
-      <div>
-        <div className={`rlv-component cwd-card-grid ${wrapperClassList}`}>
-          <div className={listClassList}>
-            <Grid container spacing={2}>
-              {events.length > 0 ? (
-                events.map((event) => {
-                  return (
-                    <Grid
-                      item
-                      key={event.event.event_instances[0].event_instance.id}
-                    >
-                      <Card
-                        key={event.event.event_instances[0].event_instance.id}
-                        title={event.event.title}
-                        description={event.event.description}
-                        image={event.event.photo_url}
-                        link={event.event.localist_url}
-                        hidedescription={props.hidedescription}
-                        hideimages={props.hideimages}
-                        truncatedescription={props.truncatedescription}
-                        tags={event.event.tags}
-                        dateFormat={getEventDate(event.event)}
-                        timeFormat={getEventFullTime(event.event)}
-                        locationName={event.event.location_name}
-
-                        // event={event.event}
-                        // {...props}
-                      />
-                    </Grid>
-                  );
-                })
-              ) : (
-                <p>There are no upcoming events.</p>
-              )}
-            </Grid>
-          </div>
-        </div>
+    <section className="rlv-cards">
+      <div className={wrapperclass}>
+        <Grid container spacing={2}>
+          {events.length > 0 ? (
+            events.map((event) => {
+              const key = getEventKey(event.event);
+              return (
+                <Grid item key={key} className={listclass} xs={12} md={4}>
+                  <ModernCompactInner
+                    title={event.event.title}
+                    description={event.event.description}
+                    image={event.event.photo_url}
+                    link={event.event.localist_url}
+                    hidedescription={props.hidedescription}
+                    hideimages={props.hideimages}
+                    truncatedescription={props.truncatedescription}
+                    tags={event.event.tags}
+                    dateFormat={getEventStartMonthDayString(event.event)}
+                    timeFormat={getEventStartEndTimes(event.event)}
+                    locationName={event.event.location_name}
+                    listClass={props.listclass}
+                    event={event.event}
+                    hideaddcal={props.hideaddcal}
+                  />
+                </Grid>
+              );
+            })
+          ) : (
+            <p>There are no upcoming events.</p>
+          )}
+        </Grid>
       </div>
     </section>
   );

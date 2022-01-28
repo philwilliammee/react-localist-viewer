@@ -1,33 +1,65 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
-  getAbbrMonth,
-  getDay,
-  getEventDate,
+  getStartDayMonthAbbr,
+  getEventStartDayString,
+  getEventStartMonthDayString,
   getEventTime,
 } from "../../../helpers/displayEvent";
 import { EventEvent } from "../../../../types/types";
-import "./Time.scss";
+import { Typography, useTheme } from "@mui/material";
+import { Box } from "@mui/system";
 
 interface Props {
   event: EventEvent;
 }
 const Time = (props: Props) => {
   const { event } = props;
+  const theme = useTheme();
   return (
-    <time
+    <Box
+      component="time"
       className="rlv-time"
-      title={getEventDate(event)}
+      title={getEventStartMonthDayString(event)}
       dateTime={getEventTime(event)}
+      sx={{
+        display: "inline-block",
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+      }}
     >
-      <span className="month">{getAbbrMonth(event)}</span>
-      <span className="day">{getDay(event)}</span>
-    </time>
+      <Typography
+        component="span"
+        className="month"
+        sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          textAlign: "center",
+          textTransform: "uppercase",
+          paddingTop: theme.spacing(1),
+          paddingRight: theme.spacing(1),
+          paddingBottom: theme.spacing(1),
+          paddingLeft: theme.spacing(2),
+        }}
+      >
+        {getStartDayMonthAbbr(event)}
+      </Typography>
+      <Typography
+        component="span"
+        className="day"
+        sx={{
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.secondary.contrastText,
+          textAlign: "center",
+          paddingTop: theme.spacing(1),
+          paddingRight: theme.spacing(2),
+          paddingBottom: theme.spacing(1),
+          paddingLeft: theme.spacing(1),
+        }}
+      >
+        {getEventStartDayString(event)}
+      </Typography>
+    </Box>
   );
-};
-
-Time.propTypes = {
-  event: PropTypes.object.isRequired,
 };
 
 export default Time;

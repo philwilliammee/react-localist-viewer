@@ -3,7 +3,7 @@ import {
   getLastMonth,
   getNextMonth,
   getMonthFromThisDateRange,
-} from "../src/lib/js/components/molecules/EventsCalendar/dateUtils";
+} from "../src/lib/js/components/molecules/Calendar/dateUtils";
 
 // npm i -g jest-cli
 // run with jest dateUtils.react.test.js

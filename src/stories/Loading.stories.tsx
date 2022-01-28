@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 import { Story, Meta } from "@storybook/react";
-import Loading from "lib/js/components/atoms/Loading";
+import Loading from "../lib/js/components/atoms/Loading";
 
 const LoadingStories = {
   title: "Atoms/Loading ",

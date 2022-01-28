@@ -13,21 +13,26 @@ export default function EventDateTime({
   timeFormat,
   hideTime,
 }: Props): ReactElement {
-  let separator = dateFormat ? "@ " : "";
+  let separator = dateFormat ? " @ " : "";
+  let content = "";
+  if (dateFormat) content += dateFormat;
+  if (!hideTime) {
+    content += separator + timeFormat;
+  }
   return (
     <Typography
       component="span"
       color="text.primary"
       className="rlv-event-date-time"
+      display="block"
     >
       <AccessTimeIcon
-        className="access-time-icon"
         sx={{
           fontSize: "inherit",
           marginRight: 1,
         }}
       />
-      {dateFormat} {hideTime ? "" : `${separator}${timeFormat}`}
+      {content}
     </Typography>
   );
 }

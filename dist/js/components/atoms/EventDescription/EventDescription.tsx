@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { isHidden } from "../../../helpers/common";
 import { HideType } from "../../../../types/types";
-import "./EventDescription.scss";
+import { Link, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 interface EventDescriptionProps {
   description: string;
@@ -13,42 +13,26 @@ interface EventDescriptionProps {
 const EventDescription = (props: EventDescriptionProps) => {
   const { description, title, url, hidedescription } = props;
 
-  if (isHidden(hidedescription) && isHidden(hidedescription)) {
+  if (isHidden(hidedescription)) {
     return <></>;
   }
 
-  const descriptionLink = (
-    <a
-      className="read-more more"
-      href={url}
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      {" "}
-      read more
-      <span className="visually-hidden"> about {title}</span>
-    </a>
-  );
-
   return (
-    <div className="rlv-event-description">
-      <p>
-        {isHidden(hidedescription) ? "" : description}
-        {isHidden(hidedescription) ? "" : descriptionLink}
-      </p>
-    </div>
+    <Box className="rlv-event-description" sx={{ wordBreak: "break-word" }}>
+      <Typography component="p">
+        {description}{" "}
+        <Link
+          className="read-more more"
+          href={url}
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          read more
+          <span className="visually-hidden"> about {title}</span>
+        </Link>
+      </Typography>
+    </Box>
   );
-};
-
-EventDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  hidedescription: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-EventDescription.defaultProps = {
-  hidedescription: "false",
 };
 
 export default EventDescription;

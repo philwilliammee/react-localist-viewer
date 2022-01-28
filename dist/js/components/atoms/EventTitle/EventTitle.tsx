@@ -1,28 +1,54 @@
+import { Link, Typography, TypographyProps } from "@mui/material";
+import { createMarkup } from "../../../helpers/common";
 import React from "react";
-import PropTypes from "prop-types";
-import "./EventTitle.scss";
-
-// @todo shouldn't these go in atoms?
 
 interface EventTitleProps {
   title: string;
-  url: string;
+  url?: string;
+  variant?: TypographyProps["variant"];
 }
 
 const EventTitle = (props: EventTitleProps) => {
-  const { title, url } = props;
+  const { title, url, variant } = props;
+  const markup = createMarkup(title);
+  if (url) {
+    return (
+      <Title variant={variant || "h4"}>
+        <Link
+          href={url}
+          className="event-title"
+          sx={{
+            textDecoration: "none",
+            "&:hover, :focus": {
+              textDecoration: "underline",
+            },
+          }}
+          dangerouslySetInnerHTML={markup}
+        />
+      </Title>
+    );
+  }
+
   return (
-    <h3 className="rlv-event-title">
-      <a rel="noreferrer noopener" target="_blank" href={url}>
-        {title}
-      </a>
-    </h3>
+    <Title variant={variant || "h4"}>
+      <span dangerouslySetInnerHTML={markup} />
+    </Title>
   );
 };
 
-EventTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+const Title = ({
+  children,
+  variant,
+}: {
+  children: React.ReactNode;
+  variant?: TypographyProps["variant"];
+}) => {
+  return (
+    <Typography component="h3" variant={variant} className="rlv-event-title">
+      {children}
+    </Typography>
+  );
 };
 
 export default EventTitle;
+export { Title };

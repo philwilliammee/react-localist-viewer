@@ -1,129 +1,58 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import moment from "moment";
-import "./calendar.scss";
-import {
-  getKeyFromDateRange,
-  getLastMonth,
-  getNextMonth,
-  initDateRange,
-} from "./dateUtils";
+import React, { useContext, useState } from "react";
+import moment, { Moment } from "moment";
+import { getLastMonth, getNextMonth, initDateRange } from "./dateUtils";
 import EventsContext from "../../../context/EventsContext";
-
-import {
-  DisplayedDateRange,
-  EventElement,
-  EventEvent,
-  ViewComponentProps,
-} from "../../../../types/types";
-import { queryClient } from "../../../../query";
-import { useQuery } from "react-query";
-import { fetchEvents } from "../../../services/apiInterface";
+import { EventElement, EventEvent, ViewProps } from "../../../../types/types";
 import MonthView from "./MonthView";
-import EventDetails from "../EventDetails";
 import EventModal from "../../atoms/ModalDialog";
-import Grid from "../../atoms/Grid";
 import Filters from "./Filters";
 import AgendaList from "./AgendaList";
 import { getEventStart } from "../../../helpers/displayEvent";
-import { Props } from "../../../components/organisms/LocalistView";
 import Toolbar from "./ToolBar";
-import { getQueryId } from "../../../helpers/common";
+import { Box } from "@mui/system";
+import { Grid, Typography } from "@mui/material";
+import EventInner from "../EventInner/EventInner";
 
-const Calendar = (props: Props) => {
-  const queryId = getQueryId(props);
+const Calendar = (props: ViewProps) => {
   const {
-    setEvents,
-    filteredEvents,
-    setFilteredEvents,
     showDialog,
     setShowDialog,
     eventSelected,
     setEventSelected,
-    setDisplayedDateRange,
+    dateRange,
+    setDateRange,
+    filteredEvents,
   } = useContext(EventsContext);
-  const [dateContext, setDateContext] = useState(moment());
-  const [dateRange, setDateRange] = useState(initDateRange());
-  const [selectedDay, setSelectedDay] = useState<number>(moment().date());
+  const [dateContext, setDateContext] = useState(moment()); // Date context is current month.
+  const [selectedDay, setSelectedDay] = useState<number>(moment().date()); // The individual day that is selected.
   const [view, setView] = useState<"month" | "day" | "list">("month");
-  const key = getKeyFromDateRange(dateRange);
-  // @todo all of this should be moved up to the main component.
-  const { data } = useQuery(
-    [queryId, key],
-    () => fetchEvents(props as ViewComponentProps, 0, dateRange),
-    { keepPreviousData: true, staleTime: Infinity }
-  );
-
-  const preFetchData = useCallback(
-    (dr: DisplayedDateRange) => {
-      let lastMonthDateRange = getLastMonth(dr);
-      queryClient.prefetchQuery(
-        [queryId, getKeyFromDateRange(lastMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, lastMonthDateRange),
-        { staleTime: Infinity }
-      );
-
-      let nextMonthDateRange = getNextMonth(dr);
-      queryClient.prefetchQuery(
-        [queryId, getKeyFromDateRange(nextMonthDateRange)],
-        () => fetchEvents(props as ViewComponentProps, 0, nextMonthDateRange),
-        { staleTime: Infinity }
-      );
-      if (data) {
-        setEvents(data.events);
-        setFilteredEvents(data.events);
-        // preload and disc-cache event images @todo replace big with actual
-        // Photo crop should be defined in the base parent.
-        // Or each component is responsible for pre-fetching their images.
-        data.events.forEach((event) => {
-          const src = event.event.photo_url.replace("/huge/", `/big/`);
-          const img = new Image();
-          img.src = src;
-        });
-      }
-    },
-
-    [props, setEvents, setFilteredEvents, data, queryId]
-  );
-
-  useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      preFetchData(dateRange);
-    }
-    return function cleanup() {
-      mounted = false;
-    };
-    // This is ok we only want to fetch new data when the date range changes,
-    // This allows us to apply filtering.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateRange]);
 
   const nextMonth = () => {
     const newDateContext = moment(dateContext).clone().add(1, "month");
     const newDateRange = getNextMonth(dateRange);
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
   };
 
   const prevMonth = () => {
     const newDateContext = moment(dateContext).clone().subtract(1, "month");
     const newDateRange = getLastMonth(dateRange);
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
   };
 
   const today = () => {
     const newDateContext = moment();
     const newDateRange = initDateRange();
     setSelectedDay(newDateContext.date());
+    // Why are we doing all three of these?
     setDateContext(newDateContext);
     setDateRange(newDateRange);
-    setDisplayedDateRange(newDateRange); // I don't believe this is used anymore
   };
 
-  const handleEventSelect = (event: EventEvent) => {
+  const showModal = (event: EventEvent) => {
     setEventSelected(event);
     setShowDialog(true);
   };
@@ -133,96 +62,100 @@ const Calendar = (props: Props) => {
     setView("day");
   };
 
-  const title = (
-    <>
-      <span className="label-month">{dateContext.format("MMMM")}</span>{" "}
-      {view === "day" ? <span className="label-day">{selectedDay}, </span> : ""}
-      <span className="label-year">{dateContext.format("Y")}</span>
-    </>
-  );
+  // If it is a day view only show results for that day.
+  const getListEvents = () => {
+    if (view === "day") {
+      return filteredEvents.filter(
+        (event: EventElement) =>
+          moment(getEventStart(event.event)).date() ===
+          (selectedDay || moment().date())
+      );
+    }
+    return filteredEvents;
+  };
 
+  // @todo refactor this into standalone component view and add tests.
+  // @todo make mobile toolbar.
   return (
-    <div className="calendar-container">
+    <div className="rlv-calendar">
       <EventModal
         showDialog={showDialog}
         setShowDialog={setShowDialog}
         aria-label="Selected Event"
+        title={eventSelected.title}
       >
-        {eventSelected ? <EventDetails event={eventSelected} /> : ""}
+        {eventSelected ? <EventInner event={eventSelected} /> : ""}
       </EventModal>
 
       <Grid container>
-        <Grid col={3}>
-          <Filters key={key} />
+        <Grid item md={3} xs={12}>
+          <Filters />
         </Grid>
-        <Grid col={9}>
-          <div>
-            <Toolbar
-              setView={setView}
-              nextMonth={nextMonth}
-              prevMonth={prevMonth}
+        <Grid item md={9} xs={12}>
+          <Toolbar
+            setView={setView}
+            nextMonth={nextMonth}
+            prevMonth={prevMonth}
+            view={view}
+            today={today}
+          >
+            <ToolBarTitle
+              dateContext={dateContext}
               view={view}
-              today={today}
+              selectedDay={selectedDay}
+            />
+          </Toolbar>
+          {view === "month" ? (
+            <Box
+              className="month-view"
+              sx={{
+                "table td, table th": {
+                  borderWidth: "1px",
+                  fontSize: "body1.fontSize",
+                },
+                td: {
+                  verticalAlign: "top",
+                },
+              }}
             >
-              {title}
-            </Toolbar>
-            {view === "month" ? (
-              <div className="month-view">
-                <MonthView
-                  events={filteredEvents || []}
-                  dateContext={dateContext}
-                  setSelectedDay={handleDateClick}
-                  selectedDay={selectedDay}
-                  handleEventSelect={handleEventSelect}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {view === "list" ? (
-              <AgendaList
-                // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
-                  return (
-                    moment(getEventStart(event.event)).month() ===
-                    dateContext.month()
-                  );
-                })}
-                hideaddcal="true"
-                hidedescription="false"
-                hideimages="true"
-                truncatedescription="200"
-                setShowDialog={setShowDialog}
-                setEventSelected={setEventSelected}
+              <MonthView
+                events={filteredEvents || []}
                 dateContext={dateContext}
+                setSelectedDay={handleDateClick}
+                selectedDay={selectedDay}
+                handleEventSelect={showModal}
               />
-            ) : (
-              ""
-            )}
-            {view === "day" ? (
-              <AgendaList
-                // Only show events for the month.
-                events={filteredEvents.filter((event: EventElement) => {
-                  return (
-                    moment(getEventStart(event.event)).date() ===
-                    (selectedDay || moment().date())
-                  );
-                })}
-                hideaddcal="true"
-                hidedescription="false"
-                hideimages="true"
-                truncatedescription="200"
-                setShowDialog={setShowDialog}
-                setEventSelected={setEventSelected}
-                dateContext={dateContext}
-              />
-            ) : (
-              ""
-            )}
-          </div>
+            </Box>
+          ) : (
+            //list or day view
+            <AgendaList
+              {...props}
+              setShowDialog={setShowDialog}
+              events={getListEvents()}
+            />
+          )}
         </Grid>
       </Grid>
     </div>
+  );
+};
+
+interface ToolBarTitleProps {
+  view: "month" | "day" | "list";
+  dateContext: Moment;
+  selectedDay?: number;
+}
+const ToolBarTitle = (props: ToolBarTitleProps) => {
+  return (
+    <Typography variant="h2">
+      <span className="label-month">{props.dateContext.format("MMMM")}</span>{" "}
+      {props.view === "day" ? (
+        <span className="label-day">{props.selectedDay}, </span>
+      ) : (
+        ""
+      )}
+      <span className="label-year">{props.dateContext.format("Y")}</span>
+    </Typography>
   );
 };
 

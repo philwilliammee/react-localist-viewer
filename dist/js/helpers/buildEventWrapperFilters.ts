@@ -1,5 +1,3 @@
-import { getGroupName, getGroupId } from "./displayEvent";
-
 import { addUniqueObj } from "./common";
 import { Department, EventElement, FilterBy } from "../../types/types";
 
@@ -13,13 +11,16 @@ const buildEventWrapperFilters = (
   filterby: FilterBy
 ) => {
   if (filterby === "none") {
-    return "";
+    return [];
   }
-  const filters: Department[] = [];
+  const filters: Department[] = [
+    {
+      id: -1,
+      name: "All Events",
+    },
+  ];
   events.forEach((eventObj) => {
     const { event } = eventObj;
-    const groupName = getGroupName(event);
-    const groupId = getGroupId(event);
     if (filterby === "type" && event.filters.event_types) {
       const types = event.filters.event_types;
       types.forEach((type) => {
@@ -32,8 +33,12 @@ const buildEventWrapperFilters = (
         const { id, name } = department;
         addUniqueObj(filters, { id, name });
       });
-    } else if (filterby === "group" && groupName !== "") {
-      addUniqueObj(filters, { id: groupId, name: groupName });
+    } else if (filterby === "group") {
+      const groupName = event.group_name;
+      const groupId = event.group_id;
+      if (groupName && groupId) {
+        addUniqueObj(filters, { id: groupId, name: groupName });
+      }
     }
   });
   return filters;

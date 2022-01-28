@@ -1,114 +1,72 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useState } from "react";
 import buildEventWrapperFilters from "../../../helpers/buildEventWrapperFilters";
-import { removeElement, addUniqueElement } from "../../../helpers/common";
 import {
   getTypeIds,
-  getGroupId,
   getDepartmentIds,
 } from "../../../helpers/displayEvent";
 import FilterButton from "../../atoms/FilterButton";
 import { Department, EventElement, FilterBy } from "../../../../types/types";
-import "./EventFilterBy.scss";
+import { Grid } from "@mui/material";
+import EventsContext from "../../../context/EventsContext";
 
+// @todo whatever is selected in filterBy should show as a tag in
 interface Props {
-  handleEventFilter: (events: EventElement[], objName: string) => void;
   filterby: FilterBy;
   events: EventElement[];
-  active: string;
-  setActive: (active: string) => void;
 }
 
-/**
- * @param {obj} props The props.
- */
 const EventFilters = (props: Props) => {
-  const { handleEventFilter, filterby, events, active, setActive } = props;
-  const filterButtons = buildEventWrapperFilters(events, filterby);
+  const { filterby, events } = props;
+  const [active, setActive] = useState("filter-1");
+  const { setFilteredEvents } = useContext(EventsContext);
 
   if (filterby === "none") {
     return <></>;
   }
 
+  const filterButtons = buildEventWrapperFilters(events, filterby);
+
   const applyFilter = (obj: Department) => {
-    events.forEach((event: EventElement) => {
+    const filteredEvents = events.filter((event: EventElement) => {
       const ids = getTypeIds(event.event);
       const departmentIds = getDepartmentIds(event.event);
-      const groupId = getGroupId(event.event);
-      if (obj.name === "filterAll") {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
+      const groupId = event.event.group_id;
+      if (obj.name === "All Events") {
+        return true;
       } else if (filterby === "type" && ids.includes(obj.id)) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
+        return true;
       } else if (filterby === "dept" && departmentIds.includes(obj.id)) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
+        return true;
       } else if (filterby === "group" && groupId === obj.id) {
-        event.event.itemClassArray = removeElement(
-          event.event.itemClassArray,
-          "fadeOut"
-        );
+        return true;
       } else {
-        addUniqueElement(event.event.itemClassArray, "fadeOut");
+        return false;
       }
     });
-    handleEventFilter(events, obj.name);
+    setFilteredEvents(filteredEvents);
   };
 
   return (
-    <div className="rlv-event-filter-by">
-      <h3 className="hidden">Show:</h3>
-      <ul className="events-filters">
-        <li key="filterAll">
-          <FilterButton
-            filterId="filterAll"
-            active={active}
-            name="All Events"
-            clickHandler={() => {
-              const obj: Department = { id: -1, name: "filterAll" };
-              applyFilter(obj);
-              setActive("filterAll");
-            }}
-          />
-        </li>
-        {filterButtons
-          ? filterButtons.map((obj) => {
-              const { id, name } = obj;
-              const filterId = `filter${id}`;
-              return (
-                <li key={id}>
-                  <FilterButton
-                    filterId={filterId}
-                    active={active}
-                    name={name}
-                    clickHandler={() => {
-                      applyFilter(obj);
-                      setActive(filterId);
-                    }}
-                  />
-                </li>
-              );
-            })
-          : ""}
-      </ul>
-    </div>
+    <Grid className="rlv-event-filter-by" container spacing={1}>
+      {filterButtons.map((obj) => {
+        const { id, name } = obj;
+        const filterId = `filter${id}`;
+        return (
+          <Grid item key={id}>
+            <FilterButton
+              filterId={filterId}
+              active={active}
+              name={name}
+              clickHandler={() => {
+                applyFilter(obj);
+                setActive(filterId);
+              }}
+            />
+          </Grid>
+        );
+      })}
+    </Grid>
   );
-};
-
-EventFilters.propTypes = {
-  // Filterby shape [{id:integer, name:string}...]
-  handleEventFilter: PropTypes.func.isRequired,
-  filterby: PropTypes.string.isRequired,
-  events: PropTypes.array.isRequired,
-  active: PropTypes.string.isRequired,
-  setActive: PropTypes.func.isRequired,
 };
 
 export default EventFilters;

@@ -2,7 +2,7 @@ import React, { ComponentProps } from "react";
 import EventInner from "../lib/js/components/molecules/EventInner/EventInner";
 import { Story, Meta } from "@storybook/react";
 import { singleEvent } from "./assets/testData";
-import { EventEvent } from "lib/types/types";
+import { EventEvent } from "../lib/types/types";
 
 const EventInnerStories = {
   title: "Molecules/EventInner ",
