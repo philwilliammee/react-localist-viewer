@@ -21,6 +21,7 @@ const ModernCompact = (props: ViewProps) => {
                 title={event.event.title}
                 description={event.event.description}
                 image={event.event.photo_url}
+                photoCrop="big"
                 link={event.event.localist_url}
                 hidedescription={props.hidedescription}
                 hideimages={props.hideimages}

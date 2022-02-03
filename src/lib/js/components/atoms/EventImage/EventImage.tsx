@@ -22,7 +22,7 @@ const EventImage = (props: EventImageProps) => {
   const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     // fall back image url
     setImg(
-      "https://localist-images.azureedge.net/photos/383704/huge/280b45456aa9d4e5eb4e4de5828d4d1dc0772e63.jpg"
+      "https://brand.cornell.edu/assets/images/logos/cornell-insignia-red.svg"
     );
   };
 

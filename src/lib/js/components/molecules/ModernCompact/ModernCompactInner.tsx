@@ -25,6 +25,7 @@ interface Props {
   title: string;
   description?: string;
   image: string;
+  photoCrop?: string;
   link: string;
   hidedescription?: HideType;
   hideimages?: HideType;
@@ -41,6 +42,7 @@ export default function ModernCompactInner(props: Props) {
     title,
     description,
     image,
+    photoCrop,
     link,
     hidedescription,
     hideimages,
@@ -50,7 +52,14 @@ export default function ModernCompactInner(props: Props) {
     hideaddcal,
     event,
   } = props;
-  // const eventTime = getEventTime(event);
+
+  const photo = image.replace("/huge/", `/${photoCrop}/`);
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src =
+      "https://brand.cornell.edu/assets/images/logos/cornell-insignia-red.svg";
+  };
+
   return (
     <MuiCard
       sx={{
@@ -67,8 +76,9 @@ export default function ModernCompactInner(props: Props) {
           {isNotHidden(hideimages) ? (
             <CardMedia
               component="img"
-              image={image}
+              image={photo}
               alt={title}
+              onError={handleImageError}
               sx={{
                 borderBottom: "5px solid",
                 borderBottomColor: "secondary.main",

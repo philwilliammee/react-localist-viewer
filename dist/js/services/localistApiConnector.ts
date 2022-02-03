@@ -1,7 +1,6 @@
-import { Events } from "./../../../../dist/types/types";
 import axios from "axios";
 import moment from "moment";
-import { EventElement, EventInstanceElement } from "../../types/types";
+import { Events, EventElement, EventInstanceElement } from "../../types/types";
 
 export interface ApiConnectorProps {
   depts?: string;
