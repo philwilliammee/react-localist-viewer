@@ -9,14 +9,15 @@ import { EventEvent, HideType } from "../../../../types/types";
 import { Box, SxProps } from "@mui/system";
 import Time from "../../atoms/Time";
 import {
-  getEventStartMonthDayString,
-  getEventStartEndTimes,
+  // getEventStartMonthDayString,
+  // getEventStartEndTimes,
+  getEventTime,
 } from "../../../helpers/displayEvent";
 import AddCal from "../AddCal/AddCal";
 import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
-import EventDateTime from "../../atoms/EventDateTime";
-import EventLocation from "../../atoms/EventLocation";
+// import EventDateTime from "../../atoms/EventDateTime";
+// import EventLocation from "../../atoms/EventLocation";
 import Tags from "../Tags";
 
 interface Props {
@@ -60,6 +61,8 @@ export default function ModernCompactInner(props: Props) {
       "https://brand.cornell.edu/assets/images/logos/cornell-insignia-red.svg";
   };
 
+  const eventTime = getEventTime(event);
+
   return (
     <MuiCard
       sx={{
@@ -99,12 +102,14 @@ export default function ModernCompactInner(props: Props) {
               color="text.secondary"
               gutterBottom
             >
-              <EventDateTime
+              {eventTime}{" "}
+              {event.location_name ? `, ${event.location_name}` : ""}
+              {/* <EventDateTime
                 dateFormat={getEventStartMonthDayString(event)}
                 timeFormat={getEventStartEndTimes(event)}
                 hideTime={false}
-              />
-              <EventLocation locationName={event.location_name} />
+              /> */}
+              {/* <EventLocation locationName={event.location_name} /> */}
             </Typography>
             <Typography color="text.primary">
               <Truncate
