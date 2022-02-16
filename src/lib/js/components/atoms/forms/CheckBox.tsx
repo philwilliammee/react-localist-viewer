@@ -3,9 +3,8 @@ import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
   FormControlLabel,
-  Theme,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
+import { SxProps, Theme } from "@mui/material/styles";
 
 interface Props {
   name: string;
@@ -21,10 +20,10 @@ const Checkbox = ({
   label,
   checked = false,
   onChange,
-  sx_label,
+  sx_label = [],
 }: Props) => (
   <FormControlLabel
-    sx={sx_label ? { sx_label } : {}}
+    sx={[...(Array.isArray(sx_label) ? sx_label : [sx_label])]}
     control={
       <MuiCheckbox
         onChange={onChange}
