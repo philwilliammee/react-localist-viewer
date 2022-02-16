@@ -31,7 +31,7 @@ const Cards = (props: ViewProps) => {
                     dateFormat={getEventStartMonthDayString(event.event)}
                     timeFormat={getEventStartEndTimes(event.event)}
                     locationName={event.event.location_name}
-                    listClass={props.listclass}
+                    itemClass={props.itemclass}
                     event={event.event}
                     hideaddcal={props.hideaddcal}
                   />

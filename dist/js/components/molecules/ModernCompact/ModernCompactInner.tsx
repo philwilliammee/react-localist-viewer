@@ -18,7 +18,7 @@ import { isNotHidden } from "../../../helpers/common";
 import EventTitle from "../../atoms/EventTitle";
 // import EventDateTime from "../../atoms/EventDateTime";
 // import EventLocation from "../../atoms/EventLocation";
-import Tags from "../Tags";
+// import Tags from "../Tags";
 
 interface Props {
   dateFormat: string;
@@ -34,7 +34,7 @@ interface Props {
   tags: string[];
   locationName: string;
   sx?: SxProps<Theme> | undefined;
-  listClass?: string;
+  itemClass?: string;
   event: EventEvent;
   hideaddcal?: HideType;
 }
@@ -48,8 +48,8 @@ export default function ModernCompactInner(props: Props) {
     hidedescription,
     hideimages,
     truncatedescription,
-    tags,
-    listClass,
+    // tags,
+    itemClass,
     hideaddcal,
     event,
   } = props;
@@ -71,7 +71,7 @@ export default function ModernCompactInner(props: Props) {
         border: "0",
         // mb: 2,
       }}
-      className={`rlv-modern-compact-inner ${listClass}`}
+      className={`rlv-modern-compact-inner ${itemClass}`}
       raised={false}
     >
       <Link href={link} sx={{ textDecoration: "none" }}>
@@ -119,13 +119,13 @@ export default function ModernCompactInner(props: Props) {
               />
             </Typography>
           </CardContent>
-          {!tags.length ? (
+          {/* {!tags.length ? (
             ""
           ) : (
             <CardActions>
               <Tags tags={tags} />
             </CardActions>
-          )}
+          )} */}
         </CardActionArea>
       </Link>
       {isNotHidden(hideaddcal) ? (

@@ -19,7 +19,7 @@ const ModernCompact = (props: ViewProps) => {
               <ModernCompactInner
                 key={key}
                 title={event.event.title}
-                description={event.event.description}
+                description={event.event.description_text}
                 image={event.event.photo_url}
                 photoCrop="big"
                 link={event.event.localist_url}
@@ -30,7 +30,7 @@ const ModernCompact = (props: ViewProps) => {
                 dateFormat={getEventStartMonthDayString(event.event)}
                 timeFormat={getEventStartEndTimes(event.event)}
                 locationName={event.event.location_name}
-                listClass={props.listclass}
+                itemClass={props.itemclass}
                 event={event.event}
                 hideaddcal={props.hideaddcal}
               />
