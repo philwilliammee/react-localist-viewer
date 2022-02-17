@@ -22,6 +22,7 @@ const Cards = (props: ViewProps) => {
                   <ModernCompactInner
                     title={event.event.title}
                     description={event.event.description}
+                    photoCrop="big"
                     image={event.event.photo_url}
                     link={event.event.localist_url}
                     hidedescription={props.hidedescription}

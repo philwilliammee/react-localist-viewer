@@ -54,7 +54,7 @@ export default function ModernCompactInner(props: Props) {
     event,
   } = props;
 
-  const photo = image.replace("/huge/", `/${photoCrop}/`);
+  const photo = photoCrop ? image.replace("/huge/", `/${photoCrop}/`) : image;
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src =
