@@ -86,7 +86,8 @@ function CustomCardContent(props: Props) {
       <Time event={event} />
       <EventTitle title={event.title} />
       <Typography component="p" variant="body2" color="text.secondary">
-        {eventTime} {event.location_name ? `, ${event.location_name}` : ""}
+        {eventTime}
+        {event.location_name ? `, ${event.location_name}` : ""}
       </Typography>
       <Tags tags={event.tags} />
       <InlineImage
